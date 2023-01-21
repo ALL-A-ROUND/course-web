@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Fix Nav">
-      <change afterPath="$PROJECT_DIR$/app/question_bank/Nav.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pool/add/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pool/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pool/page.jsx" afterDir="false" />
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Add Pool">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/layout.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +26,7 @@
   </component>
   <component name="ProjectId" id="2KcUpQbGCUDsdaWJWWNW8zT7MJ4" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -96,7 +87,7 @@
       <updated>1674273546350</updated>
       <workItem from="1674273550524" duration="511000" />
       <workItem from="1674274068321" duration="540000" />
-      <workItem from="1674274646288" duration="11194000" />
+      <workItem from="1674274646288" duration="11393000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -147,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674279436623</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add Pool">
+      <created>1674316755216</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1674316755216</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,6 +158,7 @@
     <MESSAGE value="init tailwind" />
     <MESSAGE value="Added Nav" />
     <MESSAGE value="Fix Nav" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Nav" />
+    <MESSAGE value="Add Pool" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Pool" />
   </component>
 </project>
