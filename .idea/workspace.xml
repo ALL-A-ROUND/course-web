@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="init tailwind">
-      <change afterPath="$PROJECT_DIR$/app/Nav.jsx" afterDir="false" />
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Added Nav">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Nav.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +81,7 @@
       <updated>1674273546350</updated>
       <workItem from="1674273550524" duration="511000" />
       <workItem from="1674274068321" duration="540000" />
-      <workItem from="1674274646288" duration="2352000" />
+      <workItem from="1674274646288" duration="2417000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -112,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674278656993</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added Nav">
+      <created>1674279354913</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1674279354913</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +129,7 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="init" />
     <MESSAGE value="init tailwind" />
-    <option name="LAST_COMMIT_MESSAGE" value="init tailwind" />
+    <MESSAGE value="Added Nav" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Nav" />
   </component>
 </project>
