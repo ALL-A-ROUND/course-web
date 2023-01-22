@@ -219,36 +219,16 @@ export default function Nav() {
                                                 </div>
                                             </div>
                                             <div className="mt-3 space-y-1 px-2">
-                                                <a
-                                                    href="#"
-                                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                >
-                                                    Home
-                                                </a>
-                                                <a
-                                                    href="#"
-                                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                >
-                                                    Profile
-                                                </a>
-                                                <a
-                                                    href="#"
-                                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                >
-                                                    Resources
-                                                </a>
-                                                <a
-                                                    href="#"
-                                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                >
-                                                    Company Directory
-                                                </a>
-                                                <a
-                                                    href="#"
-                                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                >
-                                                    Openings
-                                                </a>
+                                                {navigation.map((item) => (
+                                                    <Link
+                                                        key={item.name}
+                                                        href={item.href}
+                                                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
+                                                        aria-current={item.href === pathname ? 'page' : undefined}
+                                                    >
+                                                        {item.name}
+                                                    </Link>
+                                                ))}
                                             </div>
                                         </div>
                                         <div className="pt-4 pb-2">
@@ -272,13 +252,13 @@ export default function Nav() {
                                             </div>
                                             <div className="mt-3 space-y-1 px-2">
                                                 {userNavigation.map((item) => (
-                                                    <a
+                                                    <Link
                                                         key={item.name}
                                                         href={item.href}
                                                         className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
                                                     >
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 ))}
                                             </div>
                                         </div>
