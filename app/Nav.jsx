@@ -9,8 +9,10 @@ import {
     XMarkIcon
 } from "@heroicons/react/24/outline";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
-import {Fragment} from "react";
+import {Fragment, useEffect} from "react";
 import Link from "next/link";
+import useSWR from "swr";
+import {useRouter} from "next/navigation";
 
 const solutions = [
     {
@@ -44,6 +46,23 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
+    const router = useRouter()
+    const {
+        data: user,
+        isLoading
+    } = useSWR('/user', async (url) => fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
+        headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+        }
+    }).then(res => res.json()))
+
+    useEffect(() => {
+        if (!isLoading && !user) router.replace('/auth/login')
+        if (user && user?.message === "Unauthenticated.") router.replace('/auth/login')
+    })
+
     return (
         <Popover className="relative bg-white">
             <div
@@ -135,16 +154,19 @@ export default function Nav() {
                     </a>
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                    <a href="pages#"
-                       className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                    </a>
-                    <a
-                        href="pages#"
-                        className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                    >
-                        Sign up
-                    </a>
+                    {!user ? (
+                        <>
+                            <Link href="/auth/login"
+                                  className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                                登入
+                            </Link>
+                            <Link
+                                href="/auth/register"
+                                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
+                            >
+                                註冊
+                            </Link>
+                        </>) : <></>}
                 </div>
             </div>
 
@@ -203,7 +225,8 @@ export default function Nav() {
                                 <a href="pages#" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Pricing
                                 </a>
-                                <Link href="question_bank" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                <Link href="question_bank"
+                                      className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     題庫系統
                                 </Link>
                                 <a href="pages#" className="text-base font-medium text-gray-900 hover:text-gray-700">

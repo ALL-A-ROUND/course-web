@@ -2,24 +2,14 @@
 import {Menu, Popover, Transition} from "@headlessui/react";
 import {Bars3Icon, BellIcon, XMarkIcon} from "@heroicons/react/24/outline";
 import {MagnifyingGlassIcon} from "@heroicons/react/20/solid";
-import {Fragment} from "react";
+import {Fragment, useEffect} from "react";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
+import useSWR from 'swr'
 
-const user = {
-    name: 'Tom Cook',
-    email: 'tom@example.com',
-    imageUrl:
-        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-}
 const navigation = [
     {name: '題庫系統', href: '/question_bank'},
     {name: '題庫', href: '/question_bank/pool'}
-]
-const userNavigation = [
-    {name: 'Your Profile', href: '#'},
-    {name: 'Settings', href: '#'},
-    {name: 'Sign out', href: '#'},
 ]
 
 function classNames(...classes) {
@@ -28,6 +18,37 @@ function classNames(...classes) {
 
 export default function Nav() {
     const pathname = usePathname()
+    const router = useRouter()
+    const userNavigation = [
+        {
+            name: '個人資料',
+            href: ''
+        },
+        {
+            name: '登出',
+            onclick() {
+                localStorage.removeItem('token')
+                router.replace('/auth/login')
+            }
+        },
+    ]
+
+    const {
+        data: user,
+        isLoading
+    } = useSWR('/user', async (url) => fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
+        headers: {
+            "Accept": "application/json",
+            "Authorization": "Bearer " + localStorage.getItem("token"),
+            "Content-Type": "application/json",
+        }
+    }).then(res => res.json()))
+
+    useEffect(() => {
+        if (!isLoading && !user) router.replace('/auth/login')
+        if (user && user?.message === "Unauthenticated.") router.replace('/auth/login')
+    })
+
     return (
         <Popover as="header" className="bg-indigo-600 pb-24">
             {({open}) => (
@@ -62,7 +83,7 @@ export default function Nav() {
                                         <Menu.Button
                                             className="flex rounded-full bg-white text-sm ring-2 ring-white ring-opacity-20 focus:outline-none focus:ring-opacity-100">
                                             <span className="sr-only">Open user menu</span>
-                                            <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt=""/>
+                                            <img className="h-8 w-8 rounded-full" src={user?.avatar} alt=""/>
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -73,8 +94,24 @@ export default function Nav() {
                                     >
                                         <Menu.Items
                                             className="absolute -right-2 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                            <Menu.Item>
+                                                <span
+                                                    className='block px-4 py-2 text-sm text-gray-500 border-b '>{user?.name}</span>
+                                            </Menu.Item>
                                             {userNavigation.map((item) => (
-                                                <Menu.Item key={item.name}>
+                                                item.onclick ? <Menu.Item key={item.name}>
+                                                    {({active}) => (
+                                                        <div
+                                                            onClick={item.onclick}
+                                                            className={classNames(
+                                                                active ? 'bg-gray-100' : '',
+                                                                'cursor-pointer block px-4 py-2 text-sm text-gray-700'
+                                                            )}
+                                                        >
+                                                            {item.name}
+                                                        </div>
+                                                    )}
+                                                </Menu.Item> : <Menu.Item key={item.name}>
                                                     {({active}) => (
                                                         <Link
                                                             href={item.href}
@@ -234,13 +271,13 @@ export default function Nav() {
                                         <div className="pt-4 pb-2">
                                             <div className="flex items-center px-5">
                                                 <div className="flex-shrink-0">
-                                                    <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt=""/>
+                                                    <img className="h-10 w-10 rounded-full" src={user?.avatar} alt=""/>
                                                 </div>
                                                 <div className="ml-3 min-w-0 flex-1">
                                                     <div
-                                                        className="truncate text-base font-medium text-gray-800">{user.name}</div>
+                                                        className="truncate text-base font-medium text-gray-800">{user?.name}</div>
                                                     <div
-                                                        className="truncate text-sm font-medium text-gray-500">{user.email}</div>
+                                                        className="truncate text-sm font-medium text-gray-500">{user?.email}</div>
                                                 </div>
                                                 <button
                                                     type="button"
@@ -252,13 +289,25 @@ export default function Nav() {
                                             </div>
                                             <div className="mt-3 space-y-1 px-2">
                                                 {userNavigation.map((item) => (
-                                                    <Link
-                                                        key={item.name}
-                                                        href={item.href}
-                                                        className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
-                                                    >
-                                                        {item.name}
-                                                    </Link>
+                                                    item.onclick ? <Menu.Item key={item.name}>
+                                                        {({active}) => (
+                                                            <div
+                                                                onClick={item.onclick}
+                                                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
+                                                            >
+                                                                {item.name}
+                                                            </div>
+                                                        )}
+                                                    </Menu.Item> : <Menu.Item key={item.name}>
+                                                        {({active}) => (
+                                                            <Link
+                                                                href={item.href}
+                                                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-900 hover:bg-gray-100 hover:text-gray-800"
+                                                            >
+                                                                {item.name}
+                                                            </Link>
+                                                        )}
+                                                    </Menu.Item>
                                                 ))}
                                             </div>
                                         </div>
