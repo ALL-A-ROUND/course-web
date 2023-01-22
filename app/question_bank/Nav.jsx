@@ -9,7 +9,7 @@ import useSWR from 'swr'
 
 const navigation = [
     {name: '題庫系統', href: '/question_bank'},
-    {name: '題庫', href: '/question_bank/pool'}
+    {name: '題庫', href: '/question_bank/pools'}
 ]
 
 function classNames(...classes) {

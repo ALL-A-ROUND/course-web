@@ -11,18 +11,19 @@ import {MagnifyingGlassIcon} from '@heroicons/react/20/solid'
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {HomeIcon} from "@heroicons/react/24/solid";
+import PoolList from "@/app/question_bank/pools/PoolList";
+import MobilePoolList from "@/app/question_bank/pools/MobilePoolList";
 
 const navigation = [
-    {name: '題庫列表', href: '/question_bank/pool', icon: HomeIcon},
-    {name: '測試題庫', href: '#', icon: DocumentIcon},
-    {name: '新增題庫', href: '/question_bank/pool/add', icon: FolderPlusIcon},
+    {name: '題庫列表', href: '/question_bank/pools', icon: HomeIcon},
+    {name: '新增題庫', href: '/question_bank/pools/add', icon: FolderPlusIcon},
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function({children}) {
+export default function ({children}) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const pathname = usePathname()
 
@@ -85,7 +86,7 @@ export default function({children}) {
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                         <nav className="space-y-1 px-2">
                                             {navigation.map((item) => (
-                                                <a
+                                                <Link
                                                     key={item.name}
                                                     href={item.href}
                                                     className={classNames(
@@ -103,8 +104,10 @@ export default function({children}) {
                                                         aria-hidden="true"
                                                     />
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             ))}
+                                            <div className={'h-4 border-b'}/>
+                                            <MobilePoolList pathname={pathname}/>
                                         </nav>
                                     </div>
                                 </Dialog.Panel>
@@ -122,7 +125,6 @@ export default function({children}) {
                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                         <div className="flex flex-grow flex-col">
                             <nav className="flex-1 space-y-1 px-2 pb-4">
-                                {/* TODO: make here client component except home and add */}
                                 {navigation.map((item) => (
                                     <Link
                                         key={item.name}
@@ -142,6 +144,8 @@ export default function({children}) {
                                         {item.name}
                                     </Link>
                                 ))}
+                                <div className={'h-4 border-b'}/>
+                                <PoolList pathname={pathname}/>
                             </nav>
                         </div>
                     </div>
@@ -149,7 +153,8 @@ export default function({children}) {
 
                 <div className="w-full">
                     <div className="mx-auto flex max-w-4xl flex-col md:px-8 xl:px-0">
-                        <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white md:hidden">
+                        <div
+                            className="sticky top-0 z-10 flex h-16 flex-shrink-0 border-b border-gray-200 bg-white md:hidden">
                             <button
                                 type="button"
                                 className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -163,7 +168,7 @@ export default function({children}) {
                         <main className="flex-1">
                             <div className="py-6">
                                 <div className="px-4 sm:px-6 md:px-0">
-                                    <h1 className="text-2xl font-semibold text-gray-900">{navigation.filter(n=>n.href===pathname)[0]?.name}</h1>
+                                    <h1 className="text-2xl font-semibold text-gray-900">{navigation.filter(n => n.href === pathname)[0]?.name}</h1>
                                 </div>
                                 <div className="px-4 sm:px-6 md:px-0">
                                     {/* Replace with your content */}
