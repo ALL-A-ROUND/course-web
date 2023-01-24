@@ -60,7 +60,10 @@ export default function Nav() {
 
     useEffect(() => {
         if (!isLoading && !user) router.replace('/auth/login')
-        if (user && user?.message === "Unauthenticated.") router.replace('/auth/login')
+        if (user && user?.message === "Unauthenticated.") {
+            localStorage.removeItem("token")
+            router.replace('/auth/login')
+        }
     })
 
     return (
