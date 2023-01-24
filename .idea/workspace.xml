@@ -4,10 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="if login register then redirect">
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="add pool">
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/MobileProblemList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/ProblemList.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/layout.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/add/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/add/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/add/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/MobilePoolList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/MobilePoolList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/PoolList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/PoolList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +50,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.11",
-    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/question_bank/pools/[id]/problems",
+    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/question_bank/pools/[id]",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -57,6 +63,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]/problems" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools" />
       <recent name="$PROJECT_DIR$/app/question_bank" />
@@ -95,7 +102,7 @@
       <workItem from="1674274068321" duration="540000" />
       <workItem from="1674274646288" duration="25125000" />
       <workItem from="1674542000464" duration="2000" />
-      <workItem from="1674570294022" duration="1284000" />
+      <workItem from="1674570294022" duration="2402000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -188,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674570409591</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="add pool">
+      <created>1674571757024</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1674571757024</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +221,7 @@
     <MESSAGE value="Nav" />
     <MESSAGE value="update" />
     <MESSAGE value="if login register then redirect" />
-    <option name="LAST_COMMIT_MESSAGE" value="if login register then redirect" />
+    <MESSAGE value="add pool" />
+    <option name="LAST_COMMIT_MESSAGE" value="add pool" />
   </component>
 </project>
