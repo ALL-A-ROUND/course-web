@@ -8,19 +8,20 @@ import {
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {HomeIcon} from "@heroicons/react/24/solid";
-import ProblemList from "@/app/question_bank/pools/[id]/ProblemList";
-import MobileProblemList from "@/app/question_bank/pools/[id]/MobileProblemList";
+import ProblemList from "@/app/question_bank/pools/[pool_id]/ProblemList";
+import MobileProblemList from "@/app/question_bank/pools/[pool_id]/MobileProblemList";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function ({children}) {
+export default function ({children, params}) {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const pathname = usePathname()
+    const pool_id = params.pool_id
     const navigation = [
-        {name: '題目列表', href: ``, icon: HomeIcon},
-        {name: '新增題目', href: '', icon: DocumentPlusIcon},
+        {name: '題目列表', href: `/question_bank/pools/${pool_id}/problems`, same: true, icon: HomeIcon},
+        {name: '新增題目', href: `/question_bank/pools/${pool_id}/problems/add`, same: true, icon: DocumentPlusIcon},
     ]
 
     return (
@@ -86,7 +87,7 @@ export default function ({children}) {
                                                     key={item.name}
                                                     href={item.href}
                                                     className={classNames(
-                                                        item.current
+                                                        (item.same ? item.href === pathname : item.href.startsWith(pathname))
                                                             ? 'bg-gray-100 text-gray-900'
                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                         'group rounded-md py-2 px-2 flex items-center text-base font-medium'
@@ -94,7 +95,9 @@ export default function ({children}) {
                                                 >
                                                     <item.icon
                                                         className={classNames(
-                                                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                            (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                                ? 'text-gray-500'
+                                                                : 'text-gray-400 group-hover:text-gray-500',
                                                             'mr-4 flex-shrink-0 h-6 w-6'
                                                         )}
                                                         aria-hidden="true"
@@ -103,7 +106,7 @@ export default function ({children}) {
                                                 </Link>
                                             ))}
                                             <div className={'h-4 border-b'}/>
-                                            <MobileProblemList pathname={pathname}/>
+                                            <MobileProblemList pathname={pathname} params={params}/>
                                         </nav>
                                     </div>
                                 </Dialog.Panel>
@@ -126,13 +129,17 @@ export default function ({children}) {
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                            item.href === pathname ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                            (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                ? 'bg-gray-100 text-gray-900'
+                                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                             'group rounded-md py-2 px-2 flex items-center text-sm font-medium'
                                         )}
                                     >
                                         <item.icon
                                             className={classNames(
-                                                item.href === pathname ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                    ? 'text-gray-500'
+                                                    : 'text-gray-400 group-hover:text-gray-500',
                                                 'mr-3 flex-shrink-0 h-6 w-6'
                                             )}
                                             aria-hidden="true"
@@ -141,7 +148,7 @@ export default function ({children}) {
                                     </Link>
                                 ))}
                                 <div className={'h-4 border-b'}/>
-                                <ProblemList pathname={pathname}/>
+                                <ProblemList pathname={pathname} params={params}/>
                             </nav>
                         </div>
                     </div>
@@ -162,7 +169,7 @@ export default function ({children}) {
                         </div>
 
                         <main className="flex-1">
-                            <div className="py-6">
+                            <div className="px-4 py-6">
                                 <div className="px-4 sm:px-6 md:px-0">
                                     <h1 className="text-2xl font-semibold text-gray-900">{navigation.filter(n => n.href === pathname)[0]?.name}</h1>
                                 </div>

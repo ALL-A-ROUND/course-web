@@ -7,7 +7,6 @@ import {
     DocumentIcon,
     FolderPlusIcon
 } from '@heroicons/react/24/outline'
-import {MagnifyingGlassIcon} from '@heroicons/react/20/solid'
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {HomeIcon} from "@heroicons/react/24/solid";
@@ -15,8 +14,8 @@ import PoolList from "@/app/question_bank/pools/PoolList";
 import MobilePoolList from "@/app/question_bank/pools/MobilePoolList";
 
 const navigation = [
-    {name: '題庫列表', href: '/question_bank/pools', icon: HomeIcon},
-    {name: '新增題庫', href: '/question_bank/pools/add', icon: FolderPlusIcon},
+    {name: '題庫列表', href: '/question_bank/pools', same: true, icon: HomeIcon},
+    {name: '新增題庫', href: '/question_bank/pools/add', same: true, icon: FolderPlusIcon},
 ]
 
 function classNames(...classes) {
@@ -90,7 +89,7 @@ export default function ({children}) {
                                                     key={item.name}
                                                     href={item.href}
                                                     className={classNames(
-                                                        item.current
+                                                        (item.same ? item.href === pathname : item.href.startsWith(pathname))
                                                             ? 'bg-gray-100 text-gray-900'
                                                             : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                                         'group rounded-md py-2 px-2 flex items-center text-base font-medium'
@@ -98,7 +97,9 @@ export default function ({children}) {
                                                 >
                                                     <item.icon
                                                         className={classNames(
-                                                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                            (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                                ? 'text-gray-500'
+                                                                : 'text-gray-400 group-hover:text-gray-500',
                                                             'mr-4 flex-shrink-0 h-6 w-6'
                                                         )}
                                                         aria-hidden="true"
@@ -130,13 +131,17 @@ export default function ({children}) {
                                         key={item.name}
                                         href={item.href}
                                         className={classNames(
-                                            item.href === pathname ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                                            (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                ? 'bg-gray-100 text-gray-900'
+                                                : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                                             'group rounded-md py-2 px-2 flex items-center text-sm font-medium'
                                         )}
                                     >
                                         <item.icon
                                             className={classNames(
-                                                item.href === pathname ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                (item.same ? item.href === pathname : item.href.startsWith(pathname))
+                                                    ? 'text-gray-500'
+                                                    : 'text-gray-400 group-hover:text-gray-500',
                                                 'mr-3 flex-shrink-0 h-6 w-6'
                                             )}
                                             aria-hidden="true"

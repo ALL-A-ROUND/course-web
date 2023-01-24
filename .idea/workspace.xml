@@ -4,16 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="add pool">
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/MobileProblemList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/ProblemList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/add/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/page.jsx" afterDir="false" />
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="problem">
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/[problem_id]/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/add/page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/question_bank/pools/MobilePoolList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/MobilePoolList.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/question_bank/pools/PoolList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/PoolList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/MobileProblemList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/MobileProblemList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/ProblemList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/ProblemList.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/add/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[id]/problems/page.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/layout.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +105,7 @@
       <workItem from="1674274068321" duration="540000" />
       <workItem from="1674274646288" duration="25125000" />
       <workItem from="1674542000464" duration="2000" />
-      <workItem from="1674570294022" duration="2402000" />
+      <workItem from="1674570294022" duration="5043000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -202,7 +205,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674571757024</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="problem">
+      <created>1674572748022</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1674572748022</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -222,6 +232,7 @@
     <MESSAGE value="update" />
     <MESSAGE value="if login register then redirect" />
     <MESSAGE value="add pool" />
-    <option name="LAST_COMMIT_MESSAGE" value="add pool" />
+    <MESSAGE value="problem" />
+    <option name="LAST_COMMIT_MESSAGE" value="problem" />
   </component>
 </project>
