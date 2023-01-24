@@ -1,5 +1,6 @@
 "use client"
 import {usePathname, useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 export default function () {
     const pathname = usePathname()
@@ -24,6 +25,14 @@ export default function () {
             router.replace('/')
         })
     }
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if (token) {
+            router.replace('/')
+        }
+    })
+
     return (
         <div className="mt-6">
             <form action="" onSubmit={submit} method="POST" className="space-y-6">
