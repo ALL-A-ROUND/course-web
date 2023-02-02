@@ -8,6 +8,33 @@ const people = [
         twitterUrl: '#',
         linkedinUrl: '#',
     },
+    {
+        name: 'Leslie Alexander',
+        role: 'CTO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+    {
+        name: 'Leslie Alexander',
+        role: 'CMO',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
+    {
+        name: 'Leslie Alexander',
+        role: '講師',
+        imageUrl:
+            'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80',
+        bio: 'Ultricies massa malesuada viverra cras lobortis. Tempor orci hac ligula dapibus mauris sit ut eu. Eget turpis urna maecenas cras. Nisl dictum.',
+        twitterUrl: '#',
+        linkedinUrl: '#',
+    },
     // More people...
 ]
 
@@ -17,11 +44,9 @@ export default function About() {
             <div className="mx-auto max-w-7xl py-12 px-6 lg:px-8 lg:py-24">
                 <div className="space-y-12 lg:grid lg:grid-cols-3 lg:gap-8 lg:space-y-0">
                     <div className="space-y-5 sm:space-y-4">
-                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">About Us</h2>
+                        <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">關於我們</h2>
                         <p className="text-xl text-gray-500">
-                            Nulla quam felis, enim faucibus proin velit, ornare id pretium. Augue ultrices sed arcu
-                            condimentum
-                            vestibulum suspendisse. Volutpat eu faucibus vivamus eget bibendum cras.
+                            教育科技
                         </p>
                     </div>
                     <div className="lg:col-span-2">

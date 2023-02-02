@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Fix redirect">
-      <change afterPath="$PROJECT_DIR$/app/(home)/about/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(home)/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(home)/pricing/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/middleware.config.js" afterDir="false" />
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Homepage">
+      <change afterPath="$PROJECT_DIR$/public/learning.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(home)/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(home)/about/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/about/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(home)/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +46,7 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.11",
-    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/(home)/pricing",
+    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/public",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,11 +59,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/app/(home)/pricing" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]/problems" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools" />
-      <recent name="$PROJECT_DIR$/app/question_bank" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/(home)" />
@@ -108,7 +103,7 @@
       <workItem from="1674274646288" duration="25125000" />
       <workItem from="1674542000464" duration="2000" />
       <workItem from="1674570294022" duration="6020000" />
-      <workItem from="1675307597771" duration="4231000" />
+      <workItem from="1675307597771" duration="5066000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -229,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674575803022</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Homepage">
+      <created>1675313509079</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1675313509079</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,6 +253,7 @@
     <MESSAGE value="add pool" />
     <MESSAGE value="problem" />
     <MESSAGE value="Fix redirect" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix redirect" />
+    <MESSAGE value="Homepage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Homepage" />
   </component>
 </project>

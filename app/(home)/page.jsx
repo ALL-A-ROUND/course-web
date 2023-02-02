@@ -80,7 +80,7 @@ export default function Home() {
                         <div className="absolute inset-0">
                             <img
                                 className="h-full w-full object-cover"
-                                src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100"
+                                src="/learning.png"
                                 alt="People working on laptops"
                             />
                             <div
@@ -88,13 +88,11 @@ export default function Home() {
                         </div>
                         <div className="relative py-16 px-6 sm:py-24 lg:py-32 lg:px-8">
                             <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                                <span className="block text-white">Take control of your</span>
-                                <span className="block text-indigo-200">customer support</span>
+                                <span className="block text-white">打造未來的</span>
+                                <span className="block text-indigo-200">程式教育環境</span>
                             </h1>
                             <p className="mx-auto mt-6 max-w-lg text-center text-xl text-indigo-200 sm:max-w-3xl">
-                                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat
-                                commodo. Elit sunt
-                                amet fugiat veniam occaecat fugiat aliqua.
+                                首創程式教育平台，結合線上即時評測系統，提供學生優質的學習環境，讓家長輕鬆知悉學生的即時學習進度。
                             </p>
                             <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                                 <div

@@ -2,9 +2,10 @@
 
 import {Popover, Transition} from "@headlessui/react";
 import {
-    Bars3Icon,
+    AcademicCapIcon,
+    Bars3Icon, BellIcon,
     ChatBubbleBottomCenterTextIcon,
-    ChatBubbleLeftRightIcon,
+    ChatBubbleLeftRightIcon, FolderIcon,
     InboxIcon, QuestionMarkCircleIcon,
     XMarkIcon
 } from "@heroicons/react/24/outline";
@@ -17,26 +18,26 @@ import {middlewareConfig} from "@/app/middleware.config";
 
 const solutions = [
     {
-        name: 'Inbox',
-        description: 'Get a better understanding of where your traffic is coming from.',
-        href: '#',
-        icon: InboxIcon,
+        name: '題庫系統',
+        description: '讓教學老師能快速地在系統上出題',
+        href: '/question_bank',
+        icon: FolderIcon,
     },
     {
-        name: 'Messaging',
-        description: 'Speak directly to your customers in a more meaningful way.',
+        name: '課程平台',
+        description: '簡單易用的平台，讓學生能快速找到每堂課的練習題及作業並能線上即時評測',
         href: '#',
-        icon: ChatBubbleBottomCenterTextIcon,
+        icon: AcademicCapIcon,
     },
     {
-        name: 'Live Chat',
-        description: "Your customers' data will be safe and secure.",
+        name: '即時通知',
+        description: "課程結束、作業截止、成績公布等重要通知均會傳送即時通知給家長，家長可以即時追蹤孩子學習狀況",
         href: '#',
-        icon: ChatBubbleLeftRightIcon,
+        icon: BellIcon,
     },
     {
-        name: 'Knowledge Base',
-        description: "Connect with third-party tools that you're already using.",
+        name: '即時提問',
+        description: "提問系統，讓學生能夠在課堂時間外提問",
         href: '#',
         icon: QuestionMarkCircleIcon,
     },
@@ -79,14 +80,14 @@ export default function Nav() {
             <div
                 className="mx-auto flex max-w-7xl items-center justify-between p-6 md:justify-start md:space-x-10 lg:px-8">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="/">
+                    <Link href="/">
                         <span className="sr-only">Your Company</span>
                         <img
                             className="h-8 w-auto sm:h-10"
                             src="https://tailwindui.com/img/logos/mark.svg?from-color=purple&from-shade=600&to-color=indigo&to-shade=600&toShade=600"
                             alt=""
                         />
-                    </a>
+                    </Link>
                 </div>
                 <div className="-my-2 -mr-2 md:hidden">
                     <Popover.Button
@@ -105,7 +106,7 @@ export default function Nav() {
                                         'group inline-flex items-center rounded-md bg-white text-base font-medium hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2'
                                     )}
                                 >
-                                    <span>Solutions</span>
+                                    <span>解決方案</span>
                                     <ChevronDownIcon
                                         className={classNames(
                                             open ? 'text-gray-600' : 'text-gray-400',
@@ -157,9 +158,6 @@ export default function Nav() {
                     <Link href="/pricing"
                           className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
                         價格
-                    </Link>
-                    <Link href="app/question_bank" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        題庫系統
                     </Link>
                     <Link href={"/about"}
                           className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
@@ -235,29 +233,29 @@ export default function Nav() {
                         </div>
                         <div className="py-6 px-5">
                             <div className="grid grid-cols-2 gap-4">
-                                <a href="pages#" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                <Link href="/pricing" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Pricing
-                                </a>
-                                <Link href="app/question_bank"
+                                </Link>
+                                <Link href="/question_bank"
                                       className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     題庫系統
                                 </Link>
-                                <a href="pages#" className="text-base font-medium text-gray-900 hover:text-gray-700">
-                                    Company
-                                </a>
+                                <Link href="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    關於我們
+                                </Link>
                             </div>
                             <div className="mt-6">
-                                <a
-                                    href="pages#"
+                                <Link
+                                    href="/auth/register"
                                     className="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
                                 >
-                                    Sign up
-                                </a>
+                                    註冊
+                                </Link>
                                 <p className="mt-6 text-center text-base font-medium text-gray-500">
-                                    Existing customer?
-                                    <a href="pages#" className="text-gray-900">
-                                        Sign in
-                                    </a>
+                                    已是客戶？
+                                    <Link href="/auth/login" className="text-gray-900">
+                                        登入
+                                    </Link>
                                 </p>
                             </div>
                         </div>
