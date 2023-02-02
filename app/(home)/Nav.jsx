@@ -12,7 +12,8 @@ import {ChevronDownIcon} from "@heroicons/react/20/solid";
 import {Fragment, useEffect} from "react";
 import Link from "next/link";
 import useSWR from "swr";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
+import {middlewareConfig} from "@/app/middleware.config";
 
 const solutions = [
     {
@@ -47,6 +48,7 @@ function classNames(...classes) {
 
 export default function Nav() {
     const router = useRouter()
+    const pathname = usePathname()
     const {
         data: user,
         isLoading
@@ -59,10 +61,16 @@ export default function Nav() {
     }).then(res => res.json()))
 
     useEffect(() => {
-        if (!isLoading && !user) router.replace('/auth/login')
-        if (user && user?.message === "Unauthenticated.") {
-            localStorage.removeItem("token")
-            router.replace('/auth/login')
+        for(let route of Object.keys(middlewareConfig)) {
+            if (middlewareConfig[route].regex.test(pathname)) {
+                if(middlewareConfig[route].middlewares.includes("auth")) {
+                    if (!isLoading && !user) router.replace('/auth/login')
+                    if (user && user?.message === "Unauthenticated.") {
+                        localStorage.removeItem("token")
+                        router.replace('/auth/login')
+                    }
+                }
+            }
         }
     })
 
@@ -71,7 +79,7 @@ export default function Nav() {
             <div
                 className="mx-auto flex max-w-7xl items-center justify-between p-6 md:justify-start md:space-x-10 lg:px-8">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="pages#">
+                    <a href="/">
                         <span className="sr-only">Your Company</span>
                         <img
                             className="h-8 w-auto sm:h-10"
@@ -146,15 +154,17 @@ export default function Nav() {
                         )}
                     </Popover>
 
-                    <a href="pages#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Pricing
-                    </a>
-                    <Link href="question_bank" className="text-base font-medium text-gray-500 hover:text-gray-900">
+                    <Link href="/pricing"
+                          className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
+                        價格
+                    </Link>
+                    <Link href="app/question_bank" className="text-base font-medium text-gray-500 hover:text-gray-900">
                         題庫系統
                     </Link>
-                    <a href="pages#" className="text-base font-medium text-gray-500 hover:text-gray-900">
-                        Company
-                    </a>
+                    <Link href={"/about"}
+                          className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
+                        關於我們
+                    </Link>
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                     {!user ? (
@@ -228,7 +238,7 @@ export default function Nav() {
                                 <a href="pages#" className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Pricing
                                 </a>
-                                <Link href="question_bank"
+                                <Link href="app/question_bank"
                                       className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     題庫系統
                                 </Link>

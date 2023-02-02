@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="problem">
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Fix redirect">
+      <change afterPath="$PROJECT_DIR$/app/(home)/about/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(home)/layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(home)/pricing/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/middleware.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/question_bank/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(home)/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,26 +51,30 @@
     "WebServerToolWindowFactoryState": "false",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.11",
-    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/question_bank/pools/[id]",
+    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/(home)/pricing",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "ts.external.directory.path": "/Users/hsuan/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/223.8214.51/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/(home)/pricing" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools/[id]/problems" />
       <recent name="$PROJECT_DIR$/app/question_bank/pools" />
       <recent name="$PROJECT_DIR$/app/question_bank" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/(home)" />
       <recent name="$PROJECT_DIR$/app" />
+      <recent name="$PROJECT_DIR$/app/(home)/about" />
+      <recent name="$PROJECT_DIR$/app/(home)/pricing" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -96,7 +107,8 @@
       <workItem from="1674274068321" duration="540000" />
       <workItem from="1674274646288" duration="25125000" />
       <workItem from="1674542000464" duration="2000" />
-      <workItem from="1674570294022" duration="5404000" />
+      <workItem from="1674570294022" duration="6020000" />
+      <workItem from="1675307597771" duration="4231000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -210,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674575502403</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fix redirect">
+      <created>1674575803022</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1674575803022</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +250,7 @@
     <MESSAGE value="if login register then redirect" />
     <MESSAGE value="add pool" />
     <MESSAGE value="problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="problem" />
+    <MESSAGE value="Fix redirect" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix redirect" />
   </component>
 </project>
