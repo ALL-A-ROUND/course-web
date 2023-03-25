@@ -26,7 +26,7 @@ const solutions = [
     {
         name: '課程平台',
         description: '簡單易用的平台，讓學生能快速找到每堂課的練習題及作業並能線上即時評測',
-        href: '#',
+        href: '/course',
         icon: AcademicCapIcon,
     },
     {
