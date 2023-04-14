@@ -14,6 +14,7 @@ const navigation = [
     {name: '課程', href: '/course'},
     {name: '題目', href: '/problem'},
     {name: '狀態', href: '/submission'},
+    {name: '競賽', href: '/contest'},
 ]
 const userNavigation = [
     {name: 'Your Profile', href: '#'},

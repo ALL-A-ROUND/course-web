@@ -4,19 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="Course Done">
-      <change afterPath="$PROJECT_DIR$/app/problem/ProblemList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/problem/[problem_id]/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/problem/[problem_id]/submit/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/problem/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/problem/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/submission/SubmissionList.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/submission/[submission_id]/page.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/submission/layout.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/submission/page.jsx" afterDir="false" />
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="reverse submission">
+      <change afterPath="$PROJECT_DIR$/app/contest/[contest_id]/Problem.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/contest/[contest_id]/layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/contest/[contest_id]/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/contest/layout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/contest/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/fetcher.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/problem/[problem_id]/contest/[contest_id]/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/problem/[problem_id]/contest/[contest_id]/submit/page.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/utils/Problem.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/course/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Nav.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/course/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/course/layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Nav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/Nav.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/course/[course_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/course/[course_id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/course/[course_id]/unit/[unit_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/course/[course_id]/unit/[unit_id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/problem/[problem_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/problem/[problem_id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/problem/[problem_id]/submit/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/problem/[problem_id]/submit/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/submission/[submission_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/submission/[submission_id]/page.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
@@ -59,31 +63,31 @@
     "git-widget-placeholder": "main",
     "javascript.nodejs.core.library.configured.version": "16.15.1",
     "javascript.nodejs.core.library.typings.version": "16.18.23",
-    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/submission",
+    "last_opened_file_path": "/Users/hsuan/Projects/wakuoj-frontend/app/problem/[problem_id]/contest/[contest_id]/submit",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/Users/hsuan/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/223.8836.50/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
+    "ts.external.directory.path": "/Users/hsuan/Library/Application Support/JetBrains/Toolbox/apps/WebStorm/ch-0/231.8109.174/WebStorm.app/Contents/plugins/javascript-impl/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/problem/[problem_id]/contest/[contest_id]/submit" />
+      <recent name="$PROJECT_DIR$/app/problem/[problem_id]/[contest_id]" />
+      <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/submission" />
       <recent name="$PROJECT_DIR$/app/problem" />
-      <recent name="$PROJECT_DIR$/app" />
-      <recent name="$PROJECT_DIR$/app/course/[course_id]" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/problem/[problem_id]/contest" />
+      <recent name="$PROJECT_DIR$/app/problem" />
+      <recent name="$PROJECT_DIR$/app/problem/[[...contest_id]]" />
       <recent name="$PROJECT_DIR$/app" />
       <recent name="$PROJECT_DIR$/app/(home)" />
-      <recent name="$PROJECT_DIR$/app/(home)/about" />
-      <recent name="$PROJECT_DIR$/app/(home)/pricing" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager">
@@ -124,7 +128,10 @@
       <workItem from="1677330989402" duration="1204000" />
       <workItem from="1677465471821" duration="209000" />
       <workItem from="1679728641186" duration="17011000" />
-      <workItem from="1680166555214" duration="23147000" />
+      <workItem from="1680166555214" duration="23783000" />
+      <workItem from="1680450266717" duration="58000" />
+      <workItem from="1680603089621" duration="679000" />
+      <workItem from="1681396689598" duration="20602000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -273,7 +280,21 @@
       <option name="project" value="LOCAL" />
       <updated>1679738081583</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Done Judge">
+      <created>1680447617331</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1680447617331</updated>
+    </task>
+    <task id="LOCAL-00023" summary="reverse submission">
+      <created>1680450304719</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1680450304719</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,6 +319,8 @@
     <MESSAGE value="Homepage" />
     <MESSAGE value="Add Course" />
     <MESSAGE value="Course Done" />
-    <option name="LAST_COMMIT_MESSAGE" value="Course Done" />
+    <MESSAGE value="Done Judge" />
+    <MESSAGE value="reverse submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="reverse submission" />
   </component>
 </project>

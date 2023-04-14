@@ -30,7 +30,7 @@ const getLanguages = async (id, router) => {
     return res.json()
 }
 
-export default function ({params: {problem_id}}) {
+export default function ({params: {problem_id, contest_id = null}}) {
     const [languages, setLanguages] = useState([])
     const [language, setLanguage] = useState(null)
 
@@ -46,7 +46,8 @@ export default function ({params: {problem_id}}) {
             method: "POST",
             body: JSON.stringify({
                 language: language.id,
-                code: editorRef.current.getValue()
+                code: editorRef.current.getValue(),
+                contest_id
             })
         })
 

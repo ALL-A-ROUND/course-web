@@ -1,6 +1,5 @@
 "use client"
 import useSWR from "swr";
-import Link from "next/link";
 import {useRouter} from "next/navigation";
 import moment from "moment-timezone/moment-timezone";
 
@@ -25,6 +24,8 @@ export default function ({params: {submission_id}}) {
             }
         }
         return res.json()
+    }, {
+        refreshInterval: 1000
     })
 
     const resultClass = {

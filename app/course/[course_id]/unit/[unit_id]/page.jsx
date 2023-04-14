@@ -7,9 +7,9 @@ import Link from "next/link";
 export default function ({params: {course_id, unit_id}}) {
     const router = useRouter()
     const {
-        data: problems,
+        data: contests,
         isLoading
-    } = useSWR(`/course/${course_id}/units/${unit_id}/problems`, async (url) => {
+    } = useSWR(`/course/${course_id}/units/${unit_id}/contests`, async (url) => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
             headers: {
                 "Accept": "application/json",
@@ -30,32 +30,30 @@ export default function ({params: {course_id, unit_id}}) {
         <div className="overflow-hidden bg-white shadow sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
                 {isLoading && <div>Loading...</div>}
-                {problems?.homework?.length && problems?.homework?.map((prob) => (
-                    <li key={prob.id}>
-                        <Link href={`/problem/${prob.id}`} className="block hover:bg-gray-50">
+                {contests?.homework?.length && contests?.homework?.map((contest) => (
+                    <li key={contest.id}>
+                        <Link href={`/contest/${contest.id}`} className="block hover:bg-gray-50">
                             <div className="flex items-center px-4 py-4 sm:px-6">
                                 <div className="flex min-w-0 flex-1 items-center">
                                     <div className="min-w-0 flex-1 px-4 md:grid md:grid-cols-2 md:gap-4">
                                         <div>
-                                            <p className="truncate text-lg font-medium text-indigo-600">(#{prob.id}) {prob.title}</p>
+                                            <p className="truncate text-lg font-medium text-indigo-600">(#{contest.id}) {contest.name}</p>
                                             <p className="mt-2 flex items-center text-sm text-gray-500">
-                                                <span className="truncate">{prob.description}</span>
+                                                <span className="truncate">{contest.description}</span>
                                             </p>
                                         </div>
-                                        {/* <div className="hidden md:block">
+                                        <div className="hidden md:block">
                                             <div>
                                                 <p className="text-sm text-gray-900">
-                                                    Applied on <time
-                                                    dateTime={application.date}>{application.dateFull}</time>
+                                                    開始時間 <time
+                                                    dateTime={contest.start_time}>{contest.start_time}</time>
                                                 </p>
-                                                <p className="mt-2 flex items-center text-sm text-gray-500">
-                                                    <CheckCircleIcon
-                                                        className="mr-1.5 h-5 w-5 flex-shrink-0 text-green-400"
-                                                        aria-hidden="true"/>
-                                                    {application.stage}
+                                                <p className="text-sm text-gray-900">
+                                                    截止時間 <time
+                                                    dateTime={contest.end_time}>{contest.end_time}</time>
                                                 </p>
                                             </div>
-                                        </div>*/}
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
