@@ -47,7 +47,7 @@ export default function Course() {
                             <div className={"border-b border-dotted border-gray-300 text-xl"}>我的課程</div>
                             <div className={"grid grid-cols-2 gap-4"}>
                                 <AttendedCourseList/>
-                            < /div>
+                            </div>
                         </div>
                     </div>
                 </div>

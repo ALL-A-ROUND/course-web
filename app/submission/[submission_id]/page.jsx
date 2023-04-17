@@ -2,11 +2,14 @@
 import useSWR from "swr";
 import {useRouter} from "next/navigation";
 import moment from "moment-timezone/moment-timezone";
+import {useState} from "react";
 
 export default function ({params: {submission_id}}) {
     const router = useRouter()
+    const [interval, setInterval] = useState(1000)
+
     const {
-        data: submission,
+        data: submission = {},
         isLoading
     } = useSWR(`/submission/${submission_id}`, async (url) => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
@@ -21,11 +24,16 @@ export default function ({params: {submission_id}}) {
             if (res.status === 401) {
                 localStorage.removeItem("token")
                 router.replace("/auth/login")
+            } else {
+                router.replace("/submission")
             }
         }
-        return res.json()
+        const data = res.json()
+        if(data.status === "Done")
+            setInterval(null)
+        return data
     }, {
-        refreshInterval: 1000
+        refreshInterval: interval
     })
 
     const resultClass = {
