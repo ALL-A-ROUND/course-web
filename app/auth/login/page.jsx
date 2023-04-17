@@ -4,7 +4,6 @@ import {useEffect} from "react";
 
 export default function () {
     const pathname = usePathname()
-    const next = new URLSearchParams(location.search).get("next")
     const router = useRouter()
     const submit = (e) => {
         e.preventDefault()
@@ -22,8 +21,9 @@ export default function () {
             }
         }).then(res => res.json()).then(data => {
             localStorage.setItem("token", data.access_token)
-            if (next)
-                router.replace(next)
+            const sp = new URLSearchParams(location.search)
+            if (sp.has('next'))
+                router.replace(sp.get('next'))
             else
                 router.replace('/')
         })

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="finish">
+    <list default="true" id="ae56d177-3f24-4ec9-a58c-a10a4e7fda46" name="Changes" comment="new judge">
+      <change afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/ProblemEditableForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/auth/login/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/auth/login/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/course/AttendedCourseList.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/course/AttendedCourseList.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/course/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/course/page.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/submission/[submission_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/submission/[submission_id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/layout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/layout.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/[problem_id]/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/[problem_id]/page.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/add/page.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/question_bank/pools/[pool_id]/problems/add/page.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +120,7 @@
       <workItem from="1680450266717" duration="58000" />
       <workItem from="1680603089621" duration="679000" />
       <workItem from="1681396689598" duration="21112000" />
-      <workItem from="1681653180960" duration="8983000" />
+      <workItem from="1681653180960" duration="10472000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <created>1674273609687</created>
@@ -289,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1681478830690</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="new judge">
+      <created>1681750671081</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1681750671081</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,6 +325,7 @@
     <MESSAGE value="Done Judge" />
     <MESSAGE value="reverse submission" />
     <MESSAGE value="finish" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish" />
+    <MESSAGE value="new judge" />
+    <option name="LAST_COMMIT_MESSAGE" value="new judge" />
   </component>
 </project>
