@@ -1,6 +1,67 @@
+"use client"
+import {fetcher} from "@/app/fetcher";
+import useSWR from "swr";
+import {Roboto_Mono} from "@next/font/google";
+import {useState} from "react";
+import {TrashIcon} from "@heroicons/react/24/outline";
+
+const Mono = Roboto_Mono({subsets: ['latin']})
+
 export default function ProblemEditableForm({
-                                                type, setType, submit, pathname, problem
+                                                type,
+                                                setType,
+                                                submit,
+                                                pathname,
+                                                problem,
+                                                languages = null,
+                                                setLanguages = null,
+                                                testcases = null,
+                                                setTestcases= null,
                                             }) {
+    const {
+        data: lang,
+        isLoading
+    } = useSWR('/question_bank/supportLanguages', async (url) => {
+        return await fetcher(url)
+    })
+
+    if (languages === null) {
+        [languages, setLanguages] = useState([{language: '16', time_limit: '1', memory_limit: '4096'}])
+    }
+
+    if (testcases === null) {
+        [testcases, setTestcases] = useState([{input: null, output: null}])
+    }
+
+    const addLanguage = (e) => {
+        e.preventDefault()
+        setLanguages([...languages, {language: '16', time_limit: '1', memory_limit: '4096'}])
+    }
+
+    const changeSelect = (value, index) => {
+        const newLanguages = [...languages]
+        newLanguages[index].language = value
+        setLanguages(newLanguages)
+    }
+
+    const changeTimeLimit = (value, index) => {
+        const newLanguages = [...languages]
+        newLanguages[index].time_limit = value
+        setLanguages(newLanguages)
+    }
+
+    const changeMemoryLimit = (value, index) => {
+        const newLanguages = [...languages]
+        newLanguages[index].memory_limit = value
+        setLanguages(newLanguages)
+    }
+
+    const delLanguage = (idx) => {
+        const newLanguages = [...languages]
+        newLanguages.splice(idx, 1)
+        setLanguages(newLanguages)
+    }
+
     return (
         <div className={"bg-gray-100"}>
             <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -98,6 +159,127 @@ export default function ProblemEditableForm({
                                                 </label>
                                             </div>
                                         </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+
+                        <div className="pt-8">
+                            <div>
+                                <h3 className="text-lg font-medium leading-6 text-gray-900">Judge設定</h3>
+                                <p className="mt-1 text-sm text-gray-500">
+                                    跟評測有關的設定
+                                </p>
+                            </div>
+                            <div className="mt-6 flex flex-col gap-2">
+                                <fieldset>
+                                    <legend className="sr-only">支援的語言</legend>
+                                    <div className="text-base font-medium text-gray-900" aria-hidden="true">
+                                        支援的語言
+                                    </div>
+                                    <p className="text-sm text-gray-500">支援用什麼語言提交</p>
+                                    {isLoading ? <div className="text-center">Loading...</div> : null}
+                                    <div className="mt-4 space-y-4 flex flex-col">
+                                        {languages?.map((l, i) => (
+                                            <div className={"bg-gray-300 py-3 px-2 gap-2 rounded flex flex-col"}>
+                                                <div className={"flex justify-between"}>
+                                                    <span>#{i + 1}</span>
+                                                    <div onClick={e => delLanguage(i)} className={"cursor-pointer"}>
+                                                        <TrashIcon className={"h-6 w-6 text-red-500"}/>
+                                                    </div>
+                                                </div>
+                                                <div className={"flex flex-col"}>
+                                                    <label className={"text-sm"}>時間限制 (秒)：</label>
+                                                    <input
+                                                        type="text"
+                                                        name="languages"
+                                                        id={"languages_time_" + i}
+                                                        value={l?.time_limit ?? '1'}
+                                                        onChange={e => changeTimeLimit(e.target.value, i)}
+                                                        placeholder={"Time Limit (秒)"}
+                                                        max={15}
+                                                        className="block w-full min-w-0 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                    />
+                                                </div>
+                                                <div className={"flex flex-col"}>
+                                                    <label className={"text-sm"}>記憶體限制 (KB)：</label>
+                                                    <input
+                                                        type="text"
+                                                        name="languages"
+                                                        id={"languages_mem_" + i}
+                                                        value={l?.memory_limit ?? '4096'}
+                                                        onChange={e => changeMemoryLimit(e.target.value, i)}
+                                                        placeholder={"Memory Limit (KB)"}
+                                                        min={2048}
+                                                        className="block w-full min-w-0 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                    />
+                                                </div>
+                                                <select className={`rounded-xl shadow-xl w-full ${Mono.className}`}
+                                                        value={l.id} onChange={e => changeSelect(e.target.value, i)}>
+                                                    {lang?.map((l) => (
+                                                        <option key={l.id}
+                                                                value={l.id}>
+                                                            [{l.judge0_language_id === null ? "Docker" : "Judge0"}]
+                                                            (ID:{String(l.id).length !== 2 ? ' ' + l.id : l.id}) {l.name}
+                                                        </option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        ))}
+                                        <button
+                                            onClick={addLanguage}
+                                            className="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        >
+                                            新增語言
+                                        </button>
+                                    </div>
+                                </fieldset>
+                                <fieldset className={"border-t border-gray-500 pb-4"}>
+                                    <legend className="sr-only">測試資料</legend>
+                                    <div className="text-base font-medium text-gray-900" aria-hidden="true">
+                                        測試資料
+                                    </div>
+                                    <p className="text-sm text-gray-500">測試資料</p>
+                                    {isLoading ? <div className="text-center">Loading...</div> : null}
+                                    <div className="mt-4 space-y-4 flex flex-col">
+                                        {testcases?.map((T, i) => (
+                                            <div className={"bg-gray-300 py-3 px-2 gap-2 rounded flex flex-col"}>
+                                                <div className={"flex justify-between"}>
+                                                    <span>#{i + 1}</span>
+                                                    <div onClick={e => delLanguage(i)} className={"cursor-pointer"}>
+                                                        <TrashIcon className={"h-6 w-6 text-red-500"}/>
+                                                    </div>
+                                                </div>
+                                                <div className={"flex flex-col"}>
+                                                    <label className={"text-sm"}>輸入資料：</label>
+                                                    <input
+                                                        type="file"
+                                                        name="testcases"
+                                                        id={"testcases_in_" + i}
+                                                        value={T?.input ?? null}
+                                                        onChange={e => changeTimeLimit(e.target.value, i)}
+                                                        className="block w-full min-w-0 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                    />
+                                                </div>
+                                                <div className={"flex flex-col"}>
+                                                    <label className={"text-sm"}>輸出資料：</label>
+                                                    <input
+                                                        type="file"
+                                                        name="testcases"
+                                                        id={"testcases_output_" + i}
+                                                        value={T?.output ?? null}
+                                                        onChange={e => changeTimeLimit(e.target.value, i)}
+                                                        className="block w-full min-w-0 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
+                                        <button
+                                            onClick={addLanguage}
+                                            className="w-full inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        >
+                                            新增測資
+                                        </button>
                                     </div>
                                 </fieldset>
                             </div>

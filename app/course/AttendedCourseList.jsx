@@ -45,7 +45,7 @@ export default function () {
     return (
         <>
             {isLoading && <div>Loading...</div>}
-            {courses?.length && courses?.map((course) => <CourseCard course={course}/>)}
+            {courses?.length && courses?.map((course) => <CourseCard course={course} key={course.id}/>)}
         </>
     )
 }

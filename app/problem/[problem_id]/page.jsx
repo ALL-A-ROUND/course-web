@@ -81,7 +81,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
                     </p>
                     <div className="mt-10 max-w-2xl">
                         {problem?.options?.map((option, index) => (
-                            <div className="relative flex items-start">
+                            <div className="relative flex items-start" key={index}>
                                 <div className="flex h-6 items-center">
                                     <input
                                         id={`answer_${option.id}`}
