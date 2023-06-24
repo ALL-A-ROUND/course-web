@@ -1,6 +1,7 @@
 "use client"
 import {usePathname, useRouter} from "next/navigation";
 import {useEffect} from "react";
+import axios from "axios";
 
 export default function () {
     const pathname = usePathname()
@@ -28,13 +29,6 @@ export default function () {
                 router.replace('/')
         })
     }
-
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-        if (token) {
-            router.replace('/')
-        }
-    })
 
     return (
         <div className="mt-6">

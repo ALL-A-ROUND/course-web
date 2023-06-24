@@ -1,7 +1,29 @@
+"use client";
 import Title from "@/app/auth/Title";
 import Link from "next/link";
+import {useRouter} from "next/navigation";
+import {useEffect} from "react";
 
 export default function ({children}) {
+    const router = useRouter()
+
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + "/user", {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token
+            }
+        }).then(res => {
+            if (res.status === 200)
+                router.replace('/')
+            else
+                localStorage.removeItem("token")
+        })
+    })
+
     return (
         <>
             <div className="flex min-h-full">
