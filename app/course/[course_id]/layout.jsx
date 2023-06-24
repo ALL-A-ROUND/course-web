@@ -1,11 +1,58 @@
 "use client"
-import {BookOpenIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ClipboardIcon} from "@heroicons/react/24/outline";
+import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
+import {ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
+import {useEffect, useState} from "react";
+import {api} from "@/app/utils";
 
-export default function ({params, children}) {
+export default function CourseLayout({params, children}) {
+    const router = useRouter()
     const pathname = usePathname()
+    const [enabledFeatures, setEnabledFeatures] = useState([]);
+
+    useEffect(() => {
+        if (localStorage.getItem('token') === null) {
+            router.replace('/auth/login')
+        }
+        api('GET', '/course/' + params.course_id + '/features').then(data => {
+            setEnabledFeatures(data)
+        })
+    }, [pathname])
+
+    const features = [
+        {
+            id: 'unit',
+            name: '單元',
+            path: `/course/${params.course_id}/unit`,
+            icon: BookOpenIcon,
+        },
+        {
+            id: 'contest',
+            name: '競賽',
+            path: `/course/${params.course_id}/contest`,
+            icon: ClipboardIcon,
+        },
+        {
+            id: 'problem',
+            name: '題庫',
+            path: `/course/${params.course_id}/problem`,
+            icon: PencilSquareIcon,
+        },
+        {
+            id: 'scores_checking',
+            name: '成績查詢',
+            path: `/course/${params.course_id}/scores_checking`,
+            icon: TableCellsIcon,
+        },
+        {
+            id: 'manage',
+            name: '管理',
+            path: `/course/${params.course_id}/manage`,
+            icon: Cog6ToothIcon,
+        }
+    ]
+
     return (
         <div className="flex min-h-full flex-col">
             {/* 3 column wrapper */}
@@ -19,18 +66,14 @@ export default function ({params, children}) {
 
                         <div className={"border border-gray-300 w-full my-4"}/>
 
-                        <Link href={`/course/${params.course_id}/unit`}
-                            className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(/course\/\d*\/unit/) ? 'bg-gray-200' : ''}`}>
-                            <BookOpenIcon className={"h-4 w-4"}/> 單元
-                        </Link>
-                        <div
-                            className={"px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1"}>
-                            <PencilSquareIcon className={"h-4 w-4"}/> 題目
-                        </div>
-                        <div
-                            className={"px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1"}>
-                            <ClipboardIcon className={"h-4 w-4"}/> 競賽
-                        </div>
+                        {features.filter(feature => enabledFeatures?.includes(feature.id)).map(feature => (
+                            <Link href={feature.path}
+                                  key={feature.id}
+                                  className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(/course\/\d*\/unit/) ? 'bg-gray-200' : ''}`}>
+                                <feature.icon className={"h-4 w-4"}/>
+                                {feature.name}
+                            </Link>
+                        ))}
                     </div>
 
                     <div
