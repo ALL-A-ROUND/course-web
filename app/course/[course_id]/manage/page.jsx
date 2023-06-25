@@ -167,8 +167,35 @@ export default function ({params}) {
                                                 id="code"
                                                 readOnly={true}
                                                 defaultValue={course.code}
-                                                className="block cursor-not-allowed w-full rounded-md border-gray-300 focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                                                className="block cursor-not-allowed w-full rounded-md bg-gray-200 border-gray-300 focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
                                                 placeholder="開課代碼"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-6">
+                                    <div className="col-span-3 sm:col-span-2">
+                                        <label htmlFor="invite_code"
+                                               className="flex text-sm font-medium text-gray-700 items-center">
+                                            課程邀請碼 <ClipboardIcon className={"inline h-4 w-4 ml-1 cursor-pointer"}
+                                                                      onClick={e => {
+                                                                          navigator.clipboard.writeText(course.invite_code)
+                                                                          Swal.fire({
+                                                                              icon: 'success',
+                                                                              html: '複製成功<br/>'+course.invite_code,
+                                                                          })
+                                                                      }}/>
+                                        </label>
+                                        <div className="mt-1 rounded-md shadow-sm">
+                                            <input
+                                                type="text"
+                                                name="invite_code"
+                                                id="invite_code"
+                                                readOnly={true}
+                                                defaultValue={course.invite_code}
+                                                className="block cursor-not-allowed w-full rounded-md bg-gray-200 border-gray-300 focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                                                placeholder="課程邀請碼"
                                             />
                                         </div>
                                     </div>
