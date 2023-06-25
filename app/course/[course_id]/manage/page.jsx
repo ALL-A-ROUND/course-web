@@ -1,12 +1,15 @@
 "use client"
 import {usePathname, useRouter} from "next/navigation";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {api} from "@/app/utils";
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import {ClipboardIcon, Cog8ToothIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import Link from "next/link";
+import Swal from "sweetalert2";
 
-function FeatureEditComponent({feature, course, setCourse}) {
+function FeatureEditComponent({feature, course, setCourse, setShouldOnBeforeUnload}) {
     function checkBoxChange(e) {
+        setShouldOnBeforeUnload(true)
         setCourse(_course => {
             _course.config = _course.config || {}
             _course.config.features = _course.config.features || {}
@@ -18,7 +21,11 @@ function FeatureEditComponent({feature, course, setCourse}) {
 
     return (
         <fieldset>
-            <div className={"text-lg font-bold"}>{feature.name}</div>
+            <div className={"text-lg font-bold flex justify-between"}>
+                <div>{feature.name}</div>
+                <Link href={feature.path + '/manage'} target={'_blank'}><Cog8ToothIcon
+                    className={"inline-block w-6 h-6"}/></Link>
+            </div>
             <legend className="contents text-md font-medium text-gray-900">
                 是否啟用
             </legend>
@@ -32,7 +39,7 @@ function FeatureEditComponent({feature, course, setCourse}) {
                         name={feature.id + "-enabled"}
                         type="checkbox"
                         onChange={checkBoxChange}
-                        defaultChecked={course.config?.features?.[feature.id]?.enabled}
+                        checked={course.config?.features?.[feature.id]?.enabled}
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                     />
                     <label htmlFor={feature.id + "-enabled"}
@@ -47,8 +54,10 @@ function FeatureEditComponent({feature, course, setCourse}) {
 
 export default function ({params}) {
     const router = useRouter();
+    const [shouldOnBeforeUnload, setShouldOnBeforeUnload] = useState(false)
     const pathname = usePathname()
     const [course, setCourse] = useState({});
+    const loading = useRef(true)
 
     const features = [
         {
@@ -90,14 +99,28 @@ export default function ({params}) {
 
         api('PATCH', '/course/' + params.course_id, body).then(data => {
             setCourse(data)
+            setShouldOnBeforeUnload(false)
+            Swal.fire({
+                icon: 'success',
+                title: '儲存成功',
+            })
         })
     }
 
     useEffect(() => {
         api('GET', '/course/' + params.course_id).then(data => {
             setCourse(data)
+            loading.current = false
         })
-    }, [pathname])
+    }, [router])
+
+    useEffect(() => {
+        if (shouldOnBeforeUnload) {
+            window.onbeforeunload = () => true
+        } else {
+            window.onbeforeunload = null
+        }
+    }, [shouldOnBeforeUnload])
 
     return (
         <div className={"bg-gray-100"}>
@@ -173,15 +196,16 @@ export default function ({params}) {
                     <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
                         <div className="md:grid md:grid-cols-3 md:gap-6">
                             <div className="md:col-span-1">
-                                <h3 className="text-lg font-medium leading-6 text-gray-900">題庫設定</h3>
+                                <h3 className="text-lg font-medium leading-6 text-gray-900">課程設定</h3>
                                 <p className="mt-1 text-sm text-gray-500">
-                                    這些設定會影響到題庫的使用
+                                    課程的功能設定
                                 </p>
                             </div>
                             <div className="mt-5 space-y-6 md:col-span-2 md:mt-0">
                                 {features.map(feature => (
                                     <FeatureEditComponent key={feature.id} feature={feature} course={course}
-                                                          setCourse={setCourse}/>
+                                                          setCourse={setCourse}
+                                                          setShouldOnBeforeUnload={setShouldOnBeforeUnload}/>
                                 ))}
                             </div>
                         </div>

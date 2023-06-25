@@ -69,7 +69,7 @@ export default function CourseLayout({params, children}) {
                         {features.filter(feature => enabledFeatures?.includes(feature.id)).map(feature => (
                             <Link href={feature.path}
                                   key={feature.id}
-                                  className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(/course\/\d*\/unit/) ? 'bg-gray-200' : ''}`}>
+                                  className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(feature.path) ? 'bg-gray-200' : ''}`}>
                                 <feature.icon className={"h-4 w-4"}/>
                                 {feature.name}
                             </Link>
