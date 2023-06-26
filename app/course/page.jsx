@@ -1,6 +1,8 @@
-import {PencilSquareIcon} from "@heroicons/react/24/solid";
+import {PencilSquareIcon, PlusIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
 import AttendedCourseList from "@/app/course/AttendedCourseList";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Course() {
     return (
@@ -47,6 +49,14 @@ export default function Course() {
                             <div className={"border-b border-dotted border-gray-300 text-xl"}>我的課程</div>
                             <div className={"grid grid-cols-2 gap-4"}>
                                 <AttendedCourseList/>
+                                <Link href={"/course/add"}>
+                                    <div className={"flex gap-2 h-20 items-center"}>
+                                        <div className={"w-full bg-gray-400 h-full flex flex-col justify-center items-center py-2"}>
+                                            <div className={"text-white"}>新增課程</div>
+                                            <PlusIcon className={"h-16 w-16 text-white"}/>
+                                        </div>
+                                    </div>
+                                </Link>
                             </div>
                         </div>
                     </div>

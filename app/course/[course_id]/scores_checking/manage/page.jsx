@@ -6,47 +6,14 @@ import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24
 import {ClipboardIcon, Cog8ToothIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 
-function ScoreEdit({score, course, setCourse, setShouldOnBeforeUnload}) {
-    function checkBoxChange(e) {
-        setShouldOnBeforeUnload(true)
-        setCourse(_course => {
-            _course.config = _course.config || {}
-            _course.config.features = _course.config.features || {}
-            _course.config.features[feature.id] = _course.config.features[feature.id] || {}
-            _course.config.features[feature.id].enabled = e.target.checked
-            return {..._course}
-        })
-    }
-
+function ScoreEdit({score, course}) {
     return (
         <fieldset>
             <div className={"text-lg font-bold flex justify-between"}>
                 <div>(ID: {score.id}) {score.name}</div>
                 <Link href={`/course/${course.id}/scores_checking/${score.id}/manage`} target={'_blank'}
-                className={`${score.type === 'custom' ? '' : 'hidden'}`}><Cog8ToothIcon
+                      className={`${score.type === 'custom' ? '' : 'hidden'}`}><Cog8ToothIcon
                     className={"inline-block w-6 h-6"}/></Link>
-            </div>
-            <legend className="contents text-md font-medium text-gray-900">
-                是否啟用
-            </legend>
-            <p className="text-sm text-gray-500">
-                啟用之後，學生將可以使用此功能。
-            </p>
-            <div className="mt-4 space-y-4">
-                <div className="flex items-center">
-                    <input
-                        id={score.id + "-enabled"}
-                        name={score.id + "-enabled"}
-                        type="checkbox"
-                        onChange={checkBoxChange}
-                        checked={score.enabled}
-                        className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                    />
-                    <label htmlFor={score.id + "-enabled"}
-                           className="ml-3 block text-sm font-medium text-gray-700">
-                        啟用
-                    </label>
-                </div>
             </div>
         </fieldset>
     )
@@ -152,7 +119,7 @@ export default function ({params}) {
                                             id="enabled"
                                             name="enabled"
                                             type="checkbox"
-                                            onChange={e=>{
+                                            onChange={e => {
                                                 setCourse({
                                                     ...course,
                                                     config: {
@@ -191,9 +158,7 @@ export default function ({params}) {
                             </div>
                             <div className="mt-5 space-y-6 md:col-span-2 md:mt-0">
                                 {allScores?.map(score => (
-                                    <ScoreEdit key={score.id} score={score} course={course}
-                                               setCourse={setCourse}
-                                               setShouldOnBeforeUnload={setShouldOnBeforeUnload}/>
+                                    <ScoreEdit key={score.id} score={score} course={course}/>
                                 ))}
 
                                 <fieldset className="border p-4 rounded-xl flex flex-col items-stretch gap-4">

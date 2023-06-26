@@ -60,7 +60,7 @@ export default function CourseLayout({params, children}) {
                 {/* Left sidebar & main wrapper */}
                 <div className="flex-1 xl:flex">
                     <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2">
+                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6 my-4 sm:my-0">
                         <div className={"bg-indigo-300 text-center py-1"}>{params.course_id}</div>
                         <div className={""}>老師： 葉大大</div>
 
