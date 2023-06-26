@@ -1,7 +1,7 @@
 "use client"
 import {usePathname, useRouter} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
-import {api} from "@/app/utils";
+import {api, makeFeature} from "@/app/utils";
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon, Cog8ToothIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
@@ -59,32 +59,7 @@ export default function ({params}) {
     const [course, setCourse] = useState({});
     const loading = useRef(true)
 
-    const features = [
-        {
-            id: 'unit',
-            name: '單元',
-            path: `/course/${params.course_id}/unit`,
-            icon: BookOpenIcon,
-        },
-        {
-            id: 'contest',
-            name: '競賽',
-            path: `/course/${params.course_id}/contest`,
-            icon: ClipboardIcon,
-        },
-        {
-            id: 'problem',
-            name: '題庫',
-            path: `/course/${params.course_id}/problem`,
-            icon: PencilSquareIcon,
-        },
-        {
-            id: 'scores_checking',
-            name: '成績查詢',
-            path: `/course/${params.course_id}/scores_checking`,
-            icon: TableCellsIcon,
-        },
-    ]
+    const features = makeFeature(params)
 
     const submit = (e) => {
         e.preventDefault()
@@ -229,7 +204,7 @@ export default function ({params}) {
                                 </p>
                             </div>
                             <div className="mt-5 space-y-6 md:col-span-2 md:mt-0">
-                                {features.map(feature => (
+                                {features.filter(x=>x.id!=='manage').map(feature => (
                                     <FeatureEditComponent key={feature.id} feature={feature} course={course}
                                                           setCourse={setCourse}
                                                           setShouldOnBeforeUnload={setShouldOnBeforeUnload}/>

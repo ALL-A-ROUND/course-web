@@ -1,10 +1,10 @@
 "use client"
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
-import {api} from "@/app/utils";
+import {api, makeFeature} from "@/app/utils";
 
 export default function CourseLayout({params, children}) {
     const router = useRouter()
@@ -20,38 +20,7 @@ export default function CourseLayout({params, children}) {
         })
     }, [pathname])
 
-    const features = [
-        {
-            id: 'unit',
-            name: '單元',
-            path: `/course/${params.course_id}/unit`,
-            icon: BookOpenIcon,
-        },
-        {
-            id: 'contest',
-            name: '競賽',
-            path: `/course/${params.course_id}/contest`,
-            icon: ClipboardIcon,
-        },
-        {
-            id: 'problem',
-            name: '題庫',
-            path: `/course/${params.course_id}/problem`,
-            icon: PencilSquareIcon,
-        },
-        {
-            id: 'scores_checking',
-            name: '成績查詢',
-            path: `/course/${params.course_id}/scores_checking`,
-            icon: TableCellsIcon,
-        },
-        {
-            id: 'manage',
-            name: '管理',
-            path: `/course/${params.course_id}/manage`,
-            icon: Cog6ToothIcon,
-        }
-    ]
+    const features = makeFeature(params)
 
     return (
         <div className="flex min-h-full flex-col">
@@ -60,7 +29,7 @@ export default function CourseLayout({params, children}) {
                 {/* Left sidebar & main wrapper */}
                 <div className="flex-1 xl:flex">
                     <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6 my-4 sm:my-0">
+                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6 my-4 xl:my-0">
                         <div className={"bg-indigo-300 text-center py-1"}>{params.course_id}</div>
                         <div className={""}>老師： 葉大大</div>
 
