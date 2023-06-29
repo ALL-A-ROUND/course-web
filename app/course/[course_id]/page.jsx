@@ -8,7 +8,7 @@ export default async function Example({params}) {
         <>
             <div className={"flex gap-2"}>
                 <Link className={"text-blue-700"} href={"/course"}>我的首頁</Link>
-                / {course.name}
+                / {course?.name}
             </div>
             <div className={"flex gap-4"}>
                 <div className={"flex flex-col w-1/2"}>

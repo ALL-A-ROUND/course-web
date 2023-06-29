@@ -36,11 +36,11 @@ export default function CourseLayout({params, children}) {
                     <div
                         className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6 my-4 xl:my-0">
                         <div className={"bg-indigo-300 text-center py-1"}>{course?.name}</div>
-                        <div className={""}>講師：{course?.teachers?.map(user=>user.name)}</div>
+                        <div className={""}>講師：{course?.teachers?.map(user=>user?.name)}</div>
 
                         <div className={"border border-gray-300 w-full my-4"}/>
 
-                        {features.filter(feature => enabledFeatures?.includes(feature.id)).map(feature => (
+                        {Array.isArray(features) && features.filter(feature => Array.isArray(enabledFeatures) && enabledFeatures?.includes(feature.id)).map(feature => (
                             <Link href={feature.path}
                                   key={feature.id}
                                   className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(feature.path) ? 'bg-gray-200' : ''}`}>
