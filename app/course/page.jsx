@@ -12,7 +12,7 @@ export default function Course() {
                 {/* Left sidebar & main wrapper */}
                 <div className="flex-1 xl:flex">
                     <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2">
+                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6">
                         <div className={"bg-indigo-300 text-center py-1"}>我的首頁</div>
 
                         <img

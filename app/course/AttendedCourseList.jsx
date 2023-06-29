@@ -8,7 +8,8 @@ function CourseCard({course}) {
     return (
         <Link href={`/course/${course.id}`}>
             <div className={"flex gap-2 h-20 items-center"}>
-                <Image className={"w-1/3 bg-gray-200"} src={"/course.jpeg"} width={640} height={75}></Image>
+                <Image className={"w-1/3 bg-gray-200"} src={"/course.jpeg"} width={640} height={75}
+                       alt={"course image"}></Image>
                 <div className={"flex flex-col"}>
                     <div className={"text-blue-600 mb-2"}>{course.name}</div>
                     <div className={"text-sm text-gray-400"}>老師： 葉大大</div>
@@ -37,7 +38,7 @@ export default function () {
         if (!res.ok) {
             if (res.status === 401) {
                 localStorage.removeItem("token")
-                router.replace("/auth/login?next="+pathname)
+                router.replace("/auth/login?next=" + pathname)
             }
         }
         return res.json()

@@ -1,13 +1,10 @@
 "use client"
-import {usePathname, useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {api} from "@/app/utils";
-import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ClipboardIcon, Cog8ToothIcon, TableCellsIcon} from "@heroicons/react/24/outline";
-import Link from "next/link";
 import {CKEditor} from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import Swal from "sweetalert2";
+import Editor from "ckeditor5-custom-build";
 
 export default function ({params}) {
     const router = useRouter();
@@ -78,8 +75,10 @@ export default function ({params}) {
 
                                 <div className={" rounded-md border-gray-300"}>
                                     <CKEditor
-                                        editor={ClassicEditor}
-                                        data={content}
+                                        editor={Editor}
+                                        config={{
+                                            removePlugins: ['Markdown'],
+                                        }}
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setContent(data)
