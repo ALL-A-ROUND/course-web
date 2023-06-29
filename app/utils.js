@@ -1,19 +1,27 @@
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import originMoment from 'moment'
+import 'moment/locale/zh-tw'
 
 export async function api(method, endpoint, jsonBody) {
-    console.log(process.env.NEXT_PUBLIC_API_ENDPOINT)
+    const SSR = typeof window === "undefined"
     return fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
         method,
         body: (method === "GET" || typeof jsonBody === "undefined") ? null : JSON.stringify(jsonBody),
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
-            'Authorization': 'Bearer ' + localStorage?.getItem('token')
+
+            // 如果不是 SSR，就加上 Authorization
+            ...(!SSR && {
+                'Authorization': 'Bearer ' + localStorage?.getItem('token')
+            })
         }
     }).then(res => {
-        if (res.status === 401)
+        // 避免 migration 後的 token 失效
+        if (res.status === 401 && !SSR) {
             localStorage?.removeItem('token')
+        }
         return res.json()
     })
 }
@@ -58,3 +66,6 @@ export function makeFeature(params) {
         }
     ]
 }
+
+originMoment.locale('zh-tw')
+export const moment = originMoment
