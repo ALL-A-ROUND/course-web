@@ -165,7 +165,7 @@ export default function Nav() {
                     </Link>
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                    {!user ? (
+                    {typeof user?.name === "undefined" ? (
                         <>
                             <Link href="/auth/login"
                                   className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
