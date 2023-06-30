@@ -11,10 +11,16 @@ import CourseInformationEdit from "@/app/course/[course_id]/manage/CourseInforma
 export default function ({params}) {
     const router = useRouter();
     const pathname = usePathname()
-    const [course, setCourse] = useState({});
+    const [course, setCourse] = useState({
+        name: '',
+        code: '',
+        invite_code: '',
+        description: '',
+        config: {
+            features: []
+        }
+    });
     const loading = useRef(true)
-
-
 
     useEffect(() => {
         api('GET', '/course/' + params.course_id).then(data => {
@@ -27,6 +33,28 @@ export default function ({params}) {
         <div className={"bg-gray-100"}>
             <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
                 <div className="space-y-6">
+                    {/*{loading.current ? <div className="animate-pulse flex space-x-4">*/}
+                    {/*    <div className="flex-1 space-y-4 py-1">*/}
+                    {/*        <div className="h-4 bg-gray-200 rounded w-3/4"></div>*/}
+                    {/*        <div className="space-y-2">*/}
+                    {/*            <div className="h-4 bg-gray-200 rounded"></div>*/}
+                    {/*            <div className="h-4 bg-gray-200 rounded w-5/6"></div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div> : <div className="flex space-x-4">*/}
+                    {/*    <div className="flex-1 space-y-4 py-1">*/}
+                    {/*        <div className="flex space-x-4">*/}
+                    {/*            <div className="flex-1 space-y-4 py-1">*/}
+                    {/*                <div className="h-4 bg-gray-200 rounded w-3/4"></div>*/}
+                    {/*                <div className="space-y-2">*/}
+                    {/*                    <div className="h-4 bg-gray-200 rounded"></div>*/}
+                    {/*                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>*/}
+                    {/*                </div>*/}
+                    {/*            </div>*/}
+                    {/*        </div>*/}
+                    {/*    </div>*/}
+                    {/*</div>}*/}
+
                     <CourseInformationEdit params={params} course={course}/>
                     <FeatureEdit params={params} course={course}/>
                 </div>
