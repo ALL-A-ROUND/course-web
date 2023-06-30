@@ -2,6 +2,7 @@ import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24
 import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
+import {useEffect, useState} from "react";
 
 export async function api(method, endpoint, jsonBody) {
     const SSR = typeof window === "undefined"
@@ -69,3 +70,15 @@ export function makeFeature(params) {
 
 originMoment.locale('zh-tw')
 export const moment = originMoment
+
+export function useOnBeforeUnload() {
+    const [onBeforeUnload, setOnBeforeUnload] = useState(false)
+    useEffect(() => {
+        if (onBeforeUnload) {
+            window.onbeforeunload = () => true
+        } else {
+            window.onbeforeunload = null
+        }
+    }, [onBeforeUnload])
+    return [onBeforeUnload, setOnBeforeUnload]
+}
