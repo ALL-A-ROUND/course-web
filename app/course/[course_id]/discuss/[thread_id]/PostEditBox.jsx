@@ -8,25 +8,27 @@ import {api} from "@/app/utils";
 import Swal from "sweetalert2";
 import {useRouter} from "next/navigation";
 
-export default function PostEditBox({params}) {
+export default function PostEditBox({params, reply, ref}) {
     const [content, setContent] = useState('')
+    const [editor, setEditor] = useState(null)
     const router = useRouter()
 
     function post() {
         api("POST", `/threads/${params.thread_id}/posts`, {
-            content
+            content, reply_to: reply
         }).then(r => {
             Swal.fire({
                 icon: 'success',
                 title: '新增成功',
             }).then(() => {
-                router.push(`/course/${params.course_id}/discuss/${params.thread_id}`)
+                router.refresh()
+                editor.setData('')
             })
         })
     }
 
     return (
-        <div className="flex items-start space-x-4">
+        <div className="flex items-start space-x-4" ref={ref}>
             <div className="flex-shrink-0">
                 <img
                     className="inline-block h-10 w-10 rounded-full"
@@ -40,12 +42,18 @@ export default function PostEditBox({params}) {
                         <label htmlFor="comment" className="sr-only">
                             Add your comment
                         </label>
+                        {reply !== null && <p>
+                            正在回覆 ID:{reply}
+                        </p>}
                         <div
                             className={"rounded-md border-gray-300  block w-full resize-none border-0 border-b border-transparent p-0 pb-2 text-gray-900 placeholder:text-gray-400 focus:border-indigo-600 focus:ring-0 sm:text-sm sm:leading-6"}>
                             <CKEditor
                                 editor={Editor}
                                 config={{
                                     removePlugins: ['Markdown'],
+                                }}
+                                onReady={editor => {
+                                    setEditor(editor)
                                 }}
                                 onChange={(event, editor) => {
                                     const data = editor.getData();

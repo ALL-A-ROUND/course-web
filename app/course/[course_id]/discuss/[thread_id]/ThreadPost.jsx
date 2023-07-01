@@ -3,8 +3,9 @@ import {api} from "@/app/utils";
 import {useRef} from "react";
 import {moment} from "@/app/utils";
 import $ from "jquery";
+import {ArrowUturnLeftIcon} from "@heroicons/react/24/outline";
 
-function Children({post, level, idx}) {
+function Children({post, level, idx, setReply, focus}) {
     const iframeRef = useRef(null);
 
     function resizeIframe() {
@@ -27,7 +28,7 @@ function Children({post, level, idx}) {
                         {post?.reply_to === null &&
                             <span className={"text-md text-gray-500 font-bold"}># {idx + 1} 樓</span>}
                         <span
-                            className={"text-sm text-gray-500"}>{moment(post.created_at).fromNow()}</span>
+                            className={"text-sm text-gray-500"}>ID:{post.id} | {moment(post.created_at).fromNow()}</span>
                     </div>
                 </div>
                 <iframe sandbox={"allow-same-origin"} srcDoc={ins.html()}
@@ -35,16 +36,22 @@ function Children({post, level, idx}) {
                         ref={iframeRef}
                         onLoad={resizeIframe}
                 />
+                <div className={"flex"}>
+                    <div className={'inline-flex cursor-pointer flex-row-reverse items-center bg-sky-400 text-white gap-1 ml-2 p-1 px-2 rounded-md shadow'} onClick={()=>{
+                        setReply(post.id)
+                        focus()
+                    }}><ArrowUturnLeftIcon className={'h-4 w-4'}/>回覆</div>
+                </div>
             </div>
             {(typeof post.children === "object" && Array.isArray(post.children)) && post.children?.map((post, i) =>
                 <Children post={post}
-                          level={level + 1} key={post.id} idx={i}/>)}
+                          level={level + 1} key={post.id} idx={i} setReply={setReply} focus={focus}/>)}
         </div>
     )
 }
 
-export default async function ThreadPost(param) {
-    const thread_id = param?.params?.thread_id
+export default async function ThreadPost({params, setReply, focus}) {
+    const thread_id = params?.thread_id
     const posts = await api('GET', `/threads/${thread_id}/posts`)
     return (
         <div className={"my-8"}>
@@ -52,7 +59,7 @@ export default async function ThreadPost(param) {
                 <Children post={post}
                           level={0}
                           key={post.id}
-                          idx={i}/>
+                          idx={i} setReply={setReply} focus={focus}/>
             ))}
         </div>
     )

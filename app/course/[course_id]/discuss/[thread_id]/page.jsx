@@ -1,8 +1,7 @@
+
 import {ChevronRightIcon} from '@heroicons/react/20/solid'
 import {api} from "@/app/utils";
-import ThreadPost from "@/app/course/[course_id]/discuss/[thread_id]/ThreadPost";
-import PostEditBox from "@/app/course/[course_id]/discuss/[thread_id]/PostEditBox";
-import {Suspense} from "react";
+import ClientWrapper from "@/app/course/[course_id]/discuss/[thread_id]/ClientWrapper";
 
 async function getThreadData(course_id, thread_id) {
     return await api('GET', `/courses/${course_id}/threads/${thread_id}/public`)
@@ -11,7 +10,6 @@ async function getThreadData(course_id, thread_id) {
 export default async function Example({params}) {
     const {course_id, thread_id} = params
     const thread = await getThreadData(course_id, thread_id)
-
     return (
         <div>
             <div>
@@ -57,10 +55,7 @@ export default async function Example({params}) {
                 </div>
             </div>
 
-            <Suspense fallback={<div>Loading...</div>}>
-                <ThreadPost params={params}/>
-            </Suspense>
-            <PostEditBox params={params}/>
+            <ClientWrapper params={params}/>
         </div>
     )
 }
