@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {fetcher} from "@/app/fetcher";
-import moment from "moment-timezone/moment-timezone-utils";
+import {moment} from "@/app/utils";
 import Problem from "@/app/contest/[contest_id]/Problem";
 
 export default async function Example({params}) {

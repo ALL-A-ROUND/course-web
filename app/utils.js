@@ -1,5 +1,5 @@
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import {ChatBubbleLeftRightIcon, ClipboardIcon, MegaphoneIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
 import Swal from "sweetalert2";
@@ -38,6 +38,12 @@ export async function api(method, endpoint, jsonBody) {
 
 export function makeFeature(params) {
     return [
+        {
+            id: 'bulletin',
+            name: '公告',
+            path: `/course/${params.course_id}/bulletin`,
+            icon: MegaphoneIcon,
+        },
         {
             id: 'unit',
             name: '單元',

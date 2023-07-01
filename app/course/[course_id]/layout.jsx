@@ -21,7 +21,9 @@ export default function CourseLayout({params, children}) {
             router.replace('/auth/login')
         }
         api('GET', '/course/' + params.course_id + '?with=teachers').then(data => {
-            document.title = data.name
+            if(!document.title.startsWith(data.name)){
+                document.title = data.name + ' - '
+            }
             setCourse(data)
         })
     }, [pathname])
