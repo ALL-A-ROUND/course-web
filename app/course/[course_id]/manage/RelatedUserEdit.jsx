@@ -1,5 +1,4 @@
-import {useOnBeforeUnload} from "@/app/hooks";
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import {api, moment} from "@/app/utils";
 import {Fragment} from 'react'
 import {Menu, Transition} from '@headlessui/react'
@@ -8,7 +7,7 @@ import {classNames} from "@/app/utils";
 import Swal from "sweetalert2";
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 
-function List({people, type, course_id}) {
+function List({people, type, course_id, mutate}) {
     const [email, setEmail] = useState('')
     const diff = (person) => Math.abs(moment(person.last_seen_at).diff(new Date(), 'minutes'))
     const diffVal = (person) => moment(person.last_seen_at).fromNow()
@@ -17,22 +16,26 @@ function List({people, type, course_id}) {
             Swal.fire({
                 icon: 'success',
                 title: '邀請成功',
-            })
-        }).catch(e => {
-            Swal.fire({
-                icon: 'error',
-                title: '邀請失敗',
-                text: JSON.parse(e.message)?.message ?? '未知錯誤'
-            })
+            }).then(() => mutate())
         })
     }
+
+    const remove = (person) => {
+        api('POST', `/course/${course_id}/removeUser`, {email: person.email, type}).then(data => {
+            Swal.fire({
+                icon: 'success',
+                title: '移除成功',
+            }).then(() => mutate())
+        })
+    }
+
     return (
         <div>
             <ul role="list" className="divide-y divide-gray-100">
                 {people?.map((person) => (
                     <li key={person.email} className="flex justify-between gap-x-6 py-5">
                         <div className="flex gap-x-4">
-                            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.imageUrl} alt=""/>
+                            <img className="h-12 w-12 flex-none rounded-full bg-gray-50" src={person.avatar_url ?? '/user-circle.svg'} alt=""/>
                             <div className="min-w-0 flex-auto">
                                 <p className="text-sm font-semibold leading-6 text-gray-900">
                                     <a href={person.href} className="hover:underline">
@@ -80,28 +83,15 @@ function List({people, type, course_id}) {
                                         className="absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                                         <Menu.Item>
                                             {({active}) => (
-                                                <a
-                                                    href="#"
+                                                <button
+                                                    onClick={() => remove(person)}
                                                     className={classNames(
                                                         active ? 'bg-gray-50' : '',
-                                                        'block px-3 py-1 text-sm leading-6 text-gray-900'
-                                                    )}
-                                                >
-                                                    View profile<span className="sr-only">, {person.name}</span>
-                                                </a>
-                                            )}
-                                        </Menu.Item>
-                                        <Menu.Item>
-                                            {({active}) => (
-                                                <a
-                                                    href="#"
-                                                    className={classNames(
-                                                        active ? 'bg-gray-50' : '',
-                                                        'block px-3 py-1 text-sm leading-6 text-gray-900'
+                                                        'block text-left w-full px-3 py-1 text-sm leading-6 text-gray-900'
                                                     )}
                                                 >
                                                     刪除成員<span className="sr-only">, {person.name}</span>
-                                                </a>
+                                                </button>
                                             )}
                                         </Menu.Item>
                                     </Menu.Items>
@@ -141,31 +131,19 @@ function List({people, type, course_id}) {
     )
 }
 
-
-function StudentList({course}) {
-    return (
-        <List people={course.students} type="student" course_id={course?.id}/>
-    )
-}
-
-function TeacherList({course}) {
-    return (
-        <List people={course.teachers} type="teacher" course_id={course?.id}/>
-    )
-}
-
 async function getUsersList({course_id}) {
     return api('GET', '/course/' + course_id + '?with=students,teachers')
 }
 
-export default function RelatedUserEdit({params}) {
+export default function RelatedUserEdit({params, course, mutate}) {
     const [courseInfo, setCourseInfo] = useState({
         students: [], teachers: []
     })
 
     useEffect(() => {
-        getUsersList(params).then(course => setCourseInfo(course))
-    }, [])
+        if (typeof course === 'undefined') return
+        setCourseInfo(course)
+    }, [course])
 
     return (
         <div className="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
@@ -182,13 +160,14 @@ export default function RelatedUserEdit({params}) {
                             <label className="block text-sm font-medium text-gray-700">
                                 學生
                             </label>
-                            <StudentList course={courseInfo}/>
+
+                            <List people={courseInfo?.students} type="student" course_id={courseInfo?.id} mutate={mutate}/>
                         </div>
                         <div className="col-span-3">
                             <label className="block text-sm font-medium text-gray-700">
                                 老師
                             </label>
-                            <TeacherList course={courseInfo}/>
+                            <List people={courseInfo?.teachers} type="teacher" course_id={courseInfo?.id} mutate={mutate}/>
                         </div>
                     </div>
                 </div>

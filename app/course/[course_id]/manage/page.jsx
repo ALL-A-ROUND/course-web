@@ -8,28 +8,36 @@ import Swal from "sweetalert2";
 import FeatureEdit from "@/app/course/[course_id]/manage/FeatureEdit";
 import CourseInformationEdit from "@/app/course/[course_id]/manage/CourseInformationEdit";
 import RelatedUserEdit from "@/app/course/[course_id]/manage/RelatedUserEdit";
+import useSWR from "swr";
 
-export default function ({params}) {
+export default function CourseManage({params}) {
     const router = useRouter();
     const pathname = usePathname()
-    const [course, setCourse] = useState({
-        name: '',
-        code: '',
-        invite_code: '',
-        description: '',
-        config: {
-            features: []
-        }
-    });
-    const [loading, setLoading] = useState(true)
+    // const [course, setCourse] = useState({
+    //     name: '',
+    //     code: '',
+    //     invite_code: '',
+    //     description: '',
+    //     config: {
+    //         features: []
+    //     }
+    // });
+    // const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-        api('GET', '/course/' + params.course_id).then(data => {
-            setCourse(data)
-            console.log(data)
-            setLoading(false)
-        })
-    }, [router])
+    // useEffect(() => {
+    //     api('GET', '/course/' + params.course_id).then(data => {
+    //         setCourse(data)
+    //         console.log(data)
+    //         setLoading(false)
+    //     })
+    // }, [router])
+
+    const {
+        data: course,
+        isLoading: loading,
+        mutate
+    } = useSWR(`/course/${params.course_id}?with=teachers,students`, (url) => api('GET', url).then(data => data))
+
 
     return (
         <div className={"bg-gray-100"}>
@@ -47,7 +55,7 @@ export default function ({params}) {
 
                     <CourseInformationEdit params={params} course={course}/>
                     <FeatureEdit params={params} course={course}/>
-                    <RelatedUserEdit params={params} course={course}/>
+                    <RelatedUserEdit params={params} course={course} mutate={mutate}/>
                 </div>
             </div>
         </div>

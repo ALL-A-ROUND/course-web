@@ -25,11 +25,12 @@ export async function api(method, endpoint, jsonBody) {
         }
         const data = await res.json()
         if (res.status >= 400) {
-            Swal.fire({
+            await Swal.fire({
                 icon: 'error',
-                title: '邀請失敗',
+                title: '發生錯誤',
                 text: data?.message ?? '未知錯誤'
             })
+            return Promise.reject(data)
         }
         return data
     })

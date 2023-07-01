@@ -33,6 +33,7 @@ export default function CourseInformationEdit({params, course}) {
     }
 
     useEffect(() => {
+        if(typeof course === 'undefined') return
         setCourseInfo(course)
     }, [course])
 

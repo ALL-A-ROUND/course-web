@@ -58,7 +58,9 @@ export default function FeatureEdit({params, course}) {
     const [config, setConfig] = useState(course?.config ?? {})
     const [, setOnBeforeUnload] = useOnBeforeUnload();
 
+
     useEffect(() => {
+        if(typeof course === 'undefined') return
         setConfig(course?.config ?? {})
     }, [course])
 
