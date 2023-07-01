@@ -1,10 +1,12 @@
+"use client"
 import {ClipboardIcon} from "@heroicons/react/24/outline";
 import Swal from "sweetalert2";
-import {api, useOnBeforeUnload} from "@/app/utils";
-import {useEffect, useRef, useState} from "react";
+import {useOnBeforeUnload} from "@/app/hooks";
+import {useEffect, useState} from "react";
+import {api} from "@/app/utils";
 
 export default function CourseInformationEdit({params, course}) {
-    const [, setOnBeforeUnload] = useOnBeforeUnload()
+    const [onBeforeUnload, setOnBeforeUnload] = useOnBeforeUnload()
     const [courseInfo, setCourseInfo] = useState({
         name: '', code: '', invite_code: '', description: ''
     })

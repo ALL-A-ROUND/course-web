@@ -1,4 +1,6 @@
-import {api, makeFeature, useOnBeforeUnload} from "@/app/utils";
+"use client"
+import {api, makeFeature} from "@/app/utils";
+import {useOnBeforeUnload} from "@/app/hooks";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import {Cog8ToothIcon} from "@heroicons/react/24/outline";
@@ -56,7 +58,7 @@ export default function FeatureEdit({params, course}) {
     const [config, setConfig] = useState(course?.config ?? {})
     const [, setOnBeforeUnload] = useOnBeforeUnload();
 
-    useEffect(()=>{
+    useEffect(() => {
         setConfig(course?.config ?? {})
     }, [course])
 

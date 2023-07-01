@@ -2,7 +2,6 @@ import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24
 import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
-import {useEffect, useState} from "react";
 
 export async function api(method, endpoint, jsonBody) {
     const SSR = typeof window === "undefined"
@@ -18,12 +17,16 @@ export async function api(method, endpoint, jsonBody) {
                 'Authorization': 'Bearer ' + localStorage?.getItem('token')
             })
         }
-    }).then(res => {
+    }).then(async (res) => {
         // 避免 migration 後的 token 失效
         if (res.status === 401 && !SSR) {
             localStorage?.removeItem('token')
         }
-        return res.json()
+        const data = await res.json()
+        if (res.status >= 400) {
+            throw new Error(JSON.stringify(data))
+        }
+        return data
     })
 }
 
@@ -71,14 +74,6 @@ export function makeFeature(params) {
 originMoment.locale('zh-tw')
 export const moment = originMoment
 
-export function useOnBeforeUnload() {
-    const [onBeforeUnload, setOnBeforeUnload] = useState(false)
-    useEffect(() => {
-        if (onBeforeUnload) {
-            window.onbeforeunload = () => true
-        } else {
-            window.onbeforeunload = null
-        }
-    }, [onBeforeUnload])
-    return [onBeforeUnload, setOnBeforeUnload]
+export function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
 }
