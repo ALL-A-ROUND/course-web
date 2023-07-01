@@ -2,6 +2,7 @@ import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24
 import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
+import Swal from "sweetalert2";
 
 export async function api(method, endpoint, jsonBody) {
     const SSR = typeof window === "undefined"
@@ -24,7 +25,11 @@ export async function api(method, endpoint, jsonBody) {
         }
         const data = await res.json()
         if (res.status >= 400) {
-            throw new Error(JSON.stringify(data))
+            Swal.fire({
+                icon: 'error',
+                title: '邀請失敗',
+                text: data?.message ?? '未知錯誤'
+            })
         }
         return data
     })

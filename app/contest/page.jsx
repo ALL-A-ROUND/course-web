@@ -1,6 +1,6 @@
 import {PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
-import AttendedCourseList from "@/app/course/AttendedCourseList";
+import AttendedCourseList from "@/app/course/CourseList";
 
 export default function Course() {
     return (

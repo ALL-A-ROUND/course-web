@@ -1,5 +1,5 @@
 "use client"
-import {ClipboardIcon} from "@heroicons/react/24/outline";
+import {ArrowPathIcon, ClipboardIcon} from "@heroicons/react/24/outline";
 import Swal from "sweetalert2";
 import {useOnBeforeUnload} from "@/app/hooks";
 import {useEffect, useState} from "react";
@@ -8,8 +8,15 @@ import {api} from "@/app/utils";
 export default function CourseInformationEdit({params, course}) {
     const [onBeforeUnload, setOnBeforeUnload] = useOnBeforeUnload()
     const [courseInfo, setCourseInfo] = useState({
-        name: '', code: '', invite_code: '', description: ''
+        name: '', code: '', invite_code: '', teacher_code: '', description: ''
     })
+
+    const regenerate = (type) => {
+        let url = '/course/' + params.course_id + '/regenerate/' + type
+        api('POST', url).then(data => {
+            setCourseInfo(data)
+        })
+    }
 
     const saveInfo = () => {
         api('PATCH', '/course/' + params.course_id, {
@@ -98,6 +105,8 @@ export default function CourseInformationEdit({params, course}) {
                                                                   html: '複製成功<br/>' + courseInfo.invite_code,
                                                               })
                                                           }}/>
+                                <ArrowPathIcon className={"inline h-4 w-4 ml-1 cursor-pointer"}
+                                               onClick={() => regenerate('student')}/>
                             </label>
                             <div className="mt-1 rounded-md shadow-sm">
                                 <input
@@ -108,6 +117,37 @@ export default function CourseInformationEdit({params, course}) {
                                     value={courseInfo.invite_code}
                                     className="block cursor-not-allowed w-full rounded-md bg-gray-200 border-gray-300 focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
                                     placeholder="課程邀請碼"
+                                />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-6">
+                        <div className="col-span-3 sm:col-span-2">
+                            <label htmlFor="teacher_code"
+                                   className="flex text-sm font-medium text-gray-700 items-center">
+                                教師邀請碼
+                                <ClipboardIcon className={"inline h-4 w-4 ml-1 cursor-pointer"}
+                                               onClick={e => {
+                                                   navigator.clipboard.writeText(courseInfo.teacher_code)
+                                                   Swal.fire({
+                                                       icon: 'success',
+                                                       html: '複製成功<br/>' + courseInfo.teacher_code,
+                                                   })
+                                               }}/>
+                                <ArrowPathIcon
+                                    className={"inline h-4 w-4 ml-1 cursor-pointer"}
+                                    onClick={() => regenerate('teacher')}/>
+                            </label>
+                            <div className="mt-1 rounded-md shadow-sm">
+                                <input
+                                    type="text"
+                                    name="invite_code"
+                                    id="invite_code"
+                                    readOnly={true}
+                                    value={courseInfo.teacher_code}
+                                    className="block cursor-not-allowed w-full rounded-md bg-gray-200 border-gray-300 focus:border-gray-500 focus:ring-gray-500 sm:text-sm"
+                                    placeholder="教師邀請碼"
                                 />
                             </div>
                         </div>

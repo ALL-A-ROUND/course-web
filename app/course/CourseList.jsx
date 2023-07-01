@@ -20,13 +20,13 @@ function CourseCard({course}) {
     )
 }
 
-export default function () {
+export default function CourseList({ type }) {
     const router = useRouter()
     const pathname = usePathname()
     const {
         data: courses,
         isLoading
-    } = useSWR('/course/attended', async (url) => {
+    } = useSWR('/course/' + type, async (url) => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
             headers: {
                 "Accept": "application/json",

@@ -1,5 +1,5 @@
 "use client"
-import {usePathname, useRouter} from "next/navigation";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
 import {useEffect, useRef, useState} from "react";
 import {api} from "@/app/utils";
 import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
@@ -8,8 +8,9 @@ import Link from "next/link";
 import Swal from "sweetalert2";
 
 export default function ({params}) {
+    const sp = useSearchParams()
     const router = useRouter();
-    const [code, setCode] = useState("")
+    const [code, setCode] = useState(sp.get('invite_code') || '')
     const submit = (e) => {
         api('POST', '/course/' + params.course_id + '/join', {
             code
