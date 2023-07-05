@@ -5,6 +5,7 @@ import {moment} from "@/app/utils";
 import {useEffect, useState} from "react";
 import Link from "next/link";
 import Editor from "@monaco-editor/react";
+import {ArrowPathIcon, ArrowPathRoundedSquareIcon} from "@heroicons/react/24/outline";
 
 export default function ({params: {submission_id}}) {
     const router = useRouter()
@@ -115,8 +116,13 @@ export default function ({params: {submission_id}}) {
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                         {i + 1}
                                                     </td>
-                                                    <td className={`whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium ${resultClass[result[0]][1]} sm:pl-6`}>
+                                                    <td className={`flex flex-row items-center gap-2 whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium ${resultClass[result[0]][1]} sm:pl-6`}>
                                                         {resultClass[result[0]][0]}
+                                                        {resultClass[result[0]][0] === "Pending" && (
+                                                            <div className={"animate-spin"}>
+                                                                <ArrowPathIcon className={"h-5 w-5"}/>
+                                                            </div>
+                                                        )}
                                                     </td>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                         {result[1]}
