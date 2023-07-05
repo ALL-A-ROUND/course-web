@@ -35,7 +35,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
     const [language, setLanguage] = useState(null)
 
     const router = useRouter();
-    const editorRef = useRef(null);
+    const [editor, setEditor] = useState(null)
     const submitCode = async () => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + `/problem/${problem_id}/submit`, {
             headers: {
@@ -46,7 +46,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
             method: "POST",
             body: JSON.stringify({
                 language: language.id,
-                code: editorRef.current.getValue(),
+                code: editor.getValue(),
                 contest_id
             })
         })
@@ -71,6 +71,12 @@ export default function ({params: {problem_id, contest_id = null}}) {
             setLanguage(res[0])
         })
     }, [router])
+
+    useEffect(() => {
+        if (editor === null) return;
+        editor.addCommand([monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter], () => submitCode());
+    }, [editor])
+
     return (
         <>
             <div>
@@ -98,11 +104,15 @@ export default function ({params: {problem_id, contest_id = null}}) {
                 defaultLanguage="cpp"
                 defaultValue=""
                 onMount={(editor, monaco) => {
-                    editorRef.current = editor;
+                    setEditor(editor)
                 }}
             />
-
-            <div className={"flex justify-end mt-2"}>
+            <div className={"flex items-center gap-2 justify-end mt-2"}>
+                {/*<div className={"flex items-center gap-1"}>
+                    <div className={"border border-gray-300 rounded-md bg-gray-200 px-2"}>&#8984;</div>
+                    <span>+</span>
+                    <div className={"border border-gray-300 rounded-md bg-gray-200 px-2"}>&#9166;</div>
+                </div>*/}
                 <button
                     type="button"
                     onClick={submitCode}
