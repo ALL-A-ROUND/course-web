@@ -5,6 +5,8 @@ import {PROBLEM_TYPE} from "@/app/utils/Problem";
 import {usePathname, useRouter} from "next/navigation";
 import {fetcher} from "@/app/fetcher";
 import Swal from "sweetalert2";
+import {useRef} from "react";
+import $ from "jquery";
 
 export default function ({params: {problem_id, contest_id = null}}) {
     const pathname = usePathname();
@@ -28,6 +30,18 @@ export default function ({params: {problem_id, contest_id = null}}) {
             }
         }
         return res.json()
+    })
+
+
+    const iframeRef = useRef(null);
+
+    function resizeIframe() {
+        iframeRef.current.style.height = iframeRef.current.contentWindow.document.documentElement.offsetHeight + 'px';
+    }
+
+    const ins = $(`<div>${problem?.description}</div>`.replace(/\n/g, '<br/>'))
+    ins.find("img").each(function () {
+        $(this).css("max-width", "100%")
     })
 
     const submit = () => {
@@ -77,7 +91,11 @@ export default function ({params: {problem_id, contest_id = null}}) {
                         {problem?.title}
                     </h1>
                     <p className="mt-6 text-xl leading-8">
-                        {problem?.description}
+                        <iframe sandbox={"allow-same-origin"} srcDoc={ins.html()}
+                                className={"h-full w-full"}
+                                ref={iframeRef}
+                                onLoad={resizeIframe}
+                        />
                     </p>
                     <div className="mt-10 max-w-2xl">
                         {problem?.options?.map((option, index) => (
