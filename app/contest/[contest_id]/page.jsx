@@ -1,21 +1,20 @@
 "use client"
 import Link from "next/link";
-import {fetcher} from "@/app/fetcher";
 import {api, moment} from "@/app/utils";
 import Problem from "@/app/contest/[contest_id]/Problem";
 import useSWR from "swr";
 
-export default async function Example({params}) {
+export default function Example({params}) {
     const {
         data: contest,
         isLoading
-    } = useSWR(`/contest/${params.contest_id}`, (url) => api("GET", url).then(d => d))
+    } = useSWR(`/contest/${params.contest_id}`,url => api('GET', url).then(data => data))
 
     return (
         <>
             <div className={"flex gap-2"}>
                 <Link className={"text-blue-700"} href={"/course"}>競賽</Link>
-                / {contest.name} ({moment(contest.start_time).fromNow()}~{moment(contest.end_time).fromNow()})
+                / {contest?.name} ({moment(contest?.start_time).fromNow()}~{moment(contest?.end_time).fromNow()})
             </div>
             <div className={"flex gap-4"}>
                 <div className={"flex flex-col w-1/2"}>
@@ -31,7 +30,7 @@ export default async function Example({params}) {
                 <div className={"border-b border-dotted border-gray-300 text-xl"}>題目列表</div>
                 <div className={"grid grid-cols-2 gap-4"}>
                     {
-                        contest.problems.map((problem) => (
+                        contest?.problems?.map((problem) => (
                             <Problem contest_id={contest.id} problem={problem} key={problem.id}/>
                         ))
                     }
