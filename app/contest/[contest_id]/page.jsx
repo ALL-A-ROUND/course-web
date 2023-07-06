@@ -3,9 +3,14 @@ import Link from "next/link";
 import {fetcher} from "@/app/fetcher";
 import {api, moment} from "@/app/utils";
 import Problem from "@/app/contest/[contest_id]/Problem";
+import useSWR from "swr";
 
 export default async function Example({params}) {
-    const contest = await api("GET", `/contest/${params.contest_id}`);
+    const {
+        data: contest,
+        isLoading
+    } = useSWR(`/contest/${params.contest_id}`, (url) => api("GET", url).then(d => d))
+
     return (
         <>
             <div className={"flex gap-2"}>
