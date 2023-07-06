@@ -3,7 +3,7 @@ import {ChevronRightIcon} from '@heroicons/react/20/solid'
 import {useRouter} from "next/navigation";
 import useSWR from "swr";
 import Link from "next/link";
-
+import $ from 'jquery'
 export default function () {
     const router = useRouter()
     const {
@@ -32,7 +32,7 @@ export default function () {
                                         <div>
                                             <p className="truncate text-lg font-medium text-indigo-600">(#{prob.id}) {prob.title}</p>
                                             <p className="mt-2 flex items-center text-sm text-gray-500">
-                                                <span className="truncate">{prob.description}</span>
+                                                <span className="truncate">{$(`<div>${prob.description}</div>`).text().slice(0,100)}</span>
                                             </p>
                                         </div>
                                         {/* <div className="hidden md:block">
