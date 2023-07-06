@@ -52,7 +52,7 @@ function List({people, type, course_id, mutate}) {
                         </div>
                         <div className="flex items-center gap-x-6">
                             <div className="hidden sm:flex sm:flex-col sm:items-end">
-                                <p className="text-sm leading-6 text-gray-900">{person.role}</p>
+                                <p className="text-sm leading-6 text-gray-900">{person.last_path}</p>
                                 {diff(person) < 3 ? (
                                     <div className="mt-1 flex items-center gap-x-1.5">
                                         <div className="flex-none rounded-full bg-emerald-500/20 p-1">
