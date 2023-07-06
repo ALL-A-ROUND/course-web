@@ -31,7 +31,7 @@ export default function () {
         <div className="overflow-hidden bg-white shadow sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
                 {isLoading && <div>Loading...</div>}
-                {submissions?.length > 0 && submissions?.reverse()?.map((submission) => (
+                {submissions?.length > 0 && submissions?.map((submission) => (
                     <li key={submission.id}>
                         <Link href={`/submission/${submission?.id}`} className="block hover:bg-gray-50">
                             <div className="flex items-center justify-between px-4 py-4 sm:px-6 gap-4">
