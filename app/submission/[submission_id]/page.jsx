@@ -106,6 +106,10 @@ export default function ({params: {submission_id}}) {
                                                 </th>
                                                 <th scope="col"
                                                     className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                    說明
+                                                </th>
+                                                <th scope="col"
+                                                    className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                                                     分數
                                                 </th>
                                             </tr>
@@ -123,6 +127,9 @@ export default function ({params: {submission_id}}) {
                                                                 <ArrowPathIcon className={"h-5 w-5"}/>
                                                             </div>
                                                         )}
+                                                    </td>
+                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
+                                                        {submission?.problem?.subtasks[i].description}
                                                     </td>
                                                     <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
                                                         {result[1]}
@@ -151,7 +158,7 @@ export default function ({params: {submission_id}}) {
                         </div>
                     )}
                     <pre className={"mt-4"}>
-                    {JSON.stringify(submission, null, 2)}
+                    {/*{JSON.stringify(submission, null, 2)}*/}
                     </pre>
                 </div>
             )}
