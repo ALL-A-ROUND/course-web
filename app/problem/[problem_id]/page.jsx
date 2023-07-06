@@ -99,7 +99,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
                         </Link>
                     </div>
                     <p className="mt-6 text-xl leading-8">
-                        <iframe sandbox={"allow-same-origin"} srcDoc={ins.html()}
+                        <iframe sandbox={"allow-same-origin allow-top-navigation-by-user-activation"} srcDoc={ins.html()}
                                 className={"h-full w-full"}
                                 ref={iframeRef}
                                 onLoad={resizeIframe}
