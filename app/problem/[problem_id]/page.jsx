@@ -45,7 +45,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
     })
 
     const submit = () => {
-        if (problem.type === 0) router.push(`/problem/${problem_id}/${pathname.includes('/contest') ? '/contest/'+contest_id+'/' : ''}submit`)
+        if (problem.type === 0) router.push(`/problem/${problem_id}/${pathname.includes('/contest') ? '/contest/' + contest_id + '/' : ''}submit`)
         else {
             /** @type {NodeListOf<HTMLInputElement>} */
             const answer = document.getElementsByName("answer")
@@ -87,9 +87,17 @@ export default function ({params: {problem_id, contest_id = null}}) {
             <div className="bg-white px-6 py-16 lg:px-8">
                 <div className="mx-auto text-base leading-7 text-gray-700">
                     <p className="text-base font-semibold leading-7 text-indigo-600">{PROBLEM_TYPE[problem?.type]}</p>
-                    <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        {problem?.title}
-                    </h1>
+                    <div className={"flex justify-between"}>
+                        <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                            {problem?.title}
+                        </h1>
+                        <Link
+                            href={`/submission?problem_id=${problem_id}${pathname.includes('/contest') ? '&contest_id=' + contest_id : ''}`}
+                            className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        >
+                            狀態
+                        </Link>
+                    </div>
                     <p className="mt-6 text-xl leading-8">
                         <iframe sandbox={"allow-same-origin"} srcDoc={ins.html()}
                                 className={"h-full w-full"}
