@@ -24,6 +24,8 @@ export default function () {
             }
         })
         return res.json()
+    }, {
+        refreshInterval: 5000
     })
     return (
         <div className="overflow-hidden bg-white shadow sm:rounded-md">
