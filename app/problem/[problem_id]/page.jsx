@@ -87,7 +87,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
             <div className="bg-white px-6 py-16 lg:px-8">
                 <div className="mx-auto text-base leading-7 text-gray-700">
                     <p className="text-base font-semibold leading-7 text-indigo-600">{PROBLEM_TYPE[problem?.type]}</p>
-                    <div className={"flex justify-between"}>
+                    <div className={"flex justify-between items-center"}>
                         <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             {problem?.title}
                         </h1>
