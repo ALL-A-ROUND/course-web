@@ -1,6 +1,6 @@
 "use client"
 import {ChevronRightIcon} from '@heroicons/react/20/solid'
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import useSWR from "swr";
 import Link from "next/link";
 import {UserCircleIcon} from "@heroicons/react/24/solid";
@@ -11,11 +11,12 @@ export default function () {
         "WA": "text-red-600",
         "PAC": "text-blue-600",
     }
+    const searchParams = useSearchParams()
     const router = useRouter()
     const {
         data: submissions,
         isLoading
-    } = useSWR(`/submission`, async (url) => {
+    } = useSWR(`/submission?${searchParams.toString()}`, async (url) => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
             headers: {
                 "Accept": "application/json",
