@@ -1,3 +1,4 @@
+"use client"
 import Link from "next/link";
 import {fetcher} from "@/app/fetcher";
 import {api, moment} from "@/app/utils";
