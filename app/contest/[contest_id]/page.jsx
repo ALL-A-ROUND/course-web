@@ -1,10 +1,10 @@
 import Link from "next/link";
 import {fetcher} from "@/app/fetcher";
-import {moment} from "@/app/utils";
+import {api, moment} from "@/app/utils";
 import Problem from "@/app/contest/[contest_id]/Problem";
 
 export default async function Example({params}) {
-    const contest = await fetcher(`/contest/${params.contest_id}`);
+    const contest = await api("GET", `/contest/${params.contest_id}`);
     return (
         <>
             <div className={"flex gap-2"}>
