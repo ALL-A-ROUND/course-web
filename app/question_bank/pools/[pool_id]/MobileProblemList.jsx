@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import Link from "next/link";
-import {FolderIcon} from "@heroicons/react/24/outline";
+import {DocumentIcon, FolderIcon} from "@heroicons/react/24/outline";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -20,7 +20,16 @@ export default function ({pathname, params}) {
     }).then(res => res.json()))
     return (
         <>
-            {isLoading ?? '<span>載入中</span>'}
+            {isLoading &&
+                <div
+                    className={'animate-pulse text-gray-900 group rounded-md py-2 px-2 flex items-center text-sm font-medium'}
+                >
+                    <DocumentIcon
+                        className={'text-gray-400 mr-3 flex-shrink-0 h-6 w-6'}
+                    />
+                    <div className={"h-6 rounded-md w-full bg-gray-200 animate-pulse"}></div>
+                </div>
+            }
             {problems && problems.map((problem) => (
                 <Link
                     key={problem.name}
@@ -42,7 +51,8 @@ export default function ({pathname, params}) {
                     {problem.title}
                 </Link>
             ))}
-            {problems && problems.length === 0 && <span className={"text-sm text-gray-500 px-2 py-2"}>目前沒有題目</span>}
+            {problems && problems.length === 0 &&
+                <span className={"text-sm text-gray-500 px-2 py-2"}>目前沒有題目</span>}
         </>
     )
 }

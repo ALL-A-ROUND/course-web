@@ -19,7 +19,16 @@ export default function ({pathname}) {
     }).then(res => res.json()))
     return (
         <>
-            {isLoading ?? '<span>載入中</span>'}
+            {isLoading &&
+                <div
+                    className={'animate-pulse text-gray-900 group rounded-md py-2 px-2 flex items-center text-sm font-medium'}
+                >
+                    <FolderIcon
+                        className={'text-gray-400 mr-3 flex-shrink-0 h-6 w-6'}
+                    />
+                    <div className={"h-6 rounded-md w-full bg-gray-200 animate-pulse"}></div>
+                </div>
+            }
             {pools && pools.map((pool) => (
                 <Link
                     key={pool.name}

@@ -20,10 +20,19 @@ export default function ({pathname, params}) {
     }).then(res => res.json()))
     return (
         <>
-            {isLoading ?? '<span>載入中</span>'}
-            {problems && problems.map((problem) => (
+            {isLoading &&
+                <div
+                    className={'animate-pulse text-gray-900 group rounded-md py-2 px-2 flex items-center text-sm font-medium'}
+                >
+                    <DocumentIcon
+                        className={'text-gray-400 mr-3 flex-shrink-0 h-6 w-6'}
+                    />
+                    <div className={"h-6 rounded-md w-full bg-gray-200 animate-pulse"}></div>
+                </div>
+            }
+            {Array.isArray(problems) && problems.map((problem) => (
                 <Link
-                    key={problem.name}
+                    key={problem.id}
                     href={`/question_bank/pools/${pool_id}/problems/${problem.id}`}
                     className={classNames(
                         pathname.startsWith(`/question_bank/pools/${pool_id}/problems/${problem.id}`) ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
@@ -40,7 +49,9 @@ export default function ({pathname, params}) {
                     {problem.title}
                 </Link>
             ))}
-            {problems && problems.length === 0 && <span className={"text-sm text-gray-500 px-2 py-2"}>目前沒有題目</span>}
+            {(Array.isArray(problems) && problems.length === 0) &&
+                <span className={"text-sm text-gray-500 px-2 py-2"}>目前沒有題目</span>
+            }
         </>
     )
 }
