@@ -44,7 +44,7 @@ export default function Course() {
                             </div>
                         </div>
                         <div className={"flex flex-col gap-4"}>
-                            <div className={"border-b border-dotted border-gray-300 text-xl"}>我的課程</div>
+                            <div className={"border-b border-dotted border-gray-300 text-xl"}>狀態列表</div>
                             <div className={"grid grid-cols-2 gap-4"}>
 
                             </div>
