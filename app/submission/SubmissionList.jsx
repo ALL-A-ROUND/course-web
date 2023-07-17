@@ -18,7 +18,7 @@ export default function () {
     const {
         data: submissions,
         isLoading
-    } = useSWR(`/submission?${searchParams.toString()}`, async (url) => {
+    } = useSWR(`/submission?${searchParams.toString() === "" ? 'page=1' : searchParams.toString()}`, async (url) => {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
             headers: {
                 "Accept": "application/json",
