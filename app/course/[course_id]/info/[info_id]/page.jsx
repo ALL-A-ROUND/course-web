@@ -82,7 +82,7 @@ export default function ({params: {course_id, info_id}}) {
                         {Object.keys(info?.content ?? {}).map(_info => (
                             <div className={"flex w-full"} key={_info?.id}>
                                 <div className={"border-x w-1/3 p-2 font-bold"}>{_info}</div>
-                                <div className={"border-x w-full p-2"}>{info?.content?.[_info]}</div>
+                                <div className={"border-x w-full break-all p-2"}>{info?.content?.[_info]}</div>
                             </div>
                         ))}
                     </div>
