@@ -3,6 +3,34 @@ import {ChatBubbleLeftRightIcon, ClipboardIcon, MegaphoneIcon, TableCellsIcon} f
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
 import Swal from "sweetalert2";
+import {InformationCircleIcon} from "@heroicons/react/20/solid";
+
+export function sha256(str) {
+    // Get the string as arraybuffer.
+    var buffer = new TextEncoder("utf-8").encode(str)
+    return crypto.subtle.digest("SHA-256", buffer).then(function(hash) {
+        return hex(hash)
+    })
+}
+
+export function hex(buffer) {
+    var digest = ''
+    var view = new DataView(buffer)
+    for(var i = 0; i < view.byteLength; i += 4) {
+        // We use getUint32 to reduce the number of iterations (notice the `i += 4`)
+        var value = view.getUint32(i)
+        // toString(16) will transform the integer into the corresponding hex string
+        // but will remove any initial "0"
+        var stringValue = value.toString(16)
+        // One Uint32 element is 4 bytes or 8 hex chars (it would also work with 4
+        // chars for Uint16 and 2 chars for Uint8)
+        var padding = '00000000'
+        var paddedValue = (padding + stringValue).slice(-padding.length)
+        digest += paddedValue
+    }
+
+    return digest
+}
 
 export async function api(method, endpoint, jsonBody, options = {
     disableError: false,
@@ -76,6 +104,12 @@ export function makeFeature(params) {
             name: '討論區',
             path: `/course/${params.course_id}/discuss`,
             icon: ChatBubbleLeftRightIcon,
+        },
+        {
+            id: 'info',
+            name: '資料查詢',
+            path: `/course/${params.course_id}/info`,
+            icon: InformationCircleIcon,
         },
         {
             id: 'manage',
