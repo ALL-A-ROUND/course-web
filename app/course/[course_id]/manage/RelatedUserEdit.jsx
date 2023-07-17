@@ -7,7 +7,7 @@ import {classNames} from "@/app/utils";
 import Swal from "sweetalert2";
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
 
-function List({people, type, course_id, mutate}) {
+function List({people, type, course_id, mutate, course}) {
     const [email, setEmail] = useState('')
     const diff = (person) => Math.abs(moment(person.last_seen_at).diff(new Date(), 'minutes'))
     const diffVal = (person) => moment(person.last_seen_at).fromNow()
@@ -43,8 +43,8 @@ function List({people, type, course_id, mutate}) {
                                     </a>
                                 </p>
                                 <p className="mt-1 flex text-xs leading-5 text-gray-500">
-                                    <a href={`https://gmail.com?to=${person.email}`}
-                                       className="truncate hover:underline">
+                                    <a href={`https://mail.google.com/mail/u/0/?source=mailto&to=${person.email}&fs=1&tf=cm&su=${encodeURIComponent("【"+course?.name+"課程通知】")}`}
+                                       className="truncate hover:underline" target={"_blank"}>
                                         {person.email}
                                     </a>
                                 </p>
@@ -161,13 +161,13 @@ export default function RelatedUserEdit({params, course, mutate}) {
                                 學生
                             </label>
 
-                            <List people={courseInfo?.students} type="student" course_id={courseInfo?.id} mutate={mutate}/>
+                            <List people={courseInfo?.students} course={courseInfo} type="student" course_id={courseInfo?.id} mutate={mutate}/>
                         </div>
                         <div className="col-span-3">
                             <label className="block text-sm font-medium text-gray-700">
                                 老師
                             </label>
-                            <List people={courseInfo?.teachers} type="teacher" course_id={courseInfo?.id} mutate={mutate}/>
+                            <List people={courseInfo?.teachers} course={courseInfo} type="teacher" course_id={courseInfo?.id} mutate={mutate}/>
                         </div>
                     </div>
                 </div>
