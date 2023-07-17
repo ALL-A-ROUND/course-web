@@ -4,7 +4,9 @@ import originMoment from 'moment'
 import 'moment/locale/zh-tw'
 import Swal from "sweetalert2";
 
-export async function api(method, endpoint, jsonBody) {
+export async function api(method, endpoint, jsonBody, options = {
+    disableError: false,
+}) {
     const SSR = typeof window === "undefined"
     return fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
         method,
@@ -25,6 +27,7 @@ export async function api(method, endpoint, jsonBody) {
         }
         const data = await res.json()
         if (res.status >= 400) {
+            if(options.disableError) return Promise.reject(data)
             await Swal.fire({
                 icon: 'error',
                 title: '發生錯誤',

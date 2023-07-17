@@ -28,7 +28,9 @@ export default function Example() {
     const {
         data: user,
         isLoading
-    } = useSWR(`/user`, url => api('GET', url).then(res => res))
+    } = useSWR(`/user`, url => api('GET', url, null, {
+        disableError: true
+    }).then(res => res))
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
