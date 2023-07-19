@@ -15,6 +15,7 @@ import Link from "next/link";
 import useSWR from "swr";
 import {usePathname, useRouter} from "next/navigation";
 import {middlewareConfig} from "@/app/middleware.config";
+import Image from "next/image";
 
 const solutions = [
     {
@@ -62,9 +63,9 @@ export default function Nav() {
     }).then(res => res.json()))
 
     useEffect(() => {
-        for(let route of Object.keys(middlewareConfig)) {
+        for (let route of Object.keys(middlewareConfig)) {
             if (middlewareConfig[route].regex.test(pathname)) {
-                if(middlewareConfig[route].middlewares.includes("auth")) {
+                if (middlewareConfig[route].middlewares.includes("auth")) {
                     if (!isLoading && !user) router.replace('/auth/login')
                     if (user && user?.message === "Unauthenticated.") {
                         localStorage.removeItem("token")
@@ -82,9 +83,10 @@ export default function Nav() {
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                     <Link href="/">
                         <span className="sr-only">Your Company</span>
-                        <img
-                            className="h-8 w-auto sm:h-10"
-                            src="https://tailwindui.com/img/logos/mark.svg?from-color=purple&from-shade=600&to-color=indigo&to-shade=600&toShade=600"
+                        <Image
+                            width={640} height={640}
+                            className="h-8 w-auto sm:h-10 rounded-lg"
+                            src="/logo.webp"
                             alt=""
                         />
                     </Link>
@@ -233,7 +235,8 @@ export default function Nav() {
                         </div>
                         <div className="py-6 px-5">
                             <div className="grid grid-cols-2 gap-4">
-                                <Link href="/pricing" className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                <Link href="/pricing"
+                                      className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Pricing
                                 </Link>
                                 <Link href="/question_bank"

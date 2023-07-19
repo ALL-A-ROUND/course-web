@@ -18,6 +18,8 @@ import Nav from "@/app/(home)/Nav";
 import Pricing from "@/app/(home)/pricing/page";
 import About from "@/app/(home)/about/page";
 import {useRef} from "react";
+import Link from "next/link";
+import {ComputerDesktopIcon} from "@heroicons/react/24/solid";
 
 const features = [
     {
@@ -97,60 +99,20 @@ export default function Home() {
                             <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                                 <div
                                     className="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-2 sm:gap-5 sm:space-y-0">
-                                    <a
-                                        href="pages#"
+                                    <Link
+                                        href="/course"
                                         className="flex items-center justify-center rounded-md border border-transparent bg-white px-4 py-3 text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-50 sm:px-8"
                                     >
-                                        Get started
-                                    </a>
-                                    <a
-                                        href="/course"
-                                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8"
-                                    >
-                                        Live demo
-                                    </a>
+                                        立即體驗
+                                    </Link>
+                                    {/*<a*/}
+                                    {/*    href="/course"*/}
+                                    {/*    className="flex items-center justify-center rounded-md border border-transparent bg-indigo-500 bg-opacity-60 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-opacity-70 sm:px-8"*/}
+                                    {/*>*/}
+                                    {/*    Live demo*/}
+                                    {/*</a>*/}
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Logo Cloud */}
-            <div className="bg-gray-100">
-                <div className="mx-auto max-w-7xl py-16 px-6 lg:px-8">
-                    <p className="text-center text-base font-semibold text-gray-500">
-                        Trusted by over 5 very average small businesses
-                    </p>
-                    <div className="mt-6 grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img className="h-12" src="https://tailwindui.com/img/logos/tuple-logo-gray-400.svg"
-                                 alt="Tuple"/>
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img className="h-12" src="https://tailwindui.com/img/logos/mirage-logo-gray-400.svg"
-                                 alt="Mirage"/>
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                            <img
-                                className="h-12"
-                                src="https://tailwindui.com/img/logos/statickit-logo-gray-400.svg"
-                                alt="StaticKit"
-                            />
-                        </div>
-                        <div className="col-span-1 flex justify-center md:col-span-2 md:col-start-2 lg:col-span-1">
-                            <img
-                                className="h-12"
-                                sr c="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg"
-                                alt="Transistor"
-                            />
-                        </div>
-                        <div className="col-span-2 flex justify-center md:col-span-2 md:col-start-4 lg:col-span-1">
-                            <img
-                                className="h-12"
-                                src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg"
-                                alt="Workcation"
-                            />
                         </div>
                     </div>
                 </div>
@@ -165,28 +127,25 @@ export default function Home() {
                         <div className="mx-auto max-w-xl px-6 lg:mx-0 lg:max-w-none lg:py-16 lg:px-0">
                             <div>
                                 <div>
-                    <span
-                        className="flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600">
-                      <InboxIcon className="h-6 w-6 text-white" aria-hidden="true"/>
-                    </span>
+                                    <span
+                                        className="flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600">
+                                      <ComputerDesktopIcon className="h-6 w-6 text-white" aria-hidden="true"/>
+                                    </span>
                                 </div>
                                 <div className="mt-6">
-                                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">Stay on top of
-                                        customer support</h2>
+                                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">
+                                        業界首創．全國第一
+                                    </h2>
                                     <p className="mt-4 text-lg text-gray-500">
-                                        Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum
-                                        malesuada faucibus lacinia
-                                        porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu
-                                        pretium pharetra at.
-                                        Lectus viverra dui tellus ornare pharetra.
+                                        獨家技術測評學生能力
                                     </p>
                                     <div className="mt-6">
-                                        <a
-                                            href="pages#"
+                                        <Link
+                                            href="/problem"
                                             className="inline-flex rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
                                         >
-                                            Get started
-                                        </a>
+                                            立即體驗
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -194,9 +153,7 @@ export default function Home() {
                                 <blockquote>
                                     <div>
                                         <p className="text-base text-gray-500">
-                                            &ldquo;Cras velit quis eros eget rhoncus lacus ultrices sed diam. Sit
-                                            orci risus aenean
-                                            curabitur donec aliquet. Mi venenatis in euismod ut.&rdquo;
+                                            &ldquo;自從用了喵課學院的 Online Judge 我整個都好了&rdquo;
                                         </p>
                                     </div>
                                     <footer className="mt-3">
@@ -209,7 +166,7 @@ export default function Home() {
                                                 />
                                             </div>
                                             <div className="text-base font-medium text-gray-700">
-                                                Marcia Hill, Digital Marketing Manager
+                                                王小美，華清大學學生
                                             </div>
                                         </div>
                                     </footer>
