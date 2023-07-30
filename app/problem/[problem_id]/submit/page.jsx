@@ -68,7 +68,8 @@ export default function ({params: {problem_id, contest_id = null}}) {
     useEffect(() => {
         getLanguages(problem_id, router).then(res => {
             setLanguages(res)
-            setLanguage(res[0])
+            const lang = res[0]
+            setLanguage(lang)
         })
     }, [router])
 
@@ -76,6 +77,16 @@ export default function ({params: {problem_id, contest_id = null}}) {
         if (editor === null) return;
         editor.addCommand([monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter], () => submitCode());
     }, [editor])
+
+    useEffect(() => {
+        if (editor === null) return;
+        if (language === null) return;
+
+        if (language?.pivot?.default_code === undefined) return;
+        if (editor.getValue() !== "") return;
+
+        editor.setValue(language?.pivot?.default_code ?? "")
+    }, [editor, language])
 
     return (
         <>
@@ -89,7 +100,10 @@ export default function ({params: {problem_id, contest_id = null}}) {
                     className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     defaultValue="3"
                     onChange={(event) => {
-                        setLanguage(languages.find(l => String(l.id) === event.target.value))
+                        const lang = languages.find(l => String(l.id) === event.target.value)
+                        setLanguage(lang)
+                        console.log(lang?.pivot?.default_code)
+                        editor.setValue(lang?.pivot?.default_code ?? "")
                     }}
                 >
                     {languages.length && languages?.map((language) => (
@@ -101,7 +115,7 @@ export default function ({params: {problem_id, contest_id = null}}) {
             <Editor
                 className={"mt-4"}
                 height="60vh"
-                defaultLanguage="cpp"
+                defaultLanguage="javascript"
                 defaultValue=""
                 onMount={(editor, monaco) => {
                     setEditor(editor)
