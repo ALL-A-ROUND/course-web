@@ -6,6 +6,7 @@ import {Fragment, useEffect} from "react";
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import useSWR from 'swr'
+import {api} from "@/app/utils";
 
 const navigation = [
     {name: '題庫系統', href: '/question_bank'},
@@ -36,13 +37,7 @@ export default function Nav() {
     const {
         data: user,
         isLoading
-    } = useSWR('/user', async (url) => fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
-        headers: {
-            "Accept": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-        }
-    }).then(res => res.json()))
+    } = useSWR('/user', url=>api("GET", url).then(d=>d))
 
     useEffect(() => {
         if (!isLoading && !user) router.replace('/auth/login')

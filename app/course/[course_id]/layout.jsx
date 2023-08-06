@@ -1,10 +1,9 @@
 "use client"
-import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ChatBubbleLeftRightIcon, ClipboardIcon, TableCellsIcon} from "@heroicons/react/24/outline";
 import Link from "next/link";
 import {usePathname, useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {api, makeFeature} from "@/app/utils";
+import {classNames} from "@/app/utils";
 import useSWR from "swr";
 
 export default function CourseLayout({params, children}) {
@@ -21,7 +20,7 @@ export default function CourseLayout({params, children}) {
             router.replace('/auth/login')
         }
         api('GET', '/course/' + params.course_id + '?with=teachers').then(data => {
-            if(!document.title.startsWith(data.name)){
+            if (!document.title.startsWith(data.name)) {
                 document.title = data.name + ' - '
             }
             setCourse(data)
@@ -37,17 +36,29 @@ export default function CourseLayout({params, children}) {
                 {/* Left sidebar & main wrapper */}
                 <div className="flex-1 xl:flex">
                     <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6 my-4 xl:my-0">
-                        <div className={"bg-indigo-300 text-center py-1"}>{course?.name}</div>
-                        <div className={""}>講師：{course?.teachers?.map(user => user?.name).join('、')}</div>
-
-                        <div className={"border border-gray-300 w-full my-4"}/>
+                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-indigo-600 border border-gray-300 flex flex-col gap-2 mx-6 my-4 xl:my-0 rounded-lg">
+                        {isFeatureLoading ? <div className={"animate-pulse bg-indigo-400 w-full rounded-xl h-6"}/> :
+                            <>
+                                <h2 className={"bg-indigo-400 text-white font-bold text-lg text-center py-1 flex justify-center rounded-xl items-center mb-2"}>{course?.name}</h2>
+                                <div
+                                    className={"bg-indigo-400 text-white text-center py-1 flex justify-start rounded-md items-center mb-2 p-2"}>講師：{course?.teachers?.map(user => user?.name).join('、')}</div>
+                            </>
+                        }
                         {isFeatureLoading ? <div className={"animate-pulse w-full bg-gray-100 h-6"}/> : null}
                         {Array.isArray(features) && features.filter(feature => Array.isArray(enabledFeatures) && enabledFeatures?.includes(feature.id)).map(feature => (
+
                             <Link href={feature.path}
                                   key={feature.id}
-                                  className={`px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1 ${pathname.match(feature.path) ? 'bg-gray-200' : ''}`}>
-                                <feature.icon className={"h-4 w-4"}/>
+                                  className={classNames(
+                                      false
+                                          ? 'bg-indigo-700 text-white'
+                                          : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                  )}>
+                                <feature.icon className={classNames(
+                                    false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                                    'h-6 w-6 shrink-0'
+                                )}/>
                                 {feature.name}
                             </Link>
                         ))}
