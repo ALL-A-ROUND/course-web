@@ -5,33 +5,45 @@ import Image from "next/image";
 import Link from "next/link";
 import CourseList from "@/app/course/CourseList";
 
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
+
 export default function Course() {
     return (
         <div className="flex min-h-full flex-col">
             {/* 3 column wrapper */}
-            <div className="mx-auto w-full max-w-7xl grow lg:flex xl:px-2 py-4">
+            <div className="mx-auto w-full max-w-7xl grow lg:flex xl:px-2 py-4 ">
                 {/* Left sidebar & main wrapper */}
-                <div className="flex-1 xl:flex">
+                <div className="flex-1 xl:flex ">
                     <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-white border border-gray-300 flex flex-col gap-2 mx-6">
-                        <div className={"bg-indigo-300 text-center py-1"}>我的首頁</div>
+                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-indigo-600 border border-gray-300 flex flex-col gap-2 mx-6 rounded-lg">
+                        <h2 className={"bg-indigo-400 text-white font-bold text-lg text-center py-1 flex justify-center rounded-xl items-center mb-2"}>我的首頁</h2>
 
-                        <img
-                            className="inline-block h-14 w-14 rounded-full"
-                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                            alt=""
-                        />
-
-                        <div className={"border border-gray-300 w-full my-4"}/>
-
-                        <div
-                            className={"px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1"}>
-                            <PencilSquareIcon className={"h-4 w-4"}/> 題目列表
-                        </div>
-                        <div
-                            className={"px-3 py-1 hover:bg-gray-200 cursor-pointer inline-flex items-center gap-1"}>
-                            <ClipboardIcon className={"h-4 w-4"}/> 公開競賽
-                        </div>
+                        <Link href={"/problem"}
+                            className={classNames(
+                                false
+                                    ? 'bg-indigo-700 text-white'
+                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                            )}>
+                            <PencilSquareIcon className={classNames(
+                                false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                                'h-6 w-6 shrink-0'
+                            )}/> 題目列表
+                        </Link>
+                        <Link href={"/problem"}
+                            className={classNames(
+                                false
+                                    ? 'bg-indigo-700 text-white'
+                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                            )}>
+                            <ClipboardIcon className={classNames(
+                                false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                                'h-6 w-6 shrink-0'
+                            )}/> 公開競賽
+                        </Link>
                     </div>
 
                     <div

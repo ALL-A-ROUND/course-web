@@ -2,28 +2,22 @@ import Nav from "@/app/(home)/Nav";
 
 const footerNavigation = {
     solutions: [
-        {name: 'Marketing', href: '#'},
-        {name: 'Analytics', href: '#'},
-        {name: 'Commerce', href: '#'},
-        {name: 'Insights', href: '#'},
+        {name: '課程系統', href: '/course'},
+        {name: '題目評測', href: '/problem'},
     ],
     support: [
-        {name: 'Pricing', href: '#'},
-        {name: 'Documentation', href: '#'},
-        {name: 'Guides', href: '#'},
-        {name: 'API Status', href: '#'},
+        {name: '價格方案', href: '#'},
     ],
     company: [
-        {name: 'About', href: '#'},
-        {name: 'Blog', href: '#'},
-        {name: 'Jobs', href: '#'},
-        {name: 'Press', href: '#'},
-        {name: 'Partners', href: '#'},
+        {name: '關於我們', href: '#'},
+        {name: '部落格', href: '#'},
+        {name: '徵才說明', href: '#'},
+        {name: '公告', href: '#'},
+        {name: '合作夥伴', href: '#'},
     ],
     legal: [
-        {name: 'Claim', href: '#'},
-        {name: 'Privacy', href: '#'},
-        {name: 'Terms', href: '#'},
+        {name: '隱私權政策', href: '#'},
+        {name: '使用條款', href: '#'},
     ],
     social: [
         {
@@ -109,7 +103,7 @@ export default function HomeLayout({ children }) {
                         <div className="grid grid-cols-2 gap-8 xl:col-span-2">
                             <div className="md:grid md:grid-cols-2 md:gap-8">
                                 <div>
-                                    <h3 className="text-base font-medium text-gray-900">Solutions</h3>
+                                    <h3 className="text-base font-medium text-gray-900">解決方案</h3>
                                     <ul role="list" className="mt-4 space-y-4">
                                         {footerNavigation.solutions.map((item) => (
                                             <li key={item.name}>
@@ -122,7 +116,7 @@ export default function HomeLayout({ children }) {
                                     </ul>
                                 </div>
                                 <div className="mt-12 md:mt-0">
-                                    <h3 className="text-base font-medium text-gray-900">Support</h3>
+                                    <h3 className="text-base font-medium text-gray-900">客戶支援</h3>
                                     <ul role="list" className="mt-4 space-y-4">
                                         {footerNavigation.support.map((item) => (
                                             <li key={item.name}>
@@ -137,7 +131,7 @@ export default function HomeLayout({ children }) {
                             </div>
                             <div className="md:grid md:grid-cols-2 md:gap-8">
                                 <div>
-                                    <h3 className="text-base font-medium text-gray-900">Company</h3>
+                                    <h3 className="text-base font-medium text-gray-900">公司治理</h3>
                                     <ul role="list" className="mt-4 space-y-4">
                                         {footerNavigation.company.map((item) => (
                                             <li key={item.name}>
@@ -150,7 +144,7 @@ export default function HomeLayout({ children }) {
                                     </ul>
                                 </div>
                                 <div className="mt-12 md:mt-0">
-                                    <h3 className="text-base font-medium text-gray-900">Legal</h3>
+                                    <h3 className="text-base font-medium text-gray-900">法務</h3>
                                     <ul role="list" className="mt-4 space-y-4">
                                         {footerNavigation.legal.map((item) => (
                                             <li key={item.name}>
@@ -164,34 +158,34 @@ export default function HomeLayout({ children }) {
                                 </div>
                             </div>
                         </div>
-                        <div className="mt-12 xl:mt-0">
-                            <h3 className="text-base font-medium text-gray-900">Subscribe to our newsletter</h3>
-                            <p className="mt-4 text-base text-gray-500">
-                                The latest news, articles, and resources, sent to your inbox weekly.
-                            </p>
-                            <form className="mt-4 sm:flex sm:max-w-md">
-                                <label htmlFor="email-address" className="sr-only">
-                                    Email address
-                                </label>
-                                <input
-                                    type="email"
-                                    name="email-address"
-                                    id="email-address"
-                                    autoComplete="email"
-                                    required
-                                    className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500"
-                                    placeholder="Enter your email"
-                                />
-                                <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">
-                                    <button
-                                        type="submit"
-                                        className="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                                    >
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        {/*<div className="mt-12 xl:mt-0">*/}
+                        {/*    <h3 className="text-base font-medium text-gray-900">Subscribe to our newsletter</h3>*/}
+                        {/*    <p className="mt-4 text-base text-gray-500">*/}
+                        {/*        The latest news, articles, and resources, sent to your inbox weekly.*/}
+                        {/*    </p>*/}
+                        {/*    <form className="mt-4 sm:flex sm:max-w-md">*/}
+                        {/*        <label htmlFor="email-address" className="sr-only">*/}
+                        {/*            Email address*/}
+                        {/*        </label>*/}
+                        {/*        <input*/}
+                        {/*            type="email"*/}
+                        {/*            name="email-address"*/}
+                        {/*            id="email-address"*/}
+                        {/*            autoComplete="email"*/}
+                        {/*            required*/}
+                        {/*            className="w-full min-w-0 appearance-none rounded-md border border-gray-300 bg-white py-2 px-4 text-base text-gray-900 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:placeholder-gray-400 focus:outline-none focus:ring-indigo-500"*/}
+                        {/*            placeholder="Enter your email"*/}
+                        {/*        />*/}
+                        {/*        <div className="mt-3 rounded-md sm:mt-0 sm:ml-3 sm:flex-shrink-0">*/}
+                        {/*            <button*/}
+                        {/*                type="submit"*/}
+                        {/*                className="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"*/}
+                        {/*            >*/}
+                        {/*                Subscribe*/}
+                        {/*            </button>*/}
+                        {/*        </div>*/}
+                        {/*    </form>*/}
+                        {/*</div>*/}
                     </div>
                     <div
                         className="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between lg:mt-16">
@@ -204,7 +198,7 @@ export default function HomeLayout({ children }) {
                             ))}
                         </div>
                         <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
-                            &copy; 2020 Your Company, Inc. All rights reserved.
+                            &copy; { (new Date()).getFullYear()} 喵課學院
                         </p>
                     </div>
                 </div>

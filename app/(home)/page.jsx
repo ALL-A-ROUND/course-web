@@ -64,10 +64,7 @@ const features = [
     },
 ]
 const metrics = [
-    {id: 1, stat: '8K+', emphasis: 'Companies', rest: 'use laoreet amet lacus nibh integer quis.'},
-    {id: 2, stat: '25K+', emphasis: 'Countries around the globe', rest: 'lacus nibh integer quis.'},
-    {id: 3, stat: '98%', emphasis: 'Customer satisfaction', rest: 'laoreet amet lacus nibh integer quis.'},
-    {id: 4, stat: '12M+', emphasis: 'Issues resolved', rest: 'lacus nibh integer quis.'},
+    {id: 1, stat: '650+', emphasis: '評測提交', rest: '均正常運行、正確評測'},
 ]
 
 
@@ -177,88 +174,88 @@ export default function Home() {
                             <div className="-mr-48 pl-6 md:-mr-16 lg:relative lg:m-0 lg:h-full lg:px-0">
                                 <img
                                     className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                    src="https://tailwindui.com/img/component-images/inbox-app-screenshot-1.jpg"
+                                    src="/showcase.png"
                                     alt="Inbox user interface"
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="mt-24">
-                    <div
-                        className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">
-                        <div
-                            className="mx-auto max-w-xl px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">
-                            <div>
-                                <div>
-                    <span
-                        className="flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600">
-                      <SparklesIcon className="h-6 w-6 text-white" aria-hidden="true"/>
-                    </span>
-                                </div>
-                                <div className="mt-6">
-                                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">
-                                        Better understand your customers
-                                    </h2>
-                                    <p className="mt-4 text-lg text-gray-500">
-                                        Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum
-                                        malesuada faucibus lacinia
-                                        porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu
-                                        pretium pharetra at.
-                                        Lectus viverra dui tellus ornare pharetra.
-                                    </p>
-                                    <div className="mt-6">
-                                        <a
-                                            href="pages#"
-                                            className="inline-flex rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                                        >
-                                            Get started
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">
-                            <div className="-ml-48 pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">
-                                <img
-                                    className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"
-                                    src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"
-                                    alt="Customer profile user interface"
-                                />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {/*<div className="mt-24">*/}
+                {/*    <div*/}
+                {/*        className="lg:mx-auto lg:grid lg:max-w-7xl lg:grid-flow-col-dense lg:grid-cols-2 lg:gap-24 lg:px-8">*/}
+                {/*        <div*/}
+                {/*            className="mx-auto max-w-xl px-6 lg:col-start-2 lg:mx-0 lg:max-w-none lg:py-32 lg:px-0">*/}
+                {/*            <div>*/}
+                {/*                <div>*/}
+                {/*    <span*/}
+                {/*        className="flex h-12 w-12 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600">*/}
+                {/*      <SparklesIcon className="h-6 w-6 text-white" aria-hidden="true"/>*/}
+                {/*    </span>*/}
+                {/*                </div>*/}
+                {/*                <div className="mt-6">*/}
+                {/*                    <h2 className="text-3xl font-bold tracking-tight text-gray-900">*/}
+                {/*                        Better understand your customers*/}
+                {/*                    </h2>*/}
+                {/*                    <p className="mt-4 text-lg text-gray-500">*/}
+                {/*                        Semper curabitur ullamcorper posuere nunc sed. Ornare iaculis bibendum*/}
+                {/*                        malesuada faucibus lacinia*/}
+                {/*                        porttitor. Pulvinar laoreet sagittis viverra duis. In venenatis sem arcu*/}
+                {/*                        pretium pharetra at.*/}
+                {/*                        Lectus viverra dui tellus ornare pharetra.*/}
+                {/*                    </p>*/}
+                {/*                    <div className="mt-6">*/}
+                {/*                        <a*/}
+                {/*                            href="pages#"*/}
+                {/*                            className="inline-flex rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"*/}
+                {/*                        >*/}
+                {/*                            Get started*/}
+                {/*                        </a>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*        <div className="mt-12 sm:mt-16 lg:col-start-1 lg:mt-0">*/}
+                {/*            <div className="-ml-48 pr-6 md:-ml-16 lg:relative lg:m-0 lg:h-full lg:px-0">*/}
+                {/*                <img*/}
+                {/*                    className="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:right-0 lg:h-full lg:w-auto lg:max-w-none"*/}
+                {/*                    src="https://tailwindui.com/img/component-images/inbox-app-screenshot-2.jpg"*/}
+                {/*                    alt="Customer profile user interface"*/}
+                {/*                />*/}
+                {/*            </div>*/}
+                {/*        </div>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
 
             {/* Gradient Feature Section */}
-            <div className="bg-gradient-to-r from-purple-800 to-indigo-700">
-                <div className="mx-auto max-w-4xl py-16 px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">
-                    <h2 className="text-3xl font-bold tracking-tight text-white">Inbox support built for
-                        efficiency</h2>
-                    <p className="mt-4 max-w-3xl text-lg text-purple-200">
-                        Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.
-                        Blandit
-                        aliquam sit nisl euismod mattis in.
-                    </p>
-                    <div
-                        className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
-                        {features.map((feature) => (
-                            <div key={feature.name}>
-                                <div>
-                    <span className="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">
-                      <feature.icon className="h-6 w-6 text-white" aria-hidden="true"/>
-                    </span>
-                                </div>
-                                <div className="mt-6">
-                                    <h3 className="text-lg font-medium text-white">{feature.name}</h3>
-                                    <p className="mt-2 text-base text-purple-200">{feature.description}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </div>
+            {/*<div className="bg-gradient-to-r from-purple-800 to-indigo-700">*/}
+            {/*    <div className="mx-auto max-w-4xl py-16 px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:px-8 lg:pt-24">*/}
+            {/*        <h2 className="text-3xl font-bold tracking-tight text-white">Inbox support built for*/}
+            {/*            efficiency</h2>*/}
+            {/*        <p className="mt-4 max-w-3xl text-lg text-purple-200">*/}
+            {/*            Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.*/}
+            {/*            Blandit*/}
+            {/*            aliquam sit nisl euismod mattis in.*/}
+            {/*        </p>*/}
+            {/*        <div*/}
+            {/*            className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">*/}
+            {/*            {features.map((feature) => (*/}
+            {/*                <div key={feature.name}>*/}
+            {/*                    <div>*/}
+            {/*        <span className="flex h-12 w-12 items-center justify-center rounded-md bg-white bg-opacity-10">*/}
+            {/*          <feature.icon className="h-6 w-6 text-white" aria-hidden="true"/>*/}
+            {/*        </span>*/}
+            {/*                    </div>*/}
+            {/*                    <div className="mt-6">*/}
+            {/*                        <h3 className="text-lg font-medium text-white">{feature.name}</h3>*/}
+            {/*                        <p className="mt-2 text-base text-purple-200">{feature.description}</p>*/}
+            {/*                    </div>*/}
+            {/*                </div>*/}
+            {/*            ))}*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
 
             {/* Stats section */}
             <div className="relative bg-gray-900">
@@ -282,18 +279,14 @@ export default function Home() {
                     <div className="relative pt-12 pb-64 sm:pt-24 sm:pb-64 xl:col-start-1 xl:pb-24">
                         <h2 className="text-base font-semibold">
                 <span className="bg-gradient-to-r from-purple-300 to-indigo-300 bg-clip-text text-transparent">
-                  Valuable Metrics
+                  超越業界，評測專案
                 </span>
                         </h2>
                         <p className="mt-3 text-3xl font-bold tracking-tight text-white">
-                            Get actionable data that will help grow your business
+                            專案開發教學更簡單
                         </p>
                         <p className="mt-5 text-lg text-gray-300">
-                            Rhoncus sagittis risus arcu erat lectus bibendum. Ut in adipiscing quis in viverra
-                            tristique sem. Ornare
-                            feugiat viverra eleifend fusce orci in quis amet. Sit in et vitae tortor, massa. Dapibus
-                            laoreet amet
-                            lacus nibh integer quis. Eu vulputate diam sit tellus quis at.
+                            WaKuOJ 獨創評測專案技術，協助教師快速建立評測專案，並且提供多種評測方式，讓教師可以輕鬆建立評測專案。
                         </p>
                         <div className="mt-12 grid grid-cols-1 gap-y-12 gap-x-6 sm:grid-cols-2">
                             {metrics.map((item) => (
@@ -308,35 +301,35 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <Pricing/>
-            <About/>
+            {/*<Pricing/>*/}
+            {/*<About/>*/}
             {/* CTA Section */}
-            <div className="bg-white">
-                <div
-                    className="mx-auto max-w-4xl py-16 px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">
-                    <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        <span className="block">Ready to get started?</span>
-                        <span
-                            className="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">
-                Get in touch or create an account.
-              </span>
-                    </h2>
-                    <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">
-                        <a
-                            href="pages#"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                        >
-                            Learn more
-                        </a>
-                        <a
-                            href="pages#"
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-50 px-4 py-3 text-base font-medium text-indigo-800 shadow-sm hover:bg-indigo-100"
-                        >
-                            Get started
-                        </a>
-                    </div>
-                </div>
-            </div>
+            {/*<div className="bg-white">*/}
+            {/*    <div*/}
+            {/*        className="mx-auto max-w-4xl py-16 px-6 sm:py-24 lg:flex lg:max-w-7xl lg:items-center lg:justify-between lg:px-8">*/}
+            {/*        <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-4xl">*/}
+            {/*            <span className="block">Ready to get started?</span>*/}
+            {/*            <span*/}
+            {/*                className="-mb-1 block bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text pb-1 text-transparent">*/}
+            {/*    Get in touch or create an account.*/}
+            {/*  </span>*/}
+            {/*        </h2>*/}
+            {/*        <div className="mt-6 space-y-4 sm:flex sm:space-y-0 sm:space-x-5">*/}
+            {/*            <a*/}
+            {/*                href="pages#"*/}
+            {/*                className="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-3 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"*/}
+            {/*            >*/}
+            {/*                Learn more*/}
+            {/*            </a>*/}
+            {/*            <a*/}
+            {/*                href="pages#"*/}
+            {/*                className="flex items-center justify-center rounded-md border border-transparent bg-indigo-50 px-4 py-3 text-base font-medium text-indigo-800 shadow-sm hover:bg-indigo-100"*/}
+            {/*            >*/}
+            {/*                Get started*/}
+            {/*            </a>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
+            {/*</div>*/}
         </>
     )
 }
