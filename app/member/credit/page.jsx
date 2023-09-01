@@ -4,6 +4,7 @@ import useUser from "@/app/useUser";
 import useSWR from "swr";
 import Instance from "@/app/utils/Instance";
 import {useRef, useState} from "react";
+import Swal from "sweetalert2";
 
 
 export default function Credit() {
@@ -32,6 +33,17 @@ export default function Credit() {
             document.querySelector("input[name='TradeSha']").value = d.TradeSha
             document.querySelector("input[name='Version']").value = d.Version
             document.querySelector("#hidden_payment").submit()
+        })
+    }
+
+    const redeem = () => {
+        api("POST", "/payment/redeem", {
+            code: document.querySelector("#redeem_code").value
+        }).then(d => {
+            Swal.fire({
+                title: '成功兌換',
+                text: `兌換碼 ${d.code} 已成功兌換 ${d.quantity} 點數`,
+            })
         })
     }
 
@@ -87,6 +99,28 @@ export default function Credit() {
                                 <input type={'hidden'} name={'TradeSha'}/>
                                 <input type={'hidden'} name={'Version'}/>
                             </form>
+                        </div>
+
+                        <div>
+                            <label htmlFor="redeem_code" className="mt-4 block text-sm font-medium leading-6 text-gray-900">
+                                使用兌換卷
+                            </label>
+                            <div className="mt-2">
+                                <input
+                                    type="text"
+                                    name="redeem_code"
+                                    id="redeem_code"
+                                    className="block w-full rounded-t-lg border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    placeholder="兌換卷"
+                                />
+                            </div>
+                            <button
+                                type="button"
+                                onClick={redeem}
+                                className="w-full rounded-b-lg bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                立即兌換
+                            </button>
                         </div>
                     </dl>
                 </div>
