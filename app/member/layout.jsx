@@ -11,11 +11,13 @@ import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {api} from "@/app/utils";
 import Nav from "@/app/Nav";
+import {DocumentMagnifyingGlassIcon} from "@heroicons/react/24/outline";
 
 const secondaryNavigation = [
     {name: '一般設定', icon: UserCircleIcon, path: "/member/general"},
     {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security"},
     {name: '通知設定', icon: BellIcon, path: "/member/notifications"},
+    {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order"},
     {name: '靶機與點數', icon: CubeIcon, path: "/member/credit"},
     {name: '付款方式', icon: CreditCardIcon, path: "/member/billing"},
 ]
