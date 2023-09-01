@@ -41,7 +41,12 @@ export default function CourseLayout({params, children}) {
                             <>
                                 <h2 className={"bg-indigo-400 text-white font-bold text-lg text-center py-1 flex justify-center rounded-xl items-center mb-2"}>{course?.name}</h2>
                                 <div
-                                    className={"bg-indigo-400 text-white text-center py-1 flex justify-start rounded-md items-center mb-2 p-2"}>講師：{course?.teachers?.map(user => user?.name).join('、')}</div>
+                                    className={"bg-indigo-400 text-white text-left py-1 flex flex-col justify-start rounded-md items-start mb-2 p-2"}>
+                                    <div>講師：{course?.teachers?.map(user => user?.name).join('、')}</div>
+                                    <div>
+                                        {course?.description}
+                                    </div>
+                                </div>
                             </>
                         }
                         {isFeatureLoading ? <div className={"animate-pulse w-full bg-gray-100 h-6"}/> : null}

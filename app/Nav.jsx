@@ -14,16 +14,14 @@ const navigation = [
     {name: '競賽', href: '/contest'},
 ]
 const userNavigation = [
-    {name: 'Your Profile', href: '#'},
-    {name: 'Settings', href: '#'},
-    {name: 'Sign out', href: '#'},
+    {name: '個人檔案', href: '/member'},
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Nav() {
     const pathname = usePathname()
     const {
         data: user,
@@ -82,7 +80,7 @@ export default function Example() {
                                             <Menu.Button
                                                 className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                 <span className="sr-only">Open user menu</span>
-                                                <span className={"mx-1"}>Hi, {user?.name}</span>
+                                                {/*<span className={"mx-1"}>Hi, {user?.name} {user?.credit}</span>*/}
                                                 {user?.avatar_url ? (
                                                     <img className="h-8 w-8 rounded-full" src={user?.avatar_url ?? ''}
                                                          alt=""/>

@@ -63,7 +63,10 @@ export default function ({params: {pool_id, problem_id}}) {
     })
     return (
         <>
-            <ProblemEditableForm problem={problem} type={type} setType={setType} submit={submit} pathname={pathname}/>
+            {problem &&
+                <ProblemEditableForm problem={problem} type={type} setType={setType} submit={submit}
+                                     pathname={pathname}/>
+            }
         </>
     )
 }

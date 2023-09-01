@@ -8,7 +8,7 @@ import {InformationCircleIcon} from "@heroicons/react/20/solid";
 export function sha256(str) {
     // Get the string as arraybuffer.
     var buffer = new TextEncoder("utf-8").encode(str)
-    return crypto.subtle.digest("SHA-256", buffer).then(function(hash) {
+    return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
         return hex(hash)
     })
 }
@@ -16,7 +16,7 @@ export function sha256(str) {
 export function hex(buffer) {
     var digest = ''
     var view = new DataView(buffer)
-    for(var i = 0; i < view.byteLength; i += 4) {
+    for (var i = 0; i < view.byteLength; i += 4) {
         // We use getUint32 to reduce the number of iterations (notice the `i += 4`)
         var value = view.getUint32(i)
         // toString(16) will transform the integer into the corresponding hex string
@@ -55,13 +55,14 @@ export async function api(method, endpoint, jsonBody, options = {
         }
         const data = await res.json()
         if (res.status >= 400) {
-            if(options.disableError) return Promise.reject(data)
-            await Swal.fire({
-                icon: 'error',
-                title: '發生錯誤',
-                text: data?.message ?? '未知錯誤'
-            })
-            return Promise.reject(data)
+            if (options.disableError !== true && !SSR) {
+                await Swal.fire({
+                    icon: 'error',
+                    title: '發生錯誤',
+                    text: data?.message ?? '未知錯誤'
+                })
+            }
+            return Promise.reject(JSON.stringify(data))
         }
         return data
     })

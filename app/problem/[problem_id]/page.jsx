@@ -5,33 +5,46 @@ import {PROBLEM_TYPE} from "@/app/utils/Problem";
 import {usePathname, useRouter} from "next/navigation";
 import {fetcher} from "@/app/fetcher";
 import Swal from "sweetalert2";
-import {useRef} from "react";
-import $ from "jquery";
+import {useRef, useState} from "react";
+import {parse} from 'node-html-parser';
 
-export default function ({params: {problem_id, contest_id = null}}) {
+import {api} from "@/app/utils";
+import {PencilIcon, ServerStackIcon, TrashIcon} from "@heroicons/react/24/outline";
+import {EyeIcon} from "@heroicons/react/20/solid";
+import Instance from "@/app/utils/Instance";
+
+export default function Problem({params: {problem_id, contest_id = null}}) {
+    const [status, setStatus] = useState({})
+    const [btnBg, setBtnBg] = useState({})
     const pathname = usePathname();
     const router = useRouter()
     const {
         data: problem,
         isLoading
-    } = useSWR(`/problem/${problem_id}`, async (url) => {
-        const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
-            headers: {
-                "Accept": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("token"),
-                "Content-Type": "application/json",
-            }
+    } = useSWR(`/problem/${problem_id}`, async (url) => await api("GET", url, null).then(d => d))
+
+    const {
+        data: instances
+    } = useSWR(`/instance`, async (url) => await api("GET", url, null, {
+        revalidate: 1000
+    }).then(d => d))
+
+    const deploy = (template) => {
+        setStatus(s => ({
+            ...s,
+            [template]: "部署中..."
+        }))
+        api("POST", `/instance/${template}/deploy`, {}).then(d => {
+            setStatus(s => ({
+                ...s,
+                [template]: "部署成功"
+            }))
+            setBtnBg(s => ({
+                ...s,
+                [template]: "bg-green-500 hover:bg-green-400"
+            }))
         })
-
-        if (!res.ok) {
-            if (res.status === 401) {
-                localStorage.removeItem("token")
-                router.replace("/auth/login")
-            }
-        }
-        return res.json()
-    })
-
+    }
 
     const iframeRef = useRef(null);
 
@@ -39,9 +52,9 @@ export default function ({params: {problem_id, contest_id = null}}) {
         iframeRef.current.style.height = iframeRef.current.contentWindow.document.documentElement.offsetHeight + 'px';
     }
 
-    const ins = $(`<div>${problem?.description}</div>`.replace(/\n/g, '<br/>'))
-    ins.find("img").each(function () {
-        $(this).css("max-width", "100%")
+    const ins = parse(`<div>${problem?.description}</div>`.replace(/\n/g, '<br/>'))
+    ins.querySelectorAll("img").forEach(function (img) {
+        img.classList.add("max-w-full")
     })
 
     const submit = () => {
@@ -99,7 +112,8 @@ export default function ({params: {problem_id, contest_id = null}}) {
                         </Link>
                     </div>
                     <p className="mt-6 text-xl leading-8">
-                        <iframe sandbox={"allow-same-origin allow-top-navigation-by-user-activation"} srcDoc={ins.html()}
+                        <iframe sandbox={"allow-same-origin allow-top-navigation-by-user-activation"}
+                                srcDoc={ins.innerHTML}
                                 className={"h-full w-full"}
                                 ref={iframeRef}
                                 onLoad={resizeIframe}
@@ -136,7 +150,47 @@ export default function ({params: {problem_id, contest_id = null}}) {
                     </div>
                 </div>
             </div>
+            <div className={"mx-2 mt-4 text-xl text-white p-2 bg-purple-500 flex justify-center rounded-t-lg"}>
+                <div>靶機列表</div>
+            </div>
+            <div className={"mx-2 p-4 bg-purple-300 rounded-b-lg grid sm:grid-cols-2 lg:grid-cols-3 gap-2"}>
+                {
+                    problem?.templates?.map((template, index) => (
+                        <div className={"p-2 h-fit bg-purple-50 rounded-xl border border-white shadow"}>
+                            <div className={"flex justify-center"}>靶機模板 #{index + 1} {template?.name} </div>
+                            <div>建議CPU: {template?.recommend_cpu}</div>
+                            <div>建議RAM: {template?.recommend_ram}</div>
+                            <div>建議硬盤: {template?.recommend_disk}</div>
+                            <div className={"flex sm:flex-col mt-4"}>
+                                <button onClick={() => deploy(template.id)}
+                                        className={`w-full inline-flex items-center justify-center gap-1 ${btnBg?.[template.id] ?? 'bg-purple-600 hover:bg-purple-800'} text-white p-2 rounded-l-md sm:rounded-b-none sm:rounded-t-md`}>
+                                    <ServerStackIcon className={"h-5 w-5"}/> {status?.[template?.id] ?? "快速建議部署"}
+                                </button>
+                                <button
+                                    className={"w-full inline-flex items-center justify-center gap-1 bg-sky-600 text-white p-2 rounded-r-md sm:rounded-t-none sm:rounded-b-md hover:bg-sky-800"}>
+                                    <PencilIcon className={"h-5 w-5"}/> 自訂規格部署
+                                </button>
+                            </div>
+
+                            <div className={"flex flex-col mt-4 gap-2"}>
+                                {
+                                    Array.isArray(instances?.[template?.id]) && instances?.[template?.id]?.map((instance, index) => (
+                                        <Instance instance={instance} key={index}/>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
         </>
     )
 }
 
+
+export async function generateStaticParams() {
+    const problems = await api('GET', '/problem', null).then(d => d)
+    return problems.map(problem => ({
+        problem_id: problem.id,
+    }))
+}

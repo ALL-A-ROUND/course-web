@@ -2,8 +2,11 @@
 import {fetcher} from "@/app/fetcher";
 import useSWR from "swr";
 import {Roboto_Mono} from "@next/font/google";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {TrashIcon} from "@heroicons/react/24/outline";
+import Editor from "ckeditor5-custom-build";
+import {CKEditor} from "@ckeditor/ckeditor5-react";
+import {api} from "@/app/utils";
 
 const Mono = Roboto_Mono({subsets: ['latin']})
 
@@ -16,14 +19,14 @@ export default function ProblemEditableForm({
                                                 languages = null,
                                                 setLanguages = null,
                                                 testcases = null,
-                                                setTestcases= null,
+                                                setTestcases = null,
                                             }) {
+    const [content, setContent] = useState('')
+    const [editorInstance, setEditorInstance] = useState(null)
     const {
         data: lang,
         isLoading
-    } = useSWR('/question_bank/supportLanguages', async (url) => {
-        return await fetcher(url)
-    })
+    } = useSWR('/question_bank/supportLanguages', url => api('GET', url).then(d => d))
 
     if (languages === null) {
         [languages, setLanguages] = useState([{language: '16', time_limit: '1', memory_limit: '4096'}])
@@ -36,6 +39,21 @@ export default function ProblemEditableForm({
     const addLanguage = (e) => {
         e.preventDefault()
         setLanguages([...languages, {language: '16', time_limit: '1', memory_limit: '4096'}])
+    }
+    const delLanguage = (idx) => {
+        const newLanguages = [...languages]
+        newLanguages.splice(idx, 1)
+        setLanguages(newLanguages)
+    }
+
+    const addSubtask = (e) => {
+        e.preventDefault()
+        setSubtasks([...subtasks, {}])
+    }
+    const delSubtask = (idx) => {
+        const newLanguages = [...languages]
+        newLanguages.splice(idx, 1)
+        setSubtasks(newLanguages)
     }
 
     const changeSelect = (value, index) => {
@@ -56,11 +74,11 @@ export default function ProblemEditableForm({
         setLanguages(newLanguages)
     }
 
-    const delLanguage = (idx) => {
-        const newLanguages = [...languages]
-        newLanguages.splice(idx, 1)
-        setLanguages(newLanguages)
-    }
+
+    useEffect(() => {
+        if (editorInstance && problem)
+            editorInstance.setData(problem.description)
+    }, [editorInstance, problem])
 
     return (
         <div className={"bg-gray-100"}>
@@ -85,7 +103,7 @@ export default function ProblemEditableForm({
                                             type="text"
                                             name="title"
                                             id="title"
-                                            value={problem?.title ?? ''}
+                                            defaultValue={problem?.title ?? ''}
                                             className="block w-full min-w-0 rounded-md border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                                         />
                                     </div>
@@ -96,13 +114,20 @@ export default function ProblemEditableForm({
                                         題目說明
                                     </label>
                                     <div className="mt-1">
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            rows={3}
-                                            className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                                            value={problem?.description ?? ''}
+                                        <CKEditor
+                                            editor={Editor}
+                                            config={{
+                                                removePlugins: ['Markdown'],
+                                            }}
+                                            onReady={editor => {
+                                                setEditorInstance(editor)
+                                            }}
+                                            onChange={(event, editor) => {
+                                                const data = editor.getData();
+                                                setContent(data)
+                                            }}
                                         />
+                                        <input type={'hidden'} name='description' value={content}/>
                                     </div>
                                 </div>
 
@@ -150,7 +175,7 @@ export default function ProblemEditableForm({
                                                     name="public"
                                                     type="checkbox"
                                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                                                    value={problem?.public ?? false}
+                                                    defaultChecked={problem?.['public']}
                                                 />
                                             </div>
                                             <div className="ml-3 text-sm">
