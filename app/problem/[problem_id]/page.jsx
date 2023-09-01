@@ -64,7 +64,8 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
             const answer = document.getElementsByName("answer")
             const answer_list = []
             answer.forEach((_, i) => {
-                if (_.checked) answer_list.push(Number(_.dataset.id))
+                if (_.type === 'text') answer_list.push(_.value)
+                else if (_.checked) answer_list.push(Number(_.dataset.id))
             })
             fetcher(`/problem/${problem_id}/submit`, {
                 method: "POST",
@@ -119,7 +120,7 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                                 onLoad={resizeIframe}
                         />
                     </p>
-                    <div className="mt-10 max-w-2xl">
+                    <div className="mt-10">
                         {problem?.options?.map((option, index) => (
                             <div className="relative flex items-start" key={index}>
                                 <div className="flex h-6 items-center">
@@ -138,12 +139,27 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                                 </div>
                             </div>
                         ))}
+                        {problem?.type === 1 && (
+                            <>
+                                <label htmlFor="answer"
+                                       className="mt-4 block text-sm font-medium leading-6 text-gray-900">
+                                    答案
+                                </label>
+                                <input
+                                    id={'answer'}
+                                    name={"answer"}
+                                    placeholder={problem?.placeholder ?? "請輸入答案"}
+                                    type="text"
+                                    className="w-full rounded border-gray-500 text-indigo-600 focus:ring-indigo-600"
+                                />
+                            </>
+                        )}
                     </div>
 
-                    <div className={"flex justify-end mt-16"}>
+                    <div className={"flex justify-end mt-1"}>
                         <button
                             onClick={submit}
-                            className="rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            className="w-full rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                         >
                             提交
                         </button>
