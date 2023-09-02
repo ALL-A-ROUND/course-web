@@ -3,7 +3,7 @@ import {
     BellIcon, BookOpenIcon,
     CreditCardIcon,
     CubeIcon,
-    FingerPrintIcon,
+    FingerPrintIcon, StarIcon,
     UserCircleIcon,
     UsersIcon,
 } from '@heroicons/react/24/outline'
@@ -19,6 +19,7 @@ const secondaryNavigation = [
     {name: '通知設定', icon: BellIcon, path: "/member/notifications"},
     {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order"},
     {name: '靶機與點數', icon: CubeIcon, path: "/member/credit"},
+    {name: '積分園地', icon: StarIcon, path: "/member/point"},
     {name: '付款方式', icon: CreditCardIcon, path: "/member/billing"},
 ]
 

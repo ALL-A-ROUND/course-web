@@ -68,7 +68,7 @@ export default function ({params: {submission_id}}) {
                         <div className="sm:flex sm:items-center">
                             <div className="sm:flex-auto">
                                 <div className={"flex justify-between"}>
-                                    <h1 className="text-2xl font-semibold leading-6 text-gray-900">{submission.status} #{submission_id}</h1>
+                                    <h1 className="text-2xl font-semibold leading-6 text-gray-900">{submission.status} #{submission_id} {submission?.result ? " - " + submission?.result : ""}</h1>
                                     <Link
                                         href={`/problem/${submission.problem_id}`}
                                         className="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
