@@ -20,6 +20,7 @@
     "axios": "^1.2.3",
     "ckeditor5-custom-build": "file:./ckeditor5",
     "jquery": "^3.7.0",
+    "md5": "^2.3.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "next": "13.3.4",

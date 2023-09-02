@@ -5,13 +5,15 @@ import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {usePathname} from "next/navigation";
 import {api} from "@/app/utils";
 import useSWR from "swr";
-import {UserCircleIcon} from "@heroicons/react/24/solid";
+import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 const navigation = [
     {name: '課程', href: '/course'},
     {name: '題目', href: '/problem'},
     {name: '狀態', href: '/submission'},
     {name: '競賽', href: '/contest'},
+    {name: '排行榜', href: '/rank'},
 ]
 const userNavigation = [
     {name: '個人檔案', href: '/member'},
@@ -38,11 +40,14 @@ export default function Nav() {
                         <div className="flex h-16 items-center justify-between">
                             <div className="flex items-center">
                                 <div className="flex-shrink-0">
-                                    <img
-                                        className="h-8 w-8"
-                                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                        alt="Your Company"
-                                    />
+                                    {/*<img*/}
+                                    {/*    className="h-8 w-8"*/}
+                                    {/*    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"*/}
+                                    {/*    alt="Your Company"*/}
+                                    {/*/>*/}
+                                    <Link href={'/'}>
+                                        <HomeIcon className="h-8 w-8 text-white"/>
+                                    </Link>
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
