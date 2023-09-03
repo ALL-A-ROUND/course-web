@@ -36,7 +36,7 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
             [template]: "部署中..."
         }))
         api("POST", `/instance/${template}/deploy`, {}).then(() => {
-            mutate().then(d=>{
+            mutate().then(d => {
                 setStatus(s => ({
                     ...s,
                     [template]: "部署成功"
@@ -169,39 +169,44 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                     </div>
                 </div>
             </div>
-            <div className={"mx-2 mt-4 text-xl text-white p-2 bg-purple-500 flex justify-center rounded-t-lg"}>
-                <div>靶機列表</div>
-            </div>
-            <div className={"mx-2 p-4 bg-purple-300 rounded-b-lg grid sm:grid-cols-2 lg:grid-cols-3 gap-2"}>
-                {
-                    problem?.templates?.map((template, index) => (
-                        <div className={"p-2 h-fit bg-purple-50 rounded-xl border border-white shadow"}>
-                            <div className={"flex justify-center"}>靶機模板 #{index + 1} {template?.name} </div>
-                            <div>建議CPU: {template?.recommend_cpu}</div>
-                            <div>建議RAM: {template?.recommend_ram}</div>
-                            <div>建議硬盤: {template?.recommend_disk}</div>
-                            <div className={"flex sm:flex-col mt-4"}>
-                                <button onClick={() => deploy(template.id)}
-                                        className={`w-full inline-flex items-center justify-center gap-1 ${btnBg?.[template.id] ?? 'bg-purple-600 hover:bg-purple-800'} text-white p-2 rounded-l-md sm:rounded-b-none sm:rounded-t-md`}>
-                                    <ServerStackIcon className={"h-5 w-5"}/> {status?.[template?.id] ?? "快速建議部署"}
-                                </button>
-                                <button
-                                    className={"w-full inline-flex items-center justify-center gap-1 bg-sky-600 text-white p-2 rounded-r-md sm:rounded-t-none sm:rounded-b-md hover:bg-sky-800"}>
-                                    <PencilIcon className={"h-5 w-5"}/> 自訂規格部署
-                                </button>
-                            </div>
+            {problem?.templates && Array.isArray(problem?.templates) && problem?.templates?.length > 0 && (
+                <>
+                    <div className={"mx-2 mt-4 text-xl text-white p-2 bg-purple-500 flex justify-center rounded-t-lg"}>
+                        <div>靶機列表</div>
+                    </div>
+                    <div className={"mx-2 p-4 bg-purple-300 rounded-b-lg grid sm:grid-cols-2 lg:grid-cols-3 gap-2"}>
+                        {
+                            problem?.templates?.map((template, index) => (
+                                <div className={"p-2 h-fit bg-purple-50 rounded-xl border border-white shadow"}>
+                                    <div className={"flex justify-center"}>靶機模板 #{index + 1} {template?.name} </div>
+                                    <div>建議CPU: {template?.recommend_cpu}</div>
+                                    <div>建議RAM: {template?.recommend_ram}</div>
+                                    <div>建議硬盤: {template?.recommend_disk}</div>
+                                    <div className={"flex sm:flex-col mt-4"}>
+                                        <button onClick={() => deploy(template.id)}
+                                                className={`w-full inline-flex items-center justify-center gap-1 ${btnBg?.[template.id] ?? 'bg-purple-600 hover:bg-purple-800'} text-white p-2 rounded-l-md sm:rounded-b-none sm:rounded-t-md`}>
+                                            <ServerStackIcon
+                                                className={"h-5 w-5"}/> {status?.[template?.id] ?? "快速建議部署"}
+                                        </button>
+                                        <button
+                                            className={"w-full inline-flex items-center justify-center gap-1 bg-sky-600 text-white p-2 rounded-r-md sm:rounded-t-none sm:rounded-b-md hover:bg-sky-800"}>
+                                            <PencilIcon className={"h-5 w-5"}/> 自訂規格部署
+                                        </button>
+                                    </div>
 
-                            <div className={"flex flex-col mt-4 gap-2"}>
-                                {
-                                    Array.isArray(instances?.[template?.id]) && instances?.[template?.id]?.map((instance, index) => (
-                                        <Instance instance={instance} key={index}/>
-                                    ))
-                                }
-                            </div>
-                        </div>
-                    ))
-                }
-            </div>
+                                    <div className={"flex flex-col mt-4 gap-2"}>
+                                        {
+                                            Array.isArray(instances?.[template?.id]) && instances?.[template?.id]?.map((instance, index) => (
+                                                <Instance instance={instance} key={index}/>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </>
+            )}
         </>
     )
 }
