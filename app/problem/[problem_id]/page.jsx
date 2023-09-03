@@ -24,7 +24,8 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
     } = useSWR(`/problem/${problem_id}`, async (url) => await api("GET", url, null).then(d => d))
 
     const {
-        data: instances
+        data: instances,
+        mutate
     } = useSWR(`/instance`, async (url) => await api("GET", url, null, {
         revalidate: 1000
     }).then(d => d))
@@ -34,15 +35,17 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
             ...s,
             [template]: "部署中..."
         }))
-        api("POST", `/instance/${template}/deploy`, {}).then(d => {
-            setStatus(s => ({
-                ...s,
-                [template]: "部署成功"
-            }))
-            setBtnBg(s => ({
-                ...s,
-                [template]: "bg-green-500 hover:bg-green-400"
-            }))
+        api("POST", `/instance/${template}/deploy`, {}).then(() => {
+            mutate().then(d=>{
+                setStatus(s => ({
+                    ...s,
+                    [template]: "部署成功"
+                }))
+                setBtnBg(s => ({
+                    ...s,
+                    [template]: "bg-green-500 hover:bg-green-400"
+                }))
+            })
         })
     }
 

@@ -26,7 +26,8 @@ export default function Instance({instance}) {
                     <div>{instance?.account}</div>
                     <div>{instance?.password}</div>
                     <div>{instance?.port}</div>
-                    <div className={"text-sm"}>{moment(instance?.created_at).fromNow()}開機 | {moment(instance?.created_at).fromNow()}付款</div>
+                    <div className={"text-sm"}>{moment(instance?.created_at).fromNow()}開機 |
+                        {instance?.created_at ? moment(instance?.created_at).fromNow() + "付款" : "尚未付款"}</div>
                 </div>
             </div>
             <div className={"w-1/5 flex flex-col items-stretch"}>
