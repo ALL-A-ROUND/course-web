@@ -3,9 +3,9 @@ import {api, moment} from "@/app/utils";
 import useUser from "@/app/useUser";
 import useSWR from "swr";
 import Instance from "@/app/utils/Instance";
-import {useRef, useState} from "react";
+import {useState} from "react";
 import Swal from "sweetalert2";
-
+import {ArrowPathIcon} from "@heroicons/react/24/solid";
 
 export default function Credit() {
     const user = useUser()
@@ -13,15 +13,11 @@ export default function Credit() {
 
     const {
         data: credits
-    } = useSWR(`/credit`, async (url) => await api("GET", url, null, {
-        revalidate: 1000
-    }).then(d => d))
+    } = useSWR(`/credit`, async (url) => await api("GET", url, null).then(d => d))
 
     const {
         data: instances
-    } = useSWR(`/instance`, async (url) => await api("GET", url, null, {
-        revalidate: 1000
-    }).then(d => d))
+    } = useSWR(`/instance`, async (url) => await api("GET", url, null).then(d => d))
 
     const placeOrder = () => {
         api('POST', '/payment/placeOrder', {
@@ -61,7 +57,13 @@ export default function Credit() {
                             <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">目前剩餘點數
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                                <div className="text-gray-900">${user?.credit}</div>
+                                <div className="text-gray-900">
+                                    {!user ? (
+                                        <div className={"animate-spin flex justify-center items-center"}>
+                                            <ArrowPathIcon className="h-6 w-6 text-gray-400" aria-hidden="true"/>
+                                        </div>
+                                    ) : `$${user?.credit}`}
+                                </div>
                                 <button type="button"
                                         className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     充值
@@ -102,7 +104,8 @@ export default function Credit() {
                         </div>
 
                         <div>
-                            <label htmlFor="redeem_code" className="mt-4 block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="redeem_code"
+                                   className="mt-4 block text-sm font-medium leading-6 text-gray-900">
                                 使用兌換卷
                             </label>
                             <div className="mt-2">
@@ -133,6 +136,11 @@ export default function Credit() {
 
 
                     <div className={"grid grid-cols-2 mt-6 gap-2"}>
+                        {!instances && (
+                            <div className={"animate-spin col-span-2 flex justify-center items-center"}>
+                                <ArrowPathIcon className="h-6 w-6 text-gray-400" aria-hidden="true"/>
+                            </div>
+                        )}
                         {
                             instances && Object.keys(instances).reduce((p, c) => [...p, ...instances[c]], [])?.map((instance, index) => (
                                 <Instance instance={instance} key={index}/>
