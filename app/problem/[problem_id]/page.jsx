@@ -179,14 +179,19 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                             problem?.templates?.map((template, index) => (
                                 <div className={"p-2 h-fit bg-purple-50 rounded-xl border border-white shadow"}>
                                     <div className={"flex justify-center"}>靶機模板 #{index + 1} {template?.name} </div>
+                                    <div>{template?.description}</div>
                                     <div>建議CPU: {template?.recommend_cpu} core</div>
                                     <div>建議RAM: {template?.recommend_ram} GB</div>
                                     <div>建議硬盤: {template?.recommend_disk} GB</div>
+
+                                    {(template?.username || template?.password) && (
+                                        <div>{template?.username} : {template?.password}</div>
+                                    )}
                                     <div className={"flex sm:flex-col mt-4"}>
                                         <button onClick={() => deploy(template.id)}
                                                 className={`w-full inline-flex items-center justify-center gap-1 ${btnBg?.[template.id] ?? 'bg-purple-600 hover:bg-purple-800'} text-white p-2 rounded-l-md sm:rounded-b-none sm:rounded-t-md`}>
                                             <ServerStackIcon
-                                                className={"h-5 w-5"}/> {status?.[template?.id] ?? "快速建議部署"}
+                                                className={"h-5 w-5"}/> {status?.[template?.id] ?? "建議規格部署"}
                                         </button>
                                         {/*<button*/}
                                         {/*    className={"w-full inline-flex items-center justify-center gap-1 bg-sky-600 text-white p-2 rounded-r-md sm:rounded-t-none sm:rounded-b-md hover:bg-sky-800"}>*/}

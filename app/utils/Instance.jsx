@@ -22,10 +22,12 @@ export default function Instance({instance}) {
                 <ServerStackIcon className={"h-6 w-6"}/>
                 <div>
                     <div>{instance?.deployed_id?.substring(0, 6)}</div>
-                    <div>{instance?.ip}</div>
-                    <div>{instance?.account}</div>
-                    <div>{instance?.password}</div>
-                    <div>{instance?.port}</div>
+                    <div>IP: {instance?.ip}</div>
+                    {
+                        instance?.root_password &&
+                        <div>root: {instance?.root_password}</div>
+                    }
+                    <div>port: {instance?.port}</div>
                     <div className={"text-sm"}>{moment(instance?.created_at).fromNow()}開機{' '}|{' '}
                         {instance?.last_paid_at ? moment(instance?.last_paid_at).fromNow() + "付款" : "尚未付款"}</div>
                 </div>
