@@ -73,7 +73,7 @@ export default function Credit() {
 
                         <div>
                             <label htmlFor="credit" className="mt-4 block text-sm font-medium leading-6 text-gray-900">
-                                立即充值（點數） 【1點 = 30元，{credit}點 = {Math.floor(credit * 30)}元】
+                                立即充值（點數） 【{credit}點 = {Math.floor(credit )}元】
                             </label>
                             <div className="mt-2">
                                 <input
