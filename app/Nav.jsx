@@ -2,7 +2,7 @@
 import {Fragment} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import {api} from "@/app/utils";
 import useSWR from "swr";
 import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
@@ -24,6 +24,11 @@ function classNames(...classes) {
 }
 
 export default function Nav() {
+    const router = useRouter()
+    const logout = () => {
+        localStorage.removeItem('token')
+        router.push('/auth/login')
+    }
     const pathname = usePathname()
     const {
         data: user,
@@ -120,6 +125,17 @@ export default function Nav() {
                                                         )}
                                                     </Menu.Item>
                                                 ))}
+                                                <Menu.Item>
+                                                    {({active}) => (
+                                                        <span
+                                                            className={classNames(
+                                                                active ? 'bg-gray-100' : '',
+                                                                'block px-4 py-2 text-sm text-gray-700'
+                                                            )}
+                                                        >登出
+                                                        </span>
+                                                    )}
+                                                </Menu.Item>
                                             </Menu.Items>
                                         </Transition>
                                     </Menu>
@@ -189,6 +205,12 @@ export default function Nav() {
                                         {item.name}
                                     </Disclosure.Button>
                                 ))}
+
+                                <Disclosure.Button
+                                    onClick={logout}
+                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                >登出
+                                </Disclosure.Button>
                             </div>
                         </div>
                     </Disclosure.Panel>
