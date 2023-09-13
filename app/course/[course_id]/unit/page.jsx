@@ -19,7 +19,7 @@ export default function ({params: {course_id}}) {
                 {Array.isArray(units) && units?.map((unit, idx) => (
                     <li key={unit.id}>
                         <div href={`/course/${course_id}/unit/${unit.id}`}
-                             className="flex flex-col gap-2 mb-3">
+                             className="flex flex-col gap-2 my-3">
                             <div className={"bg-purple-700 px-2 py-0.5 w-fit rounded-2xl text-white border-b"}>
                                 第 {idx + 1} 章節
                             </div>
