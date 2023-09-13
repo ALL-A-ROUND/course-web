@@ -1,5 +1,5 @@
 "use client"
-import {Fragment} from 'react'
+import {Fragment, useEffect} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {usePathname, useRouter} from "next/navigation";
@@ -7,6 +7,7 @@ import {api} from "@/app/utils";
 import useSWR from "swr";
 import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
+import {middlewareConfig} from "@/app/middleware.config";
 
 const navigation = [
     {name: '課程', href: '/course'},
@@ -36,6 +37,21 @@ export default function Nav() {
     } = useSWR(`/user`, url => api('GET', url, null, {
         disableError: true
     }).then(res => res))
+
+
+    useEffect(() => {
+        for (let route of Object.keys(middlewareConfig)) {
+            if (middlewareConfig[route].regex.test(pathname)) {
+                if (middlewareConfig[route].middlewares.includes("auth")) {
+                    if (!isLoading && !user) router.replace('/auth/login')
+                    if (user && user?.message === "Unauthenticated.") {
+                        localStorage.removeItem("token")
+                        router.replace('/auth/login')
+                    }
+                }
+            }
+        }
+    })
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -131,7 +147,7 @@ export default function Nav() {
                                                             onClick={logout}
                                                             className={classNames(
                                                                 active ? 'bg-gray-100' : '',
-                                                                'block px-4 py-2 text-sm text-gray-700'
+                                                                'w-full text-left block px-4 py-2 text-sm text-gray-700'
                                                             )}
                                                         >登出
                                                         </button>

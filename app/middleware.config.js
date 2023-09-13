@@ -17,4 +17,10 @@ export const middlewareConfig = {
             'guest'
         ]
     },
+    "course": {
+        regex: /^\/course?$/,
+        middlewares: [
+            'auth'
+        ]
+    }
 }
