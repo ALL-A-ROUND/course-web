@@ -4,6 +4,7 @@ import AttendedCourseList from "@/app/course/CourseList";
 import Image from "next/image";
 import Link from "next/link";
 import CourseList from "@/app/course/CourseList";
+import SideBar from "@/app/SideBar";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -16,36 +17,7 @@ export default function Course() {
             <div className="mx-auto w-full max-w-7xl grow lg:flex xl:px-2 py-4 ">
                 {/* Left sidebar & main wrapper */}
                 <div className="flex-1 xl:flex ">
-                    <div
-                        className="py-6 px-4 sm:px-6 lg:pl-8 xl:w-64 xl:shrink-0 xl:pl-6 bg-indigo-600 border border-gray-300 flex flex-col gap-2 mx-6 rounded-lg">
-                        <h2 className={"bg-indigo-400 text-white font-bold text-lg text-center py-1 flex justify-center rounded-xl items-center mb-2"}>我的首頁</h2>
-
-                        <Link href={"/problem"}
-                            className={classNames(
-                                false
-                                    ? 'bg-indigo-700 text-white'
-                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                            )}>
-                            <PencilSquareIcon className={classNames(
-                                false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
-                                'h-6 w-6 shrink-0'
-                            )}/> 題目列表
-                        </Link>
-                        <Link href={"/problem"}
-                            className={classNames(
-                                false
-                                    ? 'bg-indigo-700 text-white'
-                                    : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                                'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                            )}>
-                            <ClipboardIcon className={classNames(
-                                false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
-                                'h-6 w-6 shrink-0'
-                            )}/> 公開競賽
-                        </Link>
-                    </div>
-
+                    <SideBar/>
                     <div
                         className="py-6 px-4 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6 border border-gray-300 bg-white mx-6 flex flex-col gap-8">
                         <div className={"flex gap-4"}>
