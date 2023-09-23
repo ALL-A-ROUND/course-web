@@ -19,11 +19,12 @@ export default function Instance({instance}) {
         Swal.fire({
             title: "詳細資訊",
             html: `
+<div class="text-left">
 ssh -J jump@dorm.infra.hsuan.app:100 ${
                 instance.root_password ?
                     "root" :
                     instance?.template?.username ?? "user"
-            }@host.docker.internal -p {instance.port}<br/>
+            }@host.docker.internal -p ${instance.port}<br/><br/>
 jump@dorm.infra.hsuan.app's password: jump<br/>
 ${
                 instance.root_password ?
@@ -32,7 +33,7 @@ ${
             }@host.docker.internal's password: ${
                 instance.root_password ? instance.root_password :
                     instance?.template?.password ?? "password"
-            }<br/>`,
+            }<br/></div>`,
         })
     }
 
