@@ -15,6 +15,27 @@ export default function Instance({instance}) {
         })
     }
 
+    const show = (instance) => {
+        Swal.fire({
+            title: "詳細資訊",
+            html: `
+ssh -J jump@dorm.infra.hsuan.app:100 ${
+                instance.root_password ?
+                    "root" :
+                    instance?.template?.username ?? "user"
+            }@host.docker.internal -p {instance.port}<br/>
+jump@dorm.infra.hsuan.app's password: jump<br/>
+${
+                instance.root_password ?
+                    "root" :
+                    instance?.template?.username ?? "user"
+            }@host.docker.internal's password: ${
+                instance.root_password ? instance.root_password :
+                    instance?.template?.password ?? "password"
+            }<br/>`,
+        })
+    }
+
     return (
         <div className={`w-full flex items-stretch text-white`}>
             <div
@@ -38,10 +59,11 @@ export default function Instance({instance}) {
                     className={"bg-purple-500 h-full w-full border-b rounded-tr-md hover:bg-purple-400 flex justify-center items-center"}>
                     <TrashIcon className={"h-5 w-5"}/>
                 </button>
-                <div
+                <button
+                    onClick={() => show(instance)}
                     className={"bg-purple-500 w-full h-full rounded-br-md hover:bg-purple-400 flex justify-center items-center"}>
                     <EyeIcon className={"h-5 w-5"}/>
-                </div>
+                </button>
             </div>
         </div>
     )
