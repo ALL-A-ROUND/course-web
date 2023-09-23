@@ -31,8 +31,8 @@ export default function ({children}) {
                     <div className="mx-auto w-full max-w-sm lg:w-96">
                         <div>
                             <img
-                                className="h-12 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                                className="h-12 w-auto rounded-xl"
+                                src="/logo.webp"
                                 alt="Your Company"
                             />
                             <Title/>
@@ -41,11 +41,11 @@ export default function ({children}) {
                         <div className="mt-8">
                             <div>
                                 <div>
-                                    <p className="text-sm font-medium text-gray-700">第三方登入</p>
+                                    <p className="text-sm font-medium text-gray-700">第三方登入 (尚未完成)</p>
 
                                     <div className="mt-1 grid grid-cols-3 gap-3">
                                         <div>
-                                            <Link href=""
+                                            <Link href="#"
                                                   className="cursor-not-allowed bg-gray-100 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                                             >
                                                 <span className="sr-only">Sign in with Facebook</span>
@@ -62,7 +62,7 @@ export default function ({children}) {
 
                                         <div>
                                             <Link
-                                                href={""}
+                                                href={"#"}
                                                 className="cursor-not-allowed bg-gray-100 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                                             >
                                                 <span className="sr-only">Sign in with Twitter</span>
@@ -76,7 +76,7 @@ export default function ({children}) {
 
                                         <div>
                                             <Link
-                                                href={""}
+                                                href={"#"}
                                                 className="cursor-not-allowed bg-gray-100 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                                             >
                                                 <span className="sr-only">Sign in with GitHub</span>
