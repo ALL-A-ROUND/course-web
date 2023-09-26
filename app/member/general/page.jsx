@@ -4,6 +4,7 @@ import {Switch} from '@headlessui/react'
 import {DevicePhoneMobileIcon} from "@heroicons/react/24/solid";
 import {api} from "@/app/utils";
 import useUser from "@/app/useUser";
+import Link from "next/link";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -12,6 +13,7 @@ function classNames(...classes) {
 export default function Member() {
     const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] = useState(true)
     const user = useUser()
+    const [tgToken, setTgToken] = useState(null)
     const logout = () => {
         localStorage.removeItem('token')
         api("GET", "/user", null, {
@@ -20,6 +22,12 @@ export default function Member() {
         }).then(() => {
             window.location.replace('/')
         });
+    }
+
+    const generateTgToken = () =>{
+        api("POST", "/auth/link_telegram", null).then((res) => {
+            setTgToken(res.token)
+        })
     }
     return (
         <>
@@ -63,6 +71,31 @@ export default function Member() {
                                 <button type="button"
                                         className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     更新
+                                </button>
+                            </dd>
+                        </div>
+                        <div className="pt-6 sm:flex">
+                            <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                                Telegram
+                            </dt>
+                            <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                                <div className="text-gray-900">
+                                    {user?.telegram_chat_id ?? "未連接"}
+                                    {
+                                        tgToken && (
+                                            <div className={"border p-2 rounded flex flex-col"}>
+                                                <Link href={"https://t.me/meowcodebot"} target={"_blank"} className={"underline my-1"}>Telegram機器人</Link>
+                                                <div className={"flex items-center gap-1"}>
+                                                    請傳送 <div className={"bg-gray-200 rounded-xl px-2 py-1"}>/start {tgToken}</div>
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                                <button type="button"
+                                        onClick={generateTgToken}
+                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    {user?.telegram_chat_id ? "重新連接" : "連接"}
                                 </button>
                             </dd>
                         </div>

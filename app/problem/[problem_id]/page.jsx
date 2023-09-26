@@ -193,9 +193,10 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                                     <div>建議RAM: {template?.recommend_ram} GB</div>
                                     <div>建議硬盤: {template?.recommend_disk} GB</div>
 
-                                    {(template?.username || template?.password) && (
-                                        <div>{template?.username} : {template?.password}</div>
-                                    )}
+                                    {(template?.username || template?.password) && (<>
+                                        <div className={""}>帳號： {template?.username}</div>
+                                        <div className={""}>密碼： <span className={"font-extrabold"}>{template?.password}</span></div>
+                                    </>)}
                                     <div className={"flex sm:flex-col mt-4"}>
                                         <button onClick={() => deploy(template.id)}
                                                 className={`w-full inline-flex items-center justify-center gap-1 ${btnBg?.[template.id] ?? 'bg-purple-600 hover:bg-purple-800'} text-white p-2 rounded-l-md sm:rounded-b-none sm:rounded-t-md`}>

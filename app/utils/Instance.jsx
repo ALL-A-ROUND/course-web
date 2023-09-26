@@ -25,15 +25,15 @@ ssh -J jump@dorm.infra.hsuan.app:100 ${
                     "root" :
                     instance?.template?.username ?? "user"
             }@host.docker.internal -p ${instance.port}<br/><br/>
-jump@dorm.infra.hsuan.app's password: jump<br/>
+jump@dorm.infra.hsuan.app's password: <b>jump</b><br/>
 ${
                 instance.root_password ?
                     "root" :
                     instance?.template?.username ?? "user"
-            }@host.docker.internal's password: ${
+            }@host.docker.internal's password: <b>${
                 instance.root_password ? instance.root_password :
                     instance?.template?.password ?? "password"
-            }<br/></div>`,
+            }</b><br/></div>`,
         })
     }
 
@@ -47,7 +47,10 @@ ${
                     <div>IP: {instance?.ip}</div>
                     {
                         instance?.root_password &&
-                        <div>root: {instance?.root_password}</div>
+                        (<>
+                            <div className={""}>帳號： root</div>
+                            <div className={""}>密碼： <span className={"font-extrabold"}>{instance?.root_password}</span></div>
+                        </>)
                     }
                     <div>port: {instance?.port}</div>
                     <div className={"text-sm"}>{moment(instance?.created_at).fromNow()}開機{' '}|{' '}
