@@ -12,6 +12,7 @@ import {api} from "@/app/utils";
 import {PencilIcon, ServerStackIcon, TrashIcon} from "@heroicons/react/24/outline";
 import {EyeIcon} from "@heroicons/react/20/solid";
 import Instance from "@/app/utils/Instance";
+import PdfViewer from "@/app/problem/[problem_id]/PDFViewer";
 
 export default function Problem({params: {problem_id, contest_id = null}}) {
     const [status, setStatus] = useState({})
@@ -123,6 +124,14 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                                 onLoad={resizeIframe}
                         />
                     </p>
+                    {
+                        problem?.pdf && (
+                            <div className={"w-full"}>
+                                <PdfViewer url={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + problem?.pdf}/>
+                            </div>
+                        )
+                    }
+
                     <div className="mt-10">
                         {problem?.options?.map((option, index) => (
                             <div className="relative flex items-start" key={index}>
