@@ -82,18 +82,18 @@ export function makeFeature(params) {
             path: `/course/${params.course_id}/unit`,
             icon: BookOpenIcon,
         },
-        {
-            id: 'contest',
-            name: '競賽',
-            path: `/course/${params.course_id}/contest`,
-            icon: ClipboardIcon,
-        },
-        {
-            id: 'problem',
-            name: '題庫',
-            path: `/course/${params.course_id}/problem`,
-            icon: PencilSquareIcon,
-        },
+        // {
+        //     id: 'contest',
+        //     name: '競賽',
+        //     path: `/course/${params.course_id}/contest`,
+        //     icon: ClipboardIcon,
+        // },
+        // {
+        //     id: 'problem',
+        //     name: '題庫',
+        //     path: `/course/${params.course_id}/problem`,
+        //     icon: PencilSquareIcon,
+        // },
         {
             id: 'scores_checking',
             name: '成績查詢',

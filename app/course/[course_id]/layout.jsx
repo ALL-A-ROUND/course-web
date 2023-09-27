@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import {api, makeFeature} from "@/app/utils";
 import {classNames} from "@/app/utils";
 import useSWR from "swr";
+import {BuildingLibraryIcon} from "@heroicons/react/20/solid";
 
 export default function CourseLayout({params, children}) {
     const router = useRouter()
@@ -59,7 +60,10 @@ export default function CourseLayout({params, children}) {
                                           ? 'bg-indigo-700 text-white'
                                           : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
                                       'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                                  )}>
+                                  )}
+                                  style={{
+                                      "transition": ".4s"
+                                  }}>
                                 <feature.icon className={classNames(
                                     false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
                                     'h-6 w-6 shrink-0'
@@ -67,6 +71,22 @@ export default function CourseLayout({params, children}) {
                                 {feature.name}
                             </Link>
                         ))}
+                        <Link href={'/course/' + params.course_id + '/singleClass'}
+                              className={classNames(
+                                  /\/course\/(.*)\/singleClass/.test(pathname)
+                                      ? 'bg-indigo-700 text-white'
+                                      : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
+                                  'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                              )}
+                              style={{
+                                  "transition": ".4s"
+                              }}>
+                            <BuildingLibraryIcon className={classNames(
+                                false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
+                                'h-6 w-6 shrink-0'
+                            )}/>
+                            課堂
+                        </Link>
                     </div>
 
                     <div
