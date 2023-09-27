@@ -5,7 +5,14 @@ import useSWR from "swr";
 import Link from "next/link";
 import {api} from "@/app/utils";
 import {CircleStackIcon, PlusCircleIcon} from "@heroicons/react/24/outline";
-import {NewspaperIcon, PlusIcon, VideoCameraIcon} from "@heroicons/react/24/solid";
+import {
+    BookOpenIcon,
+    ComputerDesktopIcon,
+    FlagIcon,
+    NewspaperIcon,
+    PlusIcon,
+    VideoCameraIcon
+} from "@heroicons/react/24/solid";
 
 export default function ({params: {course_id}}) {
     const {
@@ -45,6 +52,32 @@ export default function ({params: {course_id}}) {
                                     {lesson?.article ?
                                         <NewspaperIcon className={"h-5 w-5 text-purple-100"}/> : null
                                     }
+                                </span>
+                            </Link>
+                        ))}
+
+                        {Array.isArray(unit?.homework) && unit?.homework?.map((contest, idx) => (
+                            <Link href={`/contest/${contest.id}`}
+                                  key={contest?.id + idx}
+                                  className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
+                                  style={{
+                                      "transition": ".5s"
+                                  }}>
+                                <span className={"inline-flex items-center"}>
+                                    <ComputerDesktopIcon className={"h-6 w-6 text-gray-600"}/>作業 {contest?.name}
+                                </span>
+                            </Link>
+                        ))}
+
+                        {Array.isArray(unit?.practice) && unit?.practice?.map((contest, idx) => (
+                            <Link href={`/contest/${contest.id}`}
+                                  key={contest?.id + idx}
+                                  className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
+                                  style={{
+                                      "transition": ".5s"
+                                  }}>
+                                <span className={"inline-flex items-center"}>
+                                    <FlagIcon className={"h-6 w-6 text-gray-600"}/>練習 {contest?.name}
                                 </span>
                             </Link>
                         ))}

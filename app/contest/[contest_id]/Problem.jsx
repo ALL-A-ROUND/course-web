@@ -22,7 +22,11 @@ export default function Problem({problem, contest_id}) {
         <>
             <Link href={`/problem/${problem.id}/contest/${contest_id}`} key={problem.id}>
                 <div
-                    className={`border border-gray-300 rounded-md p-4 shadow-md cursor-pointer ${status?.[problem.id] === "AC" ? 'text-green-400' : 'text-red-500'}`}>
+                    className={`border border-gray-300 rounded-md p-4 shadow-md hover:bg-gray-200 cursor-pointer ${status?.[problem.id] === "AC" ? 'text-green-400' : 'text-red-500'}`}
+                    style={{
+                        "transition": ".4s"
+                    }}
+                >
                     <div className={"text-xl font-bold"}>(#{problem.id}) {problem.title}</div>
                     <div className={"text-gray-500 text-sm truncate"}>{description}</div>
                 </div>

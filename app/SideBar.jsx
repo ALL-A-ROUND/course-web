@@ -21,7 +21,7 @@ export default function SideBar() {
                     'h-6 w-6 shrink-0'
                 )}/> 題目列表
             </Link>
-            <Link href={"/problem"}
+            <Link href={"/contest"}
                   className={classNames(
                       false
                           ? 'bg-indigo-700 text-white'
