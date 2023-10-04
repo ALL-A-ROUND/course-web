@@ -51,7 +51,7 @@ export default function CourseLayout({params, children}) {
                             </>
                         }
                         {isFeatureLoading ? <div className={"animate-pulse w-full bg-gray-100 h-6"}/> : null}
-                        {Array.isArray(features) && features.filter(feature => Array.isArray(enabledFeatures) && enabledFeatures?.includes(feature.id)).map(feature => (
+                        {Array.isArray(features) && features.filter(feature => (Array.isArray(enabledFeatures) && enabledFeatures?.includes(feature.id))).map(feature => (
 
                             <Link href={feature.path}
                                   key={feature.id}

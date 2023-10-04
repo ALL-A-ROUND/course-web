@@ -38,9 +38,19 @@ export async function api(method, endpoint, jsonBody, options = {
     const SSR = typeof window === "undefined"
     return fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
         method,
-        body: (method === "GET" || typeof jsonBody === "undefined") ? null : JSON.stringify(jsonBody),
+        body: (
+            (method === "GET" || typeof jsonBody === "undefined") ? null :
+                (!SSR && jsonBody instanceof FormData) ?
+                    // 如果是 FormData 就不要轉成 JSON
+                    jsonBody :
+                    JSON.stringify(jsonBody)
+        ),
         headers: {
-            'Content-Type': 'application/json',
+            ...(!SSR && jsonBody instanceof FormData) ? {
+                // 如果是 FormData 就不要加 Content-Type
+            } : ({
+                'Content-Type': 'application/json',
+            }),
             'Accept': 'application/json',
 
             // 如果不是 SSR，就加上 Authorization
@@ -105,6 +115,12 @@ export function makeFeature(params) {
             name: '討論區',
             path: `/course/${params.course_id}/discuss`,
             icon: ChatBubbleLeftRightIcon,
+        },
+        {
+            id: 'assignment',
+            name: '作業',
+            path: `/course/${params.course_id}/assignment`,
+            icon: ClipboardIcon,
         },
         {
             id: 'info',
