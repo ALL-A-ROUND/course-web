@@ -14,6 +14,7 @@ export default function Member() {
     const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] = useState(true)
     const user = useUser()
     const [tgToken, setTgToken] = useState(null)
+    const [lineToken, setLINEToken] = useState(null)
     const logout = () => {
         localStorage.removeItem('token')
         api("GET", "/user", null, {
@@ -27,6 +28,12 @@ export default function Member() {
     const generateTgToken = () =>{
         api("POST", "/auth/link_telegram", null).then((res) => {
             setTgToken(res.token)
+        })
+    }
+
+    const generateLINEToken = () =>{
+        api("POST", "/auth/link_telegram", null).then((res) => {
+            setLINEToken(res.token)
         })
     }
     return (
@@ -96,6 +103,28 @@ export default function Member() {
                                         onClick={generateTgToken}
                                         className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     {user?.telegram_chat_id ? "重新連接" : "連接"}
+                                </button>
+                            </dd>
+                        </div>
+                        <div className="pt-6 sm:flex">
+                            <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                                LINE Notify
+                            </dt>
+                            <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                                <div className="text-gray-900">
+                                    {user?.line_notify_token ?? "未連接"}
+                                    {
+                                        lineToken && (
+                                            <div className={"border p-2 rounded flex flex-col"}>
+                                                <Link href={`https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=rCwDOAOLbzYg17e8r2FJyK&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT+"/line-notify/link")}&scope=notify&state=${lineToken}&response_mode=form_post`} target={"_blank"} className={"underline my-1"}>LINE Notify 連接</Link>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                                <button type="button"
+                                        onClick={generateLINEToken}
+                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                    {user?.line_notify_token ? "重新連接" : "連接"}
                                 </button>
                             </dd>
                         </div>
