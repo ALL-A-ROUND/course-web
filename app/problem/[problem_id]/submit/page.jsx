@@ -1,16 +1,8 @@
 "use client"
-import {Fragment, useEffect, useRef, useState} from 'react'
-import {Listbox, Transition} from '@headlessui/react'
-import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid'
-import Editor, {DiffEditor, useMonaco, loader} from "@monaco-editor/react";
-import Link from "next/link";
-import useSWR from "swr";
+import {Fragment, useEffect, useState} from 'react'
+import Editor from "@monaco-editor/react";
 import {useRouter} from "next/navigation";
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
-
+const MonacoCollabExt = require("@convergencelabs/monaco-collab-ext");
 const getLanguages = async (id, router) => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + `/problem/${id}/languages`, {
         headers: {
@@ -86,6 +78,19 @@ export default function ({params: {problem_id, contest_id = null}}) {
         if (editor.getValue() !== "") return;
 
         editor.setValue(language?.pivot?.default_code ?? "")
+
+        const contentManager = new MonacoCollabExt.EditorContentManager({
+            editor: editor,
+            onInsert(index, text) {
+                console.log("Insert", index, text);
+            },
+            onReplace(index, length, text) {
+                console.log("Replace", index, length, text);
+            },
+            onDelete(index, length) {
+                console.log("Delete", index, length);
+            }
+        });
     }, [editor, language])
 
     return (

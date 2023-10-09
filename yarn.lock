@@ -297,6 +297,13 @@
     "@ckeditor/ckeditor5-utils" "38.1.1"
     lodash-es "^4.17.15"
 
+"@convergencelabs/monaco-collab-ext@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@convergencelabs/monaco-collab-ext/-/monaco-collab-ext-0.4.0.tgz#cd0a04b26e2a03886f4a85f0901d03965bc4d7ff"
+  integrity sha512-X4Eo9OoGf10NgQk+H1Hd136SZbEMxPym4KzF1Ehu8Ec+PBAYjBwGVuEz5qo/hhrXaeqEkg2fPtQ6E2PASmaRGw==
+  dependencies:
+    monaco-editor ">=0.15.6"
+
 "@headlessui/react@^1.7.7":
   version "1.7.17"
   resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.7.17.tgz#a0ec23af21b527c030967245fd99776aa7352bc6"
@@ -1358,6 +1365,11 @@ moment@^2.29.4:
   version "2.29.4"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.4.tgz#3dbe052889fe7c1b2ed966fcb3a77328964ef108"
   integrity sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==
+
+monaco-editor@>=0.15.6:
+  version "0.44.0"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.44.0.tgz#3c0fe3655923bbf7dd647057302070b5095b6c59"
+  integrity sha512-5SmjNStN6bSuSE5WPT2ZV+iYn1/yI9sd4Igtk23ChvqB7kDk9lZbB9F5frsuvpB+2njdIeGGFf2G4gbE6rCC9Q==
 
 ms@2.1.2:
   version "2.1.2"
