@@ -197,11 +197,12 @@ export function generateEchoInstance() {
         key: process.env.NEXT_PUBLIC_PUSHER_KEY,
         wsHost: process.env.NEXT_PUBLIC_PUSHER_HOST,
         wsPort: process.env.NEXT_PUBLIC_PUSHER_PORT,
-        forceTLS: false,
+        wsPath: process.env.NEXT_PUBLIC_PUSHER_PATH,
+        forceTLS: true,
         encrypted: true,
         disableStats: true,
         cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-        enabledTransports: ['ws'],
+        enabledTransports: ['ws', 'wss'],
         authorizer: EchoAuth,
     });
 }
