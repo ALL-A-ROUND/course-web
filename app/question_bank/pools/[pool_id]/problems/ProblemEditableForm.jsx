@@ -1,7 +1,7 @@
 "use client"
 import {fetcher} from "@/app/fetcher";
 import useSWR from "swr";
-import {Roboto_Mono} from "@next/font/google";
+import {Roboto_Mono} from "next/font/google";
 import {useEffect, useState} from "react";
 import {TrashIcon} from "@heroicons/react/24/outline";
 import Editor from "ckeditor5-custom-build";
