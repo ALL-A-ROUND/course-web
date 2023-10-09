@@ -201,7 +201,7 @@ export function generateEchoInstance() {
         encrypted: true,
         disableStats: true,
         cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
-        enabledTransports: ['ws', 'wss'],
+        enabledTransports: ['ws'],
         authorizer: EchoAuth,
     });
 }
