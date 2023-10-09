@@ -4,6 +4,8 @@ import originMoment from 'moment'
 import 'moment/locale/zh-tw'
 import Swal from "sweetalert2";
 import {InformationCircleIcon} from "@heroicons/react/20/solid";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 
 export function sha256(str) {
     // Get the string as arraybuffer.
@@ -144,7 +146,7 @@ export function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export function humanFileSize(bytes, si=false, dp=1) {
+export function humanFileSize(bytes, si = false, dp = 1) {
     const thresh = si ? 1000 : 1024;
 
     if (Math.abs(bytes) < thresh) {
@@ -155,7 +157,7 @@ export function humanFileSize(bytes, si=false, dp=1) {
         ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB']
         : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
     let u = -1;
-    const r = 10**dp;
+    const r = 10 ** dp;
 
     do {
         bytes /= thresh;
@@ -164,4 +166,42 @@ export function humanFileSize(bytes, si=false, dp=1) {
 
 
     return bytes.toFixed(dp) + ' ' + units[u];
+}
+
+export function EchoAuth(channel, options) {
+    return {
+        authorize: (socketId, callback) => {
+            api("POST", '/broadcasting/auth', {
+                socket_id: socketId,
+                channel_name: channel.name
+            }, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            })
+                .then(response => {
+                    callback(null, response);
+                })
+                .catch(error => {
+                    callback(error);
+                });
+        }
+    };
+}
+
+export function generateEchoInstance() {
+    window.Pusher = Pusher;
+    
+    return new Echo({
+        broadcaster: 'pusher',
+        key: process.env.NEXT_PUBLIC_PUSHER_KEY,
+        wsHost: process.env.NEXT_PUBLIC_PUSHER_HOST,
+        wsPort: process.env.NEXT_PUBLIC_PUSHER_PORT,
+        forceTLS: false,
+        encrypted: true,
+        disableStats: true,
+        cluster: process.env.NEXT_PUBLIC_PUSHER_CLUSTER,
+        enabledTransports: ['ws', 'wss'],
+        authorizer: EchoAuth,
+    });
 }

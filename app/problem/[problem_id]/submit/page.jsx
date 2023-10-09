@@ -2,7 +2,10 @@
 import {Fragment, useEffect, useState} from 'react'
 import Editor from "@monaco-editor/react";
 import {useRouter} from "next/navigation";
+
 const MonacoCollabExt = require("@convergencelabs/monaco-collab-ext");
+import {api, EchoAuth, generateEchoInstance} from "@/app/utils";
+
 const getLanguages = async (id, router) => {
     const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + `/problem/${id}/languages`, {
         headers: {
@@ -24,6 +27,7 @@ const getLanguages = async (id, router) => {
 
 export default function ({params: {problem_id, contest_id = null}}) {
     const [languages, setLanguages] = useState([])
+    const [channel_id, setChannelId] = useState(null)
     const [language, setLanguage] = useState(null)
 
     const router = useRouter();
@@ -77,20 +81,41 @@ export default function ({params: {problem_id, contest_id = null}}) {
         if (language?.pivot?.default_code === undefined) return;
         if (editor.getValue() !== "") return;
 
-        editor.setValue(language?.pivot?.default_code ?? "")
+        editor.setValue(language?.pivot?.default_code ?? "");
 
-        const contentManager = new MonacoCollabExt.EditorContentManager({
-            editor: editor,
-            onInsert(index, text) {
-                console.log("Insert", index, text);
-            },
-            onReplace(index, length, text) {
-                console.log("Replace", index, length, text);
-            },
-            onDelete(index, length) {
-                console.log("Delete", index, length);
-            }
-        });
+        (async () => {
+            let laravelEcho = generateEchoInstance();
+            window.echoInstance = laravelEcho;
+
+            const id = await api("POST", `/live-coding/${problem_id}/create`, {}).then(res => res.id)
+            window.channel_id = id;
+            const channel = laravelEcho.join(`live-coding.${id}`)
+            setChannelId(id)
+            window.echoChannel = channel;
+            const contentManager = new MonacoCollabExt.EditorContentManager({
+                editor: editor,
+                onInsert(...args) {
+                    channel.whisper('insert', args);
+                    api("POST", `/live-coding/${problem_id}/active`, {}).then(r => r)
+                },
+                onReplace(...args) {
+                    channel.whisper('insert', args);
+                },
+                onDelete(...args) {
+                    channel.whisper('delete', args);
+                }
+            });
+            channel.listenForWhisper('get_code', (s) => {
+                channel.whisper('set_code', editor.getValue());
+            });
+            channel.listenForWhisper('insert', (e) => contentManager.insert(e[0], e[1]));
+            channel.listenForWhisper('replace', (e) => contentManager.replace(e[0], e[1], e[2]));
+            channel.listenForWhisper('delete', (e) => contentManager.delete(e[0], e[1]));
+
+            window.addEventListener("beforeunload", () => {
+                api("POST", `/live-coding/${id}/delete`, {}).then(r => r)
+            })
+        })()
     }, [editor, language])
 
     return (
@@ -126,12 +151,9 @@ export default function ({params: {problem_id, contest_id = null}}) {
                     setEditor(editor)
                 }}
             />
-            <div className={"flex items-center gap-2 justify-end mt-2"}>
-                {/*<div className={"flex items-center gap-1"}>
-                    <div className={"border border-gray-300 rounded-md bg-gray-200 px-2"}>&#8984;</div>
-                    <span>+</span>
-                    <div className={"border border-gray-300 rounded-md bg-gray-200 px-2"}>&#9166;</div>
-                </div>*/}
+            <div className={"flex items-center gap-2 justify-end mt-4"}>
+                {channel_id && <span>ID: {channel_id}</span>}
+
                 <button
                     type="button"
                     onClick={submitCode}

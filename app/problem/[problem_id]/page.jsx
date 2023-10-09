@@ -13,6 +13,7 @@ import {PencilIcon, ServerStackIcon, TrashIcon} from "@heroicons/react/24/outlin
 import {EyeIcon} from "@heroicons/react/20/solid";
 import Instance from "@/app/utils/Instance";
 import PdfViewer from "@/app/problem/[problem_id]/PDFViewer";
+import {ArrowPathIcon} from "@heroicons/react/24/solid";
 
 export default function Problem({params: {problem_id, contest_id = null}}) {
     const [status, setStatus] = useState({})
@@ -56,7 +57,7 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
         iframeRef.current.style.height = iframeRef.current.contentWindow.document.documentElement.offsetHeight + 'px';
     }
 
-    const ins = parse(`<div>${problem?.description}</div>`.replace(/\n/g, '<br/>'))
+    const ins = parse(`<div>${problem?.description ?? ""}</div>`.replace(/\n/g, '<br/>'))
     ins.querySelectorAll("img").forEach(function (img) {
         img.classList.add("max-w-full")
     })
@@ -104,10 +105,10 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
         <>
             <div className="bg-white px-6 py-16 lg:px-8">
                 <div className="mx-auto text-base leading-7 text-gray-700">
-                    <p className="text-base font-semibold leading-7 text-indigo-600">{PROBLEM_TYPE[problem?.type]}</p>
+                    <p className="text-base font-semibold leading-7 text-indigo-600">{PROBLEM_TYPE[problem?.type] ?? ""}</p>
                     <div className={"flex justify-between items-center"}>
                         <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                            {problem?.title}
+                            {problem?.title ?? ""}
                         </h1>
                         <Link
                             href={`/submission?problem_id=${problem_id}${pathname.includes('/contest') ? '&contest_id=' + contest_id : ''}`}
@@ -116,13 +117,21 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
                             狀態
                         </Link>
                     </div>
+                    {isLoading && (
+                        <div className={"flex flex-col items-center justify-center "}>
+                            <ArrowPathIcon className={"w-12 h-12 animate-spin text-gray-400"}/>
+                            <div className={"text-2xl font-bold"}>請稍候，載入中....</div>
+                        </div>
+                    )}
                     <p className="mt-6 text-xl leading-8">
-                        <iframe sandbox={"allow-same-origin allow-top-navigation-by-user-activation"}
-                                srcDoc={ins.innerHTML}
-                                className={"h-full w-full"}
-                                ref={iframeRef}
-                                onLoad={resizeIframe}
-                        />
+                        {ins && (
+                            <iframe sandbox={"allow-same-origin allow-top-navigation-by-user-activation"}
+                                    srcDoc={ins.innerHTML}
+                                    className={"h-full w-full"}
+                                    ref={iframeRef}
+                                    onLoad={resizeIframe}
+                            />
+                        )}
                     </p>
                     {
                         problem?.pdf && (
@@ -195,7 +204,8 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
 
                                     {(template?.username || template?.password) && (<>
                                         <div className={""}>帳號： {template?.username}</div>
-                                        <div className={""}>密碼： <span className={"font-extrabold"}>{template?.password}</span></div>
+                                        <div className={""}>密碼： <span
+                                            className={"font-extrabold"}>{template?.password}</span></div>
                                     </>)}
                                     <div className={"flex sm:flex-col mt-4"}>
                                         <button onClick={() => deploy(template.id)}
@@ -224,12 +234,4 @@ export default function Problem({params: {problem_id, contest_id = null}}) {
             )}
         </>
     )
-}
-
-
-export async function generateStaticParams() {
-    const problems = await api('GET', '/problem', null).then(d => d)
-    return problems.map(problem => ({
-        problem_id: problem.id,
-    }))
 }

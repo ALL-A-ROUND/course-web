@@ -6,6 +6,7 @@ import {EllipsisVerticalIcon, EnvelopeIcon} from '@heroicons/react/20/solid'
 import {classNames} from "@/app/utils";
 import Swal from "sweetalert2";
 import {PaperAirplaneIcon} from "@heroicons/react/24/solid";
+import Link from "next/link";
 
 function List({people, type, course_id, mutate, course}) {
     const [email, setEmail] = useState('')
@@ -92,6 +93,19 @@ function List({people, type, course_id, mutate, course}) {
                                                 >
                                                     刪除成員<span className="sr-only">, {person.name}</span>
                                                 </button>
+                                            )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                            {({active}) => (
+                                                <Link
+                                                    href={`/course/${course_id}/manage/live-coding/by-user/${person.id}`}
+                                                    className={classNames(
+                                                        active ? 'bg-gray-50' : '',
+                                                        'block text-left w-full px-3 py-1 text-sm leading-6 text-gray-900'
+                                                    )}
+                                                >
+                                                    查看程式狀況
+                                                </Link>
                                             )}
                                         </Menu.Item>
                                     </Menu.Items>

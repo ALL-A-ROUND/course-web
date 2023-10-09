@@ -14,6 +14,9 @@ async function RankList() {
                     <p className="mt-4 text-lg leading-8 text-gray-400">
                         勇者無懼 強者無敵
                     </p>
+                    <p className="mt-2 text-xs text-gray-400">
+                        每天簽到就可以領積分；寫題目也有積分唷！
+                    </p>
                 </div>
                 <ul
                     role="list"
