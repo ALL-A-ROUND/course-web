@@ -59,6 +59,14 @@ export default function Member() {
                         </div>
                         <div className="pt-6 sm:flex">
                             <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
+                                學生 ID
+                            </dt>
+                            <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
+                                <div className="text-gray-900">{user?.id ? String(user?.id)?.padStart(5, "0") : ""}</div>
+                            </dd>
+                        </div>
+                        <div className="pt-6 sm:flex">
+                            <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">
                                 電子郵件
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
