@@ -5,6 +5,7 @@ import {DevicePhoneMobileIcon} from "@heroicons/react/24/solid";
 import {api} from "@/app/utils";
 import useUser from "@/app/useUser";
 import Link from "next/link";
+import {ArrowPathIcon} from "@heroicons/react/24/outline";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -25,13 +26,13 @@ export default function Member() {
         });
     }
 
-    const generateTgToken = () =>{
+    const generateTgToken = () => {
         api("POST", "/auth/link_telegram", null).then((res) => {
             setTgToken(res.token)
         })
     }
 
-    const generateLINEToken = () =>{
+    const generateLINEToken = () => {
         api("POST", "/auth/link_telegram", null).then((res) => {
             setLINEToken(res.token)
         })
@@ -40,21 +41,42 @@ export default function Member() {
         <>
             <div className="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
                 <div>
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">個人資料</h2>
-                    <p className="mt-1 text-sm leading-6 text-gray-500">
-                        有些資料會公開顯示
-                    </p>
+                    <div className={"flex justify-between"}>
+                        <div>
+                            <h2 className="text-base font-semibold leading-7 text-gray-900">個人資料</h2>
+                            <p className="mt-1 text-sm leading-6 text-gray-500">
+                                有些資料會公開顯示
+                            </p>
+                        </div>
+                        <div>
+                            <a
+                                href={"/member/general/edit"}
+                                className="block rounded-md bg-yellow-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-yellow-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+                            >
+                                編輯
+                            </a>
+                        </div>
+                    </div>
 
                     <dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
+                        {
+                            !user && (
+                                <div className="pt-6 flex justify-center">
+                                    <div className="text-gray-900">
+                                        <div className={"animate-spin"}>
+                                            <ArrowPathIcon className="h-6 w-6 text-gray-400" aria-hidden="true"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
                         <div className="pt-6 sm:flex">
                             <dt className="font-medium text-gray-900 sm:w-64 sm:flex-none sm:pr-6">全名
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                                <div className="text-gray-900">{user?.name ?? ""}</div>
-                                <button type="button"
-                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    更新
-                                </button>
+                                <div className="text-gray-900">{user?.name ?? (
+                                    <span className={"text-red-400 font-bold"}>未設定</span>
+                                )}</div>
                             </dd>
                         </div>
                         <div className="pt-6 sm:flex">
@@ -62,7 +84,8 @@ export default function Member() {
                                 學生 ID
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                                <div className="text-gray-900">{user?.id ? String(user?.id)?.padStart(5, "0") : ""}</div>
+                                <div
+                                    className="text-gray-900">{user?.id ? String(user?.id)?.padStart(5, "0") : ""}</div>
                             </dd>
                         </div>
                         <div className="pt-6 sm:flex">
@@ -70,11 +93,9 @@ export default function Member() {
                                 電子郵件
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                                <div className="text-gray-900">{user?.email ?? ""}</div>
-                                <button type="button"
-                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    更新
-                                </button>
+                                <div className="text-gray-900">{user?.email ?? (
+                                    <span className={"text-red-400 font-bold"}>未設定</span>
+                                )}</div>
                             </dd>
                         </div>
                         <div className="pt-6 sm:flex">
@@ -82,11 +103,9 @@ export default function Member() {
                                 手機
                             </dt>
                             <dd className="mt-1 flex justify-between gap-x-6 sm:mt-0 sm:flex-auto">
-                                <div className="text-gray-900">{user?.phone ?? ""}</div>
-                                <button type="button"
-                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                    更新
-                                </button>
+                                <div className="text-gray-900">{user?.phone ?? (
+                                    <span className={"text-red-400 font-bold"}>未設定</span>
+                                )}</div>
                             </dd>
                         </div>
                         <div className="pt-6 sm:flex">
@@ -99,9 +118,11 @@ export default function Member() {
                                     {
                                         tgToken && (
                                             <div className={"border p-2 rounded flex flex-col"}>
-                                                <Link href={"https://t.me/meowcodebot"} target={"_blank"} className={"underline my-1"}>Telegram機器人</Link>
+                                                <Link href={"https://t.me/meowcodebot"} target={"_blank"}
+                                                      className={"underline my-1"}>Telegram機器人</Link>
                                                 <div className={"flex items-center gap-1"}>
-                                                    請傳送 <div className={"bg-gray-200 rounded-xl px-2 py-1"}>/start {tgToken}</div>
+                                                    請傳送 <div
+                                                    className={"bg-gray-200 rounded-xl px-2 py-1"}>/start {tgToken}</div>
                                                 </div>
                                             </div>
                                         )
@@ -124,7 +145,9 @@ export default function Member() {
                                     {
                                         lineToken && (
                                             <div className={"border p-2 rounded flex flex-col"}>
-                                                <Link href={`https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=rCwDOAOLbzYg17e8r2FJyK&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT+"/line-notify/link")}&scope=notify&state=${lineToken}&response_mode=form_post`} target={"_blank"} className={"underline my-1"}>LINE Notify 連接</Link>
+                                                <Link
+                                                    href={`https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=rCwDOAOLbzYg17e8r2FJyK&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT + "/line-notify/link")}&scope=notify&state=${lineToken}&response_mode=form_post`}
+                                                    target={"_blank"} className={"underline my-1"}>LINE Notify 連接</Link>
                                             </div>
                                         )
                                     }
