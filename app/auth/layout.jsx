@@ -19,8 +19,8 @@ export default function ({children}) {
         }).then(res => {
             if (res.status === 200)
                 router.replace('/')
-            else
-                localStorage.removeItem("token")
+            // else
+            //     localStorage.removeItem("token")
         })
     })
 
@@ -76,8 +76,8 @@ export default function ({children}) {
 
                                         <div>
                                             <Link
-                                                href={"#"}
-                                                className="cursor-not-allowed bg-gray-100 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                                                href={process.env.NEXT_PUBLIC_API_ENDPOINT+ "/../oauth/github"}
+                                                className="bg-gray-100 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                                             >
                                                 <span className="sr-only">Sign in with GitHub</span>
                                                 <svg className="h-5 w-5" aria-hidden="true" fill="currentColor"

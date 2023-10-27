@@ -73,6 +73,8 @@ export async function api(method, endpoint, jsonBody, options = {
                     title: '發生錯誤',
                     text: data?.message ?? '未知錯誤'
                 })
+                if (data?.redirect)
+                    window.location.href = data.redirect
             }
             return Promise.reject(JSON.stringify(data))
         }
@@ -191,7 +193,7 @@ export function EchoAuth(channel, options) {
 
 export function generateEchoInstance() {
     window.Pusher = Pusher;
-    
+
     return new Echo({
         broadcaster: 'pusher',
         key: process.env.NEXT_PUBLIC_PUSHER_KEY,
