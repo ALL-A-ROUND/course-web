@@ -20,12 +20,16 @@ export default function Instance({instance}) {
             title: "詳細資訊",
             html: `
 <div class="text-left">
-ssh -J jump@dorm.infra.hsuan.app:100 ${
+ssh jump@a1.infra.hsuan.app -p 100 
+<br/>
+jump@a1.infra.hsuan.app's password: <b>jump</b>
+
+<br/><br/>
+ssh ${
                 instance.root_password ?
                     "root" :
                     instance?.template?.username ?? "user"
-            }@host.docker.internal -p ${instance.port}<br/><br/>
-jump@dorm.infra.hsuan.app's password: <b>jump</b><br/>
+            }@host.docker.internal -p ${instance.port}<br/>
 ${
                 instance.root_password ?
                     "root" :
