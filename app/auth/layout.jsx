@@ -162,7 +162,7 @@ export default function ({children}) {
                                         <div>
                                             <div id="g_id_onload"
                                                  data-client_id="349187647772-p1ionl7hqtgk2ehkmcd219ej01md3rli.apps.googleusercontent.com"
-                                                 data-login_uri={process.env.NEXT_PUBLIC_API_ENDPOINT + "/../oauth/google"}
+                                                 data-login_uri={process.env.NEXT_PUBLIC_API_ENDPOINT + "/../oauth/google/callback"}
                                                  data-auto_prompt="false">
                                             </div>
                                             <div className="g_id_signin"
