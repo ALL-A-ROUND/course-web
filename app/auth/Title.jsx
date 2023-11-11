@@ -16,6 +16,13 @@ export default function Title() {
                     {pathname === "/auth/login" ? "註冊一個帳號" : "登入您的帳號"}
                 </Link>
             </p>
+            <p className="mt-2 text-sm text-gray-600">
+                註冊/登入即代表您同意{' '}
+                <Link href={"https://policy.hsuan.app"}
+                      className="font-medium text-indigo-600 hover:text-indigo-500">
+                    隱私權政策 / 服務條款
+                </Link>
+            </p>
         </>
     )
 }

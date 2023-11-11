@@ -101,6 +101,7 @@ export default function ({children}) {
                                 alt="Your Company"
                             />
                             <Title/>
+
                         </div>
 
                         <div className="mt-8">

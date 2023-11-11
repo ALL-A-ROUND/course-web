@@ -16,8 +16,8 @@ const footerNavigation = {
         {name: '合作夥伴', href: '#'},
     ],
     legal: [
-        {name: '隱私權政策', href: '#'},
-        {name: '使用條款', href: '#'},
+        {name: '隱私權政策', href: 'https://policy.hsuan.app/privacy'},
+        {name: '使用條款', href: 'https://policy.hsuan.app/terms'},
     ],
     social: [
         {
