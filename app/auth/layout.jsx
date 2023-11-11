@@ -5,6 +5,7 @@ import {usePathname, useRouter} from "next/navigation";
 import {useEffect} from "react";
 import {KeyIcon} from "@heroicons/react/24/outline";
 import {api} from "@/app/utils";
+import Script from "next/script";
 
 export default function ({children}) {
     const router = useRouter()
@@ -91,6 +92,11 @@ export default function ({children}) {
 
     return (
         <>
+            <Script
+                async
+                defer
+                src="https://accounts.google.com/gsi/client"
+            />
             <div className="flex min-h-full">
                 <div className="flex flex-1 flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
                     <div className="mx-auto w-full max-w-sm lg:w-96">
@@ -150,6 +156,23 @@ export default function ({children}) {
                                                     />
                                                 </svg>
                                             </Link>
+                                        </div>
+                                    </div>
+                                    <div className={"mt-2"}>
+                                        <div>
+                                            <div id="g_id_onload"
+                                                 data-client_id="349187647772-p1ionl7hqtgk2ehkmcd219ej01md3rli.apps.googleusercontent.com"
+                                                 data-login_uri={process.env.NEXT_PUBLIC_API_ENDPOINT + "/../oauth/google"}
+                                                 data-auto_prompt="false">
+                                            </div>
+                                            <div className="g_id_signin"
+                                                 data-type="standard"
+                                                 data-size="large"
+                                                 data-theme="outline"
+                                                 data-text="sign_in_with"
+                                                 data-shape="rectangular"
+                                                 data-logo_alignment="left">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
