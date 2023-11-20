@@ -18,30 +18,30 @@ import {middlewareConfig} from "@/app/middleware.config";
 import Image from "next/image";
 
 const solutions = [
-    {
-        name: '題庫系統',
-        description: '讓教學老師能快速地在系統上出題',
-        href: '/question_bank',
-        icon: FolderIcon,
-    },
+    // {
+    //     name: '題庫系統',
+    //     description: '讓教學老師能快速地在系統上出題',
+    //     href: '/question_bank',
+    //     icon: FolderIcon,
+    // },
     {
         name: '課程平台',
         description: '簡單易用的平台，讓學生能快速找到每堂課的練習題及作業並能線上即時評測',
         href: '/course',
         icon: AcademicCapIcon,
     },
-    {
-        name: '即時通知',
-        description: "課程結束、作業截止、成績公布等重要通知均會傳送即時通知給家長，家長可以即時追蹤孩子學習狀況",
-        href: '#',
-        icon: BellIcon,
-    },
-    {
-        name: '即時提問',
-        description: "提問系統，讓學生能夠在課堂時間外提問",
-        href: '#',
-        icon: QuestionMarkCircleIcon,
-    },
+    // {
+    //     name: '即時通知',
+    //     description: "課程結束、作業截止、成績公布等重要通知均會傳送即時通知給家長，家長可以即時追蹤孩子學習狀況",
+    //     href: '#',
+    //     icon: BellIcon,
+    // },
+    // {
+    //     name: '即時提問',
+    //     description: "提問系統，讓學生能夠在課堂時間外提問",
+    //     href: '#',
+    //     icon: QuestionMarkCircleIcon,
+    // },
 ]
 
 function classNames(...classes) {
