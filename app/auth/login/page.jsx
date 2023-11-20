@@ -26,7 +26,7 @@ export default function () {
             if (sp.has('next'))
                 router.replace(sp.get('next'))
             else
-                router.replace('/')
+                router.replace('/course')
         })
     }
 

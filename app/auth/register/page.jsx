@@ -35,7 +35,7 @@ export default function () {
             }
         }).then(res => res.json()).then(data => {
             localStorage.setItem("token", data.access_token)
-            router.replace('/')
+            router.replace('/course')
         })
     }
 
