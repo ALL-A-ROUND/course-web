@@ -19,6 +19,7 @@ export default function Example({params}) {
 
     const TYPE_NAME = {
         "custom": "自訂",
+        "assignment": "作業",
     }
 
     return (
