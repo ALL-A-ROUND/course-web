@@ -2,13 +2,7 @@
 import useSWR from "swr";
 import Link from "next/link";
 import {api, moment} from "@/app/utils";
-import {PlusCircleIcon} from "@heroicons/react/24/outline";
-import {
-    ComputerDesktopIcon,
-    FlagIcon, HomeIcon,
-    NewspaperIcon,
-    VideoCameraIcon
-} from "@heroicons/react/24/solid";
+import {HomeIcon} from "@heroicons/react/24/solid";
 
 export default function AssignmentList({params: {course_id}}) {
     const {
