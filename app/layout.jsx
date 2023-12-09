@@ -24,7 +24,13 @@ export default function RootLayout({children}) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
         <head/>
-        <body className={"h-full"}>{children}</body>
+        <body className={"h-full"}>
+        {children}
+
+        <script data-jsd-embedded data-key="b3282d69-8c52-48af-9cf8-60e9b573fca8"
+                data-base-url="https://jsd-widget.atlassian.com"
+                src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+        </body>
         </html>
     )
 }
