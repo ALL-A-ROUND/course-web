@@ -3,15 +3,25 @@ import {ChatBubbleLeftIcon, CheckCircleIcon} from '@heroicons/react/24/outline'
 import {api, moment} from "@/app/utils";
 import useSWR from 'swr'
 import Link from "next/link";
+import {useSearchParams} from "next/navigation";
 
 const getDiscussions = (endpoint) => api('GET', endpoint)
 
 
-export default function Example({params: {course_id}}) {
-    const {data: threads, error} = useSWR(`/courses/${course_id}/threads`, getDiscussions)
+export default function DiscussPage({params: {course_id, lesson_id = null}}) {
+    const sp = useSearchParams()
+    const buildQuery = () => sp.has('tags') || lesson_id ? 'tags=' + (
+        sp.has('tags') ? sp.get('tags') : ''
+    ) + (lesson_id ? sp.has('tags') ? ',': '' + lesson_id : '') : ''
+
+    const {
+        data: threads,
+        error,
+        isLoading: loading
+    } = useSWR(`/courses/${course_id}/threads?${buildQuery()}`, getDiscussions)
 
     if (error) return <div>Failed to load</div>
-    if (!(typeof threads === "object" && Array.isArray(threads))) return <div>Loading...</div>
+    if (loading) return <div>Loading...</div>
 
     return (
         <div>
@@ -23,7 +33,11 @@ export default function Example({params: {course_id}}) {
                 </Link>
             </div>
             <ul role="list" className="divide-y divide-gray-100">
-                {(typeof threads === "object" && Array.isArray(threads)) && threads.map((thread) => (
+                {sp.has('tags') && <>
+                    <div className={"text-gray-400 text-2xl font-bold"}>搜尋結果</div>
+                    <div className={"text-gray-400 text-sm"}>搜尋標籤：{sp.get('tags').split(",").join('、')}</div>
+                </>}
+                {(typeof threads === "object" && Array.isArray(threads)) && (threads.length > 0 ? threads.map((thread) => (
                     <Link href={`/course/${course_id}/discuss/${thread.id}`}
                           key={thread.id}
                           className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 px-2 py-5 sm:flex-nowrap hover:bg-gray-200 rounded cursor-pointer my-2"
@@ -39,7 +53,7 @@ export default function Example({params: {course_id}}) {
                                 </svg>
                                 <p>
                                     <time
-                                        dateTime={thread.posts[thread.posts_count - 1].created_at}>{moment(thread.posts[thread.posts_count - 1].created_at).fromNow()}</time>
+                                        dateTime={thread?.posts?.[thread.posts_count - 1]?.created_at}>{moment(thread?.posts[thread.posts_count - 1]?.created_at).fromNow()}</time>
                                 </p>
                             </div>
                         </div>
@@ -65,7 +79,9 @@ export default function Example({params: {course_id}}) {
                             </div>
                         </dl>
                     </Link>
-                ))}
+                )): <>
+                    <div className={"pt-2 text-center text-gray-400 text-2xl font-bold"}>沒有討論區</div>
+                </>)}
             </ul>
         </div>
     )

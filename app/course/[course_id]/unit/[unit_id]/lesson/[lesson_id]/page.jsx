@@ -3,9 +3,10 @@ import useSWR from "swr";
 import {api, moment} from "@/app/utils";
 import YouTube from "react-youtube";
 import {useEffect, useState} from "react";
+import DiscussPage from "@/app/course/[course_id]/discuss/page";
 
 export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
-    const [watchTime, setWatchTime] = useState(0)
+    const [watchTime, setWatchTime] = useState(null)
     const {
         data: lesson,
         isLoading
@@ -31,7 +32,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                     </div>
 
                     {lesson?.video ? (
-                        watchTime && <YouTube
+                        watchTime !== null && <YouTube
                             videoId={lesson?.video}
                             onPause={async e => {
                                 await api('POST', `/lesson/${lesson_id}/watch`, {
@@ -50,7 +51,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                     ) : "本堂課程未提供影片"}
 
                     {
-                        watchTime && <div className={"text-gray-500"}>上次觀看到：{moment.duration(moment().add(watchTime, 'seconds').diff(moment())).humanize()}</div>
+                        watchTime !== null && <div className={"text-gray-500"}>上次觀看到：{moment.duration(moment().add(watchTime, 'seconds').diff(moment())).humanize()}</div>
                     }
 
                     <div className={"h-full my-8"}>
@@ -58,6 +59,8 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                     </div>
                 </div>
             </ul>
+
+            <DiscussPage params={{course_id, unit_id, lesson_id}}/>
         </div>
     )
 }
