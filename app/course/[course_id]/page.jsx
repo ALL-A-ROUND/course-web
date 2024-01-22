@@ -16,7 +16,7 @@ export default async function CourseMain({params}) {
             <div className={"flex flex-col border rounded-xl p-2 gap-4"}>
                 <span className={"text-yellow-700 text-2xl"}>{course?.name}</span>
                 <div className={"text-md tracking-wider"} dangerouslySetInnerHTML={{
-                    __html: course?.introduction?.replace(/\n/g, "<br/>")
+                    __html: course?.introduction?.replace(/\n/g, "<br/>") ?? ''
                 }}></div>
             </div>
 
