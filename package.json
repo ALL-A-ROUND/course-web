@@ -43,6 +43,9 @@
     "sweetalert2": "^11.7.3",
     "swr": "^2.0.1"
   },
+  "resolutions": {
+    "string-width": "4.2.3"
+  },
   "devDependencies": {
     "@types/react": "18.2.55",
     "autoprefixer": "^10.4.13",
