@@ -1,4 +1,4 @@
-export default function QuestionBankPoolPage({questionBank}) {
+export default function QuestionBankPoolPage() {
     return (
         <>
             <span>所有題庫</span>

@@ -8,6 +8,7 @@ import Link from "next/link";
 import {middlewareConfig} from "@/app/middleware.config";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
+import {signOut} from "@/lib/firebase/auth";
 
 const navigation = [
     {name: '課程', href: '/course'},
@@ -27,13 +28,14 @@ function classNames(...classes) {
 export default function Nav() {
     const router = useRouter()
     const logout = () => {
-        localStorage.removeItem('token')
-        router.push('/auth/login')
+        signOut(auth).then(() => {
+            router.replace('/auth')
+        })
     }
     const pathname = usePathname()
     const [user, loading, error] = useAuthState(auth)
 
-    // if(!loading && !user) return redirect('/auth/login')
+    if(!loading && !user) return redirect('/auth')
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

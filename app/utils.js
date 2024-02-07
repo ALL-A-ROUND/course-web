@@ -9,6 +9,7 @@ import Pusher from "pusher-js";
 import {auth} from "@/lib/firebase/firebase";
 import {useAuthState, useIdToken} from "react-firebase-hooks/auth";
 import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {useRouter} from "next/navigation";
 
 export function sha256(str) {
     // Get the string as arraybuffer.
@@ -69,7 +70,7 @@ export async function api(method, endpoint, jsonBody, options = {
     }).then(async (res) => {
         // 避免 migration 後的 token 失效
         if (res.status === 401 && !SSR) {
-            return signInWithPopup(auth, new GoogleAuthProvider())
+            // return signInWithPopup(auth, new GoogleAuthProvider())
         }
         const data = await res.json()
         if (res.status >= 400) {
