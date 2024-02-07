@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 
 export default function Credit() {
-    const user = useUser()
+    const {user} = useUser()
 
     const {
         data: orders

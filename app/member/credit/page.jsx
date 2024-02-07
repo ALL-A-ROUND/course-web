@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import {ArrowPathIcon} from "@heroicons/react/24/solid";
 
 export default function Credit() {
-    const user = useUser()
+    const {user} = useUser()
     const [credit, setCredit] = useState(1)
 
     const {

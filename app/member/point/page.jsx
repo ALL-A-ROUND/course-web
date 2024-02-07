@@ -9,7 +9,7 @@ import {CheckBadgeIcon} from "@heroicons/react/24/solid";
 
 
 export default function Credit() {
-    const user = useUser()
+    const {user} = useUser()
     const {
         data: points,
         mutate,

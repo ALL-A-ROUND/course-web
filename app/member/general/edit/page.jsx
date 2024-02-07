@@ -6,7 +6,7 @@ import {useRouter} from "next/navigation";
 import {api} from "@/app/utils";
 
 export default function SettingsForm() {
-    const user = useUser()
+    const {user} = useUser()
     const [schoolName, setSchoolName] = useState("國立清華大學")
     const [departmentName, setDepartmentName] = useState("資訊工程學系")
     const [avatar, setAvatar] = useState("")

@@ -20,7 +20,7 @@ export default function SecurityPage() {
             return p + String.fromCharCode(c)
         }, '')).toURLSafe();
     };
-    const user = useUser()
+    const {user} = useUser()
     const create = async () => {
         api('GET', '/passkey/list', {}).then((data) => {
             console.log(user)

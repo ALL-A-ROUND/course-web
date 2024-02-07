@@ -83,7 +83,7 @@ function SubmitAssignment({
                               assignment
                           }) {
     const form = useRef(null)
-    const user = useUser()
+    const {user} = useUser()
     const [files, setFiles] = useState([])
 
     const addFile = () => {
