@@ -35,7 +35,11 @@ export default function Nav() {
     const pathname = usePathname()
     const [user, loading, error] = useAuthState(auth)
 
-    if(!loading && !user) return redirect('/auth')
+    useEffect(() => {
+        if (!loading && !user) {
+            router.replace('/auth')
+        }
+    }, [loading, user])
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

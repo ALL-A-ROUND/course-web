@@ -38,7 +38,7 @@ export function hex(buffer) {
     return digest
 }
 
-export async function api(method, endpoint, jsonBody, options = {
+export async function api(method, endpoint, jsonBody = undefined, options = {
     disableError: false,
 }) {
     const SSR = typeof window === "undefined"

@@ -36,6 +36,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
+    "react-qr-code": "^2.0.12",
     "react-scroll": "^1.8.9",
     "react-youtube": "^10.1.0",
     "supports-color": "^9.4.0",

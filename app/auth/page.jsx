@@ -1,9 +1,19 @@
 "use client"
 import {auth} from "@/lib/firebase/firebase";
 import {useRouter} from "next/navigation";
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
+import {
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithCustomToken,
+    signInWithPopup,
+    GoogleAuthProvider
+} from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
+import {QrCodeIcon} from "@heroicons/react/24/solid";
+import QRCode from "react-qr-code";
+import {api} from "@/app/utils";
+import {ArrowPathIcon, ArrowPathRoundedSquareIcon} from "@heroicons/react/24/outline";
 
 export default function Auth() {
     const router = useRouter()
@@ -14,7 +24,7 @@ export default function Auth() {
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(auth, email, password).then(user => {
-            if(user)
+            if (user)
                 router.replace("/course")
         }).catch(e => {
             if (e.code === "auth/user-not-found" || e.code === "auth/invalid-credential") {
@@ -30,11 +40,57 @@ export default function Auth() {
         })
     }
 
-    useEffect(()=>{
-        if(user) {
+    useEffect(() => {
+        if (user) {
             router.replace("/course")
         }
     }, [user])
+
+    const [qrID, setQrID] = useState("")
+    const [showQR, setShowQR] = useState(false)
+    const [qrTimer, setQrTimer] = useState(null)
+    const callGen = () => {
+        api("POST", "/auth/qrcode/gen").then(res => {
+            setQrID(res.uuid)
+            localStorage?.setItem('qrID', res.uuid)
+        })
+    }
+    const generateQR = () => {
+        setShowQR(true)
+        const id = localStorage?.getItem('qrID')
+        if(id) {
+            api("GET", `/auth/qrcode/${id}/status`).then(res => {
+                if (res.status === "linked" || res.status === "scanned") {
+                    // is used, re-generate
+                    callGen()
+                } else {
+                    setQrID(id)
+                }
+            })
+        } else {
+            callGen()
+        }
+    }
+
+    useEffect(() => {
+        if(qrID) {
+            setQrTimer(setInterval(() => {
+                api("GET", `/auth/qrcode/${qrID}/status`).then(res => {
+                    console.log(`QRCode status: ${res.status}`)
+                    if (res.status === "linked") {
+                        clearInterval(qrTimer)
+                        signInWithCustomToken(auth, res.token).then(user => {
+                            if (user)
+                                router.replace("/course")
+                        })
+                    }
+                })
+            }, 1000))
+        }
+        return () => {
+            clearInterval(qrTimer)
+        }
+    }, [qrID]);
 
     return (
         <div className={"bg-gray-50"}>
@@ -116,7 +172,7 @@ export default function Auth() {
 
                             <div className="mt-6 grid grid-cols-2 gap-4">
                                 <button
-                                    onClick={e=>signInWithPopup(auth, new GoogleAuthProvider())}
+                                    onClick={e => signInWithPopup(auth, new GoogleAuthProvider())}
                                     className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                                 >
                                     <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
@@ -154,6 +210,30 @@ export default function Auth() {
                                     </svg>
                                     <span className="text-sm font-semibold leading-6">GitHub</span>
                                 </a>
+
+                                <button
+                                    onClick={generateQR}
+                                    className="flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
+                                >
+                                    <QrCodeIcon className="h-5 w-5 fill-[#24292F]"/>
+                                    <span className="text-sm font-semibold leading-6">QRCode</span>
+                                </button>
+                                {showQR &&
+                                    <div
+                                        className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"}>
+                                        {qrID === "" ?
+                                            <div className={"animate-spin"}>
+                                                <ArrowPathIcon className="h-5 w-5"/>
+                                            </div> :
+                                            <QRCode
+                                                size={256}
+                                                style={{height: "auto", maxWidth: "100%", width: "100%"}}
+                                                value={"fs"}
+                                                viewBox={`0 0 256 256`}
+                                            />
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
