@@ -228,7 +228,7 @@ export default function Auth() {
                                             <QRCode
                                                 size={256}
                                                 style={{height: "auto", maxWidth: "100%", width: "100%"}}
-                                                value={`qrauth://${process.env.NEXT_PUBLIC_API_ENDPOINT}|${qrID}`}
+                                                value={`qrauth://endpoint=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT)}&id=${qrID}`}
                                                 viewBox={`0 0 256 256`}
                                             />
                                         }
