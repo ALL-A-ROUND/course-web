@@ -25,6 +25,7 @@ function CourseCard({course}) {
 }
 
 export default function CourseList({type}) {
+    "use client"
     const {
         data: courses,
         isLoading

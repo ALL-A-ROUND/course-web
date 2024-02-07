@@ -21,27 +21,33 @@
     "@tailwindcss/forms": "^0.5.3",
     "axios": "^1.2.3",
     "ckeditor5-custom-build": "file:./ckeditor5",
-    "eslint-config-next": "^13.5.4",
+    "eslint-config-next": "^14.1.0",
+    "firebase": "^10.8.0",
+    "firebase-admin": "^12.0.0",
     "jquery": "^3.7.0",
     "laravel-echo": "^1.15.3",
     "md5": "^2.3.0",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
-    "next": "^13.5.4",
+    "next": "^14.1.0",
     "node-html-parser": "^6.1.6",
     "pdfjs-dist": "^3.11.174",
     "pusher-js": "^8.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-firebase-hooks": "^5.1.1",
     "react-scroll": "^1.8.9",
     "react-youtube": "^10.1.0",
+    "supports-color": "^9.4.0",
     "sweetalert2": "^11.7.3",
     "swr": "^2.0.1"
   },
   "devDependencies": {
+    "@types/react": "18.2.55",
     "autoprefixer": "^10.4.13",
     "postcss": "^8.4.21",
     "raw-loader": "^4.0.2",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "typescript": "5.3.3"
   }
 }

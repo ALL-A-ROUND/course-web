@@ -2,12 +2,12 @@
 import {Fragment, useEffect} from 'react'
 import {Disclosure, Menu, Transition} from '@headlessui/react'
 import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
-import {usePathname, useRouter} from "next/navigation";
-import {api} from "@/app/utils";
-import useSWR from "swr";
+import {redirect, usePathname, useRouter} from "next/navigation";
 import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import {middlewareConfig} from "@/app/middleware.config";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
 
 const navigation = [
     {name: '課程', href: '/course'},
@@ -31,27 +31,9 @@ export default function Nav() {
         router.push('/auth/login')
     }
     const pathname = usePathname()
-    const {
-        data: user,
-        isLoading
-    } = useSWR(`/user`, url => api('GET', url, null, {
-        disableError: true
-    }).then(res => res))
+    const [user, loading, error] = useAuthState(auth)
 
-
-    useEffect(() => {
-        for (let route of Object.keys(middlewareConfig)) {
-            if (middlewareConfig[route].regex.test(pathname)) {
-                if (middlewareConfig[route].middlewares.includes("auth")) {
-                    if (!isLoading && !user) router.replace('/auth/login')
-                    if (user && user?.message === "Unauthenticated.") {
-                        localStorage.removeItem("token")
-                        router.replace('/auth/login')
-                    }
-                }
-            }
-        }
-    })
+    // if(!loading && !user) return redirect('/auth/login')
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

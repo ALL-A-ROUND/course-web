@@ -1,5 +1,5 @@
 "use client"
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import {Switch} from '@headlessui/react'
 import {DevicePhoneMobileIcon} from "@heroicons/react/24/solid";
 import {api} from "@/app/utils";
@@ -13,7 +13,7 @@ function classNames(...classes) {
 
 export default function Member() {
     const [automaticTimezoneEnabled, setAutomaticTimezoneEnabled] = useState(true)
-    const user = useUser()
+    const {user} = useUser()
     const [tgToken, setTgToken] = useState(null)
     const [lineToken, setLINEToken] = useState(null)
     const logout = () => {

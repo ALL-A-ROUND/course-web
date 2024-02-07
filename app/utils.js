@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import {InformationCircleIcon} from "@heroicons/react/20/solid";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
+import {auth} from "@/lib/firebase/firebase";
+import {useAuthState, useIdToken} from "react-firebase-hooks/auth";
+import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 
 export function sha256(str) {
     // Get the string as arraybuffer.
@@ -38,6 +41,8 @@ export async function api(method, endpoint, jsonBody, options = {
     disableError: false,
 }) {
     const SSR = typeof window === "undefined"
+    const token = SSR ? null : await auth.currentUser?.getIdToken()
+
     return fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
         method,
         body: (
@@ -54,16 +59,17 @@ export async function api(method, endpoint, jsonBody, options = {
                 'Content-Type': 'application/json',
             }),
             'Accept': 'application/json',
+            'Via': 'fetcher-1.0',
 
             // 如果不是 SSR，就加上 Authorization
             ...(!SSR && {
-                'Authorization': 'Bearer ' + localStorage?.getItem('token')
+                'Authorization': 'Bearer ' + token,
             })
         }
     }).then(async (res) => {
         // 避免 migration 後的 token 失效
         if (res.status === 401 && !SSR) {
-            localStorage?.removeItem('token')
+            return signInWithPopup(auth, new GoogleAuthProvider())
         }
         const data = await res.json()
         if (res.status >= 400) {

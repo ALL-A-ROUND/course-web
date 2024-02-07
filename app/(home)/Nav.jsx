@@ -16,6 +16,10 @@ import useSWR from "swr";
 import {usePathname, useRouter} from "next/navigation";
 import {middlewareConfig} from "@/app/middleware.config";
 import Image from "next/image";
+import useUser from "@/app/useUser";
+import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {auth} from "@/lib/firebase/firebase";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 const solutions = [
     // {
@@ -51,16 +55,7 @@ function classNames(...classes) {
 export default function Nav() {
     const router = useRouter()
     const pathname = usePathname()
-    const {
-        data: user,
-        isLoading
-    } = useSWR('/user', async (url) => fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
-        headers: {
-            "Accept": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-        }
-    }).then(res => res.json()))
+    const [user, loading, error] = useAuthState(auth)
 
     useEffect(() => {
         for (let route of Object.keys(middlewareConfig)) {
@@ -167,19 +162,12 @@ export default function Nav() {
                     </Link>
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                    {typeof user?.name === "undefined" ? (
-                        <>
-                            <Link href="/auth/login"
-                                  className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                                登入
-                            </Link>
-                            <Link
-                                href="/auth/register"
-                                className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-gradient-to-r from-purple-600 to-indigo-600 bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-purple-700 hover:to-indigo-700"
-                            >
-                                註冊
-                            </Link>
-                        </>) : <></>}
+                    {!loading && typeof user?.displayName === "undefined" && (<>
+                        <button onClick={e => signInWithPopup(auth, new GoogleAuthProvider())}
+                                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                            登入
+                        </button>
+                    </>)}
                 </div>
             </div>
 
