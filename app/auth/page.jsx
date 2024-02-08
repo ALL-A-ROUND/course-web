@@ -6,7 +6,8 @@ import {
     signInWithEmailAndPassword,
     signInWithCustomToken,
     signInWithPopup,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    sendPasswordResetEmail
 } from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {useEffect, useState} from "react";
@@ -45,11 +46,11 @@ export default function Auth() {
             router.replace("/course")
         }
     }, [user])
-
+    const [isForgot, setIsForgot] = useState(false)
     const [qrID, setQrID] = useState("")
     const [showQR, setShowQR] = useState(false)
     const [qrTimer, setQrTimer] = useState(null)
-    const [qrStatus, setQrStatus] = useState("pending") // ["pending", "linked", "scanned", "expired"]
+    const [qrAuth, setQrAuth] = useState(null)
     const callGen = () => {
         api("POST", "/auth/qrcode/gen").then(res => {
             setQrID(res.uuid)
@@ -77,7 +78,7 @@ export default function Auth() {
         if (qrID) {
             setQrTimer(setInterval(() => {
                 api("GET", `/auth/qrcode/${qrID}/status`).then(res => {
-                    setQrStatus(res.status)
+                    setQrAuth(res)
                     if (res.status === "linked") {
                         clearInterval(qrTimer)
                         signInWithCustomToken(auth, res.token).then(user => {
@@ -93,8 +94,18 @@ export default function Auth() {
         }
     }, [qrID]);
 
+    const forgotPassword = e => {
+        e.preventDefault();
+        const email = e.target.email.value;
+        sendPasswordResetEmail(auth, email).then(() => {
+            alert("已發送重設密碼信")
+        }).catch(e => {
+            alert(e.message)
+        })
+    }
+
     return (
-        <div className={"bg-gray-50"}>
+        <div className={"min-h-screen bg-gray-50"}>
             <div className="flex min-h-full flex-1 flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img
@@ -109,7 +120,7 @@ export default function Auth() {
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                     <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
-                        <form className="space-y-6" onSubmit={emailLogin}>
+                        <form className="space-y-6" onSubmit={isForgot ? forgotPassword : emailLogin}>
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                     電子郵件
@@ -125,29 +136,36 @@ export default function Auth() {
                                     />
                                 </div>
                             </div>
+                            {
+                                !isForgot && (
+                                    <>
+                                        <div>
+                                            <label htmlFor="password"
+                                                   className="block text-sm font-medium leading-6 text-gray-900">
+                                                密碼
+                                            </label>
+                                            <div className="mt-2">
+                                                <input
+                                                    id="password"
+                                                    name="password"
+                                                    type="password"
+                                                    autoComplete="current-password"
+                                                    required
+                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                                />
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            }
 
-                            <div>
-                                <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                    密碼
-                                </label>
-                                <div className="mt-2">
-                                    <input
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        autoComplete="current-password"
-                                        required
-                                        className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    />
-                                </div>
-                            </div>
 
                             <div className="flex items-center justify-end">
-
                                 <div className="text-sm leading-6">
-                                    <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                                        忘記密碼？
-                                    </a>
+                                    <button onClick={e => setIsForgot(!isForgot)}
+                                            className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        {isForgot ? "返回登入/註冊" : "忘記密碼？"}
+                                    </button>
                                 </div>
                             </div>
 
@@ -156,7 +174,7 @@ export default function Auth() {
                                     type="submit"
                                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                 >
-                                    登入 / 註冊
+                                    {isForgot ? "發送重設密碼驗證信" : "登入/註冊"}
                                 </button>
                             </div>
                         </form>
@@ -221,14 +239,14 @@ export default function Auth() {
                                 </button>
                                 {showQR &&
                                     <div
-                                        className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"}>
+                                        className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
                                         {qrID === "" ?
                                             <div className={"animate-spin"}>
                                                 <ArrowPathIcon className="h-5 w-5"/>
                                             </div> :
-                                            <div className={"relative p-4"}>
+                                            <div className={"relative p-4 flex flex-col items-center"}>
                                                 {
-                                                    qrStatus === "scanned" &&
+                                                    qrAuth?.status === "scanned" &&
                                                     <div
                                                         className={"absolute top-0 left-0 right-0 bottom-0 bg-gray-50 opacity-90 flex justify-center items-center"}>
                                                         <div>
@@ -242,10 +260,19 @@ export default function Auth() {
                                                 }
                                                 <QRCode
                                                     size={256}
-                                                    style={{height: "auto", maxWidth: "100%", width: "100%"}}
+                                                    style={{height: "auto", maxWidth: "70%", width: "70%"}}
                                                     value={`qrauth://endpoint=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT)}&id=${qrID}`}
                                                     viewBox={`0 0 256 256`}
                                                 />
+                                                <div className={"text-center text-xl my-2"}>
+                                                    打開全方位掃一掃，快速登入
+                                                </div>
+                                                <div
+                                                    className={"flex flex-col text-xs text-gray-400 pt-1 border-t border-gray-400"}>
+                                                    <span>ID: {qrAuth?.uuid}</span>
+                                                    <span>IP: {qrAuth?.ip}</span>
+                                                    <span>UA: {qrAuth?.user_agent}</span>
+                                                </div>
                                             </div>
                                         }
                                     </div>
@@ -253,13 +280,6 @@ export default function Auth() {
                             </div>
                         </div>
                     </div>
-
-                    <p className="mt-10 text-center text-sm text-gray-500">
-                        Not a member?{' '}
-                        <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            Start a 14 day free trial
-                        </a>
-                    </p>
                 </div>
             </div>
         </div>
