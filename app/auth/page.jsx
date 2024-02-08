@@ -46,6 +46,7 @@ export default function Auth() {
             router.replace("/course")
         }
     }, [user])
+    const [loadingQr, setLoadingQr] = useState(false)
     const [isForgot, setIsForgot] = useState(false)
     const [qrID, setQrID] = useState("")
     const [showQR, setShowQR] = useState(false)
@@ -58,8 +59,8 @@ export default function Auth() {
         })
     }
     const generateQR = () => {
-        setShowQR(true)
         const id = localStorage?.getItem('qrID')
+        setLoadingQr(true)
         if (id) {
             api("GET", `/auth/qrcode/${id}/status`).then(res => {
                 if (res.status === "linked" || res.status === "scanned") {
@@ -76,9 +77,11 @@ export default function Auth() {
 
     useEffect(() => {
         if (qrID) {
-            setQrTimer(setInterval(() => {
+            const func = () => {
                 api("GET", `/auth/qrcode/${qrID}/status`).then(res => {
                     setQrAuth(res)
+                    setShowQR(true)
+                    setLoadingQr(false)
                     if (res.status === "linked") {
                         clearInterval(qrTimer)
                         signInWithCustomToken(auth, res.token).then(user => {
@@ -87,7 +90,9 @@ export default function Auth() {
                         })
                     }
                 })
-            }, 1000))
+            }
+            setQrTimer(setInterval(func, 1000))
+            func()
         }
         return () => {
             clearInterval(qrTimer)
@@ -237,6 +242,13 @@ export default function Auth() {
                                     <QrCodeIcon className="h-5 w-5 fill-[#24292F]"/>
                                     <span className="text-sm font-semibold leading-6">QRCode</span>
                                 </button>
+                                {loadingQr &&  (
+                                    <div className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
+                                        <div className={"animate-spin"}>
+                                            <ArrowPathIcon className="h-5 w-5"/>
+                                        </div>
+                                    </div>
+                                )}
                                 {showQR &&
                                     <div
                                         className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
