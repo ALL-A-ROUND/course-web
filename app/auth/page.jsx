@@ -13,7 +13,7 @@ import {useEffect, useState} from "react";
 import {QrCodeIcon} from "@heroicons/react/24/solid";
 import QRCode from "react-qr-code";
 import {api} from "@/app/utils";
-import {ArrowPathIcon, ArrowPathRoundedSquareIcon} from "@heroicons/react/24/outline";
+import {ArrowPathIcon, ArrowPathRoundedSquareIcon, CheckCircleIcon, CheckIcon} from "@heroicons/react/24/outline";
 
 export default function Auth() {
     const router = useRouter()
@@ -49,6 +49,7 @@ export default function Auth() {
     const [qrID, setQrID] = useState("")
     const [showQR, setShowQR] = useState(false)
     const [qrTimer, setQrTimer] = useState(null)
+    const [qrStatus, setQrStatus] = useState("pending") // ["pending", "linked", "scanned", "expired"]
     const callGen = () => {
         api("POST", "/auth/qrcode/gen").then(res => {
             setQrID(res.uuid)
@@ -58,7 +59,7 @@ export default function Auth() {
     const generateQR = () => {
         setShowQR(true)
         const id = localStorage?.getItem('qrID')
-        if(id) {
+        if (id) {
             api("GET", `/auth/qrcode/${id}/status`).then(res => {
                 if (res.status === "linked" || res.status === "scanned") {
                     // is used, re-generate
@@ -73,10 +74,10 @@ export default function Auth() {
     }
 
     useEffect(() => {
-        if(qrID) {
+        if (qrID) {
             setQrTimer(setInterval(() => {
                 api("GET", `/auth/qrcode/${qrID}/status`).then(res => {
-                    console.log(`QRCode status: ${res.status}`)
+                    setQrStatus(res.status)
                     if (res.status === "linked") {
                         clearInterval(qrTimer)
                         signInWithCustomToken(auth, res.token).then(user => {
@@ -225,12 +226,27 @@ export default function Auth() {
                                             <div className={"animate-spin"}>
                                                 <ArrowPathIcon className="h-5 w-5"/>
                                             </div> :
-                                            <QRCode
-                                                size={256}
-                                                style={{height: "auto", maxWidth: "100%", width: "100%"}}
-                                                value={`qrauth://endpoint=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT)}&id=${qrID}`}
-                                                viewBox={`0 0 256 256`}
-                                            />
+                                            <div className={"relative p-4"}>
+                                                {
+                                                    qrStatus === "scanned" &&
+                                                    <div
+                                                        className={"absolute top-0 left-0 right-0 bottom-0 bg-gray-50 opacity-90 flex justify-center items-center"}>
+                                                        <div>
+                                                            <CheckCircleIcon
+                                                                className={"h-24 w-24 mx-auto my-auto text-gray-700"}/>
+                                                            <span className={"text-lg"}>
+                                                            已掃描，請在 App 上點擊確認
+                                                        </span>
+                                                        </div>
+                                                    </div>
+                                                }
+                                                <QRCode
+                                                    size={256}
+                                                    style={{height: "auto", maxWidth: "100%", width: "100%"}}
+                                                    value={`qrauth://endpoint=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT)}&id=${qrID}`}
+                                                    viewBox={`0 0 256 256`}
+                                                />
+                                            </div>
                                         }
                                     </div>
                                 }
