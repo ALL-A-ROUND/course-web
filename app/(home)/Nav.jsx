@@ -3,10 +3,7 @@
 import {Popover, Transition} from "@headlessui/react";
 import {
     AcademicCapIcon,
-    Bars3Icon, BellIcon,
-    ChatBubbleBottomCenterTextIcon,
-    ChatBubbleLeftRightIcon, FolderIcon,
-    InboxIcon, QuestionMarkCircleIcon,
+    Bars3Icon,
     XMarkIcon
 } from "@heroicons/react/24/outline";
 import {ChevronDownIcon} from "@heroicons/react/20/solid";
@@ -17,9 +14,12 @@ import {usePathname, useRouter} from "next/navigation";
 import {middlewareConfig} from "@/app/middleware.config";
 import Image from "next/image";
 import useUser from "@/app/useUser";
-import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import {GoogleAuthProvider, signInWithPopup, signInWithRedirect} from "firebase/auth";
 import {auth} from "@/lib/firebase/firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
+
+const {detect} = require('detect-browser');
+const browser = detect();
 
 const solutions = [
     // {
@@ -57,6 +57,15 @@ export default function Nav() {
     const pathname = usePathname()
     const [user, loading, error] = useAuthState(auth)
 
+
+
+    const signIn = () => {
+        if (browser?.name === "safari") {
+            signInWithRedirect(auth, new GoogleAuthProvider())
+        } else {
+            signInWithPopup(auth, new GoogleAuthProvider())
+        }
+    }
     useEffect(() => {
         for (let route of Object.keys(middlewareConfig)) {
             if (middlewareConfig[route].regex.test(pathname)) {
@@ -163,7 +172,7 @@ export default function Nav() {
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                     {!loading && typeof user?.displayName === "undefined" && (<>
-                        <button onClick={e => signInWithPopup(auth, new GoogleAuthProvider())}
+                        <button onClick={signIn}
                                 className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                             登入
                         </button>

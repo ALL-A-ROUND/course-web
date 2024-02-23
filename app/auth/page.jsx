@@ -7,7 +7,8 @@ import {
     signInWithCustomToken,
     signInWithPopup,
     GoogleAuthProvider,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    signInWithRedirect,
 } from "firebase/auth";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {useEffect, useState} from "react";
@@ -15,6 +16,9 @@ import {QrCodeIcon} from "@heroicons/react/24/solid";
 import QRCode from "react-qr-code";
 import {api} from "@/app/utils";
 import {ArrowPathIcon, ArrowPathRoundedSquareIcon, CheckCircleIcon, CheckIcon} from "@heroicons/react/24/outline";
+
+const {detect} = require('detect-browser');
+const browser = detect();
 
 export default function Auth() {
     const router = useRouter()
@@ -98,6 +102,14 @@ export default function Auth() {
             clearInterval(qrTimer)
         }
     }, [qrID]);
+
+    const signIn = () => {
+        if (browser?.name === "safari") {
+            signInWithRedirect(auth, new GoogleAuthProvider())
+        } else {
+            signInWithPopup(auth, new GoogleAuthProvider())
+        }
+    }
 
     const forgotPassword = e => {
         e.preventDefault();
@@ -196,7 +208,7 @@ export default function Auth() {
 
                             <div className="mt-6 grid grid-cols-2 gap-4">
                                 <button
-                                    onClick={e => signInWithPopup(auth, new GoogleAuthProvider())}
+                                    onClick={e => signIn()}
                                     className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                                 >
                                     <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
@@ -242,8 +254,9 @@ export default function Auth() {
                                     <QrCodeIcon className="h-5 w-5 fill-[#24292F]"/>
                                     <span className="text-sm font-semibold leading-6">QRCode</span>
                                 </button>
-                                {loadingQr &&  (
-                                    <div className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
+                                {loadingQr && (
+                                    <div
+                                        className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
                                         <div className={"animate-spin"}>
                                             <ArrowPathIcon className="h-5 w-5"/>
                                         </div>
