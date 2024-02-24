@@ -19,6 +19,13 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
             })
         }
     }, [lesson])
+
+    useEffect(() => {
+        setTimeout(() => {
+            alert("10秒請移動滑鼠以確保您的觀看狀態不會被系統判定為閒置。")
+        }, 1000 * 15)
+    }, []);
+
     return (
         <div className="overflow-hidden bg-white sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
