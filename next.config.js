@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const path = require('path');
+const projectID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
 const nextConfig = {
     images: {
         domains: [process.env.NEXT_PUBLIC_ASSET_ENDPOINT.split("//")[1].split("/")[0].split(":")[0]],
@@ -14,7 +15,15 @@ const nextConfig = {
             '@': path.resolve(__dirname, './'),
         };
         return config;
-    }
+    },
+    async rewrites() {
+        return [
+            {
+                source: "/__/auth/:path*",
+                destination: `https://${projectID}.firebaseapp.com/__/auth/:path*`
+            },
+        ];
+    },
 }
 
 module.exports = nextConfig
