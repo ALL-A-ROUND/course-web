@@ -17,9 +17,6 @@ export default function CourseLayout({params, children}) {
     } = useSWR(`/course/${params.course_id}/features`, (url) => api('GET', url).then(data => data))
 
     useEffect(() => {
-        if (localStorage.getItem('token') === null) {
-            router.replace('/auth/login')
-        }
         api('GET', '/course/' + params.course_id + '?with=teachers').then(data => {
             if (!document.title.startsWith(data.name)) {
                 document.title = data.name + ' - '
