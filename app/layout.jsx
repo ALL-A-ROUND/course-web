@@ -30,7 +30,7 @@ export default function RootLayout({children}) {
         <head/>
         <body className={"h-full"}>
         {loading ? (
-            <div>Loading....</div>
+            <div>瘋狂載入中....</div>
         ): children}
 
         <script data-jsd-embedded data-key="b3282d69-8c52-48af-9cf8-60e9b573fca8"

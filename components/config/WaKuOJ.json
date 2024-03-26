@@ -1,0 +1,20 @@
+{
+  "app": {
+    "nav": {
+      "course": true,
+      "problem": true,
+      "status": true,
+      "contest": true,
+      "rank": true
+    },
+    "settings": {
+      "general": true,
+      "security": true,
+      "notification": true,
+      "order": true,
+      "machine": true,
+      "points": true,
+      "payment": true
+    }
+  }
+}

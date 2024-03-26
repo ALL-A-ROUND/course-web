@@ -90,7 +90,7 @@ export default function Nav() {
                         <Image
                             width={640} height={640}
                             className="h-8 w-auto sm:h-10 rounded-lg"
-                            src="/logo.webp"
+                            src={`/logo/${process.env.NEXT_PUBLIC_APP_ID}`}
                             alt=""
                         />
                     </Link>
@@ -161,22 +161,26 @@ export default function Nav() {
                         )}
                     </Popover>
 
-                    <Link href="/pricing"
-                          className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
-                        價格
-                    </Link>
-                    <Link href={"/about"}
-                          className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">
-                        關於我們
-                    </Link>
+                    {/*<Link href="/pricing"*/}
+                    {/*      className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">*/}
+                    {/*    價格*/}
+                    {/*</Link>*/}
+                    {/*<Link href={"/about"}*/}
+                    {/*      className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">*/}
+                    {/*    關於我們*/}
+                    {/*</Link>*/}
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-                    {!loading && typeof user?.displayName === "undefined" && (<>
+                    {!loading && typeof user?.displayName === "undefined" ? (<>
                         <button onClick={signIn}
                                 className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                             登入
                         </button>
-                    </>)}
+                    </>) : (
+                        <a href={'/course'} className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                            課程中心
+                        </a>
+                    )}
                 </div>
             </div>
 

@@ -14,20 +14,20 @@ import Nav from "@/app/Nav";
 import {DocumentMagnifyingGlassIcon} from "@heroicons/react/24/outline";
 
 const secondaryNavigation = [
-    {name: '一般設定', icon: UserCircleIcon, path: "/member/general"},
-    {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security"},
-    {name: '通知設定', icon: BellIcon, path: "/member/notifications"},
-    {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order"},
-    {name: '靶機與點數', icon: CubeIcon, path: "/member/credit"},
-    {name: '積分園地', icon: StarIcon, path: "/member/point"},
-    {name: '付款方式', icon: CreditCardIcon, path: "/member/billing"},
+    {name: '一般設定', icon: UserCircleIcon, path: "/member/general", id: 'general'},
+    {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security", id: 'security'},
+    {name: '通知設定', icon: BellIcon, path: "/member/notifications", id: 'notification'},
+    {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order", id: 'order'},
+    {name: '靶機與點數', icon: CubeIcon, path: "/member/credit", id: 'machine'},
+    {name: '積分園地', icon: StarIcon, path: "/member/point", id: 'points'},
+    {name: '付款方式', icon: CreditCardIcon, path: "/member/billing", id: 'payment'},
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Layout({children}) {
+export default async function Layout({children}) {
     api("GET", "/user", null, {
         disableError: true,
         cache: "reload",
@@ -38,6 +38,7 @@ export default function Layout({children}) {
         }
     })
     const pathname = usePathname()
+    const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
     return (
         <>
             <Nav/>
@@ -46,7 +47,9 @@ export default function Layout({children}) {
                     className="flex overflow-x-auto border-b border-gray-900/5 py-4 lg:block lg:w-64 lg:flex-none lg:border-0 lg:py-20">
                     <nav className="flex-none px-4 sm:px-6 lg:px-0">
                         <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
-                            {secondaryNavigation.map((item) => (
+                            {secondaryNavigation.filter(
+                                x => (config?.app?.settings?.[x.id] ?? true) !== false
+                            ).map((item) => (
                                 <li key={item.name}>
                                     <Link
                                         href={item.path}

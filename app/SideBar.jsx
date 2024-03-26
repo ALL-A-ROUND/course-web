@@ -21,18 +21,18 @@ export default function SideBar() {
                     'h-6 w-6 shrink-0'
                 )}/> 題目列表
             </Link>
-            <Link href={"/contest"}
-                  className={classNames(
-                      false
-                          ? 'bg-indigo-700 text-white'
-                          : 'text-indigo-200 hover:text-white hover:bg-indigo-700',
-                      'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
-                  )}>
-                <ClipboardIcon className={classNames(
-                    false ? 'text-white' : 'text-indigo-200 group-hover:text-white',
-                    'h-6 w-6 shrink-0'
-                )}/> 公開競賽
-            </Link>
+            {/*<Link href={"/contest"}*/}
+            {/*      className={classNames(*/}
+            {/*          false*/}
+            {/*              ? 'bg-indigo-700 text-white'*/}
+            {/*              : 'text-indigo-200 hover:text-white hover:bg-indigo-700',*/}
+            {/*          'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'*/}
+            {/*      )}>*/}
+            {/*    <ClipboardIcon className={classNames(*/}
+            {/*        false ? 'text-white' : 'text-indigo-200 group-hover:text-white',*/}
+            {/*        'h-6 w-6 shrink-0'*/}
+            {/*    )}/> 公開競賽*/}
+            {/*</Link>*/}
         </div>
     )
 }

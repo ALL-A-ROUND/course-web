@@ -11,11 +11,11 @@ import {auth} from "@/lib/firebase/firebase";
 import {signOut} from "@/lib/firebase/auth";
 
 const navigation = [
-    {name: '課程', href: '/course'},
-    {name: '題目', href: '/problem'},
-    {name: '狀態', href: '/submission'},
-    {name: '競賽', href: '/contest'},
-    {name: '排行榜', href: '/rank'},
+    {name: '課程', href: '/course', id: 'course'},
+    {name: '題目', href: '/problem', id: 'problem'},
+    {name: '狀態', href: '/submission', id: 'status'},
+    {name: '競賽', href: '/contest', id: 'contest'},
+    {name: '排行榜', href: '/rank', id: 'rank'},
 ]
 const userNavigation = [
     {name: '個人檔案', href: '/member'},
@@ -25,7 +25,8 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
 
-export default function Nav() {
+
+export default async function Nav() {
     const router = useRouter()
     const logout = () => {
         signOut(auth).then(() => {
@@ -40,6 +41,7 @@ export default function Nav() {
             router.replace('/auth')
         }
     }, [loading, user])
+    const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
@@ -60,7 +62,9 @@ export default function Nav() {
                                 </div>
                                 <div className="hidden md:block">
                                     <div className="ml-10 flex items-baseline space-x-4">
-                                        {navigation.map((item) => (
+                                        {navigation.filter(
+                                            x => config?.app?.nav?.[x.id] ?? true
+                                        ).map((item) => (
                                             <a
                                                 key={item.name}
                                                 href={item.href}
@@ -96,7 +100,8 @@ export default function Nav() {
                                                 <span className="sr-only">Open user menu</span>
                                                 {/*<span className={"mx-1"}>Hi, {user?.name} {user?.credit}</span>*/}
                                                 {user?.avatar ? (
-                                                    <img className="h-8 w-8 rounded-full" src={`${process.env.NEXT_PUBLIC_ASSET_ENDPOINT}/avatars/${user?.avatar}`}
+                                                    <img className="h-8 w-8 rounded-full"
+                                                         src={`${process.env.NEXT_PUBLIC_ASSET_ENDPOINT}/avatars/${user?.avatar}`}
                                                          alt=""/>
                                                 ) : (
                                                     <UserCircleIcon className="h-8 w-8 rounded-full"/>
@@ -163,7 +168,9 @@ export default function Nav() {
 
                     <Disclosure.Panel className="md:hidden">
                         <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                            {navigation.map((item) => (
+                            {navigation.filter(
+                                x => config.nav?.[x.id] ?? true
+                            ).map((item) => (
                                 <Disclosure.Button
                                     key={item.name}
                                     as="a"
