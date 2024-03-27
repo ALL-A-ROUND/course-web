@@ -1,6 +1,9 @@
 import Link from "next/link";
 import {api} from "@/app/utils";
 import {HomeIcon} from "@heroicons/react/24/solid";
+import {InformationCircleIcon} from '@heroicons/react/20/solid'
+import {CreditCardIcon} from "@heroicons/react/24/outline";
+import BuyCourseWidget from "@/app/course/[course_id]/BuyCourseWidget";
 
 export default async function CourseMain({params}) {
     const course = await api("GET", `/course/${params.course_id}`, null).then(d => d);
@@ -33,6 +36,7 @@ export default async function CourseMain({params}) {
             <div className={"flex flex-col gap-4"}>
                 <div className={"border-b border-dotted border-gray-300 text-xl"}>課程活動</div>
             </div>
+            {course && !course.can_access && <BuyCourseWidget course={course}/>}
         </>
     )
 }

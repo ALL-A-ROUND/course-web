@@ -41,6 +41,8 @@ export default function Credit() {
         switch (type) {
             case "credit":
                 return "靶機點數"
+            case "course":
+                return "購買課程"
         }
     }
 
