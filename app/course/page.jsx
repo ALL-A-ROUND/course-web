@@ -61,7 +61,7 @@ export default function Course() {
                             </div>
                         </div>
                         <div className={"flex flex-col gap-4"}>
-                            <div className={"border-b border-dotted border-gray-300 text-xl"}>管理的課程</div>
+                            <div className={"border-b border-dotted border-gray-300 text-xl"}>推薦的課程</div>
                             <div className={"grid grid-cols-2 gap-4"}>
                                 <CourseList type="recommend"/>
                                 <Link href={"/course/add"}>
