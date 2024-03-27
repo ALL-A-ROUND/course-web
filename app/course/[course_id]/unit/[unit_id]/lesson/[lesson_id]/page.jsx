@@ -39,9 +39,10 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     }
 
     const alertWatch = async () => {
-        player?.pauseVideo()
+        await player?.pauseVideo()
         console.log("[INFO] User is not watching the video")
         alert('請移動您的滑鼠或按任意鍵以保持觀看狀態')
+        clearTimeout(timer)
     }
 
     return (
