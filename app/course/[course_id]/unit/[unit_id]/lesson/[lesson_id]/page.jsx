@@ -14,7 +14,11 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
         data: lesson,
         isLoading
     } = useSWR(`/lesson/${lesson_id}`, async (url) => await api("GET", url, null).then(d => d))
-
+    const {
+        data: course,
+        isLoading2
+    } = useSWR(`/course/${course_id}`, async (url) => await api("GET", url, null).then(d => d))
+    const [showQuiz, setShowQuiz] = useState(false)
     useEffect(() => {
         if (lesson?.video) {
             api('GET', `/lesson/${lesson_id}/watch`).then(d => {
@@ -30,7 +34,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
         setInterval(async () => {
             if (player) {
                 console.log(player.getCurrentTime())
-                if (player.getCurrentTime() > 30) {
+                if (player.getCurrentTime() > 30 && !course?.can_access) {
                     alert("您沒有權限看超過30秒的影片")
                 }
             }
@@ -39,7 +43,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
             window.removeEventListener('mousemove', updateTimer)
             window.removeEventListener('keydown', updateTimer)
         }
-    }, [ ])
+    }, [])
 
     const updateTimer = async () => {
         console.log('[INFO] Update timer')
@@ -74,10 +78,19 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                                     time: e.target.getCurrentTime()
                                 })
                             }}
+                            opts={{
+                                playerVars: {
+                                    autoplay: 1,
+                                    start: watchTime,
+                                    controls: 0,
+                                }
+                            }}
                             onEnd={async e => {
                                 await api('POST', `/lesson/${lesson_id}/watch/end`, {
                                     time: e.target.getCurrentTime(),
                                 })
+                                alert("影片觀看完成，可以進行測驗")
+                                setShowQuiz(true)
                             }}
                             onReady={e => {
                                 setPlayer(e.target)
@@ -99,6 +112,10 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
 
                     <div className={"h-full my-8"}>
                         {lesson?.article ?? "本堂課程未提供文字講義"}
+
+                        {showQuiz && <div className={"mt-4"}>
+                            <a href={course?.form_url} target={"_blank"} className={"w-full h-96"}></a>
+                        </div>}
                     </div>
                 </div>
             </ul>
