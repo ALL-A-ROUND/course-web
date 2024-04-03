@@ -114,7 +114,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                         {lesson?.article ?? "本堂課程未提供文字講義"}
 
                         {showQuiz && <div className={"mt-4"}>
-                            <a href={course?.form_url} target={"_blank"} className={"w-full h-96"}></a>
+                            <a href={course?.form_url} target={"_blank"} className={"w-full h-96"}>做測驗</a>
                         </div>}
                     </div>
                 </div>
