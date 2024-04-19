@@ -86,20 +86,16 @@ export default function ({params: {course_id}}) {
                         ))}
 
                         {Array.isArray(unit?.attachments) && unit?.attachments?.map((attachment, idx) => (<>
-                            {
-                                attachment?.type === "link" ? (<>
-                                    <Link href={attachment?.path}
-                                          key={`attachment-${attachment?.id}-${idx}`}
-                                          className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
-                                          style={{
-                                              "transition": ".5s"
-                                          }}>
+                            <Link href={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + attachment?.path}
+                                  key={`attachment-${attachment?.id}-${idx}`}
+                                  className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
+                                  style={{
+                                      "transition": ".5s"
+                                  }}>
                                             <span className={"inline-flex items-center"}>
                                                 <DocumentIcon className={"h-6 w-6 text-gray-600"}/>附件 {attachment?.name}
                                             </span>
-                                    </Link>
-                                </>): <></>
-                            }
+                            </Link>
                         </>))}
 
                         {Array.isArray(unit?.links) && unit?.links?.map((link, idx) => (<>
