@@ -13,12 +13,37 @@ import {
     PlusIcon,
     VideoCameraIcon
 } from "@heroicons/react/24/solid";
+import {auth} from "@/lib/firebase/firebase";
 
-export default function ({params: {course_id}}) {
+export default async function ({params: {course_id}}) {
     const {
         data: units,
         isLoading
     } = useSWR(`/course/${course_id}/units`, async (url) => await api("GET", url, null).then(d => d))
+    const token = await auth.currentUser?.getIdToken()
+
+    const download = async (id, fn) => {
+        fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + "/attachment/" + id, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            }
+            // 其他設定或是需要傳遞的資料
+        })
+            .then((response) => response.blob())
+            .then((blob) => {
+                var url = window.URL.createObjectURL(blob); // create url from blob
+                var fileLink = document.createElement('a'); // create link for file
+                fileLink.href = url;
+                fileLink.download = fn; // set file name
+                document.body.appendChild(fileLink); // append file link to download
+                fileLink.click();
+                fileLink.remove(); // remove file link after click
+            })
+            .catch((error) => {
+                // Handle error here.
+            });
+    }
     return (
         <div className="overflow-hidden bg-white sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
@@ -86,16 +111,18 @@ export default function ({params: {course_id}}) {
                         ))}
 
                         {Array.isArray(unit?.attachments) && unit?.attachments?.map((attachment, idx) => (<>
-                            <Link href={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + attachment?.path}
-                                  key={`attachment-${attachment?.id}-${idx}`}
-                                  className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
-                                  style={{
-                                      "transition": ".5s"
-                                  }}>
-                                            <span className={"inline-flex items-center"}>
-                                                <DocumentIcon className={"h-6 w-6 text-gray-600"}/>附件 {attachment?.name}
-                                            </span>
-                            </Link>
+                            <button
+                                onClick={e => download(attachment?.id, attachment?.name)}
+                                key={`attachment-${attachment?.id}-${idx}`}
+                                className={"inline-flex items-center justify-between border-t gap-3 w-full p-2 hover:bg-purple-300"}
+                                style={{
+                                    "transition": ".5s"
+                                }}>
+                                <span className={"inline-flex items-center"}>
+                                    <DocumentIcon
+                                        className={"h-6 w-6 text-gray-600"}/>附件 {attachment?.name}
+                                </span>
+                            </button>
                         </>))}
 
                         {Array.isArray(unit?.links) && unit?.links?.map((link, idx) => (<>
@@ -113,7 +140,7 @@ export default function ({params: {course_id}}) {
                                                 <LinkIcon className={"h-6 w-6 text-gray-600"}/>連結 {link?.name}
                                             </span>
                                     </Link>
-                                </>): <></>
+                                </>) : <></>
                             }
                         </>))}
                     </li>
