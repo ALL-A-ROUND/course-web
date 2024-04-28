@@ -18,7 +18,9 @@ export default function BuyCourseWidget({course}) {
     }
 
     const join = () => {
-
+        api("POST", `/course/${course.id}/free_join`, null).then(() => {
+            location.reload()
+        })
     }
 
     return (
@@ -28,20 +30,35 @@ export default function BuyCourseWidget({course}) {
                     <InformationCircleIcon className="h-5 w-5 text-yellow-400" aria-hidden="true"/>
                 </div>
                 <div className="ml-3 flex-1 md:flex md:justify-between">
-                    <p className="text-sm text-yellow-700">
-                        心動了嗎？立即購買課程，開始學習吧！
-                    </p>
-                    <p className="mt-3 text-sm md:ml-6 md:mt-0">
-                        {course?.price > 0 && (
-                            <button
-                                onClick={buy}
-                                className="bg-orange-200 p-2 rounded-md whitespace-nowrap font-medium text-yellow-700 hover:text-yellow-600">
-                                <CreditCardIcon className="h-5 w-5 inline-block" aria-hidden="true"/>
-                                NT${course?.price} &nbsp;
-                                立即購買
-                            </button>
-                        )}
-                    </p>
+                    {course?.price === 0 ? (
+                        <>
+                            <p className="text-sm text-yellow-700">
+                                心動了嗎？立即加入課程，開始學習吧！
+                            </p>
+                            <p className="mt-3 text-sm md:ml-6 md:mt-0">
+                                <button onClick={join}
+                                        className="bg-orange-200 p-2 rounded-md whitespace-nowrap font-medium text-yellow-700 hover:text-yellow-600">
+                                    <CreditCardIcon className="h-5 w-5 inline-block" aria-hidden="true"/>
+                                    免費加入課程
+                                </button>
+                            </p>
+                        </>
+                    ) : (<>
+                            <p className="text-sm text-yellow-700">
+                                心動了嗎？立即購買課程，開始學習吧！
+                            </p>
+                            <p className="mt-3 text-sm md:ml-6 md:mt-0">
+                                {course?.price > 0 && (
+                                    <button
+                                        onClick={buy}
+                                        className="bg-orange-200 p-2 rounded-md whitespace-nowrap font-medium text-yellow-700 hover:text-yellow-600">
+                                        <CreditCardIcon className="h-5 w-5 inline-block" aria-hidden="true"/>
+                                        NT${course?.price} &nbsp;
+                                        立即購買
+                                    </button>
+                                )}
+                            </p></>
+                    )}
                 </div>
             </div>
 

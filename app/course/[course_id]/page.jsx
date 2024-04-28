@@ -1,8 +1,6 @@
 import Link from "next/link";
 import {api} from "@/app/utils";
 import {HomeIcon} from "@heroicons/react/24/solid";
-import {InformationCircleIcon} from '@heroicons/react/20/solid'
-import {CreditCardIcon} from "@heroicons/react/24/outline";
 import BuyCourseWidget from "@/app/course/[course_id]/BuyCourseWidget";
 
 export default async function CourseMain({params}) {
