@@ -8,8 +8,7 @@ import DiscussPage from "@/app/course/[course_id]/discuss/page";
 export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     const [player, setPlayer] = useState(null)
     const [watchTime, setWatchTime] = useState(null)
-    const [timer, setTimer] = useState(null)
-    const [timeInterval, setTimeInterval] = useState(null)
+    let timer;
     const [endOfVideo, setEndOfVideo] = useState(null)
     const {
         data: lesson,
@@ -49,7 +48,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     const updateTimer = async () => {
         console.log('[INFO] Update timer')
         clearTimeout(timer)
-        setTimer(setTimeout(alertWatch, Math.random() * 10000 + 120 * 1000))
+        timer = setTimeout(alertWatch, Math.random() * 10000 + 120 * 1000)
     }
 
     const alertWatch = async () => {
