@@ -1,10 +1,15 @@
+"use client";
 import Link from "next/link";
 import {api} from "@/app/utils";
 import {HomeIcon} from "@heroicons/react/24/solid";
 import BuyCourseWidget from "@/app/course/[course_id]/BuyCourseWidget";
+import useSWR from "swr";
 
-export default async function CourseMain({params}) {
-    const course = await api("GET", `/course/${params.course_id}`, null).then(d => d);
+export default function CourseMain({params}) {
+    const {
+        data: course,
+        isLoading
+    } = useSWR(`/course/${params.course_id}`, async (url) => await api("GET", `/course/${params.course_id}`, null).then(d => d))
 
     return (
         <>
@@ -15,6 +20,12 @@ export default async function CourseMain({params}) {
             </div>
 
             <div className={"flex flex-col border rounded-xl p-2 gap-4"}>
+                {isLoading &&
+                    <div className={"animate-pulse flex flex-col gap-4"}>
+                        <div className={"w-1/6 h-12 bg-gray-200 rounded-lg"}/>
+                        <div className={"w-5/6 h-12 bg-gray-200 rounded-lg"}/>
+                    </div>
+                }
                 <span className={"text-yellow-700 text-2xl"}>{course?.name}</span>
                 <div className={"text-md tracking-wider"} dangerouslySetInnerHTML={{
                     __html: course?.introduction?.replace(/\n/g, "<br/>") ?? ''
@@ -34,7 +45,7 @@ export default async function CourseMain({params}) {
             <div className={"flex flex-col gap-4"}>
                 <div className={"border-b border-dotted border-gray-300 text-xl"}>課程活動</div>
             </div>
-            {course && !course.can_access && <BuyCourseWidget course={course}/>}
+            {course && course.can_access === false && <BuyCourseWidget course={course}/>}
         </>
     )
 }
