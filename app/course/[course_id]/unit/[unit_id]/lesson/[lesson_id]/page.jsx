@@ -10,6 +10,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     const [watchTime, setWatchTime] = useState(null)
     const [timer, setTimer] = useState(null)
     const [timeInterval, setTimeInterval] = useState(null)
+    const [endOfVideo, setEndOfVideo] = useState(null)
     const {
         data: lesson,
         isLoading
@@ -83,6 +84,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                                     autoplay: 1,
                                     start: watchTime,
                                     controls: 0,
+                                    rel: 0,
                                 }
                             }}
                             onEnd={async e => {
@@ -95,6 +97,7 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                             onReady={e => {
                                 setPlayer(e.target)
                                 e.target.seekTo(watchTime)
+                                setEndOfVideo(e.target.getDuration())
                             }}
                             onPlay={async e => {
                                 await api('POST', `/lesson/${lesson_id}/watch`, {
@@ -107,7 +110,11 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
 
                     {
                         watchTime !== null && <div
-                            className={"text-gray-500"}>上次觀看到：{moment.duration(moment().add(watchTime, 'seconds').diff(moment())).humanize()}</div>
+                            className={"text-gray-500"}>
+                            上次觀看到：
+                            {moment.duration(moment().add(watchTime, 'seconds').diff(moment())).humanize()} /
+                            {endOfVideo !== null && moment.duration(endOfVideo, 'seconds').humanize()} ({Math.round(watchTime / endOfVideo * 100)}%)
+                        </div>
                     }
 
                     <div className={"h-full my-8"}>
