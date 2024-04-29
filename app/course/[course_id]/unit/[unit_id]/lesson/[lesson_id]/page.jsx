@@ -119,15 +119,18 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                     <div className={"h-full my-8"}>
                         {lesson?.article ?? "本堂課程未提供文字講義"}
 
-                        {showQuiz && <div className={"mt-4"}>
-                            {course?.form_url ?
-                                <a href={course?.form_url} target={"_blank"} className={"w-full h-96"}>做測驗</a> :
-                                <span className={"text-red-500"}>本堂課程未提供測驗</span>}
-                            {course?.motivation_survey_url ?
-                                <a href={course?.motivation_survey_url} target={"_blank"}
-                                   className={"w-full h-96"}>滿意度調查</a> :
-                                <span className={"text-red-500"}>本堂課程未提供滿意度調查</span>}
-                        </div>}
+                        <div className={"flex flex-col gap-2"}>
+
+                            {showQuiz && <>
+                                {lesson?.form_url ?
+                                    <div onClick={()=>window.open(lesson?.form_url)} className={"flex items-center justify-center bg-indigo-300  w-full h-12"}>做測驗</div> :
+                                    <span className={"text-red-500"}>本堂課程未提供測驗</span>}
+                                {lesson?.motivation_survey_url ?
+                                    <div onClick={()=>window.open(lesson?.motivation_survey_url)}
+                                       className={"flex items-center justify-center bg-indigo-300 w-full h-12"}>滿意度調查</div> :
+                                    <span className={"text-red-500"}>本堂課程未提供滿意度調查</span>}
+                            </>}
+                        </div>
                     </div>
                 </div>
             </ul>
