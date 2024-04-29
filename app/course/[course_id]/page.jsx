@@ -28,7 +28,7 @@ export default function CourseMain({params}) {
                 }
                 <span className={"text-yellow-700 text-2xl"}>{course?.name}</span>
                 <div className={"text-md tracking-wider"} dangerouslySetInnerHTML={{
-                    __html: course?.introduction?.replace(/\n/g, "<br/>") ?? ''
+                    __html: course?.parsed_introduction ?? ''
                 }}></div>
             </div>
 
