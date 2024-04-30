@@ -20,6 +20,7 @@ const footerNavigation = {
     legal: [
         {name: '隱私權政策', href: 'https://policy.esgltc.com/privacy'},
         {name: '使用條款', href: 'https://policy.esgltc.com/terms'},
+        {name: '常見問題 / 退貨消保政策', href: '/faq'},
     ],
     social: [
         {

@@ -77,6 +77,7 @@ export default function Example() {
                     <h2 className="text-2xl font-bold leading-10 tracking-tight text-gray-900">常見問題</h2>
                     <p className="mt-6 text-base leading-7 text-gray-600">
                         為了協助您在使用服務過程中可能遇到的狀況，以下為常見問題解答
+                        <br/>
                         <a href="mailto:administrator@esgltc.com"
                            className="font-semibold text-indigo-600 hover:text-indigo-500">
                             客服信箱：administrator@esgltc.com
