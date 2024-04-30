@@ -111,9 +111,12 @@ export default function Footer() {
                             </a>
                         ))}
                     </div>
-                    <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
-                        &copy; {(new Date()).getFullYear()}  中華國際全方位照護學會
-                    </p>
+                    <div className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
+                        <span>&copy; {(new Date()).getFullYear()}  中華國際全方位照護學會</span>
+                        <span>
+                            &nbsp;|&nbsp; 網站擁有＆管理者 <a href="https://esgltc.com" className="text-gray-500 hover:text-gray-900" target={"_blank"}>台灣全方位國際科技有限公司 (93559521, AS18044)</a> 設計
+                        </span>
+                    </div>
                 </div>
             </div>
         </footer>
