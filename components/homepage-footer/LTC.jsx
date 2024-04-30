@@ -18,8 +18,8 @@ const footerNavigation = {
         // {name: '合作夥伴', href: '#'},
     ],
     legal: [
-        {name: '隱私權政策', href: 'https://policy.hsuan.app/privacy'},
-        {name: '使用條款', href: 'https://policy.hsuan.app/terms'},
+        {name: '隱私權政策', href: 'https://policy.esgltc.com/privacy'},
+        {name: '使用條款', href: 'https://policy.esgltc.com/terms'},
     ],
     social: [
         {
@@ -61,6 +61,23 @@ export default function Footer() {
                                 <h3 className="text-base font-medium text-gray-900">聯絡方式</h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {footerNavigation.contact.map((item) => (
+                                        <li key={item.name}>
+                                            <a href={item.href}
+                                               className="text-base text-gray-500 hover:text-gray-900">
+                                                {item.name}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-8 xl:col-span-2">
+                        <div className="md:grid md:grid-cols-2 md:gap-8">
+                            <div>
+                                <h3 className="text-base font-medium text-gray-900">法遵</h3>
+                                <ul role="list" className="mt-4 space-y-4">
+                                    {footerNavigation.legal.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href}
                                                className="text-base text-gray-500 hover:text-gray-900">
@@ -116,6 +133,12 @@ export default function Footer() {
                         <span>
                             &nbsp;|&nbsp; 網站擁有＆管理者 <a href="https://esgltc.com" className="text-gray-500 hover:text-gray-900" target={"_blank"}>台灣全方位國際科技有限公司 (93559521, AS18044)</a> 設計
                         </span>
+                        <p>
+                            <p>營業人稅籍資料：</p>
+                            <p>公司統一編號：93559521</p>
+                            <p>公司名稱：台灣全方位國際科技有限公司</p>
+                            <p>公司地址：804060 高雄市鼓山區博愛二路343號6樓之11</p>
+                        </p>
                     </div>
                 </div>
             </div>
