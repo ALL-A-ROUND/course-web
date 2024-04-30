@@ -124,7 +124,7 @@ const posts = [
                 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },*/
     },
-    {
+   /* {
         id: 7,
         title: '點選右方圖片連結洽詢',
         href: 'https://forms.gle/ovdSpAFuoNjZSVSa7',
@@ -143,17 +143,17 @@ const posts = [
 
 注意：此課程研習證明申請截止日3/23。超過此日再申請或繳費，將不受理，3/24起繳納之費用將不退回，直接列入您對學會的捐贈，謝謝`,
         imageUrl: 'https://static.wixstatic.com/media/4a36e2_bc87d7cb03244d988e065ee94784e73e~mv2.jpg/v1/crop/x_11,y_0,w_834,h_1312/fill/w_368,h_579,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/323.jpg',
-        date: null,/*'Mar 16, 2020',*/
+        date: null,/!*'Mar 16, 2020',*!/
         datetime: null,// '2020-03-16',
         category: null, //{title: 'Marketing', href: '#'},
-        author: null/*{
+        author: null/!*{
             name: 'Michael Foster',
             role: 'Co-Founder / CTO',
             href: '#',
             imageUrl:
                 'https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-        },*/
-    },
+        },*!/
+    },*/
     {
         id: 2,
         title: '點選右方圖片連結洽詢',
