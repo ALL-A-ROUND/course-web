@@ -75,11 +75,11 @@ export async function api(method, endpoint, jsonBody = undefined, options = {
         const data = await res.json()
         if (res.status >= 400) {
             if (options.disableError !== true && !SSR) {
-                await Swal.fire({
-                    icon: 'error',
-                    title: '發生錯誤',
-                    text: data?.message ?? '未知錯誤'
-                })
+                // await Swal.fire({
+                //     icon: 'error',
+                //     title: '發生錯誤',
+                //     text: data?.message ?? '未知錯誤'
+                // })
                 if (data?.redirect)
                     window.location.href = data.redirect
             }
