@@ -30,7 +30,7 @@ export default function ({params}) {
     const features = [
         {
             id: 'unit',
-            name: '單元',
+            name: '影片播放',
             path: `/course/${params.course_id}/unit`,
             icon: BookOpenIcon,
         },
