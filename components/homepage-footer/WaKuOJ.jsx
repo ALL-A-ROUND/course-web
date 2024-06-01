@@ -85,7 +85,7 @@ const footerNavigation = {
 }
 export default function Footer() {
     return (
-        <footer className="bg-gray-50" aria-labelledby="footer-heading">
+        <footer className="bg-year-400" aria-labelledby="footer-heading">
             <h2 id="footer-heading" className="sr-only">
                 Footer
             </h2>
@@ -94,12 +94,12 @@ export default function Footer() {
                     <div className="grid grid-cols-2 gap-8 xl:col-span-2">
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-base font-medium text-gray-900">解決方案</h3>
+                                <h3 className="text-base font-medium text-year-200">解決方案</h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {footerNavigation.solutions.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href}
-                                               className="text-base text-gray-500 hover:text-gray-900">
+                                               className="text-base text-white hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -107,12 +107,12 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-12 md:mt-0">
-                                <h3 className="text-base font-medium text-gray-900">客戶支援</h3>
+                                <h3 className="text-base font-medium text-year-200">客戶支援</h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {footerNavigation.support.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href}
-                                               className="text-base text-gray-500 hover:text-gray-900">
+                                               className="text-base text-white hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -122,12 +122,12 @@ export default function Footer() {
                         </div>
                         <div className="md:grid md:grid-cols-2 md:gap-8">
                             <div>
-                                <h3 className="text-base font-medium text-gray-900">公司治理</h3>
+                                <h3 className="text-base font-medium text-year-200">公司治理</h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {footerNavigation.company.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href}
-                                               className="text-base text-gray-500 hover:text-gray-900">
+                                               className="text-base text-white hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -135,12 +135,12 @@ export default function Footer() {
                                 </ul>
                             </div>
                             <div className="mt-12 md:mt-0">
-                                <h3 className="text-base font-medium text-gray-900">法務</h3>
+                                <h3 className="text-base font-medium text-year-200">法務</h3>
                                 <ul role="list" className="mt-4 space-y-4">
                                     {footerNavigation.legal.map((item) => (
                                         <li key={item.name}>
                                             <a href={item.href}
-                                               className="text-base text-gray-500 hover:text-gray-900">
+                                               className="text-base text-white hover:text-gray-900">
                                                 {item.name}
                                             </a>
                                         </li>
@@ -182,13 +182,13 @@ export default function Footer() {
                     className="mt-12 border-t border-gray-200 pt-8 md:flex md:items-center md:justify-between lg:mt-16">
                     <div className="flex space-x-6 md:order-2">
                         {footerNavigation.social.map((item) => (
-                            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-500">
+                            <a key={item.name} href={item.href} className="text-gray-100 hover:text-gray-500">
                                 <span className="sr-only">{item.name}</span>
                                 <item.icon className="h-6 w-6" aria-hidden="true"/>
                             </a>
                         ))}
                     </div>
-                    <p className="mt-8 text-base text-gray-400 md:order-1 md:mt-0">
+                    <p className="mt-8 text-base text-white md:order-1 md:mt-0">
                         &copy; {(new Date()).getFullYear()} 喵課學院
                     </p>
                 </div>
