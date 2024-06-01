@@ -1,7 +1,8 @@
+"use client"
 
-import {usePathname, useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/router";
 
-export default function CourseLayout({children}) {
+export default function CourseLayout({ children }) {
     return (
         <div className="flex min-h-full flex-col">
             {/* 3 column wrapper */}

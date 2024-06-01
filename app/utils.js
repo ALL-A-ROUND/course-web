@@ -1,15 +1,11 @@
-import {BookOpenIcon, Cog6ToothIcon, PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ChatBubbleLeftRightIcon, ClipboardIcon, MegaphoneIcon, TableCellsIcon} from "@heroicons/react/24/outline";
+import { BookOpenIcon, Cog6ToothIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { ChatBubbleLeftRightIcon, ClipboardIcon, MegaphoneIcon, TableCellsIcon } from "@heroicons/react/24/outline";
 import originMoment from 'moment'
 import 'moment/locale/zh-tw'
-import Swal from "sweetalert2";
-import {InformationCircleIcon} from "@heroicons/react/20/solid";
+import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
-import {auth} from "@/lib/firebase/firebase";
-import {useAuthState, useIdToken} from "react-firebase-hooks/auth";
-import {GoogleAuthProvider, signInWithPopup} from "firebase/auth";
-import {useRouter} from "next/navigation";
+import { auth } from "@/lib/firebase/firebase";
 
 export function sha256(str) {
     // Get the string as arraybuffer.
