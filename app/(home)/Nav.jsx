@@ -1,51 +1,32 @@
 "use client"
 
-import {Popover, Transition} from "@headlessui/react";
+import { Popover, Transition } from "@headlessui/react";
 import {
     AcademicCapIcon,
     Bars3Icon,
     XMarkIcon
 } from "@heroicons/react/24/outline";
-import {ChevronDownIcon} from "@heroicons/react/20/solid";
-import {Fragment, useEffect} from "react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { Fragment, useEffect } from "react";
 import Link from "next/link";
-import useSWR from "swr";
-import {usePathname, useRouter} from "next/navigation";
-import {middlewareConfig} from "@/app/middleware.config";
+import { usePathname, useRouter } from "next/navigation";
+import { middlewareConfig } from "@/app/middleware.config";
 import Image from "next/image";
-import useUser from "@/app/useUser";
-import {GoogleAuthProvider, signInWithPopup, signInWithRedirect} from "firebase/auth";
-import {auth} from "@/lib/firebase/firebase";
-import {useAuthState} from "react-firebase-hooks/auth";
+import { GoogleAuthProvider, signInWithPopup, signInWithRedirect } from "firebase/auth";
+import { auth } from "@/lib/firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-const {detect} = require('detect-browser');
+const { detect } = require('detect-browser');
+
 const browser = detect();
 
 const solutions = [
-    // {
-    //     name: '題庫系統',
-    //     description: '讓教學老師能快速地在系統上出題',
-    //     href: '/question_bank',
-    //     icon: FolderIcon,
-    // },
     {
         name: '課程平台',
         description: '簡單易用的平台，讓學生能快速找到每堂課的練習題及作業並能線上即時評測',
         href: '/course',
         icon: AcademicCapIcon,
     },
-    // {
-    //     name: '即時通知',
-    //     description: "課程結束、作業截止、成績公布等重要通知均會傳送即時通知給家長，家長可以即時追蹤孩子學習狀況",
-    //     href: '#',
-    //     icon: BellIcon,
-    // },
-    // {
-    //     name: '即時提問',
-    //     description: "提問系統，讓學生能夠在課堂時間外提問",
-    //     href: '#',
-    //     icon: QuestionMarkCircleIcon,
-    // },
 ]
 
 function classNames(...classes) {
@@ -57,8 +38,6 @@ export default function Nav() {
     const pathname = usePathname()
     const [user, loading, error] = useAuthState(auth)
 
-
-
     const signIn = () => {
         if (browser?.name === "safari") {
             signInWithRedirect(auth, new GoogleAuthProvider())
@@ -66,6 +45,7 @@ export default function Nav() {
             signInWithPopup(auth, new GoogleAuthProvider())
         }
     }
+
     useEffect(() => {
         for (let route of Object.keys(middlewareConfig)) {
             if (middlewareConfig[route].regex.test(pathname)) {
@@ -99,12 +79,12 @@ export default function Nav() {
                     <Popover.Button
                         className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                         <span className="sr-only">Open menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
+                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
                     </Popover.Button>
                 </div>
                 <Popover.Group as="nav" className="hidden space-x-10 md:flex">
                     <Popover className="relative">
-                        {({open}) => (
+                        {({ open }) => (
                             <>
                                 <Popover.Button
                                     className={classNames(
@@ -145,7 +125,7 @@ export default function Nav() {
                                                     >
                                                         <div
                                                             className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white sm:h-12 sm:w-12">
-                                                            <item.icon className="h-6 w-6" aria-hidden="true"/>
+                                                            <item.icon className="h-6 w-6" aria-hidden="true" />
                                                         </div>
                                                         <div className="ml-4">
                                                             <p className="text-base font-medium text-gray-900">{item.name}</p>
@@ -160,20 +140,11 @@ export default function Nav() {
                             </>
                         )}
                     </Popover>
-
-                    {/*<Link href="/pricing"*/}
-                    {/*      className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">*/}
-                    {/*    價格*/}
-                    {/*</Link>*/}
-                    {/*<Link href={"/about"}*/}
-                    {/*      className="cursor-pointer text-base font-medium text-gray-500 hover:text-gray-900">*/}
-                    {/*    關於我們*/}
-                    {/*</Link>*/}
                 </Popover.Group>
                 <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
                     {!loading && typeof user?.displayName === "undefined" ? (<>
                         <button onClick={signIn}
-                                className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                            className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                             登入
                         </button>
                     </>) : (
@@ -212,7 +183,7 @@ export default function Nav() {
                                     <Popover.Button
                                         className="inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                                         <span className="sr-only">Close menu</span>
-                                        <XMarkIcon className="h-6 w-6" aria-hidden="true"/>
+                                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                                     </Popover.Button>
                                 </div>
                             </div>
@@ -226,7 +197,7 @@ export default function Nav() {
                                         >
                                             <div
                                                 className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-gradient-to-r from-purple-600 to-indigo-600 text-white">
-                                                <item.icon className="h-6 w-6" aria-hidden="true"/>
+                                                <item.icon className="h-6 w-6" aria-hidden="true" />
                                             </div>
                                             <div className="ml-4 text-base font-medium text-gray-900">{item.name}</div>
                                         </a>
@@ -237,11 +208,11 @@ export default function Nav() {
                         <div className="py-6 px-5">
                             <div className="grid grid-cols-2 gap-4">
                                 <Link href="/pricing"
-                                      className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     Pricing
                                 </Link>
                                 <Link href="/question_bank"
-                                      className="text-base font-medium text-gray-900 hover:text-gray-700">
+                                    className="text-base font-medium text-gray-900 hover:text-gray-700">
                                     題庫系統
                                 </Link>
                                 <Link href="/about" className="text-base font-medium text-gray-900 hover:text-gray-700">
