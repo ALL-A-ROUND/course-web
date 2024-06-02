@@ -1,6 +1,14 @@
 import Image from "next/image"
 import Company from "@/public/temp/company.avif"
 
+import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+} from "@/components/ui/carousel"
+
 const companies = [
     {
         id: "jseif",
@@ -21,15 +29,37 @@ const companies = [
 
 export default function Cooperation() {
     return (
-        <div className="h-80 w-full">
-            <div className="flex flex-row gap-5 items-center">
+        <div className="md:h-80 h-[30rem] md:w-full w-screen">
+            <div className="flex flex-row gap-5 items-center px-4">
                 <h2 className="text-3xl">合作單位</h2>
                 <h2 className="text-gray-600">| 優良合作夥伴</h2>
             </div>
-            <div className="flex flex-row gap-5">
+            <div className="flex md:flex-row flex-col gap-5 items-center">
 
-                <div className="flex flex-row py-8 gap-5 w-[52rem]">
-                    {companies.map(company => (
+                <div className="flex flex-row py-8 gap-5 w-full">
+                    <Carousel
+                        opts={{
+                            align: "start"
+                        }}
+                        className="relative w-full px-3"
+                    >
+                        <CarouselContent className="w-full">
+                            {companies.map((company, cnt) => (
+                                <CarouselItem className="md:basis-1/5 basis-40 select-none cursor-pointer" key={company.id}>
+                                    <div className="relative w-32 h-28">
+                                        <Image src={company.image.src}
+                                            alt={company.name}
+                                            width="0"
+                                            height="0"
+                                            sizes="100vw"
+                                            className="object-cover w-full h-full rounded-lg"
+                                        />
+                                    </div>
+                                </CarouselItem>
+                            ))}
+                        </CarouselContent>
+                    </Carousel>
+                    {/* {companies.map(company => (
                         <div key={company.id} className="w-60 h-32 border relative rounded-lg border-gray-500 flex items-center justify-center">
                             <div className="relative w-32 h-28">
                                 <Image src={company.image.src}
@@ -41,7 +71,7 @@ export default function Cooperation() {
                                 />
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                 </div>
                 <div className="bg-slate-100 w-72 h-52 flex flex-col items-center px-3 gap-3">
                     <div className="h-16">

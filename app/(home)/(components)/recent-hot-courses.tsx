@@ -56,13 +56,13 @@ const courses = [
 
 export default function RecentHotCourse() {
     return (
-        <div className=" w-full flex flex-row">
-            <div className="bg-year-500 h-[40rem] w-[calc(100%-5rem)]">
+        <div className="md:w-full w-screen flex flex-row">
+            <div className="bg-year-500 md:h-[40rem] h-[60rem] w-[calc(100%-5rem)]">
                 <div className='flex flex-row gap-3 items-center py-8 px-5 '>
                     <h1 className='text-white text-4xl'>近期熱門課程</h1>
                     <p className='text-white'>| 這是最新熱門課程的描述</p>
                 </div>
-                <div className='grid grid-cols-2 px-8'>
+                <div className='grid md:grid-cols-2 grid-cols-1 px-8'>
                     <div className='flex flex-col gap-3'>
                         {courses.slice(0, 3).map((course) => (
                             <FoundingCard

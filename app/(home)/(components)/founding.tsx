@@ -77,7 +77,7 @@ const carouselItems = [
 
 export default function FoundingSection() {
     return (
-        <div className="w-full">
+        <div className="w-screen md:w-full px-5">
             <div className="pt-10 " />
             <div className="flex flex-row py-5 gap-3 items-center">
                 <h2 className="text-xl font-semibold">最新募資課程</h2>
@@ -85,19 +85,17 @@ export default function FoundingSection() {
             </div>
             <Carousel
                 opts={{
-                    align: "center"
+                    align: "start"
                 }}
                 className="relative"
             >
                 <CarouselContent className="">
                     {carouselItems.map((item, cnt) => (
-                        <CarouselItem className="md:basis-1/3 select-none cursor-pointer" key={item.id}>
+                        <CarouselItem className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <FoundingCourse {...item} />
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
             </Carousel>
         </div>
     )

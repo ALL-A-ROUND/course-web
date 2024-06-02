@@ -43,7 +43,7 @@ const top_picks = [
 
 export default function Highlight() {
     return (
-        <div className="w-full">
+        <div className="md:w-full w-screen px-3 md:px-0">
             <div className="flex flex-row space-x-3 items-center py-3">
                 <h2 className="text-3xl">精選好課程</h2>
                 <h2>| 館長真心推薦</h2>
@@ -56,7 +56,7 @@ export default function Highlight() {
             >
                 <CarouselContent className="h-[28rem]">
                     {top_picks.map((item, cnt) => (
-                        <CarouselItem className="md:basis-1/3 select-none cursor-pointer relative" key={cnt}>
+                        <CarouselItem className="basis-1/2 md:basis-1/3 select-none cursor-pointer relative" key={cnt}>
                             <div className="w-full group">
                                 <div className="relative overflow-hidden rounded-md aspect-video bg-red-100">
                                     <Image src={demoImage}
@@ -65,7 +65,7 @@ export default function Highlight() {
                                         className="transition ease-in-out w-full h-full object-cover group-hover:scale-110"
                                     />
                                 </div>
-                                <div className="transition ease-in-out h-40 border rounded-md shadow-xl absolute w-[22rem] bg-white left-8 top-52 group-hover:left-4 group-hover:top-56">
+                                <div className="transition ease-in-out h-40 border rounded-md shadow-xl absolute w-full bg-white md:left-8 left-0 md:top-52 top-32 sm:top-48 md:group-hover:left-4 group-hover:top-56">
                                     <div className="h-1/3 text-xl px-3 py-2">{item.title}</div>
                                     <hr className="bg-black h-0.5" />
                                     <div className="h-1/2 px-3 py-2 flex flex-row">
@@ -81,8 +81,6 @@ export default function Highlight() {
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
             </Carousel>
         </div>
     )

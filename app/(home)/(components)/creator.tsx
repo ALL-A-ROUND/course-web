@@ -33,8 +33,8 @@ const creators = [
 
 export default function PopularCreators() {
     return (
-        <div className="w-full">
-            <div className="flex flex-row gap-5 py-8">
+        <div className="md:w-full w-screen">
+            <div className="flex flex-row gap-5 py-8 px-5 items-center">
                 <h2 className="text-3xl">熱門創作者</h2>
                 <h2>| 備受喜歡的創作者們</h2>
             </div>

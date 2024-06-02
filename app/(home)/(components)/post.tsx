@@ -46,12 +46,12 @@ const posts = [
 
 export default function Post() {
     return (
-        <div className="h-[32rem] w-full">
+        <div className="md:h-[32rem] h-[60rem] md:w-full w-screen px-5 md:px-0">
             <div className="flex flex-row gap-5 items-center">
                 <h2 className="text-3xl">精選文章</h2>
                 <h2>| 每周充電時間</h2>
             </div>
-            <div className="grid grid-cols-2 w-full gap-5">
+            <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-5">
                 {posts.map(post => (
                     <div key={post.id} className="flex flex-col relative border-b h-52 w-full">
                         <div className="flex flex-row gap-8">
