@@ -3,7 +3,7 @@ const footerNavigation = {
     contact: [
         // {name: '課程系統', href: '/course'},
         {name: '電話：0965-168725', href: 'tel:0965-168725'},
-        {name: 'Email：ICHcare2017@gmail.com', href: 'mailto:ICHcare2017@gmail.com'},
+        {name: '爭議款信箱/客服信箱：administrator@esgltc.com', href: 'mailto:administrator@esgltc.com'},
         {name: 'LINE ID：@home-angel', href: 'mailto:ICHcare2017@gmail.com'},
         // {name: '題目評測', href: '/problem'},
     ],
