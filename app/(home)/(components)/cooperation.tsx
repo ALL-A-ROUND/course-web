@@ -45,14 +45,15 @@ export default function Cooperation() {
                     >
                         <CarouselContent className="w-full">
                             {companies.map((company, cnt) => (
-                                <CarouselItem className="md:basis-1/5 basis-40 select-none cursor-pointer" key={company.id}>
+                                <CarouselItem className="md:basis-1/5 basis-40 select-none cursor-pointer"
+                                              key={company.id}>
                                     <div className="relative w-32 h-28">
                                         <Image src={company.image.src}
-                                            alt={company.name}
-                                            width="0"
-                                            height="0"
-                                            sizes="100vw"
-                                            className="object-cover w-full h-full rounded-lg"
+                                               alt={company.name}
+                                               width="0"
+                                               height="0"
+                                               sizes="100vw"
+                                               className="object-cover w-full h-full rounded-lg"
                                         />
                                     </div>
                                 </CarouselItem>
@@ -77,12 +78,13 @@ export default function Cooperation() {
                     <div className="h-16">
                     </div>
                     <div className="text-xl">
-                        加入喵課學院創作者的行列
+                        加入 {process.env.NEXT_PUBLIC_APP_NAME}創作者的行列
                     </div>
                     <div>
                         知識付費，讓你的知識變現
                     </div>
-                    <div className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg">
+                    <div
+                        className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg">
                         我要開課
                     </div>
                 </div>
