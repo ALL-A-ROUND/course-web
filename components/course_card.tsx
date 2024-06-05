@@ -64,8 +64,11 @@ export const NormalCourse = (item: {
         <div className="relative flex flex-col justify-between pb-3">
             <div>
                 <div className="relative overflow-hidden w-full rounded-md">
+                    {/* @ts-ignore */}
                     <Image src={item.image}
                         alt={item.title}
+                           width="256"
+                           height="0"
                         className="w-full h-full rounded-md hover:scale-110 object-cover transition ease-in-out"
                     />
                 </div>
@@ -74,7 +77,7 @@ export const NormalCourse = (item: {
                         <h2 className="bg-year-100 text-year-400 text-center py-0.5 rounded-md w-12 h-fit text-sm">課程</h2>
                         <h3 className="text-lg">{item.title}</h3>
                     </div>
-                    <h4 className="py-1 text-gray-700">{`By ${item.produced_by}`}</h4>
+                    {/*<h4 className="py-1 text-gray-700">{`By ${item.teachers}`}</h4>*/}
                 </div>
             </div>
             <div className="flex flex-row gap-3 items-center">

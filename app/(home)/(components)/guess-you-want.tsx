@@ -1,4 +1,4 @@
-
+"use client"
 import { FoundingCourse, NormalCourse } from "@/components/course_card"
 import demoImage from "@/public/temp/course-view.avif"
 import { StaticImageData } from "next/image"
@@ -11,6 +11,8 @@ import {
     CarouselNext,
     CarouselPrevious
 } from "@/components/ui/carousel"
+import useSWR from "swr";
+import {api} from "@/app/utils";
 
 type Data = {
     image: string | StaticImageData,
@@ -55,6 +57,11 @@ const data: Data[] = [
 ]
 
 export default function GuessYouWantPage() {
+    const {
+        data: courses,
+        isLoading
+    } = useSWR(`/course/recommend`, async (url) => await api("GET", `/course/recommend`, undefined).then(d => d))
+
     return (
         <div className="w-screen md:w-full pb-10 px-5">
             {/* <div className="flex flex-row gap-3 items-center">
@@ -73,12 +80,12 @@ export default function GuessYouWantPage() {
                 // orientation="vertical"
             >
                 <CarouselContent className="">
-                    {data.map((item, cnt) => (
+                    {courses?.map((item, cnt) => (
                         <CarouselItem className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
                                     <FoundingCourse
-                                        image={item.image}
+                                        image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
                                         title={item.title}
                                         price={item.price}
                                         original_price={item.original_price}
@@ -89,8 +96,8 @@ export default function GuessYouWantPage() {
                                     />
                                     :
                                     <NormalCourse
-                                        image={item.image}
-                                        title={item.title}
+                                        image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
+                                        title={item.name}
                                         price={item.price}
                                         produced_by={item.produced_by}
                                         alt={item.title}

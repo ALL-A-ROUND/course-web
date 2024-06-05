@@ -1,5 +1,8 @@
-import Image, { StaticImageData } from 'next/image'
+"use client";
+import Image, {StaticImageData} from 'next/image'
 import demoImage from '@/public/temp/course-view.avif'
+import useSWR from "swr";
+import {api} from "@/app/utils";
 
 const courses = [
     {
@@ -55,6 +58,11 @@ const courses = [
 ]
 
 export default function RecentHotCourse() {
+    const {
+        data: courses,
+        isLoading
+    } = useSWR(`/course/recommend`, async (url) => await api("GET", `/course/recommend`, undefined).then(d => d))
+
     return (
         <div className="md:w-full w-screen flex flex-row">
             <div className="bg-year-500 md:h-[40rem] h-[60rem] w-[calc(100%-5rem)]">
@@ -64,46 +72,46 @@ export default function RecentHotCourse() {
                 </div>
                 <div className='grid md:grid-cols-2 grid-cols-1 px-8'>
                     <div className='flex flex-col gap-3'>
-                        {courses.slice(0, 3).map((course) => (
+                        {courses?.slice(2,3)?.map((course) => (
                             <FoundingCard
                                 key={course.id}
-                                image={course.image}
-                                title={course.title}
-                                produced_by={course.produced_by}
-                                percentage={course.percentage}
+                                image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course.image}
+                                title={course.name}
+                                produced_by={course?.teachers?.join(' ') ?? '官方課程團隊'}
+                                percentage={course.percentage ?? 10}
                                 price={course.price}
-                                original_price={course.original_price}
+                                original_price={course.original_price ?? course.price + 1000}
                             />
                         ))}
                     </div>
                     <div className='flex flex-col gap-3 justify-center'>
-                        {courses.slice(3).map((course) => (
+                        {courses?.slice(0,1)?.map((course) => (
                             <FoundingCard
                                 key={course.id}
-                                image={course.image}
-                                title={course.title}
-                                produced_by={course.produced_by}
-                                percentage={course.percentage}
+                                image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course.image}
+                                title={course.name}
+                                produced_by={course?.teachers?.join(' ') ?? '官方課程團隊'}
+                                percentage={course.percentage ?? 10}
                                 price={course.price}
-                                original_price={course.original_price}
+                                original_price={course.original_price ?? course.price + 1000}
                             />
                         ))}
                     </div>
                 </div>
             </div>
-            <div className="w-20 bg-year-400 skew-y-[-20deg] -translate-y-[0.9rem]" />
+            <div className="w-20 bg-year-400 skew-y-[-20deg] -translate-y-[0.9rem]"/>
         </div>
     )
 }
 
 const FoundingCard = ({
-    image,
-    title,
-    produced_by,
-    percentage,
-    price,
-    original_price,
-}: {
+                          image,
+                          title,
+                          produced_by,
+                          percentage,
+                          price,
+                          original_price,
+                      }: {
     image: StaticImageData | string,
     title: string,
     produced_by: string,
@@ -115,8 +123,10 @@ const FoundingCard = ({
         <div className='flex flex-row text-white'>
             <div className='w-1/2 relative overflow-hidden'>
                 <Image src={image}
-                    alt={title}
-                    className='object-cover hover:scale-110 transition ease-in-out rounded-md w-full'
+                       alt={title}
+                       width={1280}
+                       height={720}
+                       className='object-cover hover:scale-110 transition ease-in-out rounded-md w-full'
                 />
             </div>
             <div className="py-3 px-3">
@@ -131,7 +141,7 @@ const FoundingCard = ({
                     </div>
                     <div className="h-1 bg-year-300 rounded-full" style={{
                         width: `${Math.min(percentage, 100)}%`
-                    }} />
+                    }}/>
                 </div>
                 <div className="flex flex-row gap-3 items-center">
                     <h2 className="text-xl ">{`NT$${price}`}</h2>

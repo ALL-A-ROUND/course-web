@@ -8,20 +8,22 @@ import RecentHotCourse from "./(components)/recent-hot-courses"
 import Post from "./(components)/post"
 import Creators from "./(components)/creator"
 import Cooperation from "./(components)/cooperation"
+import useSWR from "swr";
+import {api} from "@/app/utils";
 
 export default function HomePage() {
     return (
         <div className="flex flex-col items-center">
-            <CarouselPage />
+            <CarouselPage/>
             <div className="xl:px-20 px-0 max-w-7xl flex flex-col items-center space-y-8">
-                <Founding />
-                <GuessYouWant />
-                <Categories />
-                <Highlight />
-                <RecentHotCourse />
-                <Post />
-                <Creators />
-                <Cooperation />
+                <Founding/>
+                <GuessYouWant/>
+                <Categories/>
+                <Highlight/>
+                <RecentHotCourse/>
+                <Post/>
+                <Creators/>
+                <Cooperation/>
             </div>
         </div>
     )
