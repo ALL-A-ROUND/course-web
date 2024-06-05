@@ -1,3 +1,4 @@
+"use client"
 import {PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
 import {classNames} from "@/app/utils";

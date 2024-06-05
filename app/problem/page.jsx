@@ -1,8 +1,5 @@
-import {PencilSquareIcon} from "@heroicons/react/24/solid";
-import {ClipboardIcon} from "@heroicons/react/24/outline";
-import {classNames} from "@/app/utils";
+"use client"
 import ProblemList from "@/app/problem/ProblemList";
-import Link from "next/link";
 import SideBar from "@/app/SideBar";
 
 export default function Problem() {

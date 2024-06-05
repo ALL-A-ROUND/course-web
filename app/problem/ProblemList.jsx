@@ -13,7 +13,7 @@ export default function () {
         const res = await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
             headers: {
                 "Accept": "application/json",
-                "Authorization": "Bearer " + localStorage.getItem("token"),
+                "Authorization": "Bearer " + localStorage?.getItem("token"),
                 "Content-Type": "application/json",
             }
         })
