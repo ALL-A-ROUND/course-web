@@ -5,7 +5,7 @@ import ShoppingCartComponent from "./(navigation-components)/shopping-cart"
 import MyCourse from "./(navigation-components)/my-course"
 import NotificationCenter from "./(navigation-components)/notification-center"
 import AccountRelations from "./(navigation-components)/account-relation"
-
+const img = require("@/public/logo-ne.png")
 export default function NavigationBar() {
     return (
         <nav className="w-full h-14 flex flex-row justify-between px-3 lg:h-16 lg:px-10 border-b shadow">
@@ -15,7 +15,7 @@ export default function NavigationBar() {
                     <Image
                         width={640} height={640}
                         className="h-8 w-auto sm:h-10 rounded-lg"
-                        src={`/logo/lcvs.png`}
+                        src={img}
                         alt=""
                     />
                     {/* <div>喵課學院</div> */}
