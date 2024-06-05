@@ -28,7 +28,7 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 
-export function CollapsibleDemo() {
+function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
 
     return (
@@ -61,7 +61,7 @@ export function CollapsibleDemo() {
 }
 
 
-export function Unit() {
+function Unit() {
     const [isOpen, setIsOpen] = React.useState(false)
 
     return (
