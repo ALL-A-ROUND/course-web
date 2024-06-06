@@ -85,6 +85,7 @@ export default function GuessYouWantPage() {
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
                                     <FoundingCourse
+                                        id={item.id}
                                         image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
                                         title={item.title}
                                         price={item.price}
@@ -96,6 +97,7 @@ export default function GuessYouWantPage() {
                                     />
                                     :
                                     <NormalCourse
+                                        id={item.id}
                                         image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
                                         title={item.name}
                                         price={item.price}

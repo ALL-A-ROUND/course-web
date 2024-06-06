@@ -11,6 +11,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^38.1.1",
     "@ckeditor/ckeditor5-react": "^6.3.0",
+    "@cloudflare/stream-react": "^1.9.1",
     "@convergencelabs/monaco-collab-ext": "^0.4.0",
     "@headlessui/react": "^1.7.19",
     "@heroicons/react": "^2.1.3",
