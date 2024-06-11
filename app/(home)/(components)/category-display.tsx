@@ -46,16 +46,16 @@ export default function Categories() {
                     <h2>從興趣到專業</h2>
                     <h2>12大領域盡情探索</h2>
                 </div>
-                <div className="grid grid-cols-4 w-full h-full py-5 px-5 gap-5 overflow-y-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full py-5 px-5 gap-5 overflow-y-auto">
                     {categories.map((category) => (
                         <div className="bg-white rounded-md shadow-lg flex flex-row h-24">
-                            <div className="flex flex-col w-2/5 text-center justify-center">
+                            <div className="flex flex-col w-2/5 text-center justify-center items-center">
                                 {category.title.length > 2 ?
-                                    <>
+                                    <div>
                                         <h2>{category.title.slice(0, 2)}</h2>
                                         <h2>{category.title.slice(2)}</h2>
-                                    </> :
-                                    <>{category.title}</>}
+                                    </div> :
+                                    <h2>{category.title}</h2>}
                             </div>
                             <div>
                             </div>

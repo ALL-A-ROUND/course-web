@@ -10,7 +10,7 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel"
 import Image from "next/image"
 
-import demoImage from "@/public/cover.jpeg"
+import demoImage from "@/public/slide.png"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
@@ -27,15 +27,15 @@ const carouselItems = [
         id: 3,
         image: demoImage,
         alt: "image",
-    }, {
+    },{
         id: 4,
         image: demoImage,
         alt: "image",
-    }, {
+    },{
         id: 5,
         image: demoImage,
         alt: "image",
-    }, {
+    },{
         id: 6,
         image: demoImage,
         alt: "image",
@@ -61,7 +61,7 @@ export default function CarouselPage() {
     }, [api])
 
     return (
-        <div className="w-full flex flex-col items-center px-5">
+        <div className="w-full flex flex-col items-center px-5 pt-4">
             <Carousel
                 opts={{
                     align: "center",
@@ -72,7 +72,7 @@ export default function CarouselPage() {
             >
                 <CarouselContent>
                     {carouselItems.map((item, cnt) => (
-                        <CarouselItem className="md:basis-2/3 h-fit" key={item.id}>
+                        <CarouselItem className="md:basis-1/3 h-fit" key={item.id}>
                             <Image src={item.image}
                                 alt={item.alt}
                                 sizes="100vw"

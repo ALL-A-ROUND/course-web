@@ -56,8 +56,8 @@ export default function Highlight() {
             >
                 <CarouselContent className="h-[28rem]">
                     {top_picks.map((item, cnt) => (
-                        <CarouselItem className="basis-1/2 md:basis-1/3 select-none cursor-pointer relative" key={cnt}>
-                            <div className="w-full group">
+                        <CarouselItem className="md:ml-4 md:basis-1/2 select-none cursor-pointer relative" key={cnt}>
+                            <div className="w-full group absolute">
                                 <div className="relative overflow-hidden rounded-md aspect-video bg-red-100">
                                     <Image src={demoImage}
                                         alt={item.alt}
@@ -65,7 +65,7 @@ export default function Highlight() {
                                         className="transition ease-in-out w-full h-full object-cover group-hover:scale-110"
                                     />
                                 </div>
-                                <div className="transition ease-in-out h-40 border rounded-md shadow-xl absolute w-full bg-white md:left-8 left-0 md:top-52 top-32 sm:top-48 md:group-hover:left-4 group-hover:top-56">
+                                <div className="transition ease-in-out h-40 border rounded-md shadow-xl absolute w-3/4 left-0 right-0 bg-white md:top-52 top-52 sm:top-48 group-hover:top-56">
                                     <div className="h-1/3 text-xl px-3 py-2">{item.title}</div>
                                     <hr className="bg-black h-0.5" />
                                     <div className="h-1/2 px-3 py-2 flex flex-row">

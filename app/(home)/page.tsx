@@ -16,13 +16,13 @@ export default function HomePage() {
         <div className="flex flex-col items-center">
             <CarouselPage/>
             <div className="xl:px-20 px-0 max-w-7xl flex flex-col items-center space-y-8">
-                <Founding/>
+                {/*<Founding/>*/}
                 <GuessYouWant/>
                 <Categories/>
-                <Highlight/>
-                <RecentHotCourse/>
-                <Post/>
-                <Creators/>
+                {/*<Highlight/>*/}
+                {/*<RecentHotCourse/>*/}
+                {/*<Post/>*/}
+                {/*<Creators/>*/}
                 <Cooperation/>
             </div>
         </div>
