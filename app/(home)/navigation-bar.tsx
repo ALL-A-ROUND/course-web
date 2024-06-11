@@ -23,7 +23,10 @@ export default function NavigationBar() {
                 <Search className="size-8 text-gray-600 cursor-pointer p-1.5 hover:bg-year-100 rounded-lg" />
             </div>
             <div className="flex flex-row items-center space-x-5">
-                <MyCourse />
+                {/*<MyCourse />*/}
+                <Link href={"/course"}>
+                    <span>我的學習</span>
+                </Link>
                 <ShoppingCartComponent />
                 <NotificationCenter />
                 <AccountRelations />
