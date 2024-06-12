@@ -13,6 +13,13 @@ export default function Course() {
     }, []);
     return (
         <div className="flex min-h-full flex-col">
+            <Link
+                href={'/manage/course/my'}
+                className={"bg-indigo-400 mx-8 rounded-lg p-2 text-center text-white block"}>
+                切換到新版介面
+            </Link>
+
+
             {/* 3 column wrapper */}
             <div className="mx-auto w-full max-w-7xl grow lg:flex xl:px-2 py-4 ">
                 {/* Left sidebar & main wrapper */}
