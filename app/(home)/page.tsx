@@ -10,6 +10,7 @@ import Creators from "./(components)/creator"
 import Cooperation from "./(components)/cooperation"
 import useSWR from "swr";
 import {api} from "@/app/utils";
+import AllCourse from "@/app/(home)/(components)/all-course";
 
 export default function HomePage() {
     return (
@@ -18,6 +19,7 @@ export default function HomePage() {
             <div className="xl:px-20 px-0 max-w-7xl flex flex-col items-center space-y-8">
                 {/*<Founding/>*/}
                 <GuessYouWant/>
+                <AllCourse/>
                 <Categories/>
                 {/*<Highlight/>*/}
                 {/*<RecentHotCourse/>*/}
