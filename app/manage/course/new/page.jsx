@@ -25,7 +25,7 @@ const steps = [
     {name: '開始', component: Base},
 ]
 
-export function ProgressBar({stepState: [currentStep, setCurrentStep]}) {
+function ProgressBar({stepState: [currentStep, setCurrentStep]}) {
     return (
         <nav aria-label="Progress">
             <ol role="list"
@@ -121,10 +121,10 @@ function Base() {
     const upload = () => {
         const data = new FormData(ref.current)
         data.set('_method', 'PUT')
-        api('POST', '/course', data).then(res=>{
+        api('POST', '/course', data).then(res => {
             alert(res.name + '開課成功')
-            location.href = '/'
-        }).catch(e=>{
+            location.href = '/manage/course/table'
+        }).catch(e => {
             alert('開課失敗')
             alert(e)
         })
