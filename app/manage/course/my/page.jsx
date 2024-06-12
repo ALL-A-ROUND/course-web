@@ -3,6 +3,7 @@ import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/20/solid'
 import useSWR from "swr";
 import {api} from "@/app/utils";
 import Link from "next/link";
+import Image from "next/image";
 
 function Heading() {
     return (
@@ -29,7 +30,7 @@ function Heading() {
                                 <ChevronRightIcon className="h-5 w-5 flex-shrink-0 text-gray-400" aria-hidden="true"/>
                                 <a href="#" aria-current="page"
                                    className="ml-4 text-sm font-medium text-gray-500 hover:text-gray-700">
-                                    我的開課
+                                    我的學習
                                 </a>
                             </div>
                         </li>
@@ -73,17 +74,23 @@ export default function Page() {
         <div className={"m-4 p-4"}>
             <Heading/>
 
-            <div className={"grid grid-cols-2 gap-2"}>
+            <div className={"grid grid-cols-2 lg:grid-cols-4 gap-6"}>
                 {
                     isLoading && '載入中請稍候...'
                 }
 
                 {
                     courses && courses.map(course => (
-                        <div className={"border rounded-lg p-2"}>
+                        <div className={"border rounded-lg p-2 shadow-lg"}>
                             <h3 className={"text-lg font-bold"}>
                                 {course.name} ({course.id} - NT${course.price})
                             </h3>
+
+                            <Image src={
+                                process.env.NEXT_PUBLIC_ASSET_ENDPOINT + '/' + course.image
+                            } alt={course.name + '課程圖像'}
+                                width={640} height={640}
+                            />
 
                             <div>
                                 {course.introduction}
@@ -92,7 +99,7 @@ export default function Page() {
 
                             <Link
                                 href={`/course/${course.id}`}
-                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="block my-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
                                 打開課程
                             </Link>
