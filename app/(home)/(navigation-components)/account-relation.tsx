@@ -35,7 +35,7 @@ export default function AccountRelation() {
                                         <Settings className="mr-2 h-4 w-4"/> 設定
                                     </Button>
                                 </Link>
-                                <Link href='/manage/course/table'>
+                                <Link href='/manage/course/own'>
                                     <Button>
                                         <Settings className="mr-2 h-4 w-4"/> 我的開課
                                     </Button>
