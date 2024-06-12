@@ -3,6 +3,11 @@ import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/20/solid'
 import useSWR from "swr";
 import {api} from "@/app/utils";
 import Link from "next/link";
+import React from "react";
+import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
+
+
+
 
 function Heading() {
     return (
@@ -73,35 +78,29 @@ export default function Page() {
         <div className={"m-4 p-4"}>
             <Heading/>
 
-            <div className={"grid grid-cols-2 gap-2"}>
+            <div className={"grid grid-cols-2 lg:grid-cols-4 gap-6"}>
                 {
                     isLoading && '載入中請稍候...'
                 }
 
                 {
                     courses && courses.map(course => (
-                        <div className={"border rounded-lg p-2"}>
-                            <h3 className={"text-lg font-bold"}>
-                                {course.name} ({course.id} - NT${course.price})
-                            </h3>
-
-                            <div>
-                                {course.introduction}
-                            </div>
+                        <div className={"border rounded-lg p-2 shadow-lg"}>
+                            <CourseCard item={course} ></CourseCard>
 
 
                             <Link
                                 href={`/course/${course.id}`}
-                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                className="block my-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                             >
-                                打開課程
+                                管理課程
                             </Link>
 
                         </div>
                     ))
                 }
 
-                { courses && courses.length === 0 && '您目前沒有課程'}
+                {courses && courses.length === 0 && '您目前沒有課程'}
 
 
             </div>

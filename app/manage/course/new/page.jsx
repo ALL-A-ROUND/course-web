@@ -153,6 +153,7 @@ function Base() {
                                     <input
                                         type="text"
                                         name="name"
+                                        required={true}
                                         id="name"
                                         className="block flex-1 border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="長照觀念一把罩"
@@ -175,6 +176,7 @@ function Base() {
                                         type="text"
                                         name="code"
                                         id="code"
+                                        required={true}
                                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="11210CS435101"
                                     />
@@ -195,6 +197,7 @@ function Base() {
                                     <input
                                         type="number"
                                         name="price"
+                                        required={true}
                                         id="price"
                                         className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         placeholder="5000"
@@ -211,6 +214,7 @@ function Base() {
                                 <textarea
                                     id="introduction"
                                     name="introduction"
+                                    required={true}
                                     rows={3}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     defaultValue={''}
