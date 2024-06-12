@@ -139,6 +139,55 @@ export default function Auth() {
                     <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                         <form className="space-y-6" onSubmit={isForgot ? forgotPassword : emailLogin}>
                             <div>
+                                <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">
+                                    登入權限
+                                </label>
+                                <div className="mt-2">
+                                    <fieldset aria-label="Plan">
+                                        <div className="space-y-5">
+
+                                            <div className="relative flex items-start">
+                                                <div className="flex h-6 items-center">
+                                                    <input
+                                                        id="business"
+                                                        name="plan"
+                                                        type="radio"
+                                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                                    />
+                                                </div>
+                                                <div className="ml-3 text-sm leading-6">
+                                                    <label className="font-medium text-gray-900">
+                                                        個人用戶
+                                                    </label>
+                                                    <p className="text-gray-500">
+                                                        可為學生亦可為老師
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="relative flex items-start">
+                                                <div className="flex h-6 items-center">
+                                                    <input
+                                                        id="business"
+                                                        name="plan"
+                                                        type="radio"
+                                                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
+                                                    />
+                                                </div>
+                                                <div className="ml-3 text-sm leading-6">
+                                                    <label className="font-medium text-gray-900">
+                                                        企業用戶
+                                                    </label>
+                                                    <p className="text-gray-500">
+                                                        企業用戶統一管理
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </div>
+                            </div>
+                            <div>
                                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                     電子郵件
                                 </label>
