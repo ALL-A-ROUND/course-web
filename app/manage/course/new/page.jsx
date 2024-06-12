@@ -123,7 +123,7 @@ function Base() {
         data.set('_method', 'PUT')
         api('POST', '/course', data).then(res => {
             alert(res.name + '開課成功')
-            location.href = '/manage/course/table'
+            location.href = '/manage/course/own'
         }).catch(e => {
             alert('開課失敗')
             alert(e)
