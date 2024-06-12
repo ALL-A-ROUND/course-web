@@ -35,6 +35,16 @@ export default function AccountRelation() {
                                         <Settings className="mr-2 h-4 w-4"/> 設定
                                     </Button>
                                 </Link>
+                                <Link href='/manage/course/table'>
+                                    <Button>
+                                        <Settings className="mr-2 h-4 w-4"/> 我的開課
+                                    </Button>
+                                </Link>
+                                <Link href='/member/course/new'>
+                                    <Button>
+                                        <Settings className="mr-2 h-4 w-4"/> 新開課程
+                                    </Button>
+                                </Link>
                             </div>
                         ) : (
                             <div className={"flex flex-col"}>
