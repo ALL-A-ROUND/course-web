@@ -24,7 +24,7 @@ export default function AllCourse() {
                 <h2 className="text-xl font-semibold">所有課程一覽</h2>
             </div>
 
-            <div className={"grid grid-cols-3 gap-6"}>
+            <div className={"grid grid-cols-1 md:grid-cols-3 gap-6"}>
                 {courses?.map((item, cnt) => (
                     <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                         <React.Fragment key={item.id}>
