@@ -84,7 +84,8 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                                     start: watchTime,
                                     controls: 0,
                                     rel: 0,
-                                }
+                                },
+                                width: "100%",
                             }}
                             onEnd={async e => {
                                 await api('POST', `/lesson/${lesson_id}/watch/end`, {
@@ -104,6 +105,10 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                                 })
                                 await updateTimer()
                             }}
+                            iframeClassName={"w-full"}
+                            className={"w-full"}
+                            width={"100%"}
+                            height={"100%"}
                         />
                     ) : "本堂課程未提供影片"}
 
