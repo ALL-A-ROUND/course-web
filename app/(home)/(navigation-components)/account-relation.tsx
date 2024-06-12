@@ -26,8 +26,8 @@ export default function AccountRelation() {
                 <DropdownMenuTrigger className="">
                     <Menu className="size-8 p-1.5 cursor-pointer hover:bg-year-100 rounded-lg"/>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-72 h-[20rem] bg-white">
-                    <DropdownMenuItem className="h-full flex flex-col items-start">
+                <DropdownMenuContent className="w-72 h-fit bg-white">
+                    <DropdownMenuItem className="h-fit flex flex-col items-start">
                         {user ? (
                             <div className={"flex flex-col"}>
                                 <Link href='/member'>
