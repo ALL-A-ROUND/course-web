@@ -28,7 +28,7 @@ export default function NavigationBar() {
                     <span>我的學習</span>
                 </Link>
                 <ShoppingCartComponent />
-                <NotificationCenter />
+                {/*<NotificationCenter />*/}
                 <AccountRelations />
             </div>
         </nav>
