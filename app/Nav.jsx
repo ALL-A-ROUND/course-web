@@ -12,10 +12,10 @@ import {signOut} from "@/lib/firebase/auth";
 
 const navigation = [
     {name: '課程', href: '/course', id: 'course'},
-    {name: '題目', href: '/problem', id: 'problem'},
-    {name: '狀態', href: '/submission', id: 'status'},
-    {name: '競賽', href: '/contest', id: 'contest'},
-    {name: '排行榜', href: '/rank', id: 'rank'},
+    // {name: '題目', href: '/problem', id: 'problem'},
+    // {name: '狀態', href: '/submission', id: 'status'},
+    // {name: '競賽', href: '/contest', id: 'contest'},
+    // {name: '排行榜', href: '/rank', id: 'rank'},
 ]
 const userNavigation = [
     {name: '個人檔案', href: '/member'},
