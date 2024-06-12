@@ -9,6 +9,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import LCVS from "@/public/logo/lcvs.png"
+import Link from "next/link";
 
 const companies = [
     {
@@ -51,10 +52,11 @@ export default function Cooperation() {
                             <div>
                                 立即開課，讓你的知識變現
                             </div>
-                            <div
-                                className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg my-4">
-                                我要開課
-                            </div>
+
+                            <Link href={'/manage/course/new'}
+                                  className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg my-4">
+                                    我要開課
+                            </Link>
                         </div>
 
                     </div>

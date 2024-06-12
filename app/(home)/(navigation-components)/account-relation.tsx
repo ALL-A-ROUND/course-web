@@ -19,7 +19,7 @@ import {signOut} from "@/lib/firebase/auth";
 export default function AccountRelation() {
     const [user, loading, error] = useAuthState(auth)
 
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>.</div>
     return (
         <div className="size-8">
             <DropdownMenu>
