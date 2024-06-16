@@ -1,13 +1,4 @@
 import Image from "next/image"
-import Company from "@/public/temp/company.avif"
-
-import {
-    Carousel,
-    CarouselContent,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-} from "@/components/ui/carousel"
 import LCVS from "@/public/logo/lcvs.png"
 import hesong from "@/public/logo/hesong.jpg"
 import allroud from "@/public/logo/allroud.png"
@@ -49,35 +40,43 @@ export default function Cooperation() {
                         <h2 className="text-gray-600">| 優良合作夥伴</h2>
                     </div>
 
-                    <div className={"flex flex-row justify-between"}>
+                    <div className={"flex flex-row gap-8 justify-between"}>
 
                         <div
-                            className="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-2 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
-                            <Image
-                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                src={LCVS}
-                                alt="Transistor"
-                                width={158}
-                                height={48}
-                            /><Image
-                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                src={hesong}
-                                alt="Transistor"
-                                width={158}
-                                height={48}
-                            /><Image
-                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                src={allroud}
-                                alt="Transistor"
-                                width={158}
-                                height={48}
-                            /><Image
-                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
-                                src={furen}
-                                alt="Transistor"
-                                width={158}
-                                height={48}
-                            />
+                            className="mx-auto mt-10 grid max-w-lg grid-cols-2  items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-2 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+                            {companies.map((company, cnt) => (
+                                <Image src={company.image.src}
+                                       alt={company.name}
+                                       width="158"
+                                       height="48"
+                                       className="object-cover w-full  rounded-lg" />
+                            ))}
+
+                            {/*<Image*/}
+                            {/*    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"*/}
+                            {/*    src={LCVS}*/}
+                            {/*    alt="Transistor"*/}
+                            {/*    width={158}*/}
+                            {/*    height={48}*/}
+                            {/*/><Image*/}
+                            {/*    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"*/}
+                            {/*    src={hesong}*/}
+                            {/*    alt="Transistor"*/}
+                            {/*    width={158}*/}
+                            {/*    height={48}*/}
+                            {/*/><Image*/}
+                            {/*    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"*/}
+                            {/*    src={allroud}*/}
+                            {/*    alt="Transistor"*/}
+                            {/*    width={158}*/}
+                            {/*    height={48}*/}
+                            {/*/><Image*/}
+                            {/*    className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"*/}
+                            {/*    src={furen}*/}
+                            {/*    alt="Transistor"*/}
+                            {/*    width={158}*/}
+                            {/*    height={48}*/}
+                            {/*/>*/}
                         </div>
                         <div className="bg-slate-100 w-72 h-52 flex flex-col items-center px-3 gap-3">
                             <div className="h-16">
