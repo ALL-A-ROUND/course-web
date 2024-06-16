@@ -9,6 +9,7 @@ import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
 import Uploader from "@/app/manage/components/Uploader";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
+import {Divider, Spin} from "antd";
 
 
 function Heading() {
@@ -75,6 +76,10 @@ export default function Page() {
         data: courses,
         isLoading
     } = useSWR('/course/attended', async (url) => await api('GET', url + "?with=teachers").then(data => data))
+    const {
+        data: recommendCourses,
+        isLoading2
+    } = useSWR('/course/recommend', async (url) => await api('GET', url + "?with=teachers").then(data => data))
 
     if (loading) return <div>Loading...</div>
     if (!user) return <div>請先登入</div>
@@ -86,7 +91,6 @@ export default function Page() {
                 {
                     isLoading && '載入中請稍候...'
                 }
-
                 {
                     courses && courses.map(course => (
                         <div className={"border rounded-lg p-2 shadow-lg"}>
@@ -104,11 +108,35 @@ export default function Page() {
                     ))
                 }
 
+
                 {courses && courses.length === 0 && '您目前沒有課程'}
+            </div>
+
+            <Divider/>
+            <h2>
+                推薦課程
+            </h2>
+
+            <div className={"grid grid-cols-2 lg:grid-cols-4 gap-6"}>
+                {
+                    isLoading2 && <Spin size="large"/>
+                }
+                {
+                    recommendCourses && recommendCourses.map(course => (
+                        <div className={"border rounded-lg p-2 shadow-lg"}>
+                            <CourseCard item={course}></CourseCard>
 
 
-                <Uploader/>
+                            <Link
+                                href={`/course/${course.id}`}
+                                className="block my-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                            >
+                                打開課程
+                            </Link>
 
+                        </div>
+                    ))
+                }
             </div>
 
         </div>
