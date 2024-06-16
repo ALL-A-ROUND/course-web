@@ -9,6 +9,9 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import LCVS from "@/public/logo/lcvs.png"
+import hesong from "@/public/logo/hesong.jpg"
+import allroud from "@/public/logo/allroud.png"
+import furen from "@/public/logo/furen.png"
 import Link from "next/link";
 
 const companies = [
@@ -16,6 +19,21 @@ const companies = [
         id: "jseif",
         name: "Company 1",
         image: LCVS,
+    },
+    {
+        id: "jseif",
+        name: "Company 1",
+        image: hesong,
+    },
+    {
+        id: "jseif",
+        name: "Company 1",
+        image: allroud,
+    },
+    {
+        id: "jseif",
+        name: "Company 1",
+        image: furen,
     },
 ]
 
