@@ -112,6 +112,13 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                         />
                     ) : "本堂課程未提供影片"}
 
+
+                    {
+                        lesson?.file && <video src={
+                            process.env.NEXT_PUBLIC_ASSET_ENDPOINT + lesson?.file
+                        } controls={true} className={"w-full"}/>
+                    }
+
                     {
                         watchTime !== null && <div
                             className={"text-gray-500"}>
@@ -128,11 +135,12 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
 
                             {showQuiz && <>
                                 {lesson?.form_url ?
-                                    <div onClick={()=>window.open(lesson?.form_url)} className={"flex items-center justify-center bg-indigo-300  w-full h-12"}>做測驗</div> :
+                                    <div onClick={() => window.open(lesson?.form_url)}
+                                         className={"flex items-center justify-center bg-indigo-300  w-full h-12"}>做測驗</div> :
                                     <span className={"text-red-500"}>本堂課程未提供測驗</span>}
                                 {lesson?.motivation_survey_url ?
-                                    <div onClick={()=>window.open(lesson?.motivation_survey_url)}
-                                       className={"flex items-center justify-center bg-indigo-300 w-full h-12"}>滿意度調查</div> :
+                                    <div onClick={() => window.open(lesson?.motivation_survey_url)}
+                                         className={"flex items-center justify-center bg-indigo-300 w-full h-12"}>滿意度調查</div> :
                                     <span className={"text-red-500"}>本堂課程未提供滿意度調查</span>}
                             </>}
                         </div>
