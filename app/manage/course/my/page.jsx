@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image, {StaticImageData} from "next/image";
 import React from "react";
 import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
+import Uploader from "@/app/manage/components/Uploader";
 
 
 
@@ -103,6 +104,8 @@ export default function Page() {
 
                 {courses && courses.length === 0 && '您目前沒有課程'}
 
+
+                <Uploader/>
 
             </div>
 

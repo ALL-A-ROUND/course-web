@@ -19,7 +19,7 @@ export default function NewCourse() {
 }
 
 import {CheckIcon} from '@heroicons/react/24/solid'
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 
 const steps = [
     {name: '開始', component: Base},
@@ -111,16 +111,18 @@ function Intro() {
 
     </div>)
 }
-
-import {PhotoIcon, UserCircleIcon} from '@heroicons/react/24/solid'
-import {Button} from "@/components/ui/button";
 import {api} from "@/app/utils";
+import Uploader from "@/app/manage/components/Uploader";
 
 function Base() {
+    const [file, setFile] = useState()
+    const [fileID, setFileID] = useState()
     const ref = useRef()
     const upload = () => {
+        console.log(file)
         const data = new FormData(ref.current)
         data.set('_method', 'PUT')
+        data.set('image', fileID)
         api('POST', '/course', data).then(res => {
             alert(res.name + '開課成功')
             location.href = '/manage/course/own'
@@ -129,6 +131,16 @@ function Base() {
             alert(e)
         })
     }
+
+    useEffect(() => {
+        if (file) {
+            if (file.successful) {
+                const fn = 'uploads/' + file.successful[0].meta.userId + '/' + file.successful[0].meta.name
+                console.log(fn)
+                setFileID(fn)
+            }
+        }
+    }, [file]);
 
 
     return (
@@ -232,18 +244,11 @@ function Base() {
                             </label>
                             <div
                                 className="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                <div className="text-center">
-                                    <PhotoIcon className="mx-auto h-12 w-12 text-gray-300" aria-hidden="true"/>
-                                    <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                                        <label
-                                            htmlFor="image"
-                                            className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                                        >
-                                            <span>點擊此處上傳圖片</span>
-                                            <input id="image" name="image" type="file" className="sr-only"/>
-                                        </label>
-                                    </div>
-                                    <p className="text-xs leading-5 text-gray-600">支援 PNG, JPG, 最大 10 MB</p>
+                                <div className={"w-1/2"}>
+                                    <Uploader setFile={setFile}
+                                              min_accept_ratio={1}
+                                              max_accept_ratio={1}
+                                    />
                                 </div>
                             </div>
                         </div>

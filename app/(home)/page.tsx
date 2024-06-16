@@ -1,15 +1,7 @@
 import CarouselPage from "./(components)/carousel"
 import Categories from "./(components)/category-display"
-import Founding from "./(components)/founding"
 import GuessYouWant from "./(components)/guess-you-want"
-import Highlight from "./(components)/highlight"
-import LiveStream from "./(components)/live-stream"
-import RecentHotCourse from "./(components)/recent-hot-courses"
-import Post from "./(components)/post"
-import Creators from "./(components)/creator"
 import Cooperation from "./(components)/cooperation"
-import useSWR from "swr";
-import {api} from "@/app/utils";
 import AllCourse from "@/app/(home)/(components)/all-course";
 
 export default function HomePage() {

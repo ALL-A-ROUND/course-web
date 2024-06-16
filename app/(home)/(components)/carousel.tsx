@@ -10,7 +10,7 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel"
 import Image from "next/image"
 
-import demoImage from "@/public/slide.png"
+import demoImage from "@/public/cover.jpeg"
 import { useEffect, useState } from "react"
 import { cn } from "@/lib/utils"
 
