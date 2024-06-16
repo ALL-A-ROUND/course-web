@@ -12,9 +12,11 @@ import Link from "next/link";
 import {api} from "@/app/utils";
 import Nav from "@/app/Nav";
 import {DocumentMagnifyingGlassIcon} from "@heroicons/react/24/outline";
+import {FactoryIcon} from "lucide-react";
 
 const secondaryNavigation = [
     {name: '一般設定', icon: UserCircleIcon, path: "/member/general", id: 'general'},
+    {name: '組織設定', icon: FactoryIcon, path: "/member/organization", id: 'organization'},
     {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security", id: 'security'},
     {name: '通知設定', icon: BellIcon, path: "/member/notifications", id: 'notification'},
     {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order", id: 'order'},

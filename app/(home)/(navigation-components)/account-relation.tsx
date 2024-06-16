@@ -6,7 +6,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {DoorClosed, Menu, Settings, User} from "lucide-react"
+import {CircuitBoard, DoorClosed, Menu, PlusCircle, Settings, Table, User} from "lucide-react"
 import {useAuthState, useSignOut} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import {Mail} from "lucide-react"
@@ -14,6 +14,7 @@ import {Mail} from "lucide-react"
 import {Button} from "@/components/ui/button"
 import Link from "next/link";
 import {signOut} from "@/lib/firebase/auth";
+import BulletinBoard from "@/app/course/[course_id]/bulletin/BulletinBoard";
 
 
 export default function AccountRelation() {
@@ -37,12 +38,17 @@ export default function AccountRelation() {
                                 </Link>
                                 <Link href='/manage/course/own'>
                                     <Button>
-                                        <Settings className="mr-2 h-4 w-4"/> 我的開課
+                                        <CircuitBoard className="mr-2 h-4 w-4"/> 我的開課
                                     </Button>
                                 </Link>
-                                <Link href='/member/course/new'>
+                                <Link href='/manage/course/new'>
                                     <Button>
-                                        <Settings className="mr-2 h-4 w-4"/> 新開課程
+                                        <PlusCircle className="mr-2 h-4 w-4"/> 新開課程
+                                    </Button>
+                                </Link>
+                                <Link href='/manage/course/business'>
+                                    <Button>
+                                        <Table className="mr-2 h-4 w-4"/> 管理組織
                                     </Button>
                                 </Link>
                             </div>
