@@ -7,8 +7,8 @@ import Image, {StaticImageData} from "next/image";
 import React from "react";
 import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
 import Uploader from "@/app/manage/components/Uploader";
-
-
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
 
 
 function Heading() {
@@ -70,12 +70,14 @@ function Heading() {
 }
 
 export default function Page() {
+    const [user, loading, error] = useAuthState(auth)
     const {
         data: courses,
         isLoading
     } = useSWR('/course/attended', async (url) => await api('GET', url + "?with=teachers").then(data => data))
 
-
+    if (loading) return <div>Loading...</div>
+    if (!user) return <div>請先登入</div>
     return (<>
         <div className={"m-4 p-4"}>
             <Heading/>
@@ -88,7 +90,7 @@ export default function Page() {
                 {
                     courses && courses.map(course => (
                         <div className={"border rounded-lg p-2 shadow-lg"}>
-                            <CourseCard item={course} ></CourseCard>
+                            <CourseCard item={course}></CourseCard>
 
 
                             <Link

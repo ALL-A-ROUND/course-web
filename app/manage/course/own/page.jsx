@@ -3,8 +3,10 @@ import {ChevronLeftIcon, ChevronRightIcon} from '@heroicons/react/20/solid'
 import useSWR from "swr";
 import {api} from "@/app/utils";
 import Link from "next/link";
-import React from "react";
+import React, {useState} from "react";
 import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
 
 
 
@@ -68,11 +70,18 @@ function Heading() {
 }
 
 export default function Page() {
+    const [user, loading, error] = useAuthState(auth)
+
+
+
     const {
         data: courses,
         isLoading
     } = useSWR('/course/owned', async (url) => await api('GET', url + "?with=teachers").then(data => data))
 
+
+    if (loading) return <div>Loading...</div>
+    if (!user) return <div>請先登入</div>
 
     return (<>
         <div className={"m-4 p-4"}>
