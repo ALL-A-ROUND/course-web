@@ -6,6 +6,7 @@ import {api} from "@/app/utils";
 import useUser from "@/app/useUser";
 import Link from "next/link";
 import {ArrowPathIcon} from "@heroicons/react/24/outline";
+import {Button, Form, Input} from "antd";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -35,6 +36,18 @@ export default function Member() {
     const generateLINEToken = () => {
         api("POST", "/auth/link_telegram", null).then((res) => {
             setLINEToken(res.token)
+        })
+    }
+
+    const join = (form) => {
+        const code = form[0].value
+        api('POST', '/organization/join', {
+            invite_code: code
+        }).then(res => {
+            alert("加入成功")
+            location.reload()
+        }).catch(e => {
+            alert("加入失敗 " + e)
         })
     }
     return (
@@ -193,6 +206,21 @@ export default function Member() {
                             <span aria-hidden="true">+</span> Add another bank
                         </button>
                     </div>
+                </div>
+
+
+                <div>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">邀請碼</h2>
+                    <p className="mt-1 text-sm leading-6 text-gray-500">你如果有邀請碼就在這裡輸入</p>
+
+                    <Form onSubmitCapture={e => join(e.target)}>
+                        <Form.Item label={"邀請碼"}>
+                            <Input type="text" className={"w-full"}/>
+                        </Form.Item>
+                        <Form.Item>
+                            <Button type={"primary"} htmlType={'submit'}>新增</Button>
+                        </Form.Item>
+                    </Form>
                 </div>
 
                 <div>

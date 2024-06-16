@@ -6,19 +6,24 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import {CircuitBoard, DoorClosed, Menu, PlusCircle, Settings, Table, User} from "lucide-react"
-import {useAuthState, useSignOut} from "react-firebase-hooks/auth";
+import {CircuitBoard, Menu, PersonStanding, PlusCircle, Settings, Table, User} from "lucide-react"
+import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
-import {Mail} from "lucide-react"
 
 import {Button} from "@/components/ui/button"
 import Link from "next/link";
-import {signOut} from "@/lib/firebase/auth";
-import BulletinBoard from "@/app/course/[course_id]/bulletin/BulletinBoard";
+import {useEffect, useState} from "react";
+import {api} from "@/app/utils";
 
 
 export default function AccountRelation() {
     const [user, loading, error] = useAuthState(auth)
+    const [dbUser, setDbUser] = useState<any>(null)
+    useEffect(() => {
+        if (user) {
+            api("GET", "/user?with=organizations").then(setDbUser).catch(console.error)
+        }
+    }, [user])
 
     if (loading) return <div>.</div>
     return (
@@ -46,11 +51,22 @@ export default function AccountRelation() {
                                         <PlusCircle className="mr-2 h-4 w-4"/> 新開課程
                                     </Button>
                                 </Link>
-                                <Link href='/manage/course/business'>
-                                    <Button>
-                                        <Table className="mr-2 h-4 w-4"/> 管理組織
-                                    </Button>
-                                </Link>
+
+                                {dbUser && dbUser.organizations && dbUser.organizations.length > 0 ? (
+                                    <>
+                                        <Link href='/member/organization'>
+                                            <Button>
+                                                <Table className="mr-2 h-4 w-4"/> 組織設定
+                                            </Button>
+                                        </Link>
+
+                                        <Link href='/manage/course/business'>
+                                            <Button>
+                                                <PersonStanding className="mr-2 h-4 w-4"/> 組織教師
+                                            </Button>
+                                        </Link>
+                                    </>
+                                ) : null}
                             </div>
                         ) : (
                             <div className={"flex flex-col"}>

@@ -4,10 +4,13 @@ import useSWR from "swr";
 import {api} from "@/app/utils";
 import Link from "next/link";
 import Image, {StaticImageData} from "next/image";
-import React from "react";
+import React, {useEffect} from "react";
 import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
-
-
+import {Avatar, Card, Spin} from "antd";
+import Meta from "antd/es/card/Meta";
+import {EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
+import {auth} from "@/lib/firebase/firebase";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 
 function Heading() {
@@ -45,10 +48,12 @@ function Heading() {
             <div className="mt-2 md:flex md:items-center md:justify-between">
                 <div className="min-w-0 flex-1">
                     <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                         企業旗下老師開立課程
+                        企業旗下老師開立課程
                     </h2>
                 </div>
                 <div className="mt-4 flex flex-shrink-0 md:ml-4 md:mt-0">
+
+
                     {/*<button*/}
                     {/*    type="button"*/}
                     {/*    className="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"*/}
@@ -63,6 +68,7 @@ function Heading() {
                     {/*    報名新課程*/}
                     {/*</Link>*/}
                 </div>
+
             </div>
         </div>
     )
@@ -73,8 +79,17 @@ export default function Page() {
         data: courses,
         isLoading
     } = useSWR('/course/owned', async (url) => await api('GET', url + "?with=teachers").then(data => data))
+    const [user, setUser] = React.useState(null)
+    const [firebaseUser, loading, error] = useAuthState(auth)
 
-
+    useEffect(() => {
+        if (firebaseUser) {
+            api('GET', '/user?with=organizations.users').then(setUser)
+        }
+    }, [firebaseUser]);
+    if (isLoading) return (<>
+        <Spin size={"large"}></Spin>
+    </>)
     return (<>
         <div className={"m-4 p-4"}>
             <Heading/>
@@ -87,9 +102,7 @@ export default function Page() {
                 {
                     courses && courses.map(course => (
                         <div className={"border rounded-lg p-2 shadow-lg"}>
-                            <CourseCard item={course} ></CourseCard>
-
-
+                            <CourseCard item={course}></CourseCard>
                             <Link
                                 href={`/course/${course.id}`}
                                 className="block my-4 rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
@@ -101,8 +114,33 @@ export default function Page() {
                     ))
                 }
 
-                {courses && courses.length === 0 && '您目前沒有課程'}
 
+            </div>
+            <div className={"grid md:grid-cols-4 grid-cols-2 my-4 gap-4 w-full"}>
+                {user && user.organizations[0]?.users?.map(user => (
+                    <Card
+                        style={{
+                            width: 300,
+                        }}
+                        cover={
+                            <img
+                                alt="example"
+                                src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+                            />
+                        }
+                        actions={[
+                            <SettingOutlined key="setting"/>,
+                            <EditOutlined key="edit"/>,
+                            <EllipsisOutlined key="ellipsis"/>,
+                        ]}
+                    >
+                        <Meta
+                            avatar={<Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=8"/>}
+                            title={'教師：' + user.name}
+                            description={user.email}
+                        />
+                    </Card>
+                ))}
 
             </div>
 

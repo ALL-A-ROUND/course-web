@@ -11,6 +11,9 @@ importers:
 
   .:
     dependencies:
+      '@ant-design/icons':
+        specifier: ^5.3.7
+        version: 5.3.7(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(antd@5.18.1(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(next@14.2.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -4833,7 +4836,7 @@ snapshots:
       '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-balloon': 41.4.2
       '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -4886,7 +4889,7 @@ snapshots:
       '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-balloon': 41.4.2
       '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -4960,7 +4963,7 @@ snapshots:
       '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-classic': 41.4.2
       '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -5012,7 +5015,7 @@ snapshots:
       '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-decoupled': 41.4.2
       '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -5058,29 +5061,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ckeditor/ckeditor5-build-inline@41.4.2':
-    dependencies:
-      '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2
-      '@ckeditor/ckeditor5-autoformat': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-basic-styles': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
-      '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-editor-inline': 41.4.2
-      '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-heading': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-indent': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-link': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-list': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-media-embed': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-paragraph': 41.4.2
-      '@ckeditor/ckeditor5-paste-from-office': 41.4.2
-      '@ckeditor/ckeditor5-table': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-typing': 41.4.2
-
   '@ckeditor/ckeditor5-build-inline@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -5117,7 +5097,7 @@ snapshots:
       '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-multi-root': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -5209,10 +5189,6 @@ snapshots:
   '@ckeditor/ckeditor5-cloud-services@38.1.1':
     dependencies:
       ckeditor5: 38.1.1
-
-  '@ckeditor/ckeditor5-cloud-services@41.4.2':
-    dependencies:
-      ckeditor5: 41.4.2
 
   '@ckeditor/ckeditor5-cloud-services@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
@@ -7773,12 +7749,12 @@ snapshots:
       '@ckeditor/ckeditor5-build-balloon-block': 41.4.2
       '@ckeditor/ckeditor5-build-classic': 41.4.2
       '@ckeditor/ckeditor5-build-decoupled-document': 41.4.2
-      '@ckeditor/ckeditor5-build-inline': 41.4.2
+      '@ckeditor/ckeditor5-build-inline': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-build-multi-root': 41.4.2
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-clipboard': 41.4.2
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-code-block': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-core': 41.4.2
       '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)

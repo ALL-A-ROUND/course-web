@@ -7,22 +7,26 @@ import {
     UserCircleIcon,
     UsersIcon,
 } from '@heroicons/react/24/outline'
-import {usePathname} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 import {api} from "@/app/utils";
 import Nav from "@/app/Nav";
 import {DocumentMagnifyingGlassIcon} from "@heroicons/react/24/outline";
 import {FactoryIcon} from "lucide-react";
+import {useEffect, useState} from "react";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
+import {Spin} from "antd";
 
 const secondaryNavigation = [
     {name: '一般設定', icon: UserCircleIcon, path: "/member/general", id: 'general'},
     {name: '組織設定', icon: FactoryIcon, path: "/member/organization", id: 'organization'},
-    {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security", id: 'security'},
-    {name: '通知設定', icon: BellIcon, path: "/member/notifications", id: 'notification'},
+    // {name: '帳戶安全', icon: FingerPrintIcon, path: "/member/security", id: 'security'},
+    // {name: '通知設定', icon: BellIcon, path: "/member/notifications", id: 'notification'},
     {name: '訂單查詢', icon: DocumentMagnifyingGlassIcon, path: "/member/order", id: 'order'},
-    {name: '靶機與點數', icon: CubeIcon, path: "/member/credit", id: 'machine'},
+    {name: '點數紀錄', icon: CubeIcon, path: "/member/credit", id: 'machine'},
     {name: '積分園地', icon: StarIcon, path: "/member/point", id: 'points'},
-    {name: '付款方式', icon: CreditCardIcon, path: "/member/billing", id: 'payment'},
+    // {name: '付款方式', icon: CreditCardIcon, path: "/member/billing", id: 'payment'},
 ]
 
 function classNames(...classes) {
@@ -30,16 +34,26 @@ function classNames(...classes) {
 }
 
 export default async function Layout({children}) {
-    api("GET", "/user", null, {
-        disableError: true,
-        cache: "reload",
-    }).catch(err => {
-        if (err.status === 401) {
-            localStorage.removeItem("token")
-            window.location.href = "/login"
-        }
-    })
+    const [user, setUser] = useState()
+    const [firebaseUser, loading, error] = useAuthState(auth)
+    useEffect(() => {
+        if (loading) return
+        api("GET", "/user?with=organizations", null, {
+            disableError: true,
+            cache: "reload",
+        }).catch(err => {
+            alert(err)
+            // if (err.status === 401) {
+            //     window.location.href = "/auth"
+            // }
+        }).then(res => {
+            setUser(res)
+        })
+    }, [loading]);
     const pathname = usePathname()
+    const router = useRouter()
+    if(loading) return <Spin size={"large"}/>;
+    // if (!user) return router.push("/auth")
     const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
     return (
         <>
@@ -50,7 +64,7 @@ export default async function Layout({children}) {
                     <nav className="flex-none px-4 sm:px-6 lg:px-0">
                         <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
                             {secondaryNavigation.filter(
-                                x => (config?.app?.settings?.[x.id] ?? true) !== false
+                                x => (config?.app?.settings?.[x.id] ?? true) !== false && (user?.organizations?.length > 0 || x.id !== 'organization')
                             ).map((item) => (
                                 <li key={item.name}>
                                     <Link
