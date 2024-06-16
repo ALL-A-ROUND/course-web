@@ -1,7 +1,6 @@
 "use client"
 
-
-import {Button, Form, Input, Select, Space} from 'antd';
+import {Button, Form, Input} from 'antd';
 import Uploader from "@/app/manage/components/Uploader";
 import {useState} from "react";
 import {api} from "@/app/utils";
@@ -17,7 +16,7 @@ const tailLayout = {
     wrapperCol: {offset: 8, span: 16},
 };
 
-export default function LessonForm({ unit_id }) {
+export default function LessonForm({ params: {unit_id} }) {
     const [form] = Form.useForm();
     const [file, setFile] = useState();
 

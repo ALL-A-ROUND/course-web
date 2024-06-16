@@ -18,7 +18,7 @@ const tailLayout = {
     wrapperCol: {offset: 8, span: 16},
 };
 
-export default function UnitForm({ course_id }) {
+export default function UnitForm({ params: {course_id} }) {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {

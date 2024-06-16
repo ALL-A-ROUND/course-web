@@ -70,7 +70,9 @@ export default function Example({
                             </List.Item>}
                         />
                         <Divider/>
-                        <LessonForm unit_id={unit?.id}/>
+                        <LessonForm params={{
+                            unit_id: unit?.id
+                        }} />
                     </div>,
                 }
             })
@@ -250,7 +252,9 @@ export default function Example({
                                 <Collapse items={units} defaultActiveKey={['1']}/>
                             )}
                             <div className={"my-4"}>
-                                {unitFormVisible && <UnitForm course_id={course_id}/>}
+                                {unitFormVisible && <UnitForm params={{
+                                    course_id
+                                }}/>}
                             </div>
                         </div>
                     </div>
