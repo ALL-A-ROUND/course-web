@@ -59,6 +59,24 @@ export default function Cooperation() {
                                 alt="Transistor"
                                 width={158}
                                 height={48}
+                            /><Image
+                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                src={hesong}
+                                alt="Transistor"
+                                width={158}
+                                height={48}
+                            /><Image
+                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                src={allroud}
+                                alt="Transistor"
+                                width={158}
+                                height={48}
+                            /><Image
+                                className="col-span-2 max-h-12 w-full object-contain lg:col-span-1"
+                                src={furen}
+                                alt="Transistor"
+                                width={158}
+                                height={48}
                             />
                         </div>
                         <div className="bg-slate-100 w-72 h-52 flex flex-col items-center px-3 gap-3">
