@@ -39,14 +39,6 @@ export default function Nav() {
         isLoading
     } = useSWR('/user', url=>api("GET", url).then(d=>d))
 
-    useEffect(() => {
-        if (!isLoading && !user) router.replace('/auth/login')
-        if (user && user?.message === "Unauthenticated.") {
-            localStorage.removeItem("token")
-            router.replace('/auth/login')
-        }
-    })
-
     return (
         <Popover as="header" className="bg-indigo-600 pb-24">
             {({open}) => (
