@@ -66,7 +66,7 @@ export default function Nav() {
                 className="mx-auto flex max-w-7xl items-center justify-between p-6 md:justify-start md:space-x-10 lg:px-8">
                 <div className="flex justify-start lg:w-0 lg:flex-1">
                     <Link href="/">
-                        <span className="sr-only">Your Company</span>
+                        <span className="sr-only">全方位課程平台</span>
                         <Image
                             width={640} height={640}
                             className="h-8 w-auto sm:h-10 rounded-lg"

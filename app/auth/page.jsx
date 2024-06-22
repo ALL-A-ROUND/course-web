@@ -1,6 +1,6 @@
 "use client"
-import {auth} from "@/lib/firebase/firebase";
-import {useRouter} from "next/navigation";
+import { auth } from "@/lib/firebase/firebase";
+import { useRouter } from "next/navigation";
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -11,15 +11,15 @@ import {
     sendPasswordResetEmail,
     signInWithRedirect,
 } from "firebase/auth";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {useEffect, useState} from "react";
-import {QrCodeIcon} from "@heroicons/react/24/solid";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useEffect, useState } from "react";
+import { QrCodeIcon } from "@heroicons/react/24/solid";
 import QRCode from "react-qr-code";
-import {api} from "@/app/utils";
-import {ArrowPathIcon, ArrowPathRoundedSquareIcon, CheckCircleIcon, CheckIcon} from "@heroicons/react/24/outline";
-import {FacebookIcon} from "lucide-react";
+import { api } from "@/app/utils";
+import { ArrowPathIcon, ArrowPathRoundedSquareIcon, CheckCircleIcon, CheckIcon } from "@heroicons/react/24/outline";
+import { FacebookIcon } from "lucide-react";
 
-const {detect} = require('detect-browser');
+const { detect } = require('detect-browser');
 const browser = detect();
 
 export default function Auth() {
@@ -52,6 +52,7 @@ export default function Auth() {
             router.replace("/course")
         }
     }, [user])
+
     const [loadingQr, setLoadingQr] = useState(false)
     const [isForgot, setIsForgot] = useState(false)
     const [qrID, setQrID] = useState("")
@@ -147,55 +148,6 @@ export default function Auth() {
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-[480px]">
                     <div className="bg-white px-6 py-12 shadow sm:rounded-lg sm:px-12">
                         <form className="space-y-6" onSubmit={isForgot ? forgotPassword : emailLogin}>
-                            {/*<div>*/}
-                            {/*    <label htmlFor="role" className="block text-sm font-medium leading-6 text-gray-900">*/}
-                            {/*        登入權限*/}
-                            {/*    </label>*/}
-                            {/*    <div className="mt-2">*/}
-                            {/*        <fieldset aria-label="Plan">*/}
-                            {/*            <div className="space-y-5">*/}
-
-                            {/*                <div className="relative flex items-start">*/}
-                            {/*                    <div className="flex h-6 items-center">*/}
-                            {/*                        <input*/}
-                            {/*                            id="business"*/}
-                            {/*                            name="plan"*/}
-                            {/*                            type="radio"*/}
-                            {/*                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
-                            {/*                        />*/}
-                            {/*                    </div>*/}
-                            {/*                    <div className="ml-3 text-sm leading-6">*/}
-                            {/*                        <label className="font-medium text-gray-900">*/}
-                            {/*                            個人用戶*/}
-                            {/*                        </label>*/}
-                            {/*                        <p className="text-gray-500">*/}
-                            {/*                            可為學生亦可為老師*/}
-                            {/*                        </p>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
-                            {/*                <div className="relative flex items-start">*/}
-                            {/*                    <div className="flex h-6 items-center">*/}
-                            {/*                        <input*/}
-                            {/*                            id="business"*/}
-                            {/*                            name="plan"*/}
-                            {/*                            type="radio"*/}
-                            {/*                            className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"*/}
-                            {/*                        />*/}
-                            {/*                    </div>*/}
-                            {/*                    <div className="ml-3 text-sm leading-6">*/}
-                            {/*                        <label className="font-medium text-gray-900">*/}
-                            {/*                            企業用戶*/}
-                            {/*                        </label>*/}
-                            {/*                        <p className="text-gray-500">*/}
-                            {/*                            企業用戶統一管理*/}
-                            {/*                        </p>*/}
-                            {/*                    </div>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-                            {/*        </fieldset>*/}
-
-                            {/*    </div>*/}
-                            {/*</div>*/}
                             <div>
                                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                     電子郵件
@@ -216,7 +168,7 @@ export default function Auth() {
                                     <>
                                         <div>
                                             <label htmlFor="password"
-                                                   className="block text-sm font-medium leading-6 text-gray-900">
+                                                className="block text-sm font-medium leading-6 text-gray-900">
                                                 密碼
                                             </label>
                                             <div className="mt-2">
@@ -238,7 +190,8 @@ export default function Auth() {
                             <div className="flex items-center justify-end">
                                 <div className="text-sm leading-6">
                                     <button onClick={e => setIsForgot(!isForgot)}
-                                            className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        type="button"
+                                        className="font-semibold text-indigo-600 hover:text-indigo-500">
                                         {isForgot ? "返回登入/註冊" : "忘記密碼？"}
                                     </button>
                                 </div>
@@ -257,7 +210,7 @@ export default function Auth() {
                         <div>
                             <div className="relative mt-10">
                                 <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                                    <div className="w-full border-t border-gray-200"/>
+                                    <div className="w-full border-t border-gray-200" />
                                 </div>
                                 <div className="relative flex justify-center text-sm font-medium leading-6">
                                     <span className="bg-white px-6 text-gray-900">或使用社群帳號登入</span>
@@ -294,7 +247,7 @@ export default function Auth() {
                                     onClick={facebookLogin}
                                     className="flex w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                                 >
-                                    <FacebookIcon className="h-5 w-5"/>
+                                    <FacebookIcon className="h-5 w-5" />
 
                                     <span className="text-sm font-semibold leading-6">Facebook</span>
                                 </button>
@@ -303,14 +256,14 @@ export default function Auth() {
                                     onClick={generateQR}
                                     className="flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                                 >
-                                    <QrCodeIcon className="h-5 w-5 fill-[#24292F]"/>
+                                    <QrCodeIcon className="h-5 w-5 fill-[#24292F]" />
                                     <span className="text-sm font-semibold leading-6">QRCode</span>
                                 </button>
                                 {loadingQr && (
                                     <div
                                         className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
                                         <div className={"animate-spin"}>
-                                            <ArrowPathIcon className="h-5 w-5"/>
+                                            <ArrowPathIcon className="h-5 w-5" />
                                         </div>
                                     </div>
                                 )}
@@ -319,7 +272,7 @@ export default function Auth() {
                                         className={"flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 "}>
                                         {qrID === "" ?
                                             <div className={"animate-spin"}>
-                                                <ArrowPathIcon className="h-5 w-5"/>
+                                                <ArrowPathIcon className="h-5 w-5" />
                                             </div> :
                                             <div className={"relative p-4 flex flex-col items-center"}>
                                                 {
@@ -328,16 +281,16 @@ export default function Auth() {
                                                         className={"absolute top-0 left-0 right-0 bottom-0 bg-gray-50 opacity-90 flex justify-center items-center"}>
                                                         <div>
                                                             <CheckCircleIcon
-                                                                className={"h-24 w-24 mx-auto my-auto text-gray-700"}/>
+                                                                className={"h-24 w-24 mx-auto my-auto text-gray-700"} />
                                                             <span className={"text-lg"}>
-                                                            已掃描，請在 App 上點擊確認
-                                                        </span>
+                                                                已掃描，請在 App 上點擊確認
+                                                            </span>
                                                         </div>
                                                     </div>
                                                 }
                                                 <QRCode
                                                     size={256}
-                                                    style={{height: "auto", maxWidth: "70%", width: "70%"}}
+                                                    style={{ height: "auto", maxWidth: "70%", width: "70%" }}
                                                     value={`qrauth://endpoint=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT)}&id=${qrID}`}
                                                     viewBox={`0 0 256 256`}
                                                 />

@@ -1,15 +1,16 @@
 "use client";
-import {PlusIcon} from "@heroicons/react/24/solid";
+import { PlusIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
-import CourseList from "@/app/course/CourseList";
-import {useEffect, useState} from "react";
-import {api} from "@/app/utils";
-import {PersonStanding, Star} from "lucide-react";
+import CourseList from "./CourseList"
+import { useEffect, useState } from "react";
+import { api } from "@/app/utils";
+import { PersonStanding, Star } from "lucide-react";
 
 export default function Course() {
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState<any>(null)
+
     useEffect(() => {
-        api('GET', '/user').then(data => setUser(data))
+        // api('GET', '/user').then(data => setUser(data))
     }, []);
     return (
         <div className="flex min-h-full flex-col">
@@ -39,16 +40,16 @@ export default function Course() {
                         </div>*/}
                         <div className={"flex flex-col gap-4"}>
                             <div className={"border-b border-dotted border-gray-300 text-xl inline-flex items-center"}>
-                                <PersonStanding className={"h-6 w-6 inline-block"}/>{' '}
+                                <PersonStanding className={"h-6 w-6 inline-block"} />{' '}
                                 參與的課程</div>
                             <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
-                                <CourseList type="attended"/>
+                                <CourseList type="attended" />
                                 <Link href={"/course/add"}>
                                     <div className={"flex gap-2 h-20 items-center"}>
                                         <div
                                             className={"w-full bg-gray-400 h-full flex flex-col justify-center items-center py-2"}>
                                             <div className={"text-white"}>新增課程</div>
-                                            <PlusIcon className={"h-16 w-16 text-white"}/>
+                                            <PlusIcon className={"h-16 w-16 text-white"} />
                                         </div>
                                     </div>
                                 </Link>
@@ -58,13 +59,13 @@ export default function Course() {
                             <div className={"flex flex-col gap-4"}>
                                 <div className={"border-b border-dotted border-gray-300 text-xl"}>管理的課程</div>
                                 <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
-                                    <CourseList type="owned"/>
+                                    <CourseList type="owned" />
                                     <Link href={"/course/add"}>
                                         <div className={"flex gap-2 h-20 items-center"}>
                                             <div
                                                 className={"w-full bg-gray-400 h-full flex flex-col justify-center items-center py-2"}>
                                                 <div className={"text-white"}>新增課程</div>
-                                                <PlusIcon className={"h-16 w-16 text-white"}/>
+                                                <PlusIcon className={"h-16 w-16 text-white"} />
                                             </div>
                                         </div>
                                     </Link>
@@ -72,17 +73,17 @@ export default function Course() {
                             </div>}
                         <div className={"flex flex-col gap-4"}>
                             <div className={"border-b border-dotted border-gray-300 text-xl inline-flex items-center"}>
-                                <Star className={"h-6 w-6 inline-block"}/>{' '}
+                                <Star className={"h-6 w-6 inline-block"} />{' '}
                                 推薦的課程
                             </div>
                             <div className={"grid grid-cols-1 md:grid-cols-2 gap-8"}>
-                                <CourseList type="recommend"/>
+                                <CourseList type="recommend" />
                                 <Link href={"/course/add"}>
                                     <div className={"flex gap-2 h-20 items-center"}>
                                         <div
                                             className={"w-full bg-gray-400 h-full flex flex-col justify-center items-center py-2"}>
                                             <div className={"text-white"}>新增課程</div>
-                                            <PlusIcon className={"h-16 w-16 text-white"}/>
+                                            <PlusIcon className={"h-16 w-16 text-white"} />
                                         </div>
                                     </div>
                                 </Link>
