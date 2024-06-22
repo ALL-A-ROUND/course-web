@@ -40,7 +40,7 @@ export async function api(method: "GET" | "POST", endpoint: string, jsonBody: an
     const SSR = typeof window === "undefined"
     const token = SSR ? null : await auth.currentUser?.getIdToken()
 
-    return fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
+    return await fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + endpoint, {
         method,
         body: (
             (method === "GET" || typeof jsonBody === "undefined") ? null :

@@ -5,10 +5,7 @@ import {Bars3Icon, BellIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import {redirect, usePathname, useRouter} from "next/navigation";
 import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
-import {middlewareConfig} from "@/app/middleware.config";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {auth} from "@/lib/firebase/firebase";
-import {signOut} from "@/lib/firebase/auth";
 
 const navigation = [
     {name: '課程', href: '/course', id: 'course'},
@@ -27,20 +24,15 @@ function classNames(...classes) {
 
 
 export default async function Nav() {
-    const router = useRouter()
-    const logout = () => {
-        signOut(auth).then(() => {
-            router.replace('/auth')
-        })
-    }
+    
     const pathname = usePathname()
-    const [user, loading, error] = useAuthState(auth)
+    // const [user, loading, error] = useAuthState(auth)
 
-    useEffect(() => {
-        if (!loading && !user) {
-            router.replace('/auth')
-        }
-    }, [loading, user])
+    // useEffect(() => {
+    //     if (!loading && !user) {
+    //         router.replace('/auth')
+    //     }
+    // }, [loading, user])
     const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
 
     return (
@@ -99,13 +91,13 @@ export default async function Nav() {
                                                 className="flex max-w-xs items-center rounded-full bg-gray-800 text-sm text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                 <span className="sr-only">Open user menu</span>
                                                 {/*<span className={"mx-1"}>Hi, {user?.name} {user?.credit}</span>*/}
-                                                {user?.avatar ? (
+                                                {/* {user?.avatar ? (
                                                     <img className="h-8 w-8 rounded-full"
                                                          src={`${process.env.NEXT_PUBLIC_ASSET_ENDPOINT}/avatars/${user?.avatar}`}
                                                          alt=""/>
                                                 ) : (
                                                     <UserCircleIcon className="h-8 w-8 rounded-full"/>
-                                                )}
+                                                )} */}
                                             </Menu.Button>
                                         </div>
                                         <Transition
@@ -137,7 +129,6 @@ export default async function Nav() {
                                                 <Menu.Item>
                                                     {({active}) => (
                                                         <button
-                                                            onClick={logout}
                                                             className={classNames(
                                                                 active ? 'bg-gray-100' : '',
                                                                 'w-full text-left block px-4 py-2 text-sm text-gray-700'
@@ -188,15 +179,15 @@ export default async function Nav() {
                         <div className="border-t border-gray-700 pt-4 pb-3">
                             <div className="flex items-center px-5">
                                 <div className="flex-shrink-0">
-                                    {user?.avatar_url ? (
+                                    {/* {user?.avatar_url ? (
                                         <img className="h-10 w-10 rounded-full" src={user?.avatar_url} alt=""/>
                                     ) : (
                                         <UserCircleIcon className="h-10 w-10 rounded-full text-gray-300"/>
-                                    )}
+                                    )} */}
                                 </div>
                                 <div className="ml-3">
-                                    <div className="text-base font-medium text-white">{user?.name}</div>
-                                    <div className="text-sm font-medium text-gray-400">{user?.email}</div>
+                                    {/* <div className="text-base font-medium text-white">{user?.name}</div>
+                                    <div className="text-sm font-medium text-gray-400">{user?.email}</div> */}
                                 </div>
                                 <button
                                     type="button"
@@ -219,7 +210,6 @@ export default async function Nav() {
                                 ))}
 
                                 <Disclosure.Button
-                                    onClick={logout}
                                     className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
                                 >登出
                                 </Disclosure.Button>

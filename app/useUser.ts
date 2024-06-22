@@ -1,8 +1,7 @@
-"use client";
-import {useEffect, useState} from "react";
-import {api} from "@/app/utils";
-import {auth} from "@/lib/firebase/firebase";
-import {useAuthState} from "react-firebase-hooks/auth";
+import { useEffect, useState } from "react";
+import { api } from "@/app/utils";
+import { auth } from "@/lib/firebase/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function useUser() {
     const [loading, setLoading] = useState(true);
