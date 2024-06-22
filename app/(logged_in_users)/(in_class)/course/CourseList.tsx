@@ -1,7 +1,6 @@
 "use client"
 import useSWR from "swr";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { api } from "@/app/utils";
 import { cn } from "@/lib/utils";
