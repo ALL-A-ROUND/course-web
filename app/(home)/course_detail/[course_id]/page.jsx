@@ -27,6 +27,8 @@ import {
     CollapsibleContent,
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
+import useSWR from "swr";
+import {api} from "@/app/utils";
 
 function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -129,6 +131,11 @@ function BreadcrumbComponent() {
 }
 
 export default function CourseDetail({params}) {
+    const {
+        data: course,
+        isLoading
+    } = useSWR(`/course/${params.course_id}?with=units`, async (url) => await api("GET", `/course/${params.course_id}`, null).then(d => d))
+
     return (
         <>
             <div style={{
@@ -136,14 +143,14 @@ export default function CourseDetail({params}) {
             }}>
                 <div className={`p-4 relative`}>
                     <div className={"flex justify-between"}>
-                        <BreadcrumbComponent/>
+                        {/*<BreadcrumbComponent/>*/}
                         <div>
                             <button className={"btn btn-primary rounded-full bg-gray-100 p-2"}>
                                 <FacebookIcon className={"w-3 h-3"}/>
                             </button>
                         </div>
                     </div>
-                    <div
+                    {/* <div
                         style={{
                             position: "relative",
                             paddingTop: "56.25%",
@@ -164,25 +171,23 @@ export default function CourseDetail({params}) {
                             allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
                             allowFullScreen="true"
                         ></iframe>
-                    </div>
+                    </div>*/}
 
                     <div className={"mt-4 flex gap-1 items-center font-extralight"}>
                         <div className={"h-6 w-6"}> {/* AVATAR */}
                             <img src={"https://images.hahow.in/images/6406c9c957e7939a9063aa44?width=48"}/>
                         </div>
                         <div>
-                            平凡老師 - 鄭弘煒
+                            {course?.teachers?.map(u => u.name)?.join(", ")}
                         </div>
                     </div>
 
                     <div className={"mt-3 font-bold text-lg"}>
-                        WordPress 新手第一堂必修入門課
+                        {course?.name}
                     </div>
 
                     <div className={"mt-3 font-light text-gray-400"}>
-                        這是給全新手從 0 開始踏入 WordPress 世界的課程。這個課程將透過影片的方式帶你一步步學習 WordPress
-                        軟體，系統化地打好基礎，你將可以架設好一個有良好結構的官網與部落格，往後經營上完全沒煩惱。
-
+                        {course?.description}
                     </div>
 
 
@@ -198,7 +203,9 @@ export default function CourseDetail({params}) {
                             </div>
                             <div className={"flex flex-col"}>
                                 <div className={"text-gray-400"}>課程時數</div>
-                                <div>1 小時 30 分鐘</div>
+                                <div>
+                                    暫無資料
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -210,30 +217,7 @@ export default function CourseDetail({params}) {
                     <div className={"bg-white p-4"}>
                         <div className={"text-xl font-bold"}>課程內容</div>
                         <div className={""}>
-                            哈囉，您好，歡迎來到平凡以上的 WordPress 新手免費課程。
-                            平凡以上是由 Youtube 起家的，至今已經解決了超過百名網友的問題，過程中也搜集許多同學的疑問，發現同學很難在網路上學習到系統性的
-                            WordPress 教學，除了之外，能在課程中學習到經驗、工作流程、理解的方式更難。因此，我推出一系列
-                            WordPress 課程，希望可以節省同學尋找、學習的時間！
-
-                            這是給全新手從 0 開始踏入 WordPress 世界的課程，課程將帶你一步步學習 WordPress
-                            軟體，系統化地打好基礎，並且在課程結束後架設好一個有良好結構的官網與部落格，讓往後經營無煩惱。
-
-                            學習 WordPress 的優點
-                            什麼是 WordPress？
-                            簡單來說，WordPress 是個開源的軟體，以簡單輕鬆的方式製作網站或部落格。複雜一點地說，它是一個基於
-                            GPLv2 合約底下的開源免費內容管理系統，以 PHP 與 MySQL
-                            為平台開發而成。也因著開源免費的關係，所有人都可以簡單的修改他的原始碼並客製化成自己的應用程式。
-
-                            WordPress 最主要目的就是希望透過開源軟體的方式，幫助所有人都能夠不用會寫程式，也能架設自己的網站。
-
-                            它到底有多受歡迎，你知道目前統計，全世界有 40% 以上的網站都是透過 WordPress
-                            架設的，而且這個數字在不斷地持續攀升。
-
-                            為什麼要學習 WordPress，超多優點一次報給你聽！
-                            你已經知道 WordPress 的火紅的程度，或許你可以考慮要使用 WordPress 來架設網站。以下特色也是為何你該使用
-                            WordPress 的原因。
-
-
+                            {course?.introduction}
                         </div>
                     </div>
                 </div>
@@ -246,13 +230,10 @@ export default function CourseDetail({params}) {
                     </div>
 
                     <div className={"flex flex-col gap-4 mt-4"}>
-                        <Unit/>
-                        <Unit/>
-                        <Unit/>
-                        <Unit/>
-                        <Unit/>
-                        <Unit/>
-
+                        {
+                            course?.units?.map((u, i) =>
+                                <Unit key={i} unit={u}/>)
+                        }
                     </div>
 
                 </div>
@@ -266,7 +247,7 @@ export default function CourseDetail({params}) {
                                  className={"h-24 w-24"}/>
                         </div>
                         <div className={"text-xl font-bold mt-4"}>
-                            平凡老師 - 鄭弘煒
+                            {course?.teachers?.map(u => u.name)?.join(", ")}
                         </div>
                         <div className={"flex gap-3 items-center"}>
                             <div>
@@ -274,18 +255,16 @@ export default function CourseDetail({params}) {
                             </div>
                             <div className={"bg-gray-300 h-4 w-0.5 block"}></div>
                             <div>
-                                <span className={"text-lime-500"}>7 </span>堂課程
+                                <span className={"text-lime-500"}>{Math.floor(Math.random())} </span>堂課程
                             </div>
                             <div className={"bg-gray-300 h-4 w-0.5 block"}></div>
 
                             <div>
-                                <span className={"text-lime-500"}>2048 </span>位學生
+                                <span className={"text-lime-500"}>{Math.floor(Math.random())}  </span>位學生
                             </div>
                         </div>
 
                         <div className={"my-4"}>
-                            Hello 你好，我是平凡以上的創辦人東霖。平凡以上致力於 WordPress
-                            軟體的線上教學。希望透過線上學習的方式，協助所有想學習的使用者架設屬於自己的網站。
 
                         </div>
                     </div>
@@ -300,7 +279,7 @@ export default function CourseDetail({params}) {
                             <div className={"flex gap-4 items-center"}>
                                 <div className={"flex flex-col gap-1"}>
                                     <div className={"text-lg font-bold"}>單堂課價格</div>
-                                    <div className={"text-lg text-lime-500"}>NT$ 1,200</div>
+                                    <div className={"text-lg text-lime-500"}>NT$ {course?.price}</div>
                                 </div>
                                 <button className={"btn btn-primary"}>
                                     立即購買
