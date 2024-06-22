@@ -5,26 +5,26 @@ const dummy_messages = [
     {
         id: "asjfi",
         date: "2021-09-10",
-        title: "New Course",
-        message: "New course has been added to your account",
+        title: "新課程通知",
+        message: "有個新課程已被加入您的帳號",
     },
     {
         id: "asjfe4ti",
         date: "2023-09-01",
-        title: "New Course",
-        message: "New course has been added to your account",
+        title: "新課程通知",
+        message: "有個新課程已被加入您的帳號",
     },
     {
         id: "asjsdgrfi",
         date: "2024-05-01",
-        title: "New Course",
-        message: "New course has been added to your account",
+        title: "新課程通知",
+        message: "有個新課程已被加入您的帳號",
     },
     {
         id: "asjfdsrgi",
         date: "2024-06-20",
-        title: "New Course",
-        message: "New course has been added to your account",
+        title: "新課程通知",
+        message: "有個新課程已被加入您的帳號",
     }
 ]
 
