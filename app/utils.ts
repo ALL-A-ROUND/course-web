@@ -7,9 +7,9 @@ import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import { auth } from "@/lib/firebase/firebase";
 
-export function sha256(str) {
+export async function sha256(str: string) {
     // Get the string as arraybuffer.
-    var buffer = new TextEncoder("utf-8").encode(str)
+    var buffer = new TextEncoder().encode(str)
     return crypto.subtle.digest("SHA-256", buffer).then(function (hash) {
         return hex(hash)
     })
@@ -34,7 +34,7 @@ export function hex(buffer) {
     return digest
 }
 
-export async function api(method, endpoint, jsonBody = undefined, options = {
+export async function api(method: "GET" | "POST", endpoint: string, jsonBody: any = {}, options: any = {
     disableError: false,
 }) {
     const SSR = typeof window === "undefined"
@@ -195,7 +195,12 @@ export function EchoAuth(channel, options) {
 }
 
 export function generateEchoInstance() {
-    window.Pusher = Pusher;
+
+    if(typeof window === "undefined"){
+        return null
+    }
+
+    (<any>window).Pusher = Pusher;
 
     return new Echo({
         broadcaster: 'pusher',

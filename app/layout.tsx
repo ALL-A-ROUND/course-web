@@ -1,4 +1,5 @@
 import './globals.css'
+import "react-toastify/dist/ReactToastify.css";
 
 import localFont from 'next/font/local'
 import Script from "next/script";
@@ -8,6 +9,8 @@ import dynamic from 'next/dynamic';
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 const jf = localFont({ src: "../fonts/jf.ttf" })
+
+import { ToastContainer } from 'react-toastify'
 
 export const metadata = {
     title: "全方位課程平台",
@@ -28,6 +31,7 @@ export default function RootLayout({ children }) {
                     data-base-url="https://jsd-widget.atlassian.com"
                     src="https://jsd-widget.atlassian.com/assets/embed.js" />
                 <TrackingComponent />
+                <ToastContainer />
             </body>
         </html>
     )
