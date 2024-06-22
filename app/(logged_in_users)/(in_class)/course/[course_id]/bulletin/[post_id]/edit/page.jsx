@@ -1,4 +1,4 @@
-import BulletinBoard from "@/app/course/[course_id]/bulletin/BulletinBoard";
+import BulletinBoard from "@/app/(logged_in_users)/(in_class)/course//[course_id]/bulletin/BulletinBoard";
 
 export default function AddBulletin({ params }) {
     return (

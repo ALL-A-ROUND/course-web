@@ -1,5 +1,5 @@
 "use client"
-import ProblemEditableForm from "@/app/question_bank/pools/[pool_id]/problems/ProblemEditableForm";
+import ProblemEditableForm from "@/app/(logged_in_users)/(editor)/question_bank//pools/[pool_id]/problems/ProblemEditableForm";
 import {usePathname, useRouter} from "next/navigation";
 import Swal from "sweetalert2";
 import {useState} from "react";

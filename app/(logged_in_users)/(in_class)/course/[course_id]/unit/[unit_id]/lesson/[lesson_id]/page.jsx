@@ -3,7 +3,7 @@ import useSWR from "swr";
 import {api, moment} from "@/app/utils";
 import YouTube from "react-youtube";
 import {useEffect, useState} from "react";
-import DiscussPage from "@/app/course/[course_id]/discuss/page";
+import DiscussPage from "@/app/(logged_in_users)/(in_class)/course//[course_id]/discuss/page";
 
 export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     const [player, setPlayer] = useState(null)

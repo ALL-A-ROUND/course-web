@@ -2,10 +2,10 @@
 import {PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
 import {classNames} from "@/app/utils";
-import ProblemList from "@/app/problem/ProblemList";
+import ProblemList from "@/app/(logged_in_users)/(editor)/problem/ProblemList";
 import Link from "next/link";
 import SideBar from "@/app/SideBar";
-import ContestList from "@/app/contest/ContestList";
+import ContestList from "@/app/(logged_in_users)/(in_class)/contest/ContestList";
 
 export default function Contest() {
     return (

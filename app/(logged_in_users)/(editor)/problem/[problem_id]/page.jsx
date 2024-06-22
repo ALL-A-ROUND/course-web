@@ -9,10 +9,9 @@ import {useRef, useState} from "react";
 import {parse} from 'node-html-parser';
 
 import {api} from "@/app/utils";
-import {PencilIcon, ServerStackIcon, TrashIcon} from "@heroicons/react/24/outline";
-import {EyeIcon} from "@heroicons/react/20/solid";
+import {ServerStackIcon} from "@heroicons/react/24/outline";
 import Instance from "@/app/utils/Instance";
-import PdfViewer from "@/app/problem/[problem_id]/PDFViewer";
+import PdfViewer from "@/app/(logged_in_users)/(editor)/problem/[problem_id]/PDFViewer";
 import {ArrowPathIcon} from "@heroicons/react/24/solid";
 
 export default function Problem({params: {problem_id, contest_id = null}}) {

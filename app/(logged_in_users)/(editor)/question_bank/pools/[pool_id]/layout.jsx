@@ -8,8 +8,8 @@ import {
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {HomeIcon} from "@heroicons/react/24/solid";
-import ProblemList from "@/app/question_bank/pools/[pool_id]/ProblemList";
-import MobileProblemList from "@/app/question_bank/pools/[pool_id]/MobileProblemList";
+import ProblemList from "@/app/(logged_in_users)/(editor)/question_bank//pools/[pool_id]/ProblemList";
+import MobileProblemList from "@/app/(logged_in_users)/(editor)/question_bank//pools/[pool_id]/MobileProblemList";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import {api} from "@/app/utils";
 import {HomeIcon} from "@heroicons/react/24/solid";
-import BuyCourseWidget from "@/app/course/[course_id]/BuyCourseWidget";
+import BuyCourseWidget from "@/app/(logged_in_users)/(in_class)/course/[course_id]/BuyCourseWidget";
 import useSWR from "swr";
 
 export default function CourseMain({params}) {

@@ -1,7 +1,7 @@
 
 import {ChevronRightIcon} from '@heroicons/react/20/solid'
 import {api} from "@/app/utils";
-import ClientWrapper from "@/app/course/[course_id]/discuss/[thread_id]/ClientWrapper";
+import ClientWrapper from "@/app/(logged_in_users)/(in_class)/course//[course_id]/discuss/[thread_id]/ClientWrapper";
 
 async function getThreadData(course_id, thread_id) {
     return await api('GET', `/courses/${course_id}/threads/${thread_id}/public`)

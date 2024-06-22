@@ -10,8 +10,8 @@ import {
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {HomeIcon} from "@heroicons/react/24/solid";
-import PoolList from "@/app/question_bank/pools/PoolList";
-import MobilePoolList from "@/app/question_bank/pools/MobilePoolList";
+import PoolList from "@/app/(logged_in_users)/(editor)/question_bank//pools/PoolList";
+import MobilePoolList from "@/app/(logged_in_users)/(editor)/question_bank//pools/MobilePoolList";
 
 const navigation = [
     {name: '題庫列表', href: '/question_bank/pools', same: true, icon: HomeIcon},

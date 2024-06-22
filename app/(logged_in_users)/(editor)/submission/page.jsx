@@ -1,6 +1,6 @@
 import {PencilSquareIcon} from "@heroicons/react/24/solid";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
-import SubmissionList from "@/app/submission/SubmissionList";
+import SubmissionList from "@/app/(logged_in_users)/(editor)/submission//SubmissionList";
 import SideBar from "@/app/SideBar";
 
 export default function Course() {

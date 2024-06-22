@@ -1,8 +1,8 @@
 "use client"
 
-import PostEditBox from "@/app/course/[course_id]/discuss/[thread_id]/PostEditBox";
+import PostEditBox from "@/app/(logged_in_users)/(in_class)/course//[course_id]/discuss/[thread_id]/PostEditBox";
 import {Suspense, useRef, useState} from "react";
-import ThreadPost from "@/app/course/[course_id]/discuss/[thread_id]/ThreadPost";
+import ThreadPost from "@/app/(logged_in_users)/(in_class)/course//[course_id]/discuss/[thread_id]/ThreadPost";
 
 export default function ClientWrapper({params}) {
     const [reply, setReply] = useState(null)

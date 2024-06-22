@@ -1,5 +1,5 @@
 "use client"
-import ProblemList from "@/app/problem/ProblemList";
+import ProblemList from "@/app/(logged_in_users)/(editor)/problem/ProblemList";
 import SideBar from "@/app/SideBar";
 
 export default function Problem() {

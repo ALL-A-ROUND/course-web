@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import {api, moment} from "@/app/utils";
-import Problem from "@/app/contest/[contest_id]/Problem";
+import Problem from "@/app/(logged_in_users)/(in_class)/contest/[contest_id]/Problem";
 import useSWR from "swr";
 
 export default function Example({params}) {

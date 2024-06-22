@@ -1,7 +1,7 @@
 "use client"
 import {usePathname, useRouter} from "next/navigation";
 import {useState} from "react";
-import ProblemEditableForm from "@/app/question_bank/pools/[pool_id]/problems/ProblemEditableForm";
+import ProblemEditableForm from "@/app/(logged_in_users)/(editor)/question_bank//pools/[pool_id]/problems/ProblemEditableForm";
 import Swal from "sweetalert2";
 
 export default function ({params}) {

@@ -5,9 +5,9 @@ import {api} from "@/app/utils";
 import {ClipboardIcon} from "@heroicons/react/24/outline";
 
 import Swal from "sweetalert2";
-import FeatureEdit from "@/app/course/[course_id]/manage/FeatureEdit";
-import CourseInformationEdit from "@/app/course/[course_id]/manage/CourseInformationEdit";
-import RelatedUserEdit from "@/app/course/[course_id]/manage/RelatedUserEdit";
+import FeatureEdit from "@/app/(logged_in_users)/(in_class)/course//[course_id]/manage/FeatureEdit";
+import CourseInformationEdit from "@/app/(logged_in_users)/(in_class)/course//[course_id]/manage/CourseInformationEdit";
+import RelatedUserEdit from "@/app/(logged_in_users)/(in_class)/course//[course_id]/manage/RelatedUserEdit";
 import useSWR from "swr";
 
 export default function CourseManage({params}) {

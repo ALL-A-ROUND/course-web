@@ -285,7 +285,6 @@ export default function CourseDetail({params}) {
                                     立即購買
                                 </button>
                             </div>
-
                         </div>
                     </div>
 
