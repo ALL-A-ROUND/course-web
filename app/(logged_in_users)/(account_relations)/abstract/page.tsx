@@ -7,7 +7,7 @@ import useSWR from "swr";
 import {api} from "@/app/utils";
 
 export default function AboutPage() {
-    const [value, setValue] = useState(20)
+    const [value, setValue] = useState(0)
     const {
         data: courses,
         isLoading
