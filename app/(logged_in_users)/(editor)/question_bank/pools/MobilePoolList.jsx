@@ -29,7 +29,7 @@ export default function ({pathname}) {
                     <div className={"h-6 rounded-md w-full bg-gray-200 animate-pulse"}></div>
                 </div>
             }
-            {pools && pools.map((pool) => (
+            {pools && pools?.map((pool) => (
                 <Link
                     key={pool.name}
                     href={`/question_bank/pools/${pool.id}/problems`}

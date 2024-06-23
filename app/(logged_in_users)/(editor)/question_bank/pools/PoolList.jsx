@@ -1,6 +1,7 @@
 import useSWR from "swr";
 import Link from "next/link";
 import {DocumentIcon, FolderIcon} from "@heroicons/react/24/outline";
+import {api} from "@/app/utils";
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -10,13 +11,7 @@ export default function ({pathname}) {
     const {
         data: pools,
         isLoading
-    } = useSWR('/question_bank/pools', url => fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + url, {
-        headers: {
-            "Accept": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token"),
-            "Content-Type": "application/json",
-        }
-    }).then(res => res.json()))
+    } = useSWR('/question_bank/pools', url => api('GET', url))
     return (
         <>
             {isLoading &&
@@ -29,7 +24,7 @@ export default function ({pathname}) {
                     <div className={"h-6 rounded-md w-full bg-gray-200 animate-pulse"}></div>
                 </div>
             }
-            {pools && pools.map((pool) => (
+            {pools && pools?.map((pool) => (
                 <Link
                     key={pool.name}
                     href={`/question_bank/pools/${pool.id}/problems`}
