@@ -37,7 +37,7 @@ export const FoundingCourse = (item: {
                     <div className="pb-3">
                         <div className="py-2">
                             <div className="flex flex-row justify-between">
-                                <p className="text-year-500">募資倒數</p>
+                                <p className="text-year-500">倒數</p>
                                 <p className="text-gray-400">{`${item.progress}%`}</p>
                             </div>
                             <div className="h-2 bg-year-300 rounded-full" style={{

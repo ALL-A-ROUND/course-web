@@ -80,8 +80,8 @@ export default function FoundingSection() {
         <div className="w-screen md:w-full px-5">
             <div className="pt-10 " />
             <div className="flex flex-row py-5 gap-3 items-center">
-                <h2 className="text-xl font-semibold">最新募資課程</h2>
-                <h2 className="text-gray-600">| 募資加入最優惠</h2>
+                <h2 className="text-xl font-semibold">最新課程</h2>
+                <h2 className="text-gray-600">| 加入最優惠</h2>
             </div>
             <Carousel
                 opts={{

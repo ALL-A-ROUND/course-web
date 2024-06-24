@@ -136,7 +136,7 @@ const FoundingCard = ({
                 <h2 className="py-1 text-gray-200">{`By ${produced_by}`}</h2>
                 <div className="py-2">
                     <div className="flex flex-row justify-between">
-                        <p className="text-year-100">募資倒數</p>
+                        <p className="text-year-100">倒數</p>
                         <p className="text-gray-100">{`${percentage}%`}</p>
                     </div>
                     <div className="h-1 bg-year-300 rounded-full" style={{
