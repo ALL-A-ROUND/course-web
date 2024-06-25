@@ -7,6 +7,7 @@ import { signOut } from "@/lib/firebase/auth";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/firebase/firebase";
+import AccountRelations from "@/app/(home)/(navigation-components)/account-relation";
 
 export default function PageLayout({
     children
@@ -37,15 +38,14 @@ export default function PageLayout({
                         height={100}
                     />
                 </div>
-                <div className="flex flex-row space-x-5">
+                <div className="flex flex-row space-x-5 items-center">
                     <Link href="/home">
                         <div>首頁</div>
                     </Link>
-                    <button type="button" onClick={() => {
-                        logout();
-                    }}>
+                    <button type="button" onClick={logout}>
                         <div>登出</div>
                     </button>
+                    <AccountRelations />
                 </div>
             </nav>
             {children}

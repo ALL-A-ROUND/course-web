@@ -22,7 +22,7 @@ export default function HomeLayout({
     const pathname = usePathname()
 
     return (
-        <div className="md:hidden w-full min-h-screen">
+        <div className=" w-full min-h-screen">
             {children}
 
             <nav className="fixed bottom-0 w-full h-16 flex flex-row items-center justify-between bg-[#9F9C79]">

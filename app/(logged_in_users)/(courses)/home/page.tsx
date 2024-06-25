@@ -31,7 +31,7 @@ export default function HomePage() {
 
             <div className="px-4">
                 <h2 className="py-2 text-xl">積分課程 第一大類</h2>
-                <div className="">
+                <div className={"grid grid-cols-1 md:grid-cols-3 gap-6"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
@@ -66,7 +66,7 @@ export default function HomePage() {
 
             <div className="px-4">
                 <h2 className="py-2 text-xl">積分課程 第二大類</h2>
-                <div className="">
+                <div className={"grid grid-cols-1 md:grid-cols-3 gap-6"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>

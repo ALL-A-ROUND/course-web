@@ -116,7 +116,7 @@ export default function Page() {
 
 
             </div>
-            <div className={"grid md:grid-cols-4 grid-cols-2 my-4 gap-4 w-full"}>
+            <div className={"grid md:grid-cols-4 grid-cols-1 my-4 gap-4 w-full"}>
                 {user && user.organizations[0]?.users?.map(user => (
                     <Card
                         style={{
