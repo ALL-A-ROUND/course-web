@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React from "react";
+import Markdown from "react-markdown";
 
 export function CourseCard({item}) {
     return (
@@ -28,8 +29,9 @@ export function CourseCard({item}) {
                     <h2 className="text-xl ">{`NT$${item.price}`}</h2>
                 </div>
                 <div className={'text-md'}>
-                    {`${item.introduction}`}
+                    <Markdown>{item.introduction}</Markdown>
                 </div>
+
                 {item.hot &&
                     <div
                         className="bg-red-200 w-fit px-3 py-0.5 rounded-md text-red-600 absolute -bottom-8">熱門課程</div>}

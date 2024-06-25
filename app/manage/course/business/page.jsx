@@ -87,9 +87,9 @@ export default function Page() {
             api('GET', '/user?with=organizations.users').then(setUser)
         }
     }, [firebaseUser]);
-    if (isLoading) return (<>
+    if (isLoading) return (<div className={"min-h-screen min-w-screen flex justify-center items-center"}>
         <Spin size={"large"}></Spin>
-    </>)
+    </div>)
     return (<>
         <div className={"m-4 p-4"}>
             <Heading/>

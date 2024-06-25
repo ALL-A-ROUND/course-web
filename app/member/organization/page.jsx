@@ -49,9 +49,11 @@ export default function Member() {
                             <p className="mt-1 text-sm leading-5 text-gray-500">管理您的組織</p>
                         </div>
                         <div className={"flex gap-1"}>
+                            {location && location.search.includes("debug") && (
                             <Button type={"primary"} onClick={e => {
                                 setShowOrg(true)
                             }}>新增組織</Button>
+                            )}
                             <Button type={"primary"} onClick={e => {
                                 setShowJoin(true)
                             }}>加入組織</Button>

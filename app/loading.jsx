@@ -1,10 +1,13 @@
-import {ArrowPathIcon} from "@heroicons/react/24/solid";
+import {Spin} from "antd";
+import React from "react";
 
 export default function Loading() {
     return (
-        <div className={"flex flex-col items-center justify-center min-h-screen"}>
-            <ArrowPathIcon className={"w-12 h-12 animate-spin text-gray-400"}/>
-            <div className={"text-2xl font-bold"}>請稍候，載入中....</div>
+        <div className={"min-h-screen min-w-screen flex flex-col gap-4 justify-center items-center"}>
+            <Spin size="large"/>
+            <div className={"text-2xl font-bold"}>
+                請稍候，正在努力載入中...
+            </div>
         </div>
     )
 }

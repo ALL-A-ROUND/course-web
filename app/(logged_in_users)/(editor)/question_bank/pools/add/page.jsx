@@ -1,5 +1,6 @@
 "use client"
 import {useRouter} from "next/navigation";
+import {api} from "@/app/utils";
 
 export default function () {
     const router = useRouter();
@@ -13,15 +14,7 @@ export default function () {
             public: data.get('public') === 'on'
         })
 
-        fetch(process.env.NEXT_PUBLIC_API_ENDPOINT + '/question_bank/pools', {
-            method: 'POST',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token'),
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body
-        }).then(res => res.json()).then(data => {
+        api("POST", "/question_bank/pools", body).then(() => {
             router.replace('/question_bank/pools')
         })
     }

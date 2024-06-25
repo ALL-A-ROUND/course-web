@@ -12,11 +12,13 @@ import Link from "next/link";
 import {api} from "@/app/utils";
 import Nav from "@/app/Nav";
 import {DocumentMagnifyingGlassIcon} from "@heroicons/react/24/outline";
-import {FactoryIcon} from "lucide-react";
-import {useEffect, useState} from "react";
+import {Cog, FactoryIcon, LayoutGrid} from "lucide-react";
+import React, {useEffect, useState} from "react";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import {Spin} from "antd";
+import {cn} from "@/lib/utils";
+import {motion} from "framer-motion";
 
 const secondaryNavigation = [
     {name: '一般設定', icon: UserCircleIcon, path: "/member/general", id: 'general'},
@@ -52,9 +54,10 @@ export default async function Layout({children}) {
     }, [loading]);
     const pathname = usePathname()
     const router = useRouter()
-    if(loading) return <Spin size={"large"}/>;
-    // if (!user) return router.push("/auth")
-    const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
+    if(loading) return <div className={"min-h-screen min-w-screen flex justify-center items-center"}>
+        <Spin size={"large"}/></div>;
+        // if (!user) return router.push("/auth")
+        const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
     return (
         <>
             <Nav/>
@@ -95,6 +98,87 @@ export default async function Layout({children}) {
                     {children}
                 </main>
             </div>
+            <nav className="fixed bottom-0 w-full h-16 flex flex-row items-start justify-center">
+                <div className="w-4/5 bg-emerald-100 h-4/5 rounded-full flex flex-row justify-between px-5">
+                    <Link href="/abstract" passHref>
+                        <div className={cn("rounded-full items-center flex flex-row relative h-full",
+                            pathname === "/abstract" ? "w-32" : "w-10"
+                        )}>
+                            <LayoutGrid className="size-6 z-20 ml-3"/>
+                            <span className={cn("z-20 pl-3",
+                                pathname === "/abstract" ? "block" : "hidden"
+                            )}>
+                                    課程進度
+                                </span>
+                            {pathname === "/abstract" && (
+                                <motion.div layoutId="buttom-navigation"
+                                            className="absolute w-32 h-4/5 bg-red-100/80 z-10 rounded-lg"/>
+                            )}
+                        </div>
+                    </Link>
+                    {/*<Link href="/statistics" passHref>*/}
+                    {/*    <div className={cn("rounded-full items-center flex flex-row relative h-full",*/}
+                    {/*        pathname === "/statistics" ? "w-32" : "w-10"*/}
+                    {/*    )}>*/}
+                    {/*        <BarChart className="size-6 z-20 ml-3" />*/}
+                    {/*        <span className={cn("z-20 pl-3",*/}
+                    {/*            pathname === "/statistics" ? "block" : "hidden"*/}
+                    {/*        )}>*/}
+                    {/*            數據顯示*/}
+                    {/*        </span>*/}
+                    {/*        {pathname === "/statistics" && (*/}
+                    {/*            <motion.div layoutId="buttom-navigation" className="absolute w-32 h-4/5 bg-red-100/80 z-10 rounded-lg" />*/}
+                    {/*        )}*/}
+                    {/*    </div>*/}
+                    {/*</Link>*/}
+                    {/*<Link href="/payment">*/}
+                    {/*    <div className={cn("rounded-full items-center flex flex-row relative h-full",*/}
+                    {/*        pathname === "/payment" ? "w-32" : "w-10"*/}
+                    {/*    )}>*/}
+                    {/*        <CreditCard className="size-6 z-20 ml-3" />*/}
+                    {/*        <span className={cn("z-20 pl-3",*/}
+                    {/*            pathname === "/payment" ? "block" : "hidden"*/}
+                    {/*        )}>*/}
+                    {/*            支付方式*/}
+                    {/*        </span>*/}
+                    {/*        {pathname === "/payment" && (*/}
+                    {/*            <motion.div layoutId="buttom-navigation" className="absolute w-32 h-4/5 bg-red-100/80 z-10 rounded-lg" />*/}
+                    {/*        )}*/}
+                    {/*    </div>*/}
+                    {/*</Link>*/}
+                    {/*<Link href="/about-me">*/}
+                    {/*    <motion.div className={cn("rounded-full items-center flex flex-row relative h-full",*/}
+                    {/*        pathname === "/about-me" ? "w-32" : "w-10"*/}
+                    {/*    )} >*/}
+                    {/*        <CircleUserRound className="size-6 z-20 ml-3" />*/}
+                    {/*        <span className={cn("z-20 pl-3",*/}
+                    {/*            pathname === "/about-me" ? "block" : "hidden"*/}
+                    {/*        )}>*/}
+                    {/*            關於我*/}
+                    {/*        </span>*/}
+                    {/*        {pathname === "/about-me" && (*/}
+                    {/*            <motion.div layoutId="buttom-navigation" className="absolute w-32 h-4/5 bg-red-100/80 z-10 rounded-lg" />*/}
+                    {/*        )}*/}
+                    {/*    </motion.div>*/}
+                    {/*</Link>*/}
+                    <Link href="/member">
+                        <motion.div className={cn("rounded-full items-center flex flex-row relative h-full",
+                            pathname.startsWith("/member") ? "w-32" : "w-10"
+                        )}>
+                            <Cog className="size-6 z-20 ml-3"/>
+                            <span className={cn("z-20 pl-3",
+                                pathname.startsWith("/member") ? "block" : "hidden"
+                            )}>
+                                    設定
+                                </span>
+                            {pathname.startsWith("/member") && (
+                                <motion.div layoutId="buttom-navigation"
+                                            className="absolute w-32 h-4/5 bg-red-100/80 z-10 rounded-lg"/>
+                            )}
+                        </motion.div>
+                    </Link>
+                </div>
+            </nav>
         </>
     )
 }

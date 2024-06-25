@@ -142,7 +142,7 @@ export default function ProblemEditableForm({
                                             className="mt-1 block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                                             onChange={(e) => setType(e.target.value)}
                                             value={type}
-                                            defaultValue="0"
+                                            defaultValue="2"
                                         >
                                             <option value={"0"}>程式題</option>
                                             <option value={"1"}>填充題</option>

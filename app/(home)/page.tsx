@@ -3,8 +3,10 @@ import Categories from "./(components)/category-display"
 import GuessYouWant from "./(components)/guess-you-want"
 import Cooperation from "./(components)/cooperation"
 import AllCourse from "@/app/(home)/(components)/all-course";
+import {redirect} from "next/navigation";
 
 export default function HomePage() {
+    return redirect("/home")
     return (
         <div className="flex flex-col items-center">
             <CarouselPage/>
@@ -22,10 +24,3 @@ export default function HomePage() {
         </div>
     )
 }
-// export default function Home() {
-//     // const HomePageComponent = dynamic(() => import(`@/components/homepage/${process.env.NEXT_PUBLIC_APP_ID}`), {
-//     //     ssr: false,
-//     // });
-
-//     return <HomePageComponent/>;
-// }

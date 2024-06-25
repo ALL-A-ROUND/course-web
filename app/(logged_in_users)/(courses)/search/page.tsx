@@ -21,7 +21,7 @@ export default function Searchpage() {
                     submitForm()
                 }}>
                 <input type="text"
-                    placeholder="Search for courses"
+                    placeholder="搜尋任何東西"
                     className="w-4/5 p-2 rounded-md"
                     onFocus={() => {
                         setSearchHovered(true)
@@ -68,7 +68,7 @@ const SearchSuggestions = ({
         <div className="flex flex-col w-full items-center py-3 gap-2">
             <label className="w-4/5">其他人都在看：</label>
             <div className="flex flex-wrap w-4/5 gap-2">
-                {["照顧年長者", "如何攻擊別人的村莊", "牙齒痛怎麼辦"].map(text => (
+                {["照顧年長者", "長照積分累積"].map(text => (
                     <p onClick={() => {
                         setParams(text)
                     }} className="bg-amber-700 px-3 rounded-md py-0.5 text-white">{text}</p>

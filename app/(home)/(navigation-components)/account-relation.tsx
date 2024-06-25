@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import {
     CircuitBoard,
-    Menu,
+    Menu, Paperclip,
     PersonStanding,
     PlusCircle,
     Settings,
@@ -86,7 +86,11 @@ export default function AccountRelation() {
                                                 <PersonStanding className="mr-2 h-4 w-4"/> 組織教師
                                             </Button>
                                         </Link>
-
+                                        <Link href={'/question_bank'}>
+                                            <Button>
+                                                <Paperclip className="mr-2 h-4 w-4"/> 題庫系統
+                                            </Button>
+                                        </Link>
                                     </>
                                 ) : null}
                             </div>

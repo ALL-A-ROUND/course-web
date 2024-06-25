@@ -18,7 +18,7 @@ export default function AboutPage() {
             <div className="w-96 rounded-md bg-sky-200 px-2 py-1 flex flex-col space-y-8">
                 <h1 className="text-xl">我的長照學習護照</h1>
                 <div>
-                    <p>總修得學分</p>
+                    <p>已修畢總學分</p>
                     <div className="flex flex-row gap-3 items-center">
                         <span>{`${value}%`}</span>
                         <Progress value={value} />

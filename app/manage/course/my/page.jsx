@@ -119,7 +119,8 @@ export default function Page() {
 
             <div className={"grid grid-cols-2 lg:grid-cols-4 gap-6"}>
                 {
-                    isLoading2 && <Spin size="large"/>
+                    isLoading2 && <div className={"min-h-screen min-w-screen flex justify-center items-center"}>
+                        <Spin size="large"/></div>
                 }
                 {
                     recommendCourses && recommendCourses.map(course => (

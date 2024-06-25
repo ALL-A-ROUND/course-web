@@ -1,4 +1,5 @@
 "use client"
+
 import {
     Breadcrumb,
     BreadcrumbEllipsis,
@@ -29,6 +30,8 @@ import {
 } from "@/components/ui/collapsible"
 import useSWR from "swr";
 import {api} from "@/app/utils";
+import {useEffect} from "react";
+import Markdown from "react-markdown";
 
 function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -130,12 +133,11 @@ function BreadcrumbComponent() {
     )
 }
 
-export default function CourseDetail({params}) {
+export default async function CourseDetail({params}) {
     const {
         data: course,
         isLoading
     } = useSWR(`/course/${params.course_id}?with=units`, async (url) => await api("GET", `/course/${params.course_id}`, null).then(d => d))
-
     return (
         <>
             <div style={{
@@ -187,7 +189,7 @@ export default function CourseDetail({params}) {
                     </div>
 
                     <div className={"mt-3 font-light text-gray-400"}>
-                        {course?.description}
+                        <Markdown>{course?.description}</Markdown>
                     </div>
 
 
@@ -216,9 +218,7 @@ export default function CourseDetail({params}) {
                 <div className={"bg-gray-50 pt-4"}>
                     <div className={"bg-white p-4"}>
                         <div className={"text-xl font-bold"}>課程內容</div>
-                        <div className={""}>
-                            {course?.introduction}
-                        </div>
+                        <Markdown>{course?.introduction}</Markdown>
                     </div>
                 </div>
 
