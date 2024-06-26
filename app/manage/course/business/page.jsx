@@ -94,7 +94,7 @@ export default function Page() {
         <div className={"m-4 p-4"}>
             <Heading/>
 
-            <div className={"grid grid-cols-2 lg:grid-cols-4 gap-6"}>
+            <div className={"grid grid-cols-1 lg:grid-cols-4 gap-6"}>
                 {
                     isLoading && '載入中請稍候...'
                 }
