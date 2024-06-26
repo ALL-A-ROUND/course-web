@@ -56,7 +56,7 @@ export default function AccountRelation() {
                                         <CircuitBoard className="mr-2 h-4 w-4"/> 我的課程
                                     </Button>
                                 </Link>
-                                <Link href={'/history'}>
+                                <Link href={'/abstract'}>
                                     <Button>
                                         <Video className="mr-2 h-4 w-4"/> 觀看紀錄
                                     </Button>
