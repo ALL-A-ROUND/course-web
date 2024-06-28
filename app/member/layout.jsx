@@ -40,7 +40,7 @@ export default async function Layout({children}) {
     const [firebaseUser, loading, error] = useAuthState(auth)
     useEffect(() => {
         if (loading) return
-        api("GET", "/user?with=organizations", null, {
+        api("GET", "/user?with=organization", null, {
             disableError: true,
             cache: "reload",
         }).catch(err => {
@@ -67,7 +67,7 @@ export default async function Layout({children}) {
                     <nav className="flex-none px-4 sm:px-6 lg:px-0">
                         <ul role="list" className="flex gap-x-3 gap-y-1 whitespace-nowrap lg:flex-col">
                             {secondaryNavigation.filter(
-                                x => (config?.app?.settings?.[x.id] ?? true) !== false && (user?.organizations?.length > 0 || x.id !== 'organization')
+                                x => (config?.app?.settings?.[x.id] ?? true) !== false && (user?.organization || x.id !== 'organization')
                             ).map((item) => (
                                 <li key={item.name}>
                                     <Link

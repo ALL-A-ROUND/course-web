@@ -84,7 +84,7 @@ export default function Page() {
 
     useEffect(() => {
         if (firebaseUser) {
-            api('GET', '/user?with=organizations.users').then(setUser)
+            api('GET', '/user?with=organization.users').then(setUser)
         }
     }, [firebaseUser]);
     if (isLoading) return (<div className={"min-h-screen min-w-screen flex justify-center items-center"}>
@@ -117,7 +117,7 @@ export default function Page() {
 
             </div>
             <div className={"grid md:grid-cols-4 grid-cols-1 my-4 gap-4 w-full"}>
-                {user && user.organizations[0]?.users?.map(user => (
+                {user && user.organization?.users?.map(user => (
                     <Card
                         style={{
                             width: 300,

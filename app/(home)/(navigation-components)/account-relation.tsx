@@ -31,7 +31,7 @@ export default function AccountRelation() {
     const [dbUser, setDbUser] = useState<any>(null)
     useEffect(() => {
         if (user) {
-            api("GET", "/user?with=organizations").then(setDbUser).catch(console.error)
+            api("GET", "/user?with=organization").then(setDbUser).catch(console.error)
         }
     }, [user])
 
@@ -63,7 +63,7 @@ export default function AccountRelation() {
                                 </Link>
 
 
-                                {dbUser && dbUser.organizations && dbUser.organizations.length > 0 ? (
+                                {dbUser && dbUser.organization ? (
                                     <>
                                         <Divider/>
                                         <Link href={'/manage/course/own'}>

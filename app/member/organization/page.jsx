@@ -13,7 +13,7 @@ export default function Member() {
 
     useEffect(() => {
         if (loading) return
-        api("GET", "/user?with=organizations").then((res) => {
+        api("GET", "/user?with=organization").then((res) => {
             setUser(res)
         })
     }, [loading]);
@@ -50,9 +50,9 @@ export default function Member() {
                         </div>
                         <div className={"flex gap-1"}>
                             {location && location.search.includes("debug") && (
-                            <Button type={"primary"} onClick={e => {
-                                setShowOrg(true)
-                            }}>新增組織</Button>
+                                <Button type={"primary"} onClick={e => {
+                                    setShowOrg(true)
+                                }}>新增組織</Button>
                             )}
                             <Button type={"primary"} onClick={e => {
                                 setShowJoin(true)
@@ -60,17 +60,14 @@ export default function Member() {
                         </div>
                     </div>
                     <div className={"w-full h-full flex justify-center items-center"}>
-                        {user && user.organizations.length > 0 ? (
+                        {user && user.organization ? (
                             <Card>
-                                {
-                                    user.organizations.map(org => (
-                                        <Card key={org.id} title={org.name} extra={<Button type={"link"}
-                                                                                           onClick={e => generate(org.id)}>產生邀請碼</Button>}>
-                                            <p>組織ID: {org.id}</p>
-                                            <p>組織名稱: {org.name}</p>
-                                        </Card>
-                                    ))
-                                }
+                                <Card key={user?.organization?.id} title={user?.organization?.name}
+                                      extra={<Button type={"link"}
+                                                     onClick={e => generate(user?.organization?.id)}>產生邀請碼</Button>}>
+                                    <p>組織ID: {user?.organization?.id}</p>
+                                    <p>組織名稱: {user?.organization?.name}</p>
+                                </Card>
                             </Card>
                         ) : (
                             <Empty description={"您尚未加入任何組織"}/>
