@@ -6,7 +6,7 @@ import Link from "next/link";
 import Image, {StaticImageData} from "next/image";
 import React, {useEffect} from "react";
 import {CourseCard} from "@/app/manage/course/(components)/CourseCard";
-import {Avatar, Card, Spin} from "antd";
+import {Avatar, Button, Card, Spin} from "antd";
 import Meta from "antd/es/card/Meta";
 import {EditOutlined, EllipsisOutlined, SettingOutlined} from "@ant-design/icons";
 import {auth} from "@/lib/firebase/firebase";
@@ -90,9 +90,23 @@ export default function Page() {
     if (isLoading) return (<div className={"min-h-screen min-w-screen flex justify-center items-center"}>
         <Spin size={"large"}></Spin>
     </div>)
+
+    const generate = (id) => {
+        api('POST', '/organization/' + id + '/generate').then(res => {
+            alert("邀請碼: " + res.invite_code)
+        })
+    }
+
     return (<>
         <div className={"m-4 p-4"}>
             <Heading/>
+
+            <div className={"my-4 flex justify-end"}>
+                {user && user.organization && (
+                    <Button type={"primary"} onClick={e => generate(user?.organization?.id)}> 產生邀請碼
+                    </Button>
+                )}
+            </div>
 
             <div className={"grid grid-cols-1 lg:grid-cols-4 gap-6"}>
                 {
@@ -143,6 +157,7 @@ export default function Page() {
                 ))}
 
             </div>
+
 
         </div>
     </>)

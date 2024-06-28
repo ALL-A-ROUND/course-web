@@ -28,7 +28,8 @@ export default function LessonForm({ params: {unit_id} }) {
         }).catch((err) => {
             alert(err.message)
         }).then((res) => {
-            alert('新增課程成功')
+            alert('新增素材成功')
+            location?.reload()
         })
     };
     return (

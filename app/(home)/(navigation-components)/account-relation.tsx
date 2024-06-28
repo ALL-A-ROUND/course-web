@@ -7,7 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
-    CircuitBoard,
+    CircuitBoard, DoorOpen,
     Menu, Paperclip,
     PersonStanding,
     PlusCircle,
@@ -61,6 +61,11 @@ export default function AccountRelation() {
                                         <Video className="mr-2 h-4 w-4"/> 觀看紀錄
                                     </Button>
                                 </Link>
+                                <div>
+                                    <Button onClick={e=>auth.signOut()}>
+                                        <DoorOpen className="mr-2 h-4 w-4"/> 登出
+                                    </Button>
+                                </div>
 
 
                                 {dbUser && dbUser.organization ? (
@@ -83,7 +88,7 @@ export default function AccountRelation() {
                                         </Link>
 
                                         {
-                                            dbUser.organization.role === "admin" ? (
+                                            dbUser.organization_role === "admin" ? (
                                                 <Link href={'/manage/course/business'}>
                                                     <Button>
                                                         <PersonStanding className="mr-2 h-4 w-4"/> 組織教師列表

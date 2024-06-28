@@ -1,20 +1,21 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, {useEffect} from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { signOut } from "@/lib/firebase/auth";
-import { useRouter } from "next/navigation";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/lib/firebase/firebase";
+import {signOut} from "@/lib/firebase/auth";
+import {usePathname, useRouter} from "next/navigation";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
 import AccountRelations from "@/app/(home)/(navigation-components)/account-relation";
 
 export default function PageLayout({
-    children
-}: {
+                                       children
+                                   }: {
     children: React.ReactNode
 }) {
     const router = useRouter();
+    const pathname = usePathname()
     const [user, loading, error] = useAuthState(auth)
 
     const logout = async () => {
@@ -25,7 +26,8 @@ export default function PageLayout({
 
     useEffect(() => {
         if (!loading && !user) {
-            router.replace('/auth')
+            if (pathname !== '/home' && pathname !== '/auth')
+                router.replace('/auth')
         }
     }, [loading, user])
 
@@ -34,8 +36,8 @@ export default function PageLayout({
             <nav className="h-16 w-full bg-[#9F9C79] flex flex-row items-center px-4 space-x-5 justify-between">
                 <div className="size-14 relative">
                     <Image src="/logo-ne.png" alt="logo"
-                        width={100}
-                        height={100}
+                           width={100}
+                           height={100}
                     />
                 </div>
                 <div className="flex flex-row space-x-5 items-center">
@@ -45,7 +47,7 @@ export default function PageLayout({
                     <button type="button" onClick={logout}>
                         <div>登出</div>
                     </button>
-                    <AccountRelations />
+                    <AccountRelations/>
                 </div>
             </nav>
             {children}

@@ -44,7 +44,7 @@ export default function UnitForm({ params: {course_id} }) {
             <Form.Item name="name" label="單元名稱" rules={[{required: true}]}>
                 <Input placeholder="未命名的單元"/>
             </Form.Item>
-            <Form.Item name="description" label="描述">
+            <Form.Item name="description" label="描述" rules={[{required: true}]}>
                 <TextArea placeholder="請輸入單元描述" autoSize/>
             </Form.Item>
 
