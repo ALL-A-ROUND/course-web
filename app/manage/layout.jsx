@@ -1,20 +1,27 @@
-// import Nav from "@/app/(home)/Nav";
+"use client"
 import dynamic from 'next/dynamic';
 import NavigationBar from "@/app/(home)/navigation-bar";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
+import React from "react";
+import {Spin} from "antd";
 
 
-export default function HomeLayout({ children }) {
+export default function HomeLayout({children}) {
+    const [firebaseUser, loading, error] = useAuthState(auth)
+    if (loading) return <div className={"min-h-screen flex justify-center items-center"}><Spin size={"large"}/></div>
+
     const FooterComponent = dynamic(() => import(`@/components/homepage-footer/${process.env.NEXT_PUBLIC_APP_ID}`), {
         ssr: false,
     });
     return (
         <div className="bg-white">
-            <NavigationBar />
+            <NavigationBar/>
             <main>
                 {children}
             </main>
 
-            <FooterComponent />
+            <FooterComponent/>
         </div>
     )
 }

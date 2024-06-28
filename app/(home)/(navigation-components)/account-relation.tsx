@@ -81,11 +81,16 @@ export default function AccountRelation() {
                                                 <Table className="mr-2 h-4 w-4"/> 組織設定
                                             </Button>
                                         </Link>
-                                        <Link href={'/manage/course/business'}>
-                                            <Button>
-                                                <PersonStanding className="mr-2 h-4 w-4"/> 組織教師
-                                            </Button>
-                                        </Link>
+
+                                        {
+                                            dbUser.organization.role === "admin" ? (
+                                                <Link href={'/manage/course/business'}>
+                                                    <Button>
+                                                        <PersonStanding className="mr-2 h-4 w-4"/> 組織教師列表
+                                                    </Button>
+                                                </Link>
+                                            ) : null
+                                        }
                                         <Link href={'/question_bank'}>
                                             <Button>
                                                 <Paperclip className="mr-2 h-4 w-4"/> 題庫系統
