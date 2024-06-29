@@ -2,8 +2,10 @@
 import useSWR from "swr";
 import {api, moment} from "@/app/utils";
 import YouTube from "react-youtube";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import DiscussPage from "@/app/(logged_in_users)/(in_class)/course//[course_id]/discuss/page";
+import {ClockCircleOutlined, ExclamationCircleOutlined} from "@ant-design/icons";
+import {Divider, Flex, Spin, Tag} from 'antd';
 
 export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
     const [player, setPlayer] = useState(null)
@@ -45,6 +47,17 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
         }
     }, [])
 
+    const timeupdate = e => {
+        if (!course?.can_access) {
+            if (lesson?.watch_permission_type === "30-free" && e.target.currentTime > 30) {
+                // 有沒有購買
+                alert("已達到30秒觀看限制，請購買完整課程以繼續觀看")
+                e.target.currentTime = 0
+                e.target.pause()
+            }
+        }
+    }
+
     const updateTimer = async () => {
         console.log('[INFO] Update timer')
         clearTimeout(timer)
@@ -58,10 +71,15 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
         clearTimeout(timer)
     }
 
+
+    if (!lesson || !course) {
+        return <div className={"my-2"}><Spin></Spin></div>
+    }
+
     return (
         <div className="overflow-hidden bg-white sm:rounded-md">
             <ul role="list" className="divide-y divide-gray-200">
-                {isLoading && <div>Loading...</div>}
+                {isLoading && <div className={"my-2"}><Spin></Spin></div>}
 
                 <div className={"flex flex-col gap-4"}>
 
@@ -70,7 +88,21 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                         {lesson?.completed && <span className={"text-green-500 ml-2"}>✔</span>}
                     </div>
 
-                    {lesson?.video ? (
+                    <div>
+                        {lesson?.watch_permission_type === "30-free" ?
+                            <Tag icon={<ExclamationCircleOutlined/>} color="warning">
+                                此影片提供30秒免費觀看
+                            </Tag> : lesson?.watch_permission_type === "full-free" ?
+                                <Tag icon={<ExclamationCircleOutlined/>} color="success">
+                                    此影片提供完整免費觀看
+                                </Tag> : lesson?.watch_permission_type === "full-paid" ?
+                                    <Tag icon={<ExclamationCircleOutlined/>} color="error">
+                                        此影片為付費影片
+                                    </Tag> : <></>}
+                    </div>
+
+
+                    {lesson?.video && (
                         watchTime !== null && <YouTube
                             videoId={lesson?.video}
                             onPause={async e => {
@@ -110,13 +142,13 @@ export default function LessonPage({params: {course_id, unit_id, lesson_id}}) {
                             width={"100%"}
                             height={"100%"}
                         />
-                    ) : "本堂課程未提供影片"}
-
-
+                    )}
                     {
-                        lesson?.file && <video src={
-                            process.env.NEXT_PUBLIC_ASSET_ENDPOINT + lesson?.file
-                        } controls={true} className={"w-full"}/>
+                        lesson?.file && <video
+                            onTimeUpdate={timeupdate}
+                            src={
+                                process.env.NEXT_PUBLIC_ASSET_ENDPOINT + lesson?.file
+                            } controls={true} className={"w-full"}/>
                     }
 
                     {

@@ -18,7 +18,7 @@ const tailLayout = {
     wrapperCol: {offset: 8, span: 16},
 };
 
-export default function UnitForm({ params: {course_id} }) {
+export default function UnitForm({params: {course_id}}) {
     const [form] = Form.useForm();
 
     const onFinish = (values) => {
@@ -34,41 +34,43 @@ export default function UnitForm({ params: {course_id} }) {
     };
 
     return (
-        <Form
-            {...layout}
-            form={form}
-            name="control-hooks"
-            onFinish={onFinish}
-            style={{maxWidth: 600}}
-        >
-            <Form.Item name="name" label="單元名稱" rules={[{required: true}]}>
-                <Input placeholder="未命名的單元"/>
-            </Form.Item>
-            <Form.Item name="description" label="描述" rules={[{required: true}]}>
-                <TextArea placeholder="請輸入單元描述" autoSize/>
-            </Form.Item>
+        <div>
+            <h1 className={"text-2xl"}>新增單元</h1>
+            <Form
+                {...layout}
+                form={form}
+                name="control-hooks"
+                onFinish={onFinish}
+                style={{maxWidth: 600}}
+            >
+                <Form.Item name="name" label="單元名稱" rules={[{required: true}]}>
+                    <Input placeholder="未命名的單元"/>
+                </Form.Item>
+                <Form.Item name="description" label="描述" rules={[{required: true}]}>
+                    <TextArea placeholder="請輸入單元描述" autoSize/>
+                </Form.Item>
 
-            <Button type="primary" htmlType="submit" className={"w-full"}>
-                新增單元
-            </Button>
+                <Button type="primary" htmlType="submit" className={"w-full"}>
+                    新增單元
+                </Button>
 
 
-            {/*<Divider/>*/}
-            {/*<Flex justify={"space-between"} className={"my-4"}>*/}
-            {/*    <span>*/}
-            {/*        新增素材*/}
-            {/*    </span>*/}
-            {/*    <Switch checkedChildren="開啟" unCheckedChildren="關閉" defaultChecked*/}
-            {/*            onChange={(checked) => {*/}
-            {/*                setLessonVisible(checked);*/}
-            {/*            }}*/}
-            {/*    />*/}
-            {/*</Flex>*/}
-            {/*{*/}
-            {/*    lessonVisible && (*/}
-            {/*        <LessonForm/>)*/}
-            {/*}*/}
-
-        </Form>
+                {/*<Divider/>*/}
+                {/*<Flex justify={"space-between"} className={"my-4"}>*/}
+                {/*    <span>*/}
+                {/*        新增素材*/}
+                {/*    </span>*/}
+                {/*    <Switch checkedChildren="開啟" unCheckedChildren="關閉" defaultChecked*/}
+                {/*            onChange={(checked) => {*/}
+                {/*                setLessonVisible(checked);*/}
+                {/*            }}*/}
+                {/*    />*/}
+                {/*</Flex>*/}
+                {/*{*/}
+                {/*    lessonVisible && (*/}
+                {/*        <LessonForm/>)*/}
+                {/*}*/}
+            </Form>
+        </div>
     );
 };

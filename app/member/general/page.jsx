@@ -156,7 +156,7 @@ export default function Member() {
                                         lineToken && (
                                             <div className={"border p-2 rounded flex flex-col"}>
                                                 <Link
-                                                    href={`https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=rCwDOAOLbzYg17e8r2FJyK&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT + "/line-notify/link")}&scope=notify&state=${lineToken}&response_mode=form_post`}
+                                                    href={`https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=${process.env.NEXT_PUBLIC_LINE_CLIENT_ID}&redirect_uri=${encodeURIComponent(process.env.NEXT_PUBLIC_API_ENDPOINT + "/line-notify/link")}&scope=notify&state=${lineToken}&response_mode=form_post`}
                                                     target={"_blank"} className={"underline my-1"}>LINE Notify 連接</Link>
                                             </div>
                                         )

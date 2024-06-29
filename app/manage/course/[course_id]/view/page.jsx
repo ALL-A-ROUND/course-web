@@ -34,6 +34,16 @@ export default function Example({
     const showUnitForm = () => {
         setUnitFormVisible(true)
     }
+    const del = i => {
+        api("POST", `/lesson/${i}`, {
+            _method: 'DELETE'
+        }).then((res) => {
+            alert('刪除成功')
+            location?.reload()
+        }).catch((err) => {
+            alert(err.message)
+        })
+    }
     const [user, loading, error] = useAuthState(auth)
     const [units, setUnits] = useState([])
     const {
@@ -63,16 +73,14 @@ export default function Example({
                                     <span>
                                 {item.title} - {item.article}
                                         </span>
-                                    <Link href={`/manage/course/${course_id}/unit/${unit.id}/lesson/${item.id}/edit`}>
-                                        <Button type="primary">編輯</Button>
-                                    </Link>
+                                    <Button type={"primary"} danger onClick={e => del(item.id)}>刪除</Button>
                                 </Flex>
                             </List.Item>}
                         />
                         <Divider/>
                         <LessonForm params={{
                             unit_id: unit?.id
-                        }} />
+                        }}/>
                     </div>,
                 }
             })
