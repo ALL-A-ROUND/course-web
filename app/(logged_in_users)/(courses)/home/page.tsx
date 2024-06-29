@@ -8,7 +8,6 @@ import React, {useEffect} from "react";
 import {FoundingCourse, NormalCourse} from "@/components/course_card";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
-import useTranslation from "next-translate/useTranslation";
 
 export default function HomePage() {
     const [firebaseUser, loading, error] = useAuthState(auth)

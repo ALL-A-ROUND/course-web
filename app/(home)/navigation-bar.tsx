@@ -3,7 +3,6 @@ import Link from "next/link"
 import Image from "next/image"
 import ShoppingCartComponent from "./(navigation-components)/shopping-cart"
 import AccountRelations from "./(navigation-components)/account-relation"
-import useTranslation from "next-translate/useTranslation";
 const img = require("@/public/logo-ne.png")
 export default function NavigationBar() {
     return (
