@@ -2,14 +2,18 @@
 import {api, moment} from "@/app/utils";
 import useUser from "@/app/useUser";
 import useSWR from "swr";
-import Instance from "@/app/utils/Instance";
-import {useRef, useState} from "react";
-import Swal from "sweetalert2";
+import {useEffect, useState} from "react";
 
-
-export default function Credit() {
+export default async function Credit() {
     const {user} = useUser()
+    const [config, setConfig] = useState(null)
 
+    useEffect(() => {
+        (async function () {
+            const cfg = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
+            setConfig(cfg)
+        })()
+    }, []);
     const {
         data: orders
     } = useSWR(`/order`, async (url) => await api("GET", url, null, {
@@ -40,7 +44,7 @@ export default function Credit() {
     const makeType = (type) => {
         switch (type) {
             case "credit":
-                return "靶機點數"
+                return config?.strings?.point
             case "course":
                 return "購買課程"
         }

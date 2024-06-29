@@ -1,20 +1,23 @@
 {
-  "app": {
-    "nav": {
-      "course": true,
-      "problem": true,
-      "status": false,
-      "contest": false,
-      "rank": false
-    } ,
-    "settings": {
-      "general": true,
-      "security": true,
-      "notification": true,
-      "order": true,
-      "machine": false,
-      "points": false,
-      "payment": true
+    "app": {
+        "nav": {
+            "course": true,
+            "problem": true,
+            "status": false,
+            "contest": false,
+            "rank": false
+        },
+        "settings": {
+            "general": true,
+            "security": true,
+            "notification": true,
+            "order": true,
+            "machine": true,
+            "points": false,
+            "payment": true
+        }
+    },
+    "strings": {
+        "point": "點數"
     }
-  }
 }

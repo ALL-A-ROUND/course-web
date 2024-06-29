@@ -1,10 +1,9 @@
-import { Bell, Menu, Search, ShoppingCart } from "lucide-react"
+import { Search } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import ShoppingCartComponent from "./(navigation-components)/shopping-cart"
-import MyCourse from "./(navigation-components)/my-course"
-import NotificationCenter from "./(navigation-components)/notification-center"
 import AccountRelations from "./(navigation-components)/account-relation"
+import useTranslation from "next-translate/useTranslation";
 const img = require("@/public/logo-ne.png")
 export default function NavigationBar() {
     return (

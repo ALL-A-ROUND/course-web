@@ -9,13 +9,13 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import AccountRelations from "@/app/(home)/(navigation-components)/account-relation";
 
-export default function PageLayout({
+export default async function PageLayout({
                                        children
                                    }: {
     children: React.ReactNode
 }) {
     const router = useRouter();
-    const pathname = usePathname()
+    const pathname = usePathname();
     const [user, loading, error] = useAuthState(auth)
 
     const logout = async () => {

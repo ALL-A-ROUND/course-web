@@ -3,13 +3,21 @@ import {api, moment} from "@/app/utils";
 import useUser from "@/app/useUser";
 import useSWR from "swr";
 import Instance from "@/app/utils/Instance";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 import {ArrowPathIcon} from "@heroicons/react/24/solid";
 
 export default function Credit() {
     const {user} = useUser()
     const [credit, setCredit] = useState(1)
+
+    const [config, setConfig] = useState(null)
+    useEffect(() => {
+        (async function () {
+            const cfg = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
+            setConfig(cfg)
+        })()
+    }, []);
 
     const {
         data: credits
@@ -47,9 +55,9 @@ export default function Credit() {
         <>
             <div className="mx-auto max-w-2xl space-y-16 sm:space-y-20 lg:mx-0 lg:max-w-none">
                 <div>
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">靶機與點數</h2>
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">{config?.strings?.point}</h2>
                     <p className="mt-1 text-sm leading-6 text-gray-500">
-                        充值或加入課程可以獲得靶機點數
+                        充值或加入課程可以獲得 {config?.strings?.point}
                     </p>
 
                     <dl className="mt-6 space-y-6 divide-y divide-gray-100 border-t border-gray-200 text-sm leading-6">
@@ -73,7 +81,7 @@ export default function Credit() {
 
                         <div>
                             <label htmlFor="credit" className="mt-4 block text-sm font-medium leading-6 text-gray-900">
-                                立即充值（點數） 【{credit}點 = {Math.floor(credit )}元】
+                                立即充值（點數） 【{credit}點 = {Math.floor(credit)}元】
                             </label>
                             <div className="mt-2">
                                 <input

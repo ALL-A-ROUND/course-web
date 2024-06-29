@@ -57,7 +57,7 @@ export default async function Layout({children}) {
     if(loading) return <div className={"min-h-screen min-w-screen flex justify-center items-center"}>
         <Spin size={"large"}/></div>;
         // if (!user) return router.push("/auth")
-        const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
+    const config = await import(`@/components/config/${process.env.NEXT_PUBLIC_APP_ID}.json`)
     return (
         <>
             <Nav/>
