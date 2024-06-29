@@ -184,12 +184,12 @@ export default function Credit() {
                         ))}
                     </ul>
 
-                    <div className="flex border-t border-gray-100 pt-6">
-                        <button type="button"
-                                className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            <span aria-hidden="true">+</span> Add another bank
-                        </button>
-                    </div>
+                    {/*<div className="flex border-t border-gray-100 pt-6">*/}
+                    {/*    <button type="button"*/}
+                    {/*            className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">*/}
+                    {/*        <span aria-hidden="true">+</span> Add another bank*/}
+                    {/*    </button>*/}
+                    {/*</div>*/}
                 </div>
             </div>
         </>
