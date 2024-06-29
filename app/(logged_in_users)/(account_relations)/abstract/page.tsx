@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Progress from "@/components/progress";
-import {Divider} from "antd";
+import {Card, Divider} from "antd";
 import useSWR from "swr";
 import {api} from "@/app/utils";
 
@@ -11,7 +11,7 @@ export default function AboutPage() {
     const {
         data: courses,
         isLoading
-    } = useSWR('/course/attended', async (url) => await api('GET', url + "?with=teachers").then(data => data))
+    } = useSWR('/course/attended', async (url) => await api('GET', url + "?with=teachers,category").then(data => data))
 
     return (
         <div className="flex flex-col items-center py-5">
@@ -25,31 +25,43 @@ export default function AboutPage() {
                     </div>
                 </div>
                 <Divider/>
-                <div>
-                    <p>長照積分課程</p>
+
+                <Card title="長照積分課程" style={{width: 300}}>
                     <div className="flex flex-row gap-3 items-center">
                         <span>{`${value}%`}</span>
-                        <Progress value={value} />
+                        <Progress value={value}/>
+
+                        {courses && courses?.filter(c=>c.category&&c.category.name === "長照積分課程")?.map((course, index) => (
+                            course.name + " (" + course.learn_credit + ") "
+                        )).join(", ")}
                     </div>
-                </div>
-                <div>
-                    <p>物理積分課程</p>
+                </Card>
+
+                <Card title="物理積分課程" style={{width: 300}}>
                     <div className="flex flex-row gap-3 items-center">
                         <span>{`${value}%`}</span>
-                        <Progress value={value} />
+                        <Progress value={value}/>
+
+                        {courses && courses?.filter(c=>c.category&&c.category.name === "物理積分課程")?.map((course, index) => (
+                            course.name + " (" + course.learn_credit + ") "
+                        )).join(", ")}
                     </div>
-                </div>
-                <div>
-                    <p>護理積分課程</p>
+                </Card>
+
+
+                <Card title="護理積分課程" style={{width: 300}}>
                     <div className="flex flex-row gap-3 items-center">
                         <span>{`${value}%`}</span>
-                        <Progress value={value} />
+                        <Progress value={value}/>
+
+                        {courses && courses?.filter(c=>c.category&&c.category.name === "護理積分課程")?.map((course, index) => (
+                            course.name + " (" + course.learn_credit + ") "
+                        )).join(", ")}
                     </div>
-                </div>
+                </Card>
 
                 <div>
                     <p>其他選修</p>
-
                     {courses && courses?.map((course, index) => (
                          course.name + " (" + course.learn_credit + ") "
                     )).join(", ")}

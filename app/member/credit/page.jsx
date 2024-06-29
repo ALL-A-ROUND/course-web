@@ -6,6 +6,7 @@ import Instance from "@/app/utils/Instance";
 import {useEffect, useState} from "react";
 import Swal from "sweetalert2";
 import {ArrowPathIcon} from "@heroicons/react/24/solid";
+import {Tag} from 'antd';
 
 export default function Credit() {
     const {user} = useUser()
@@ -81,7 +82,7 @@ export default function Credit() {
 
                         <div>
                             <label htmlFor="credit" className="mt-4 block text-sm font-medium leading-6 text-gray-900">
-                                立即充值（點數） 【{credit}點 = {Math.floor(credit)}元】
+                                立即充值（點數） 【{credit}點 = {Math.floor(credit)}元】 充值超過 1000 點回饋 10%
                             </label>
                             <div className="mt-2">
                                 <input
@@ -175,6 +176,11 @@ export default function Credit() {
                         {Array.isArray(credits) && credits.map((credit, index) => (
                             <li key={"credit_" + index} className="flex justify-between gap-x-6 py-6">
                                 <div className="font-medium text-gray-900">
+                                    {credit.expired_at && (
+                                        <Tag color="lime">
+                                            有效期至 {moment(credit.expired_at).format("yyyy/MM/DD")}
+                                        </Tag>
+                                    )}
                                     {moment(credit.created_at).format("yyyy/MM/DD")}-{credit.description}
                                 </div>
                                 <div className="w-1/6 font-medium text-gray-900">
