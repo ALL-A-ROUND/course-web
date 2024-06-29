@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const path = require('path');
-const nextTranslate = require('next-translate-plugin')
 
 const projectID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
 const nextConfig = {
@@ -28,4 +27,4 @@ const nextConfig = {
     },
 }
 
-module.exports = nextTranslate(nextConfig)
+module.exports = nextConfig
