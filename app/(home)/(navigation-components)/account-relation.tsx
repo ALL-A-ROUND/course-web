@@ -58,7 +58,12 @@ export default function AccountRelation() {
                                 </Link>
                                 <Link href={'/abstract'}>
                                     <Button>
-                                        <Video className="mr-2 h-4 w-4"/> 觀看紀錄
+                                        <Video className="mr-2 h-4 w-4"/> 學習護照
+                                    </Button>
+                                </Link>
+                                <Link href={'/member/credit'}>
+                                    <Button>
+                                        <Video className="mr-2 h-4 w-4"/> 點數紀錄與儲值
                                     </Button>
                                 </Link>
                                 <div>
