@@ -5,6 +5,7 @@ import CourseList from "./CourseList"
 import { useEffect, useState } from "react";
 import { api } from "@/app/utils";
 import { PersonStanding, Star } from "lucide-react";
+import {redirect} from "next/navigation";
 
 export default function Course() {
     const [user, setUser] = useState<any>(null)
@@ -12,6 +13,7 @@ export default function Course() {
     useEffect(() => {
         // api('GET', '/user').then(data => setUser(data))
     }, []);
+    return redirect("/manage/course/my")
     return (
         <div className="flex min-h-full flex-col">
             <Link
