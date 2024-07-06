@@ -16,14 +16,25 @@ export const metadata = {
     title: "全方位課程平台",
     description: "立志中學 全方位課程平台",
 }
+import { dir } from 'i18next'
 
-export default function RootLayout({ children }) {
-    // const [user, loading] = useAuthState(auth)
+import { languages } from '../i18n/settings'
+
+export async function generateStaticParams() {
+    return languages.map((lng) => ({ lng }))
+}
+
+
+
+export default function RootLayout({ children,
+                                       params: {
+                                           lng
+                                       } }) {
     const TrackingComponent = dynamic(() => import(`@/components/tracking/${process.env.NEXT_PUBLIC_APP_ID}`), {
         ssr: false,
     });
     return (
-        <html lang="zh-TW" className={`h-full ${jf.className}`}>
+        <html lang={lng} dir={dir(lng)} className={`h-full ${jf.className}`}>
             <head />
             <body className={"h-full"}>
                 <AntdRegistry> {children}</AntdRegistry>

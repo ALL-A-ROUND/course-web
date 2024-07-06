@@ -8,5 +8,5 @@ import {redirect} from "next/navigation";
 export default function HomePage({
     params: {lng}
                                  }) {
-    return (`/${lng}/home`)
+    return redirect(`/${lng}/home`)
 }
