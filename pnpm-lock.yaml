@@ -92,6 +92,9 @@ importers:
       '@uppy/webcam':
         specifier: ^3.4.2
         version: 3.4.2(@uppy/core@3.12.0)
+      accept-language:
+        specifier: ^3.0.18
+        version: 3.0.18
       antd:
         specifier: ^5.18.1
         version: 5.18.1(moment@2.30.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -131,6 +134,9 @@ importers:
       i18next:
         specifier: ^23.11.5
         version: 23.11.5
+      i18next-resources-to-backend:
+        specifier: ^1.2.1
+        version: 1.2.1
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -1950,6 +1956,9 @@ packages:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
     engines: {node: '>=6.5'}
 
+  accept-language@3.0.18:
+    resolution: {integrity: sha512-sUofgqBPzgfcF20sPoBYGQ1IhQLt2LSkxTnlQSuLF3n5gPEqd5AimbvOvHEi0T1kLMiGVqPWzI5a9OteBRth3A==}
+
   acorn-globals@6.0.0:
     resolution: {integrity: sha512-ZQl7LOWaF5ePqqcX4hLuv/bLXYQNfNWw2c0/yX/TsPRKamzHcTGQnlCjHT3TsmkOUVEPS3crCxiPfdzE/Trlhg==}
 
@@ -2127,6 +2136,10 @@ packages:
 
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+
+  bcp47@1.1.2:
+    resolution: {integrity: sha512-JnkkL4GUpOvvanH9AZPX38CxhiLsXMBicBY2IAtqiVN8YulGDQybUydWA4W6yAMtw6iShtw+8HEF6cfrTHU+UQ==}
+    engines: {node: '>=0.10'}
 
   big.js@5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
@@ -3045,6 +3058,9 @@ packages:
 
   i18next-http-backend@2.5.2:
     resolution: {integrity: sha512-+K8HbDfrvc1/2X8jpb7RLhI9ZxBDpx3xogYkQwGKlWAUXLSEGXzgdt3EcUjLlBCdMwdQY+K+EUF6oh8oB6rwHw==}
+
+  i18next-resources-to-backend@1.2.1:
+    resolution: {integrity: sha512-okHbVA+HZ7n1/76MsfhPqDou0fptl2dAlhRDu2ideXloRRduzHsqDOznJBef+R3DFZnbvWoBW+KxJ7fnFjd6Yw==}
 
   i18next@23.11.5:
     resolution: {integrity: sha512-41pvpVbW9rhZPk5xjCX2TPJi2861LEig/YRhUkY+1FQ2IQPS0bKUDYnEqY8XPPbB48h1uIwLnP9iiEfuSl20CA==}
@@ -4541,6 +4557,10 @@ packages:
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
 
+  stable@0.1.8:
+    resolution: {integrity: sha512-ji9qxRnOVfcuLDySj9qzhGSEFVobyt1kIOSkj1qZzYLzq7Tos/oUUWvotUPQLlrsidqsK6tBH89Bc9kL5zHA6w==}
+    deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
+
   state-local@1.0.7:
     resolution: {integrity: sha512-HTEHMNieakEnoe33shBYcZ7NX83ACUjCu8c40iOGEZsngj9zRnkqS9j1pqQPXwobB0ZcVTk27REb7COQ0UR59w==}
 
@@ -5420,6 +5440,29 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@ckeditor/ckeditor5-build-inline@41.4.2':
+    dependencies:
+      '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2
+      '@ckeditor/ckeditor5-autoformat': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-basic-styles': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-cloud-services': 41.4.2
+      '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-editor-inline': 41.4.2
+      '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-heading': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-indent': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-link': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-list': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-media-embed': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-paragraph': 41.4.2
+      '@ckeditor/ckeditor5-paste-from-office': 41.4.2
+      '@ckeditor/ckeditor5-table': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-typing': 41.4.2
+
   '@ckeditor/ckeditor5-build-inline@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -5646,6 +5689,11 @@ snapshots:
       - canvas
       - supports-color
       - utf-8-validate
+
+  '@ckeditor/ckeditor5-editor-inline@41.4.2':
+    dependencies:
+      ckeditor5: 41.4.2
+      lodash-es: 4.17.21
 
   '@ckeditor/ckeditor5-editor-inline@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
@@ -7739,6 +7787,11 @@ snapshots:
       event-target-shim: 5.0.1
     optional: true
 
+  accept-language@3.0.18:
+    dependencies:
+      bcp47: 1.1.2
+      stable: 0.1.8
+
   acorn-globals@6.0.0:
     dependencies:
       acorn: 7.4.1
@@ -7999,6 +8052,8 @@ snapshots:
 
   base64-js@1.5.1: {}
 
+  bcp47@1.1.2: {}
+
   big.js@5.2.2: {}
 
   bignumber.js@9.1.2:
@@ -8141,7 +8196,7 @@ snapshots:
       '@ckeditor/ckeditor5-build-balloon-block': 41.4.2
       '@ckeditor/ckeditor5-build-classic': 41.4.2
       '@ckeditor/ckeditor5-build-decoupled-document': 41.4.2
-      '@ckeditor/ckeditor5-build-inline': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-build-inline': 41.4.2
       '@ckeditor/ckeditor5-build-multi-root': 41.4.2
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -8153,7 +8208,7 @@ snapshots:
       '@ckeditor/ckeditor5-editor-balloon': 41.4.2
       '@ckeditor/ckeditor5-editor-classic': 41.4.2
       '@ckeditor/ckeditor5-editor-decoupled': 41.4.2
-      '@ckeditor/ckeditor5-editor-inline': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
+      '@ckeditor/ckeditor5-editor-inline': 41.4.2
       '@ckeditor/ckeditor5-editor-multi-root': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-engine': 41.4.2
       '@ckeditor/ckeditor5-enter': 41.4.2
@@ -9381,6 +9436,10 @@ snapshots:
       cross-fetch: 4.0.0
     transitivePeerDependencies:
       - encoding
+
+  i18next-resources-to-backend@1.2.1:
+    dependencies:
+      '@babel/runtime': 7.24.7
 
   i18next@23.11.5:
     dependencies:
@@ -11202,6 +11261,8 @@ snapshots:
   source-map@0.6.1: {}
 
   space-separated-tokens@2.0.2: {}
+
+  stable@0.1.8: {}
 
   state-local@1.0.7: {}
 

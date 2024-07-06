@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {ComputerDesktopIcon} from "@heroicons/react/24/solid";
-import '@/app/globals.css'
+import '@/app/[lng]/globals.css'
 
 const metrics = [
     {id: 1, stat: '650+', emphasis: '評測提交', rest: '均正常運行、正確評測'},

@@ -1,8 +1,8 @@
 import Link from "next/link";
 import {ComputerDesktopIcon} from "@heroicons/react/24/solid";
-import '@/app/globals.css'
+import '@/app/[lng]/globals.css'
 import useSWR from "swr";
-import {api} from "@/app/utils";
+import {api} from "@/app/[lng]/utils";
 
 const posts = [
     {
