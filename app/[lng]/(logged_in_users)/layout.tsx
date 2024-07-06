@@ -22,14 +22,14 @@ export default async function PageLayout({
 
     const logout = async () => {
         await signOut().then(() => {
-            router.replace(`${lng}/auth`)
+            router.replace(`/${lng}/auth`)
         })
     }
 
     useEffect(() => {
         if (!loading && !user) {
-            if (pathname !== '/home' && pathname !== '/auth')
-                router.replace(`${lng}/auth`)
+            if (pathname.indexOf('home') == -1 && pathname.indexOf('/auth') == -1)
+                router.replace(`/${lng}/auth`)
         }
     }, [loading, user])
 
