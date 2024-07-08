@@ -42,7 +42,7 @@ export default async function PageLayout({
                     <Image src={LCVS} alt="logo"
                            width={100}
                            height={100}
-                           className={"h-12 w-full"}
+                           className={"h-12 w-full border p-1 border-black"}
                     />
                 </div>
                 <div className="flex flex-row space-x-5 items-center">
