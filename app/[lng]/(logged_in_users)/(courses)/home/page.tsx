@@ -30,14 +30,14 @@ export default async function HomePage({
     if (loading) return <div>Loading...</div>
 
     return (
-        <div className="py-3 pb-20">
+        <div className=" pb-20">
             <div className={"relative"}>
                 <CarouselPage/>
             </div>
 
             <div className="px-4">
                 <h2 className="py-2 text-xl">積分課程 第一大類</h2>
-                <div className={"grid grid-cols-1 md:grid-cols-3 gap-6"}>
+                <div className={"grid grid-cols-1 md:grid-cols-5 gap-6"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
@@ -70,9 +70,9 @@ export default async function HomePage({
                 </div>
             </div>
 
-            <div className="px-4">
+            <div className="px-4 mt-8">
                 <h2 className="py-2 text-xl">積分課程 第二大類</h2>
-                <div className={"grid grid-cols-1 md:grid-cols-3 gap-6"}>
+                <div className={"grid grid-cols-1 md:grid-cols-5 gap-6"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>

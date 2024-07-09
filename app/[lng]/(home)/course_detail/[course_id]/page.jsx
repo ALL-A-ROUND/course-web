@@ -32,6 +32,7 @@ import useSWR from "swr";
 import {api} from "@/app/[lng]/utils";
 import {useEffect} from "react";
 import Markdown from "react-markdown";
+import Image from "next/image";
 
 function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -144,14 +145,41 @@ export default async function CourseDetail({params}) {
                 fontFamily: "PingFang TC, Microsoft JhengHei;"
             }}>
                 <div className={`p-4 relative`}>
-                    <div className={"flex justify-between"}>
-                        {/*<BreadcrumbComponent/>*/}
+                    {/*<div className={"flex justify-between"}>*/}
+                    {/*    /!*<BreadcrumbComponent/>*!/*/}
+                    {/*    <div>*/}
+                    {/*        <button className={"btn btn-primary rounded-full bg-gray-100 p-2"}>*/}
+                    {/*            <FacebookIcon className={"w-3 h-3"}/>*/}
+                    {/*        </button>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
+                    <div className={"flex flex-row  gap-4"}>
+                        <Image src={
+                            process.env.NEXT_PUBLIC_ASSET_ENDPOINT +
+                            course?.image} width={1280} height={720} className={"rounded-xl max-h-screen w-fit"}/>
                         <div>
-                            <button className={"btn btn-primary rounded-full bg-gray-100 p-2"}>
-                                <FacebookIcon className={"w-3 h-3"}/>
-                            </button>
+                            {course?.teachers?.length > 0 &&
+                            <div className={"mt-4 flex gap-1 items-center font-extralight"}>
+                                {/*<div className={"h-6 w-6"}> /!* AVATAR *!/*/}
+                                {/*    <img src={"https://images.hahow.in/images/6406c9c957e7939a9063aa44?width=48"}/>*/}
+                                {/*</div>*/}
+                                <div>
+                                    By: {course?.teachers?.map(u => u.name)?.join(", ")}
+                                </div>
+                            </div>}
+
+                            <div className={"mt-3 font-bold text-3xl"}>
+                                {course?.name}
+                            </div>
+
+                            <div className={"mt-3 text-gray-400"}>
+                                <Markdown>{course?.description}</Markdown>
+                            </div>
+
+
                         </div>
                     </div>
+
                     {/* <div
                         style={{
                             position: "relative",
@@ -174,24 +202,6 @@ export default async function CourseDetail({params}) {
                             allowFullScreen="true"
                         ></iframe>
                     </div>*/}
-
-                    <div className={"mt-4 flex gap-1 items-center font-extralight"}>
-                        <div className={"h-6 w-6"}> {/* AVATAR */}
-                            <img src={"https://images.hahow.in/images/6406c9c957e7939a9063aa44?width=48"}/>
-                        </div>
-                        <div>
-                            {course?.teachers?.map(u => u.name)?.join(", ")}
-                        </div>
-                    </div>
-
-                    <div className={"mt-3 font-bold text-lg"}>
-                        {course?.name}
-                    </div>
-
-                    <div className={"mt-3 font-light text-gray-400"}>
-                        <Markdown>{course?.description}</Markdown>
-                    </div>
-
 
                 </div>
 

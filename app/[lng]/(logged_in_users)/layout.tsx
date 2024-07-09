@@ -28,7 +28,7 @@ export default async function PageLayout({
 
     useEffect(() => {
         if (!loading && !user) {
-            if (pathname.indexOf('home') == -1 && pathname.indexOf('/auth') == -1)
+            if (pathname?.indexOf('home') == -1 && pathname?.indexOf('/auth') == -1)
                 router.replace(`/${lng}/auth`)
         }
     }, [loading, user])

@@ -18,19 +18,19 @@ export const FoundingCourse = (item: {
         <Link href={`/course_detail/${item.id}`}>
             <div className="relative flex flex-col justify-between pb-3">
                 <div>
-                    <div className="relative w-full rounded-md overflow-hidden">
+                    <div className="relative w-full rounded-md overflow-hidden flex justify-center">
                         <Image src={item.image}
                                alt={item.alt}
                                width="0"
                                height="0"
                                sizes="100vw"
-                               className={cn("w-full h-full rounded-md hover:scale-110 object-cover transition ease-in-out")}
+                               className={cn("w-48 h-48 rounded-md hover:scale-110 object-cover transition ease-in-out")}
                         />
                     </div>
                     <div className="py-2">
                         <div className="flex flex-row gap-3">
                             <h2 className="bg-year-100 text-year-400 text-center py-0.5 rounded-md w-12 h-fit text-sm">課程</h2>
-                            <p className="text-lg">{item.title}</p>
+                            <p className="text-lg p-2 bg-yellow-500 rounded-md">{item.title}</p>
                         </div>
                         <h2 className="py-1 text-gray-700">{`By ${item.produced_by}`}</h2>
                     </div>
@@ -69,25 +69,25 @@ export const NormalCourse = (item: {
         <Link href={`/course_detail/${item.id}`}>
             <div className="relative flex flex-col justify-between pb-3">
                 <div>
-                    <div className="relative overflow-hidden w-full rounded-md">
+                    <div className="relative overflow-hidden w-full rounded-md flex justify-center">
                         {/* @ts-ignore */}
                         <Image src={item.image}
                                alt={item.title}
                                width="256"
                                height="0"
-                               className="w-full h-full rounded-md hover:scale-110 object-cover transition ease-in-out"
+                               className="w- md:w-full md:h-48 h-full rounded-md hover:scale-110 object-cover transition ease-in-out"
                         />
                     </div>
                     <div className="py-3">
-                        <div className="flex flex-row gap-3">
+                        <div className="flex flex-col gap-3">
                             <h2 className="bg-year-100 text-year-400 text-center py-0.5 rounded-md w-12 h-fit text-sm">課程</h2>
-                            <h3 className="text-lg">{item.title}</h3>
+                            <h3 className="text-lg md:h-12 h-16">{item.title}</h3>
                         </div>
                         {/*<h4 className="py-1 text-gray-700">{`By ${item.teachers}`}</h4>*/}
                     </div>
                 </div>
-                <div className="flex flex-row gap-3 items-center">
-                    <h2 className="text-xl ">{`NT$${item.price}`}</h2>
+                <div className="flex flex-row gap-3 items-center ">
+                    <h2 className="text-xl bg-yellow-500 p-2 rounded-md">{`NT$${item.price}`}</h2>
                 </div>
                 {item.hot &&
                     <div

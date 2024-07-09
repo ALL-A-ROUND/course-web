@@ -24,7 +24,7 @@ const categories = [
 
 export default function Categories() {
     return (
-        <div className="flex flex-row md:w-full w-screen">
+        <div className="flex flex-row md:w-full w-screen mt-8">
             <div className="bg-year-200 w-12 skew-y-[20deg] -translate-y-2" />
             <div className="bg-year-100 md:h-[25rem] h-[40rem] w-full flex md:flex-row flex-col">
                 <div className="w-80 py-10 text-3xl px-5 space-y-3">
