@@ -13,14 +13,14 @@ import {Carousel} from 'antd';
 import {ArrowLeft, ArrowRight} from "lucide-react";
 import dynamic from "next/dynamic";
 
-function AbstractPage() {
+export default function AbstractPage() {
     const [value, setValue] = useState(0)
     const [firebaseUser, loading, error] = useAuthState(auth)
     const Credit = dynamic(() => import('@/app/[lng]/member/credit/page'), {
         ssr: false
     })
 
-    const PaymentCard = dynamic(() => import('react-ui-cards'), {
+    const PaymentCard = dynamic(() => import('react-ui-cards').then(module=>module.PaymentCard), {
         ssr: false
     })
 
@@ -173,12 +173,4 @@ function AbstractPage() {
 
         </>
     )
-}
-
-export default function RealAbstractPage() {
-    const Abstract = dynamic(() => import(AbstractPage), {
-        ssr: false
-    })
-
-    return <Abstract/>
 }
