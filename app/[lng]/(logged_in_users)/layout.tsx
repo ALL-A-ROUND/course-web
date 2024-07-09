@@ -37,7 +37,7 @@ export default async function PageLayout({
 
     return (
         <div>
-            <nav className="h-16 w-full bg-[#9F9C79] flex flex-row items-center px-4 space-x-5 justify-between">
+            <nav className="h-16 w-full bg-white flex flex-row items-center px-4 space-x-5 justify-between">
                 <div className="relative">
                     <Image src={LCVS} alt="logo"
                            width={100}

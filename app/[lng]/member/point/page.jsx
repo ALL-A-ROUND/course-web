@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 import {CheckBadgeIcon} from "@heroicons/react/24/solid";
 
 
-export default function Credit() {
+export default function Point() {
     const {user} = useUser()
     const {
         data: points,

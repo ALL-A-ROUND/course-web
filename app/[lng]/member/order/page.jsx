@@ -4,7 +4,7 @@ import useUser from "@/app/[lng]/useUser";
 import useSWR from "swr";
 import {useEffect, useState} from "react";
 
-export default async function Credit() {
+export default async function Order() {
     const {user} = useUser()
     const [config, setConfig] = useState(null)
 

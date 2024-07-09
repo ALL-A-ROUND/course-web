@@ -70,6 +70,7 @@
     "react-qr-code": "^2.0.14",
     "react-scroll": "^1.9.0",
     "react-toastify": "^10.0.5",
+    "react-ui-cards": "^3.1.0",
     "react-youtube": "^10.1.0",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",
