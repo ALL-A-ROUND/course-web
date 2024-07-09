@@ -5,26 +5,25 @@ import Progress from "@/components/progress";
 import {Card, Divider, Spin} from "antd";
 import useSWR from "swr";
 import {api, moment} from "@/app/[lng]/utils";
-import {PaymentCard} from "react-ui-cards";
+// import {PaymentCard} from "react-ui-cards";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import md5 from "md5";
 import {Carousel} from 'antd';
-import Credit from "@/app/[lng]/member/credit/page";
 import {ArrowLeft, ArrowRight} from "lucide-react";
+import dynamic from "next/dynamic";
 
-const contentStyle = {
-    margin: 0,
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
-
-export default function AboutPage() {
+function AbstractPage() {
     const [value, setValue] = useState(0)
     const [firebaseUser, loading, error] = useAuthState(auth)
+    const Credit = dynamic(() => import('@/app/[lng]/member/credit/page'), {
+        ssr: false
+    })
+
+    const PaymentCard = dynamic(() => import('react-ui-cards'), {
+        ssr: false
+    })
+
     const carouselRef = createRef();
     const {
         data: courses,
@@ -72,9 +71,9 @@ export default function AboutPage() {
                                 }
                             />
                             <ArrowRight size={64} className={"text-white"}
-                                onClick={
-                                    () => carouselRef.current.next()
-                                }
+                                        onClick={
+                                            () => carouselRef.current.next()
+                                        }
                             />
 
                         </div>
@@ -139,9 +138,9 @@ export default function AboutPage() {
                     <div className="flex flex-col items-center py-5">
                         <div className={"flex items-center"}>
                             <ArrowLeft size={64} className={"text-white"}
-                                onClick={
-                                    () => carouselRef.current.prev()
-                                }
+                                       onClick={
+                                           () => carouselRef.current.prev()
+                                       }
                             />
                             <PaymentCard
                                 issuerIcon={"https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/lcvs-vD4r3nedQemx02FlqBNdykUvVaXa5h.png"}
@@ -155,9 +154,9 @@ export default function AboutPage() {
                                 }
                             />
                             <ArrowRight size={64} className={"text-white"}
-                                onClick={
-                                    () => carouselRef.current.next()
-                                }
+                                        onClick={
+                                            () => carouselRef.current.next()
+                                        }
                             />
                         </div>
                         <div className="rounded-md bg-sky-200 px-4 py-2 flex flex-col space-y-8">
@@ -174,4 +173,12 @@ export default function AboutPage() {
 
         </>
     )
+}
+
+export default function RealAbstractPage() {
+    const Abstract = dynamic(() => import(AbstractPage), {
+        ssr: false
+    })
+
+    return <Abstract/>
 }
