@@ -12,7 +12,7 @@ export const FoundingCourse = (item: {
     produced_by: string,
     progress: number,
     alt: string,
-    learn_credit: string | number,
+    learn_credit?: string | number,
     hot: boolean,
 }) => {
     return (
@@ -65,7 +65,7 @@ export const NormalCourse = (item: {
     produced_by: string,
     alt: string,
     hot: boolean,
-    learn_credit: string | number,
+    learn_credit?: string | number,
 }) => {
     return (
         <Link href={`/course_detail/${item.id}`}>

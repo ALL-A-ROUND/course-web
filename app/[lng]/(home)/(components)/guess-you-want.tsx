@@ -1,7 +1,7 @@
 "use client"
-import { FoundingCourse, NormalCourse } from "@/components/course_card"
+import {FoundingCourse, NormalCourse} from "@/components/course_card"
 import demoImage from "@/public/temp/course-view.avif"
-import { StaticImageData } from "next/image"
+import {StaticImageData} from "next/image"
 import React from "react"
 
 import {
@@ -58,10 +58,9 @@ const data: Data[] = [
 
 export default function GuessYouWantPage() {
     const {
-        data: courses ,
+        data: courses,
         isLoading
     } = useSWR(`/course/recommend`, async (url) => await api("GET", `/course/recommend`, undefined).then(d => d))
-
     return (
         <div className="w-screen md:w-full pb-10 px-5">
             {/* <div className="flex flex-row gap-3 items-center">
