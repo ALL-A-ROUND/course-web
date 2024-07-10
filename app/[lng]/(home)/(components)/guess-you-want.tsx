@@ -86,23 +86,25 @@ export default function GuessYouWantPage() {
                                 {item.isFounding ?
                                     <FoundingCourse
                                         id={item.id}
-                                        image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
                                         title={item.title}
                                         price={item.price}
                                         original_price={item.original_price}
                                         produced_by={item.produced_by}
                                         progress={100}
                                         alt={item.title}
+                                        learn_credit={item.learn_credit}
                                         hot={item.hot}
                                     />
                                     :
                                     <NormalCourse
                                         id={item.id}
-                                        image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
                                         title={item.name}
                                         price={item.price}
                                         produced_by={item.produced_by}
                                         alt={item.title}
+                                        learn_credit={item.learn_credit}
                                         hot={item.hot}
                                     />
                                 }

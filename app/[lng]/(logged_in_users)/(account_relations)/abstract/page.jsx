@@ -37,10 +37,16 @@ export default function AbstractPage() {
         mutate: revalidateUser
     } = useSWR('/user', async (url) => await api('GET', url).then(data => data))
 
+    const {
+        data: credits,
+        mutate : revalidateCredits
+    } = useSWR(`/credit`, async (url) => await api("GET", url, null).then(d => d))
+
     useEffect(() => {
         if (firebaseUser) {
             revalidateCourses()
             revalidateUser()
+            revalidateCredits()
         }
     }, [loading]);
 
@@ -77,7 +83,7 @@ export default function AbstractPage() {
                             />
 
                         </div>
-                        <div className="rounded-md bg-sky-200 px-4 py-2 flex flex-col space-y-8">
+                        <div className="w-full rounded-t-xl bg-white px-4 py-2 flex flex-col space-y-8">
                             <h1 className="text-xl">我的長照學習護照</h1>
                             <div>
                                 <p>已修畢總學分</p>
@@ -159,11 +165,16 @@ export default function AbstractPage() {
                                         }
                             />
                         </div>
-                        <div className="rounded-md bg-sky-200 px-4 py-2 flex flex-col space-y-8">
+                        <div className="rounded-t-xl bg-white px-4 py-2 flex flex-col space-y-8">
                             <h1 className="text-xl">
                                 我的積分卡
                             </h1>
                             <div className={"flex flex-col md:flex-row gap-4 justify-center items-center"}>
+                                {
+                                    credits && <div className={"bg-green-400 rounded-md p-4 pb-8 text-white text-2xl w-2/3"}>
+                                        累積 ${credits?.map(c => c.amount).reduce((a, b) => a + b, 0)} 積分
+                                    </div>
+                                }
                                 <Credit/>
                             </div>
                         </div>

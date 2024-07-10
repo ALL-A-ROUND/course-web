@@ -300,7 +300,7 @@ export default function Page() {
                                 <article className="flex flex-col items-start justify-between">
                                     <div className="relative w-full">
                                         <img
-                                            src={course?.image ? process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image : "/course.jpeg"}
+                                            src={course?.image ? course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image : "/course.jpeg"}
                                             alt=""
                                             className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
                                         />

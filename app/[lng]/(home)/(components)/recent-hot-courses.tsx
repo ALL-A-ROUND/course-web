@@ -75,7 +75,7 @@ export default function RecentHotCourse() {
                         {courses?.slice(2,3)?.map((course) => (
                             <FoundingCard
                                 key={course.id}
-                                image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course.image}
+                                image={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image}
                                 title={course.name}
                                 produced_by={course?.teachers?.join(' ') ?? '官方課程團隊'}
                                 percentage={course.percentage ?? 10}
@@ -88,7 +88,7 @@ export default function RecentHotCourse() {
                         {courses?.slice(0,1)?.map((course) => (
                             <FoundingCard
                                 key={course.id}
-                                image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course.image}
+                                image={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image}
                                 title={course.name}
                                 produced_by={course?.teachers?.join(' ') ?? '官方課程團隊'}
                                 percentage={course.percentage ?? 10}

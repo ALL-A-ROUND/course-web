@@ -118,7 +118,7 @@ export default function Example({
                             className="mx-auto flex max-w-2xl items-center justify-between gap-x-8 lg:mx-0 lg:max-w-none">
                             <div className="flex items-center gap-x-6">
                                 <img
-                                    src={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image}
+                                    src={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image}
                                     alt=""
                                     className="h-16 w-16 flex-none rounded-full ring-1 ring-gray-900/10"
                                 />

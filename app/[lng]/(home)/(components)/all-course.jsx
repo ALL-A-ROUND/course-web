@@ -31,7 +31,7 @@ export default function AllCourse() {
                             {item.isFounding ?
                                 <FoundingCourse
                                     id={item.id}
-                                    image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
+                                    image={item?.image?.startsWith("http") ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
                                     title={item.title}
                                     price={item.price}
                                     original_price={item.original_price}
@@ -43,7 +43,7 @@ export default function AllCourse() {
                                 :
                                 <NormalCourse
                                     id={item.id}
-                                    image={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item.image}
+                                    image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
                                     title={item.name}
                                     price={item.price}
                                     produced_by={item.produced_by}

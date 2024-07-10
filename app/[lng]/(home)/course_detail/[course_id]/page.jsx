@@ -154,9 +154,7 @@ export default async function CourseDetail({params}) {
                     {/*    </div>*/}
                     {/*</div>*/}
                     <div className={"flex flex-row  gap-4"}>
-                        <Image src={
-                            process.env.NEXT_PUBLIC_ASSET_ENDPOINT +
-                            course?.image} width={1280} height={720} className={"rounded-xl max-h-screen w-fit"}/>
+                        <Image src={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image} width={1280} height={720} className={"rounded-xl max-h-screen w-fit"}/>
                         <div>
                             {course?.teachers?.length > 0 &&
                             <div className={"mt-4 flex gap-1 items-center font-extralight"}>

@@ -10,7 +10,7 @@ export function CourseCard({item}) {
                 <div>
                     <div className="relative overflow-hidden w-full rounded-md">
                         {/* @ts-ignore */}
-                        <Image src={process.env.NEXT_PUBLIC_ASSET_ENDPOINT + '/' + item.image}
+                        <Image src={item?.image?.startsWith("http") ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
                                alt={item.name}
                                width="256"
                                height="0"

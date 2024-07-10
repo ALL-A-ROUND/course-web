@@ -137,33 +137,37 @@ export default function Credit() {
                     </dl>
                 </div>
 
-                <div>
-                    <h2 className="text-base font-semibold leading-7 text-gray-900">靶機列表</h2>
-                    <p className="mt-1 text-sm leading-6 text-gray-500">
-                        目前正在運行的靶機
-                    </p>
+
+                {process.env.NEXT_PUBLIC_ENABLE_MACHINE === "true" && (
+
+                    <div>
+                        <h2 className="text-base font-semibold leading-7 text-gray-900">靶機列表</h2>
+                        <p className="mt-1 text-sm leading-6 text-gray-500">
+                            目前正在運行的靶機
+                        </p>
 
 
-                    <div className={"grid grid-cols-2 mt-6 gap-2"}>
-                        {!instances && (
-                            <div className={"animate-spin col-span-2 flex justify-center items-center"}>
-                                <ArrowPathIcon className="h-6 w-6 text-gray-400" aria-hidden="true"/>
-                            </div>
-                        )}
-                        {
-                            instances && Object.keys(instances).reduce((p, c) => [...p, ...instances[c]], [])?.map((instance, index) => (
-                                <Instance instance={instance} key={index}/>
-                            ))
-                        }
+                        <div className={"grid grid-cols-2 mt-6 gap-2"}>
+                            {!instances && (
+                                <div className={"animate-spin col-span-2 flex justify-center items-center"}>
+                                    <ArrowPathIcon className="h-6 w-6 text-gray-400" aria-hidden="true"/>
+                                </div>
+                            )}
+                            {
+                                instances && Object.keys(instances).reduce((p, c) => [...p, ...instances[c]], [])?.map((instance, index) => (
+                                    <Instance instance={instance} key={index}/>
+                                ))
+                            }
+                        </div>
+
+                        <div className="flex border-t border-gray-100 mt-6 pt-2">
+                            <button type="button"
+                                    className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                                <span aria-hidden="true">+</span> 建立靶機
+                            </button>
+                        </div>
                     </div>
-
-                    <div className="flex border-t border-gray-100 mt-6 pt-2">
-                        <button type="button"
-                                className="text-sm font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                            <span aria-hidden="true">+</span> 建立靶機
-                        </button>
-                    </div>
-                </div>
+                )}
 
                 <div>
                     <h2 className="text-base font-semibold leading-7 text-gray-900">點數紀錄</h2>
