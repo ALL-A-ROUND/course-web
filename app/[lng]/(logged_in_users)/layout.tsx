@@ -42,7 +42,7 @@ export default async function PageLayout({
                     <Image src={LCVS} alt="logo"
                            width={100}
                            height={100}
-                           className={"h-12 w-full border p-1 border-black"}
+                           className={"h-12 w-full p-1"}
                     />
                 </div>
                 <div className="flex flex-row space-x-5 items-center">
@@ -51,9 +51,17 @@ export default async function PageLayout({
                             {t("首頁")}
                         </div>
                     </Link>
-                    <button type="button" onClick={logout}>
-                        {t("登出")}
-                    </button>
+                    {!loading && (
+                        user ? (
+                            <button type="button" onClick={logout}>
+                                {t("登出")}
+                            </button>
+                        ) : (
+                            <Link href={"/auth"}>
+                                {t("登入")}
+                            </Link>
+                        )
+                    )}
                     <AccountRelations/>
                 </div>
             </nav>

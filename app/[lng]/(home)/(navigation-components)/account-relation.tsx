@@ -68,7 +68,7 @@ export default function AccountRelation() {
                                 </Link>
                                 <div>
 
-                                    { !loading && !user && (
+                                    { !loading && user && (
                                         <Button onClick={e=>auth.signOut()}>
                                             <DoorOpen className="mr-2 h-4 w-4"/> 登出
                                         </Button>

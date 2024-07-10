@@ -6,6 +6,8 @@ import {redirect, usePathname, useRouter} from "next/navigation";
 import {HomeIcon, UserCircleIcon} from "@heroicons/react/24/solid";
 import Link from "next/link";
 import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "@/lib/firebase/firebase";
+import {signOut} from "@/lib/firebase/auth";
 
 const navigation = [
     {name: '課程', href: '/course', id: 'course'},
@@ -26,7 +28,7 @@ function classNames(...classes) {
 export default async function Nav() {
 
     const pathname = usePathname()
-    // const [user, loading, error] = useAuthState(auth)
+    const [user, loading, error] = useAuthState(auth)
 
     // useEffect(() => {
     //     if (!loading && !user) {
@@ -208,11 +210,22 @@ export default async function Nav() {
                                         {item.name}
                                     </Disclosure.Button>
                                 ))}
-
-                                <Disclosure.Button
-                                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
-                                >登出
-                                </Disclosure.Button>
+                                {
+                                    loading && (
+                                        user ? (
+                                            <Disclosure.Button
+                                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                            >
+                                                登出
+                                            </Disclosure.Button>
+                                        ) : (
+                                            <Disclosure.Button
+                                                className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                                            >
+                                                登入
+                                            </Disclosure.Button>
+                                        )
+                                    )}
                             </div>
                         </div>
                     </Disclosure.Panel>
