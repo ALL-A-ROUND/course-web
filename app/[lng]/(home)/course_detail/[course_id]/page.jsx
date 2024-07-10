@@ -34,6 +34,7 @@ import {useEffect} from "react";
 import Markdown from "react-markdown";
 import Image from "next/image";
 import BuyCourseWidget from "@/app/[lng]/(logged_in_users)/(in_class)/course/[course_id]/BuyCourseWidget";
+import Link from "next/link";
 
 function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -282,7 +283,7 @@ export default async function CourseDetail({params}) {
                 </div>
 
                 <div className={"bg-gray-50 p-4"}>
-                    <div className="bg-white rounded-2xl p-4 shadow-lg">
+                    <div className="bg-white rounded-2xl p-4 shadow-lg" id={"buy"}>
                         <div className={"text-xl border-b pb-2"}>
                             購買單堂課
                         </div>
@@ -321,13 +322,13 @@ export default async function CourseDetail({params}) {
                     </button>
                 </div>
 
-                <button className={"bg-lime-400 text-white flex-grow rounded-lg p-2"}>
+                <Link href={"#buy"} className={"bg-lime-400 text-white flex-grow rounded-lg p-2"}>
                     {course?.price === 0 ? (
                         "立即學習"
                     ) : (
                         "立即購買"
                     )}
-                </button>
+                </Link>
             </div>
         </>
     )
