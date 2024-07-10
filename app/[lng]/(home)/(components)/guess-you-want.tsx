@@ -58,7 +58,7 @@ const data: Data[] = [
 
 export default function GuessYouWantPage() {
     const {
-        data: courses,
+        data: courses ,
         isLoading
     } = useSWR(`/course/recommend`, async (url) => await api("GET", `/course/recommend`, undefined).then(d => d))
 
@@ -80,7 +80,7 @@ export default function GuessYouWantPage() {
                 // orientation="vertical"
             >
                 <CarouselContent className="">
-                    {courses?.map((item, cnt) => (
+                    {courses?.map((item: any, cnt) => (
                         <CarouselItem className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
