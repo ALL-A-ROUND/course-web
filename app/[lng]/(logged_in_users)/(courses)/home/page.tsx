@@ -9,9 +9,10 @@ import {FoundingCourse, NormalCourse} from "@/components/course_card";
 import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import {useTranslation} from "@/app/i18n";
+import {Spin} from "antd";
 
 export default async function HomePage({
-    params: {lng}
+                                           params: {lng}
                                        }) {
     const [firebaseUser, loading, error] = useAuthState(auth)
     const {
@@ -27,17 +28,19 @@ export default async function HomePage({
 
 
     const {t} = await useTranslation(lng)
-    if (loading) return <div>Loading...</div>
+    if (loading) return <div>
+        <Spin/>
+    </div>
 
     return (
-        <div className=" pb-20">
+        <div className="pb-20 bg-gray-600 ">
             <div className={"relative"}>
                 <CarouselPage/>
             </div>
 
-            <div className="px-4">
-                <h2 className="py-2 text-xl">積分課程 第一大類</h2>
-                <div className={"grid grid-cols-1 md:grid-cols-5 gap-6"}>
+            <div className="px-4 pt-8 bg-gray-600">
+                <h2 className="my-8 text-3xl text-white">本週新星</h2>
+                <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
@@ -52,6 +55,7 @@ export default async function HomePage({
                                         progress={100}
                                         alt={item.title}
                                         hot={item.hot}
+                                        learn_credit={item.learn_credit}
                                     />
                                     :
                                     <NormalCourse
@@ -62,6 +66,7 @@ export default async function HomePage({
                                         produced_by={item.produced_by}
                                         alt={item.title}
                                         hot={item.hot}
+                                        learn_credit={item.learn_credit}
                                     />
                                 }
                             </React.Fragment>
@@ -71,8 +76,8 @@ export default async function HomePage({
             </div>
 
             <div className="px-4 mt-8">
-                <h2 className="py-2 text-xl">積分課程 第二大類</h2>
-                <div className={"grid grid-cols-1 md:grid-cols-5 gap-6"}>
+                <h2 className="my-8 text-3xl text-white">限時優惠</h2>
+                <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
                     {courses?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
@@ -87,6 +92,7 @@ export default async function HomePage({
                                         progress={100}
                                         alt={item.title}
                                         hot={item.hot}
+                                        learn_credit={item.learn_credit}
                                     />
                                     :
                                     <NormalCourse
@@ -97,6 +103,7 @@ export default async function HomePage({
                                         produced_by={item.produced_by}
                                         alt={item.title}
                                         hot={item.hot}
+                                        learn_credit={item.learn_credit}
                                     />
                                 }
                             </React.Fragment>

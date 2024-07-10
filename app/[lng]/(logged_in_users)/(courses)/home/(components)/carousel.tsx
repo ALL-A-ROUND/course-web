@@ -60,7 +60,7 @@ export default function CarouselPage() {
                     align: "center",
                     loop: true
                 }}
-                className="w-full relative"
+                className="w-full relative md:flex md:justify-center  "
                 setApi={setApi}
             >
                 <CarouselContent>
@@ -68,7 +68,7 @@ export default function CarouselPage() {
                         <CarouselItem className=" h-fit" key={item.id}>
                             {item.type === 'video' && (
                                 <video
-                                    className={cn("rounded-md w-full", (cnt + 1) === current || "opacity-25")}
+                                    className={cn("w-full", (cnt + 1) === current || "opacity-25")}
                                     autoPlay
                                     loop
                                     muted
@@ -80,7 +80,7 @@ export default function CarouselPage() {
                                 <Image src={item.image}
                                        alt={item.alt}
                                        sizes="100vw"
-                                       className={cn("rounded-md w-full", (cnt + 1) === current || "opacity-25")}
+                                       className={cn("w-full", (cnt + 1) === current || "opacity-25")}
                                 />
                             )}
                         </CarouselItem>

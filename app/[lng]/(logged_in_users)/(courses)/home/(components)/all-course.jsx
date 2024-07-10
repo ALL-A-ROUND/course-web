@@ -11,12 +11,17 @@ import {
 } from "@/components/ui/carousel"
 import useSWR from "swr";
 import {api} from "@/app/[lng]/utils";
+import {Spin} from "antd";
 
 export default function AllCourse() {
     const {
         data: courses,
         isLoading
     } = useSWR(`/course/all`, async (url) => await api("GET", `/course/all`, undefined).then(d => d))
+
+    if(
+        isLoading
+    ) return <Spin></Spin>
 
     return (
         <div className="w-screen md:w-full pb-10 px-5">

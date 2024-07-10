@@ -12,6 +12,7 @@ export const FoundingCourse = (item: {
     produced_by: string,
     progress: number,
     alt: string,
+    learn_credit: string | number,
     hot: boolean,
 }) => {
     return (
@@ -64,6 +65,7 @@ export const NormalCourse = (item: {
     produced_by: string,
     alt: string,
     hot: boolean,
+    learn_credit: string | number,
 }) => {
     return (
         <Link href={`/course_detail/${item.id}`}>
@@ -81,18 +83,24 @@ export const NormalCourse = (item: {
                     <div className="py-3">
                         <div className="flex flex-col gap-3">
                             <h2 className="bg-year-100 text-year-400 text-center py-0.5 rounded-md w-12 h-fit text-sm">課程</h2>
-                            <h3 className="text-lg md:h-12 h-16">{item.title}</h3>
+                            <h3 className="text-lg md:h-12 h-16 text-white">{item.title}</h3>
                         </div>
                         {/*<h4 className="py-1 text-gray-700">{`By ${item.teachers}`}</h4>*/}
                     </div>
                 </div>
                 <div className="flex flex-row gap-3 items-center ">
-                    <h2 className="text-xl bg-yellow-500 p-2 rounded-md">{`NT$${item.price}`}</h2>
+                    <h2 className="text-xl bg-yellow-500 p-2 rounded-md">
+                        {item.learn_credit ? (
+                            <span className="text-white">{`${item.price / 10}點 | ${item.learn_credit}積分`}</span>
+                        ) : (
+                            <span className="text-white">{`${item.price / 10}點`}</span>
+                        )}
+                    </h2>
                 </div>
                 {item.hot &&
                     <div
                         className="bg-red-200 w-fit px-3 py-0.5 rounded-md text-red-600 absolute -bottom-8">熱門課程</div>}
             </div>
         </Link>
-    )
+)
 }
