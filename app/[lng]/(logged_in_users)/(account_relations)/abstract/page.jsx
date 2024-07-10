@@ -169,7 +169,7 @@ export default function AbstractPage() {
                             <h1 className="text-xl">
                                 我的積分卡
                             </h1>
-                            <div className={"flex flex-col md:flex-row gap-4 justify-center items-center"}>
+                            <div className={"flex flex-col "}>
                                 {
                                     credits && <div className={"bg-green-400 rounded-md p-4 pb-8 text-white text-2xl w-2/3"}>
                                         累積 ${credits?.map(c => c.amount).reduce((a, b) => a + b, 0)} 積分

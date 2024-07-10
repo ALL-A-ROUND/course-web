@@ -4,7 +4,10 @@ const path = require('path');
 const projectID = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
 const nextConfig = {
     images: {
-        domains: [process.env.NEXT_PUBLIC_ASSET_ENDPOINT.split("//")[1].split("/")[0].split(":")[0]],
+        domains: [
+            process.env.NEXT_PUBLIC_ASSET_ENDPOINT.split("//")[1].split("/")[0].split(":")[0],
+            "rgauqyeosa62pbqv.public.blob.vercel-storage.com"
+        ],
     },
     webpack: (config) => {
         config.module.rules.push({
