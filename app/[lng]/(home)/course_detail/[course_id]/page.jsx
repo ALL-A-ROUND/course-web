@@ -33,6 +33,7 @@ import {api} from "@/app/[lng]/utils";
 import {useEffect} from "react";
 import Markdown from "react-markdown";
 import Image from "next/image";
+import BuyCourseWidget from "@/app/[lng]/(logged_in_users)/(in_class)/course/[course_id]/BuyCourseWidget";
 
 function CollapsibleDemo() {
     const [isOpen, setIsOpen] = React.useState(false)
@@ -153,18 +154,20 @@ export default async function CourseDetail({params}) {
                     {/*        </button>*/}
                     {/*    </div>*/}
                     {/*</div>*/}
-                    <div className={"flex flex-row  gap-4"}>
-                        <Image src={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image} width={1280} height={720} className={"rounded-xl max-h-screen w-fit"}/>
+                    <div className={"flex flex-row gap-4"}>
+                        <Image
+                            src={course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image}
+                            width={1280} height={720} className={"rounded-xl max-h-screen w-fit max-w-2xl"}/>
                         <div>
                             {course?.teachers?.length > 0 &&
-                            <div className={"mt-4 flex gap-1 items-center font-extralight"}>
-                                {/*<div className={"h-6 w-6"}> /!* AVATAR *!/*/}
-                                {/*    <img src={"https://images.hahow.in/images/6406c9c957e7939a9063aa44?width=48"}/>*/}
-                                {/*</div>*/}
-                                <div>
-                                    By: {course?.teachers?.map(u => u.name)?.join(", ")}
-                                </div>
-                            </div>}
+                                <div className={"mt-4 flex gap-1 items-center font-extralight"}>
+                                    {/*<div className={"h-6 w-6"}> /!* AVATAR *!/*/}
+                                    {/*    <img src={"https://images.hahow.in/images/6406c9c957e7939a9063aa44?width=48"}/>*/}
+                                    {/*</div>*/}
+                                    <div>
+                                        By: {course?.teachers?.map(u => u.name)?.join(", ")}
+                                    </div>
+                                </div>}
 
                             <div className={"mt-3 font-bold text-3xl"}>
                                 {course?.name}
@@ -283,6 +286,8 @@ export default async function CourseDetail({params}) {
                         <div className={"text-xl border-b pb-2"}>
                             購買單堂課
                         </div>
+                        <BuyCourseWidget course={course}/>
+
                         <div className={"mt-4"}>
                             <div className={"flex gap-4 items-center"}>
                                 <div className={"flex flex-col gap-1"}>
@@ -298,13 +303,18 @@ export default async function CourseDetail({params}) {
 
                 </div>
 
+
             </div>
 
             {/* BOTTOM BAR */}
             <div
                 className={"fixed flex items-center gap-4 bottom-0 left-0 right-0 h-20 rounded-t-lg border-t shadow-xl border-gray-200 bg-white  px-4"}>
                 <div className={"flex items-center gap-2"}> {/* PRICE */}
-                    <div>免費</div>
+                    <div>{course?.price === 0 ? (
+                        "免費"
+                    ) : (
+                        "NT$ " + course?.price + " 起"
+                    )}</div>
 
                     <button className={"border-lime-200 border-2 text-white flex-grow rounded-lg p-2"}>
                         <ShoppingCartIcon className={"h-6 w-6 text-lime-400"}/>
@@ -312,12 +322,13 @@ export default async function CourseDetail({params}) {
                 </div>
 
                 <button className={"bg-lime-400 text-white flex-grow rounded-lg p-2"}>
-                    免費加入
+                    {course?.price === 0 ? (
+                        "立即學習"
+                    ) : (
+                        "立即購買"
+                    )}
                 </button>
-
-
             </div>
-
         </>
     )
 }
