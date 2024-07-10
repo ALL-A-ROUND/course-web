@@ -23,7 +23,7 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                source: "/__/auth/:path*",
+                source: "/:lang/__/auth/:path*",
                 destination: `https://${projectID}.firebaseapp.com/__/auth/:path*`
             },
         ];
