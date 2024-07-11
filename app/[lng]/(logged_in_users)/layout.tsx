@@ -66,8 +66,8 @@ export default async function PageLayout({
                 </div>
             </nav>
             {children}
-            <footer className="bg-gray-100 px-5 py-8 pb-20">
-                <h2>
+            <footer className="bg-black text-white px-5 py-8 pb-20">
+                <h2 className={"text-2xl"}>
                     {t`聯絡我們`}
                 </h2>
                 {[{
@@ -87,7 +87,7 @@ export default async function PageLayout({
                 ))}
 
                 <Trans i18nKey="languageSwitcher" t={t}>
-                    Switch from <strong>{lng}</strong> to:{' '}
+                    更改語言 <strong>{lng}</strong> 至:{' '}
                 </Trans>
                 {languages.filter((l) => lng !== l).map((l, index) => {
                     return (

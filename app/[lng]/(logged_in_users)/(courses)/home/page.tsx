@@ -10,6 +10,7 @@ import {useAuthState} from "react-firebase-hooks/auth";
 import {auth} from "@/lib/firebase/firebase";
 import {useTranslation} from "@/app/i18n";
 import {Spin} from "antd";
+import _ from "lodash";
 
 export default async function HomePage({
                                            params: {lng}
@@ -33,15 +34,91 @@ export default async function HomePage({
     </div>
 
     return (
-        <div className="pb-20 bg-gray-600 ">
+        <div className="pb-20 bg-black">
             <div className={"relative"}>
                 <CarouselPage/>
             </div>
 
-            <div className="px-4 pt-8 bg-gray-600">
+
+            <div className="px-4 pt-8 bg-black">
+                <h2 className="my-8 text-3xl text-white">第一大類課程</h2>
+                <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
+                    {courses?.sort(() => .5 - Math.random()).map((item, cnt) => (
+                        <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
+                            <React.Fragment key={item.id}>
+                                {item.isFounding ?
+                                    <FoundingCourse
+                                        id={item.id}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
+                                        title={item.title}
+                                        price={item.price}
+                                        original_price={item.original_price}
+                                        produced_by={item.produced_by}
+                                        progress={100}
+                                        alt={item.title}
+                                        hot={item.hot}
+                                        learn_credit={item.learn_credit}
+                                    />
+                                    :
+                                    <NormalCourse
+                                        id={item.id}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
+                                        title={item.name}
+                                        price={item.price}
+                                        produced_by={item.produced_by}
+                                        alt={item.title}
+                                        hot={item.hot}
+                                        learn_credit={item.learn_credit}
+                                    />
+                                }
+                            </React.Fragment>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+
+            <div className="px-4 pt-8 bg-black">
+                <h2 className="my-8 text-3xl text-white">第二大類課程</h2>
+                <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
+                    {courses?.reverse()?.map((item, cnt) => (
+                        <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
+                            <React.Fragment key={item.id}>
+                                {item.isFounding ?
+                                    <FoundingCourse
+                                        id={item.id}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
+                                        title={item.title}
+                                        price={item.price}
+                                        original_price={item.original_price}
+                                        produced_by={item.produced_by}
+                                        progress={100}
+                                        alt={item.title}
+                                        hot={item.hot}
+                                        learn_credit={item.learn_credit}
+                                    />
+                                    :
+                                    <NormalCourse
+                                        id={item.id}
+                                        image={item?.image?.startsWith('http') ? item?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + item?.image}
+                                        title={item.name}
+                                        price={item.price}
+                                        produced_by={item.produced_by}
+                                        alt={item.title}
+                                        hot={item.hot}
+                                        learn_credit={item.learn_credit}
+                                    />
+                                }
+                            </React.Fragment>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">本週新星</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {courses?.map((item, cnt) => (
+                    {_.shuffle(courses)?.sort(() => .5 - Math.random())?.slice(0, 4)?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
@@ -78,7 +155,7 @@ export default async function HomePage({
             <div className="px-4 mt-8">
                 <h2 className="my-8 text-3xl text-white">限時優惠</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {courses?.map((item, cnt) => (
+                    {_.shuffle(courses)?.slice(0, 4)?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?

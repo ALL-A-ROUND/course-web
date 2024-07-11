@@ -16,6 +16,7 @@ import dynamic from "next/dynamic";
 export default function AbstractPage() {
     const [value, setValue] = useState(0)
     const [firebaseUser, loading, error] = useAuthState(auth)
+    const [componentLoading, setComponentLoading] = useState(true)
     const Credit = dynamic(() => import('@/app/[lng]/member/credit/page'), {
         ssr: false
     })
@@ -51,15 +52,18 @@ export default function AbstractPage() {
     }, [loading]);
 
     if (loading || userLoading || isLoading) return <div
-        className={"bg-gray-800 flex min-h-screen justify-center items-center"}>
+        className={"bg-black flex min-h-screen justify-center items-center"}>
         <Spin size="large"/>
     </div>
 
     return (
-        <>
+        <div   style={{
+            height: '100%',
+            maxHeight: 500
+        }}>
             <Carousel arrows={true} infinite={true} ref={carouselRef}>
-                <div className={"bg-gray-800 py-4"}>
-                    <div className="flex flex-col items-center py-5">
+                <div className={"bg-black py-4 h-full"}>
+                    <div className="flex flex-col items-center py-5 h-full">
                         <div className={"flex items-center"}>
                             <ArrowLeft size={64} className={"text-white"} onClick={
                                 () => carouselRef.current.prev()
@@ -73,7 +77,8 @@ export default function AbstractPage() {
                                 cvv={""}
                                 name={`${user?.name}的學習護照`}
                                 number={
-                                    md5(firebaseUser?.uid).slice(0, 4) + "-" + md5(firebaseUser?.uid).slice(4, 8) + "-" + md5(firebaseUser?.uid).slice(8, 12) + "-" + String(user?.id).padStart(4, '0')
+                                    // md5(firebaseUser?.uid).slice(0, 4) + "-" + md5(firebaseUser?.uid).slice(4, 8) + "-" + md5(firebaseUser?.uid).slice(8, 12) + "-" + String(user?.id).padStart(4, '0')
+                                    "Point Card"
                                 }
                             />
                             <ArrowRight size={64} className={"text-white"}
@@ -140,7 +145,7 @@ export default function AbstractPage() {
                         </div>
                     </div>
                 </div>
-                <div className={"bg-gray-800"}>
+                <div className={"bg-black"}>
                     <div className="flex flex-col items-center py-5">
                         <div className={"flex items-center"}>
                             <ArrowLeft size={64} className={"text-white"}
@@ -156,7 +161,8 @@ export default function AbstractPage() {
                                 cvv={""}
                                 name={`${user?.name}的積分卡`}
                                 number={
-                                    md5(firebaseUser?.uid).slice(0, 4) + "-" + md5(firebaseUser?.uid).slice(4, 8) + "-" + md5(firebaseUser?.uid).slice(8, 12) + "-" + String(user?.id).padStart(4, '0')
+                                    // md5(firebaseUser?.uid).slice(0, 4) + "-" + md5(firebaseUser?.uid).slice(4, 8) + "-" + md5(firebaseUser?.uid).slice(8, 12) + "-" + String(user?.id).padStart(4, '0')
+                                    "Point Card"
                                 }
                             />
                             <ArrowRight size={64} className={"text-white"}
@@ -181,7 +187,6 @@ export default function AbstractPage() {
                     </div>
                 </div>
             </Carousel>
-
-        </>
+        </div>
     )
 }

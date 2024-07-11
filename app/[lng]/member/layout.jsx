@@ -99,7 +99,7 @@ export default async function Layout({children}) {
                 </main>
             </div>
             <nav className="fixed bottom-0 w-full h-16 flex flex-row items-start justify-center">
-                <div className="w-4/5 bg-emerald-100 h-4/5 rounded-full flex flex-row justify-between px-5">
+                <div className="w-4/5 bg-black text-white h-4/5 rounded-full flex flex-row justify-between md:justify-center md:gap-4 px-5">
                     <Link href="/abstract" passHref>
                         <div className={cn("rounded-full items-center flex flex-row relative h-full",
                             pathname === "/abstract" ? "w-32" : "w-10"
