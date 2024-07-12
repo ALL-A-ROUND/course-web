@@ -123,10 +123,8 @@ export default async function HomePage({
             <div className={"flex flex-col md:flex-row w-full"}>
                 <Image
                     src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128460_0-mjaqvVao2z6yBxEjIEfSoXXfzcGlUa.jpg'}
-                    alt={""} width="1000" height={"1000"} className={"w-1/2"}/>
-                <Image
-                    src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128461_0-GLyflImvVsVAzDtOyzlmbqiogGIhxq.jpg'}
-                    alt={""} width="1000" height={"1000"} className={"w-1/2"}/>
+                    alt={""} width="1000" height={"1000"} className={"w-full"}/>
+
             </div>
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">本週新星</h2>
@@ -203,6 +201,13 @@ export default async function HomePage({
             </div>
 
             <Categories/>
+
+            <div className={"flex flex-col md:flex-row w-full pt-3"}>
+                <Image
+                    src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128461_0-GLyflImvVsVAzDtOyzlmbqiogGIhxq.jpg'}
+                    alt={""} width="1000" height={"1000"} className={"w-full"}/>
+            </div>
+
             <Cooperation t={t}/>
         </div>
     )

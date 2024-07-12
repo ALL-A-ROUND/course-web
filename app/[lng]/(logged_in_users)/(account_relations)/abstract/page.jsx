@@ -35,7 +35,7 @@ export default function AbstractPage() {
 
     const {
         data: credits,
-        mutate : revalidateCredits
+        mutate: revalidateCredits
     } = useSWR(`/credit`, async (url) => await api("GET", url, null).then(d => d))
 
     useEffect(() => {
@@ -52,7 +52,7 @@ export default function AbstractPage() {
     </div>
 
     return (
-        <div   style={{
+        <div style={{
             height: '100%',
             maxHeight: 500
         }}>
@@ -63,35 +63,25 @@ export default function AbstractPage() {
                             <ArrowLeft className={"text-xs md:text-xl ml-2 text-white"} onClick={
                                 () => carouselRef.current.prev()
                             }/>
-                            <div
-                                className="my-8 mx-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
-                                <img className="w-24 h-8 absolute right-2 bottom-1"
+                            <div className="my-8 mx-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
+                                {/* 立志 ＬＯＧＯ */}
+                                <img className="w-20 h-6 sm:w-24 sm:h-8 absolute right-2 bottom-1"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/lcvs-vD4r3nedQemx02FlqBNdykUvVaXa5h.png"/>
-                                <img className="w-20 h-28 absolute right-2 top-2"
+                                {/* 全方位 ＬＯＧＯ */}
+                                <img className="w-16 h-20 sm:w-20 sm:h-28 absolute right-2 top-2"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/logo/logo-transparent-Mna7RMaOu7nAtk0TbfKGuOAbKy5lT2.png"/>
 
-                                <img className="w-8 h-8 absolute left-4 top-24"
+                                {/* 晶片 */}
+                                <img className="w-8 h-8 absolute left-4 bottom-12 md:bottom-24"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/chip-ypw2ZT3Y3uUN4QMoTfv3J2m6LREokP.png"/>
 
-                                <div className="w-full px-8 absolute left-8 top-4">
-                                    <div className="flex justify-between pt-16">
-                                        <div className="">
-                                            <p className="font-light">
+                                <p className="font-medium tracking-widest text-2xl absolute top-2 left-4">
+                                    Point card
+                                </p>
 
-                                            </p>
-                                            <p className="font-medium tracking-widest text-2xl ">
-                                                Point card
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div className="pt-1">
-                                        <p className="font-light">
-                                        </p>
-                                        <p className="font-medium tracking-more-wider">
-                                            {user?.name}的學習護照
-                                        </p>
-                                    </div>
-                                </div>
+                                <p className="font-medium tracking-more-wider absolute bottom-2 left-2">
+                                    {user?.name}的學習護照
+                                </p>
                             </div>
 
 
