@@ -36,7 +36,8 @@ export default async function Cooperation({
 
     return (
         <>
-            <div className="bg-black text-white py-24 sm:py-32">
+
+            <div className="bg-white py-24 sm:py-32">
                 <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
                     <div className="flex flex-row gap-5 items-center px-4">
@@ -57,11 +58,12 @@ export default async function Cooperation({
                                        alt={company.name}
                                        width="158"
                                        height="48"
-                                       className="object-cover w-full rounded-lg bg-white p-1"/>
+                                       className="object-cover w-full  rounded-lg"/>
                             ))}
                         </div>
-                        <div className="text-black rounded-lg bg-slate-100 md:w-72 w-full py-4 h-fit flex flex-col items-center px-3 gap-3">
-
+                        <div className="bg-slate-100 md:w-72 w-full h-52 flex flex-col items-center px-3 gap-3">
+                            <div className="h-16">
+                            </div>
                             <div className="text-xl">
                                 {t`立即加入成為創作者的行列`}
                             </div>
@@ -70,7 +72,7 @@ export default async function Cooperation({
                             </div>
 
                             <Link href={'/manage/course/new'}
-                                  className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg ">
+                                  className="bg-year-200 hover:bg-year-300 cursor-pointer text-white w-full text-center py-2 rounded-lg my-4">
                                 {t`我要開課`}
                             </Link>
                         </div>

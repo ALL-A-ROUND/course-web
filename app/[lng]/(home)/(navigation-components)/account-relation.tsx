@@ -7,6 +7,7 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
+    BookUser,
     CircuitBoard, DoorOpen,
     Menu, Paperclip,
     PersonStanding,
@@ -58,7 +59,7 @@ export default function AccountRelation() {
                                 </Link>
                                 <Link href={'/abstract'}>
                                     <Button>
-                                        <Video className="mr-2 h-4 w-4"/> 學習護照
+                                        <BookUser className="mr-2 h-4 w-4"/> 學習護照
                                     </Button>
                                 </Link>
                                 <Link href={'/member/credit'}>

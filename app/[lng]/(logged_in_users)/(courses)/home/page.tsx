@@ -11,6 +11,7 @@ import {auth} from "@/lib/firebase/firebase";
 import {useTranslation} from "@/app/i18n";
 import {Spin} from "antd";
 import _ from "lodash";
+import Image from "next/image";
 
 export default async function HomePage({
                                            params: {lng}
@@ -77,6 +78,11 @@ export default async function HomePage({
                 </div>
             </div>
 
+            <div className={"w-full"}>
+                <Image
+                    src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128458_0-MQPv90LJ5hH6sabg2zGt7C7svq0NuZ.jpg'}
+                    alt={""} width="1000" height={"1000"} className={"w-full my-4"}/>
+            </div>
 
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">第二大類課程</h2>
@@ -114,12 +120,19 @@ export default async function HomePage({
                     ))}
                 </div>
             </div>
-
+            <div className={"flex flex-col md:flex-row w-full"}>
+                <Image
+                    src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128460_0-mjaqvVao2z6yBxEjIEfSoXXfzcGlUa.jpg'}
+                    alt={""} width="1000" height={"1000"} className={"w-1/2"}/>
+                <Image
+                    src={'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/hoomepage/S__289128461_0-GLyflImvVsVAzDtOyzlmbqiogGIhxq.jpg'}
+                    alt={""} width="1000" height={"1000"} className={"w-1/2"}/>
+            </div>
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">本週新星</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
                     {_.shuffle(courses)?.sort(() => .5 - Math.random())?.slice(0, 4)?.map((item, cnt) => (
-                        <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
+                        <div className=" basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
                                     <FoundingCourse

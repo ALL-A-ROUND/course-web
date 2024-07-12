@@ -29,7 +29,7 @@ const carouselItems = [
         alt: "image",
     },*/ {
         id: 6,
-        image: 'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/video-fza9iBPHv7PSkqJ6nIR6vAoQpMPFNN.mp4',
+        image: 'https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/20220711%E9%95%B7%E7%85%A7%E6%95%B8%E4%BD%8D-Final4K%E5%A4%A7%E6%AA%94-B8kh7Bolsa4ndJaZ5L2C0fI8Z2PZGa.mov',
         type: 'video',
         alt: "image",
     },
@@ -60,15 +60,15 @@ export default function CarouselPage() {
                     align: "center",
                     loop: true
                 }}
-                className="w-full relative md:flex md:justify-center  "
+                className="w-full relative md:flex md:justify-center"
                 setApi={setApi}
             >
                 <CarouselContent>
                     {carouselItems.map((item, cnt) => (
-                        <CarouselItem className=" h-fit" key={item.id}>
+                        <CarouselItem className="" key={item.id}>
                             {item.type === 'video' && (
                                 <video
-                                    className={cn("w-full", (cnt + 1) === current || "opacity-25")}
+                                    className={cn("object-crop w-full", (cnt + 1) === current || "opacity-25")}
                                     autoPlay
                                     loop
                                     muted

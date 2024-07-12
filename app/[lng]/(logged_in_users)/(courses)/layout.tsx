@@ -30,7 +30,7 @@ export default async function HomeLayout({
             {children}
 
             <nav
-                className="fixed bottom-0 w-full h-16 flex flex-row items-center justify-between md:justify-center gap-4 px-4"
+                className="fixed md:hidden bottom-0 w-full h-16 flex flex-row items-center justify-between md:justify-center gap-4 px-4"
                 style={{
                     backgroundColor: "rgb(29, 29, 31)"
                 }}>
