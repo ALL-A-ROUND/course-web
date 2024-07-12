@@ -64,16 +64,16 @@ export default function AbstractPage() {
                                 () => carouselRef.current.prev()
                             }/>
                             <div
-                                className="my-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-                                <img className="w-24 h-8 absolute right-2 top-2"
+                                className="my-8 mx-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
+                                <img className="w-24 h-8 absolute right-2 bottom-1"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/lcvs-vD4r3nedQemx02FlqBNdykUvVaXa5h.png"/>
-                                <img className="w-8 h-12 absolute right-2 bottom-1"
+                                <img className="w-20 h-28 absolute right-2 top-2"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/logo/logo-transparent-Mna7RMaOu7nAtk0TbfKGuOAbKy5lT2.png"/>
 
-                                {/*<img className="w-8 h-8 absolute left-4 top-0.5"*/}
-                                {/*     src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/chip-ypw2ZT3Y3uUN4QMoTfv3J2m6LREokP.png"/>*/}
+                                <img className="w-8 h-8 absolute left-4 top-24"
+                                     src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/chip-ypw2ZT3Y3uUN4QMoTfv3J2m6LREokP.png"/>
 
-                                <div className="w-full px-8 absolute top-4">
+                                <div className="w-full px-8 absolute left-8 top-4">
                                     <div className="flex justify-between pt-16">
                                         <div className="">
                                             <p className="font-light">
@@ -180,16 +180,15 @@ export default function AbstractPage() {
                                        }
                             />
                             <div
-                                className="my-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-110">
-                                <img className="w-24 h-8 absolute right-2 top-2"
+                                className="my-8 mx-8 w-[66.6vw] h-[calc(66.6vw/16*9)] md:w-96 md:h-56 m-auto bg-gray-900 rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
+                                <img className="w-24 h-8 absolute right-2 bottom-1"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/lcvs-vD4r3nedQemx02FlqBNdykUvVaXa5h.png"/>
-                                <img className="w-8 h-12 absolute right-2 bottom-1"
+                                <img className="w-20 h-28 absolute right-2 top-2"
                                      src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/logo/logo-transparent-Mna7RMaOu7nAtk0TbfKGuOAbKy5lT2.png"/>
+                                <img className="w-8 h-8 absolute left-4 top-24"
+                                     src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/chip-ypw2ZT3Y3uUN4QMoTfv3J2m6LREokP.png"/>
 
-                                {/*<img className="w-8 h-fit absolute left-4 top-0.5"*/}
-                                {/*     src="https://rgauqyeosa62pbqv.public.blob.vercel-storage.com/chip-ypw2ZT3Y3uUN4QMoTfv3J2m6LREokP.png"/>*/}
-
-                                <div className="w-full px-8 absolute top-4">
+                                <div className="w-full px-8 absolute left-8 top-4">
                                     <div className="flex justify-between pt-16">
                                         <div className="">
                                             <p className="font-light">
