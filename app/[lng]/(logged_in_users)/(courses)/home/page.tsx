@@ -44,7 +44,7 @@ export default async function HomePage({
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">第一大類課程</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {_.shuffle(courses)?.filter(k=>k.image.startsWith("http")).map((item, cnt) => (
+                    {_.shuffle(courses)?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
@@ -87,7 +87,7 @@ export default async function HomePage({
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">第二大類課程</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {courses?.reverse()?.filter(k=>k.image.startsWith("http"))?.map((item, cnt) => (
+                    {courses?.reverse()?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
@@ -129,7 +129,7 @@ export default async function HomePage({
             <div className="px-4 pt-8 bg-black">
                 <h2 className="my-8 text-3xl text-white">本週新星</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {_.shuffle(courses)?.filter(k=>k.image.startsWith("http"))?.sort(() => .5 - Math.random())?.slice(0, 4)?.map((item, cnt) => (
+                    {_.shuffle(courses)?.sort(() => .5 - Math.random())?.slice(0, 4)?.map((item, cnt) => (
                         <div className=" basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
@@ -166,7 +166,7 @@ export default async function HomePage({
             <div className="px-4 mt-8">
                 <h2 className="my-8 text-3xl text-white">限時優惠</h2>
                 <div className={"grid grid-cols-1 md:grid-cols-4 gap-12"}>
-                    {_.shuffle(courses)?.filter(k=>k.image.startsWith("http"))?.slice(0, 4)?.map((item, cnt) => (
+                    {_.shuffle(courses)?.slice(0, 4)?.map((item, cnt) => (
                         <div className="md:basis-1/3 basis-full select-none cursor-pointer" key={item.id}>
                             <React.Fragment key={item.id}>
                                 {item.isFounding ?
