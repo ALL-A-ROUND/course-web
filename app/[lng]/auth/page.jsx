@@ -137,7 +137,7 @@ export default function Auth() {
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img
                         className="mx-auto h-10 w-auto"
-                        src={`/logo/${process.env.NEXT_PUBLIC_APP_ID}`}
+                        src={`/public_assets/logo/${process.env.NEXT_PUBLIC_APP_ID}`}
                         alt="Your Company"
                     />
                     <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">

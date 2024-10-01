@@ -15,7 +15,7 @@ function CourseCard({ course }) {
                     sizes="100vw"
                     className={cn("w-1/2 h-full rounded-md hover:scale-110 object-cover transition ease-in-out")}
                     src={
-                        course?.image ? course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image : "/course.jpeg"}
+                        course?.image ? course?.image?.startsWith("http") ? course?.image : process.env.NEXT_PUBLIC_ASSET_ENDPOINT + course?.image : "/public_assets/course.jpeg"}
                     /*width={640} height={75}*/
                     alt={"course image"}></Image>
                 <div className={"flex flex-col"}>

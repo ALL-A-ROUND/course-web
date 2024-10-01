@@ -39,7 +39,7 @@ export default async function PageLayout({
         <div>
             <nav className="h-16 w-full bg-white flex flex-row items-center px-4 space-x-5 justify-between">
                 <div className="relative">
-                    <Image src={LCVS} alt="logo"
+                    <Image src={`/public_assets/logo/${process.env.NEXT_PUBLIC_APP_ID}`} alt="logo"
                            width={100}
                            height={100}
                            className={"h-12 w-full p-1"}

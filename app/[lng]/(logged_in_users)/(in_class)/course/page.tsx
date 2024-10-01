@@ -13,14 +13,14 @@ export default function Course() {
     useEffect(() => {
         // api('GET', '/user').then(data => setUser(data))
     }, []);
-    return redirect("/zh/manage/course/my")
+    // return redirect("/zh/manage/course/my")
     return (
         <div className="flex min-h-full flex-col">
-            <Link
-                href={'/manage/course/my'}
-                className={"bg-indigo-400 mx-8 rounded-lg p-2 text-center text-white block"}>
-                切換到新版介面
-            </Link>
+            {/*<Link*/}
+            {/*    href={'/manage/course/my'}*/}
+            {/*    className={"bg-indigo-400 mx-8 rounded-lg p-2 text-center text-white block"}>*/}
+            {/*    切換到新版介面*/}
+            {/*</Link>*/}
 
 
             {/* 3 column wrapper */}

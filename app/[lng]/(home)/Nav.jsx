@@ -70,7 +70,7 @@ export default function Nav() {
                         <Image
                             width={640} height={640}
                             className="h-8 w-auto sm:h-10 rounded-lg"
-                            src={`/logo/${process.env.NEXT_PUBLIC_APP_ID}`}
+                            src={`/public_assets/logo/${process.env.NEXT_PUBLIC_APP_ID}`}
                             alt=""
                         />
                     </Link>
