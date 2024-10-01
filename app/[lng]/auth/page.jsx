@@ -13,11 +13,11 @@ import {
 } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useEffect, useState } from "react";
-import { QrCodeIcon } from "@heroicons/react/24/solid";
+import {LinkIcon, QrCodeIcon} from "@heroicons/react/24/solid";
 import QRCode from "react-qr-code";
 import { api } from "@/app/[lng]/utils";
 import { ArrowPathIcon, ArrowPathRoundedSquareIcon, CheckCircleIcon, CheckIcon } from "@heroicons/react/24/outline";
-import { FacebookIcon } from "lucide-react";
+import {FacebookIcon, GroupIcon, Link2Icon, PersonStanding} from "lucide-react";
 
 const { detect } = require('detect-browser');
 const browser = detect();
@@ -251,6 +251,13 @@ export default function Auth() {
 
                                     <span className="text-sm font-semibold leading-6">Facebook</span>
                                 </button>
+
+                                <a href="https://cms.nthu.dev"
+                                    className="flex col-span-2 w-full items-center justify-center gap-3 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
+                                >
+                                    <PersonStanding className="h-4 w-4 fill-[#24292F]" />
+                                    <span className="text-sm font-semibold leading-6">社務系統登入</span>
+                                </a>
 
                                 <button
                                     onClick={generateQR}
