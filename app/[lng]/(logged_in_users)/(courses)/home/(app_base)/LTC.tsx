@@ -1,7 +1,7 @@
 "use client"
-import CarouselPage from "./(components)/carousel"
-import Categories from "./(components)/category-display"
-import Cooperation from "./(components)/cooperation"
+import CarouselPage from "../(components)/carousel"
+import Categories from "../(components)/category-display"
+import Cooperation from "../(components)/cooperation"
 import useSWR from "swr";
 import {api} from "@/app/[lng]/utils";
 import React, {useEffect} from "react";

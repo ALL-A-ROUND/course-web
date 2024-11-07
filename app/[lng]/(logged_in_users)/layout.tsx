@@ -11,7 +11,7 @@ import AccountRelations from "@/app/[lng]/(home)/(navigation-components)/account
 import {useTranslation} from "@/app/i18n";
 import {Trans} from 'react-i18next/TransWithoutContext'
 import {languages} from '@/app/i18n/settings'
-import LCVS from '@/public/logo/lcvs.png'
+
 export default async function PageLayout({
                                              children,
                                              params: {lng}
@@ -71,14 +71,14 @@ export default async function PageLayout({
                     {t`聯絡我們`}
                 </h2>
                 {[{
-                    title: t`服務電話`,
-                    text: "0965-168-725"
-                }, {
                     title: t`服務信箱`,
-                    text: "administrator@esgltc.com",
+                    text: "contact@nthu.dev",
+                }, {
+                    title: t`LINE ID`,
+                    text: "@810sixny"
                 }, {
                     title: t`LINE 客服`,
-                    text: "@home-angel"
+                    text: "https://page.line.me/810sixny"
                 }].map(l => (
                     <div key={l.title} className="flex flex-row gap-3">
                         <h2>{l.title}</h2>

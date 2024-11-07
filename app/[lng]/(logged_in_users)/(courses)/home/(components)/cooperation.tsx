@@ -1,32 +1,13 @@
 "use client"
 import Image from "next/image"
-import LCVS from "@/public/logo/lcvs.png"
-import hesong from "@/public/logo/hesong.jpg"
-import allroud from "@/public/logo/allroud.png"
-import furen from "@/public/logo/furen.png"
+import waku from "@/public/logo/WaKuOJ.png"
 import Link from "next/link";
-import {useTranslation} from "@/app/i18n";
 
 const companies = [
     {
         id: "jseif",
         name: "Company 1",
-        image: LCVS,
-    },
-    {
-        id: "jseif",
-        name: "Company 1",
-        image: hesong,
-    },
-    {
-        id: "jseif",
-        name: "Company 1",
-        image: allroud,
-    },
-    {
-        id: "jseif",
-        name: "Company 1",
-        image: furen,
+        image: waku,
     },
 ]
 
