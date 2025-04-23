@@ -6,7 +6,8 @@ const nextConfig = {
     images: {
         domains: [
             process.env.NEXT_PUBLIC_ASSET_ENDPOINT.split("//")[1].split("/")[0].split(":")[0],
-            "rgauqyeosa62pbqv.public.blob.vercel-storage.com"
+            "rgauqyeosa62pbqv.public.blob.vercel-storage.com",
+            "course-ab.esgltc.com",
         ],
     },
     webpack: (config) => {
