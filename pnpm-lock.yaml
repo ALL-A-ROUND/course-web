@@ -4834,6 +4834,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   espree@9.6.1:
@@ -10563,29 +10564,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@ckeditor/ckeditor5-build-inline@41.4.2':
-    dependencies:
-      '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2
-      '@ckeditor/ckeditor5-autoformat': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-basic-styles': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-block-quote': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-cloud-services': 41.4.2
-      '@ckeditor/ckeditor5-easy-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-editor-inline': 41.4.2
-      '@ckeditor/ckeditor5-essentials': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-heading': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-image': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-indent': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-link': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-list': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-media-embed': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-paragraph': 41.4.2
-      '@ckeditor/ckeditor5-paste-from-office': 41.4.2
-      '@ckeditor/ckeditor5-table': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
-      '@ckeditor/ckeditor5-typing': 41.4.2
-
   '@ckeditor/ckeditor5-build-inline@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
       '@ckeditor/ckeditor5-adapter-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -10812,11 +10790,6 @@ snapshots:
       - canvas
       - supports-color
       - utf-8-validate
-
-  '@ckeditor/ckeditor5-editor-inline@41.4.2':
-    dependencies:
-      ckeditor5: 41.4.2
-      lodash-es: 4.17.21
 
   '@ckeditor/ckeditor5-editor-inline@41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)':
     dependencies:
@@ -14514,7 +14487,7 @@ snapshots:
       '@ckeditor/ckeditor5-build-balloon-block': 41.4.2
       '@ckeditor/ckeditor5-build-classic': 41.4.2
       '@ckeditor/ckeditor5-build-decoupled-document': 41.4.2
-      '@ckeditor/ckeditor5-build-inline': 41.4.2
+      '@ckeditor/ckeditor5-build-inline': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-build-multi-root': 41.4.2
       '@ckeditor/ckeditor5-ckbox': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-ckfinder': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
@@ -14526,7 +14499,7 @@ snapshots:
       '@ckeditor/ckeditor5-editor-balloon': 41.4.2
       '@ckeditor/ckeditor5-editor-classic': 41.4.2
       '@ckeditor/ckeditor5-editor-decoupled': 41.4.2
-      '@ckeditor/ckeditor5-editor-inline': 41.4.2
+      '@ckeditor/ckeditor5-editor-inline': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-editor-multi-root': 41.4.2(canvas@2.11.2(supports-color@9.4.0))(supports-color@9.4.0)
       '@ckeditor/ckeditor5-engine': 41.4.2
       '@ckeditor/ckeditor5-enter': 41.4.2

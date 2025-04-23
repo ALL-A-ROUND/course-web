@@ -20,16 +20,14 @@ import { dir } from 'i18next'
 
 import { languages } from '../i18n/settings'
 
-export async function generateStaticParams() {
-    return languages.map((lng) => ({ lng }))
-}
-
-
+// export async function generateStaticParams() {
+//     return languages.map((lng) => ({ lng }))
+// }
 
 export default function RootLayout({ children,
-                                       params: {
-                                           lng
-                                       } }) {
+    params: {
+        lng
+    } }) {
     const TrackingComponent = dynamic(() => import(`@/components/tracking/${process.env.NEXT_PUBLIC_APP_ID}`), {
         ssr: false,
     });
