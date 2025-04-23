@@ -1,4 +1,5 @@
 # WakuOJ 前端專案
+update README
 
 採用技術棧：
 * Next.js 13
